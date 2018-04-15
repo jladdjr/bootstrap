@@ -8,6 +8,11 @@
       name: python36u-pip 
       state: present
   become: true
+- name: Update Pip3
+  pip:
+      name: pip
+      state: latest 
+  become: true
 - name: Create link for python3
   file:
       src: /bin/python3.6
