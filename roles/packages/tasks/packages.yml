@@ -5,13 +5,14 @@
   become: true
 - name: Install Pip3
   yum:
-      name: python36u-pip 
+      name: python36u-pip
       state: present
   become: true
 - name: Update Pip3
   pip:
       name: pip
-      state: latest 
+      state: latest
+      executable: pip3
   become: true
 - name: Create link for python3
   file:
@@ -20,4 +21,21 @@
       state: link
       owner: root
       group: root
-  become: true  
+  become: true
+- name: Install virtualenvwrapper
+  pip:
+      name: virtualenvwrapper
+      state: latest
+      executable: pip3
+- name: Source virtualenvwrapper
+  lineinfile:
+      line: source /usr/local/bin/virtualenvwrapper.sh
+      path: /home/vagrant/.bash_profile
+- name: Install ansible
+  pip:
+      name: ansible
+      state: latest
+      executable: pip3
+  become: true
+  tags:
+      - ansible
