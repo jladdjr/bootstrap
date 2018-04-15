@@ -1,0 +1,10 @@
+- name: Add my key
+  authorized_key:
+      key: https://github.com/jladdjr.keys
+      user: vagrant
+- name: Add my key (root)
+  become: true
+  authorized_key:
+      key: https://github.com/jladdjr.keys
+      user: root
+
