@@ -1,6 +1,6 @@
 - name: Add pom project
   git:
-    dest: /home/vagrant/projects/pom
+    dest: /home/vagrant/git/pom
     repo: git@github.com:jladdjr/pom.git
     accept_hostkey: yes
 - name: Create pom virtualenv

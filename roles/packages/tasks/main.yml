@@ -1,4 +1,4 @@
 - include: repos.yml
-- include: general.yml
-- include: packages.yml
+- include: system-packages.yml
+- include: python.yml
 - include: tools.yml

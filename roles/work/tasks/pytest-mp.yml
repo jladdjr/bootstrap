@@ -1,0 +1,11 @@
+- name: Add pytest-mp project
+  git:
+    dest: /home/vagrant/git/pytest-mp
+    repo: git@github.com:jladdjr/pytest-mp.git
+    accept_hostkey: yes
+- name: Create pytest-mp virtualenv
+  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python2 pytest-mp
+  args:
+      executable: /bin/bash
+  environment:
+      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3

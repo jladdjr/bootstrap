@@ -1,0 +1,25 @@
+- name: Add tower-qa project
+  git:
+    dest: /home/vagrant/git/tower-qa
+    repo: git@github.com:jladdjr/tower-qa.git
+    accept_hostkey: yes
+- name: Create tower-qa virtualenv
+  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python2 tower-qa
+  args:
+      executable: /bin/bash
+  environment:
+      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+# https://github.com/capless/warrant/issues/96#issuecomment-381503013
+- name: Downgrade pip (pip 10 breaks towerkit)
+  shell: . /usr/bin/virtualenvwrapper.sh && workon tower-qa && pip install pip==9.0.3
+  args:
+      executable: /bin/bash
+  environment:
+      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+- name: Add tower-qa requirements to venv
+  shell: . /usr/bin/virtualenvwrapper.sh && workon tower-qa && pip install -r requirements.txt
+  args:
+      executable: /bin/bash
+      chdir: /home/vagrant/git/tower-qa
+  environment:
+      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3

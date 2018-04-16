@@ -3,6 +3,7 @@
       - { role: keys, tags: keys }
       - { role: packages, tags: packages }
       - { role: projects, tags: projects }
+      - { role: work, tags: work }
       - { role: dotfiles, tags: dotfiles }
 
 

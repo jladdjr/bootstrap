@@ -1,0 +1,24 @@
+- name: Add towerkit project
+  git:
+    dest: /home/vagrant/git/towerkit
+    repo: git@github.com:jladdjr/towerkit.git
+    accept_hostkey: yes
+- name: Create towerkit virtualenv
+  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python2 towerkit
+  args:
+      executable: /bin/bash
+  environment:
+      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+- name: Downgrade pip (pip 10 breaks towerkit)
+  shell: . /usr/bin/virtualenvwrapper.sh && workon towerkit && pip install pip==9.0.3
+  args:
+      executable: /bin/bash
+  environment:
+      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+- name: Add towerkit requirements to venv
+  shell: . /usr/bin/virtualenvwrapper.sh && workon towerkit && pip install -r requirements.txt
+  args:
+      executable: /bin/bash
+      chdir: /home/vagrant/git/towerkit
+  environment:
+      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3

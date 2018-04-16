@@ -1,5 +1,5 @@
 - name: Add bootstrap project
   git:
-    dest: /home/vagrant/projects/bootstrap
+    dest: /home/vagrant/git/bootstrap
     repo: git@github.com:jladdjr/bootstrap.git
     accept_hostkey: yes
