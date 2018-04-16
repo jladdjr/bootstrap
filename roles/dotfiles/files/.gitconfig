@@ -1,0 +1,10 @@
+[user]
+        name = Jim Ladd
+        email = jladd@redhat.com
+[push]
+        default = current
+[alias]
+        co = checkout
+        st = status
+        br = branch
+        last = log -1 HEAD

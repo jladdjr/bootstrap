@@ -1,5 +1,8 @@
 - hosts: all
   roles:
-      - keys
-      - packages
+      - { role: keys, tags: keys }
+      - { role: packages, tags: packages }
+      - { role: projects, tags: projects }
+      - { role: dotfiles, tags: dotfiles }
+
 
