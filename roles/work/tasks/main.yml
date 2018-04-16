@@ -6,3 +6,4 @@
 - include: tower-qa.yml
 - include: towerkit.yml
 - include: pytest-mp.yml
+- include: awx.yml

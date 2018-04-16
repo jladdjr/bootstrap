@@ -1,0 +1,24 @@
+- name: Add awx project
+  git:
+    dest: /home/vagrant/git/awx
+    repo: git@github.com:jladdjr/awx.git
+    accept_hostkey: yes
+- name: Create awx virtualenv
+  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python2 awx
+  args:
+      executable: /bin/bash
+  environment:
+      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+# https://github.com/capless/warrant/issues/96#issuecomment-381503013
+- name: Downgrade pip
+  shell: . /usr/bin/virtualenvwrapper.sh && workon awx && pip install pip==9.0.3
+  args:
+      executable: /bin/bash
+  environment:
+      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+- name: Create awx aliases
+  blockinfile:
+      path: /home/vagrant/.bashrc
+      block: |
+        alias awx="cd /home/vagrant/git/awx; git br | grep '*'"
+      marker: "# {mark} ANSIBLE MANAGED BLOCK - awx"
