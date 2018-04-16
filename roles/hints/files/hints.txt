@@ -1,3 +1,5 @@
 Building dev env:
 $ gcloud auth login
-$ IMAGE_REPOSITORY_AUTH=`gcloud auth print-access-token` COMPOSE_TAG=devel make docker-compose
+$ sudo IMAGE_REPOSITORY_AUTH=`gcloud auth print-access-token` COMPOSE_TAG=devel make docker-compose
+
+$ sudo make ui-devel
