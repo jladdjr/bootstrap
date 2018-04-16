@@ -8,3 +8,8 @@
       src: .tmux.conf
       dest: /home/vagrant
       mode: 0755
+- name: Copy .vimrc
+  copy:
+      src: .vimrc
+      dest: /home/vagrant
+      mode: 0755

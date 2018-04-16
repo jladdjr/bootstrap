@@ -12,7 +12,7 @@
   pip:
       name: pip
       state: latest
-      executable: pip3
+      executable: pip3.6
   become: true
 - name: Create link for python3
   file:
@@ -26,7 +26,8 @@
   pip:
       name: virtualenvwrapper
       state: latest
-      executable: pip3
+      executable: pip3.6
+  become: true
 - name: Source virtualenvwrapper
   blockinfile:
       marker: "# {mark} ANSIBLE MANAGED BLOCK - virtualenvwrapper"
@@ -38,7 +39,7 @@
   pip:
       name: ansible
       state: latest
-      executable: pip3
+      executable: pip3.6
   become: true
   tags:
       - ansible
