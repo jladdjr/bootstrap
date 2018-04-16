@@ -40,3 +40,15 @@
         alias t='get_project_home; cd ${JDL_PROJECT_HOME}/tests/api'
         alias f='get_project_home; cd ${JDL_PROJECT_HOME}/tests/lib/fixtures/api'
       marker: "# {mark} ANSIBLE MANAGED BLOCK - tower-qa"
+- name: Check if AWS creds already in place
+  shell: cat /home/vagrant/.bashrc
+  register: bashrc
+- name: Create placeholder for AWS creds
+  blockinfile:
+      path: /home/vagrant/.bashrc
+      block: |
+        # Required by playbooks/inventory-ec2.py
+        export AWS_ACCESS_KEY_ID='CHANGEME'
+        export AWS_SECRET_ACCESS_KEY='CHANGEME'
+      marker: "# {mark} ANSIBLE MANAGED BLOCK - AWS Creds"
+  when: bashrc.stdout.find('AWS_ACCESS_KEY_ID') == -1

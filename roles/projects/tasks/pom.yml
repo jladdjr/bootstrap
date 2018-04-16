@@ -9,3 +9,7 @@
       executable: /bin/bash
   environment:
       VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+- name: Create aliases for pom
+  lineinfile:
+      path: /home/vagrant/.bashrc
+      line: alias pom="cd /home/vagrant/git/pom; git br | grep '*'"
