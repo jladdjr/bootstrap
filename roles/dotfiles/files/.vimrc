@@ -3,6 +3,10 @@ filetype plugin indent on
 syntax on
 colorscheme elflord
 
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
 " Enable search highlighting
 set hlsearch
 
