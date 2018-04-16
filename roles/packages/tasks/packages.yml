@@ -28,9 +28,12 @@
       state: latest
       executable: pip3
 - name: Source virtualenvwrapper
-  lineinfile:
-      line: source /usr/local/bin/virtualenvwrapper.sh
+  blockinfile:
+      marker: "# {mark} ANSIBLE MANAGED BLOCK - virtualenvwrapper"
       path: /home/vagrant/.bash_profile
+      block: |
+          export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+          source /usr/bin/virtualenvwrapper.sh
 - name: Install ansible
   pip:
       name: ansible

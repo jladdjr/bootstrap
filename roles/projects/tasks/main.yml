@@ -4,14 +4,5 @@
     path: /home/vagrant/projects
     mode: 0755
   tags: create_dir
-- name: Add pom project
-  git:
-    dest: /home/vagrant/projects/pom
-    repo: git@github.com:jladdjr/pom.git
-    accept_hostkey: yes
-- name: Add bootstrap project
-  git:
-    dest: /home/vagrant/projects/bootstrap
-    repo: git@github.com:jladdjr/bootstrap.git
-    accept_hostkey: yes
-    
+- include: pom.yml
+- include: bootstrap.yml

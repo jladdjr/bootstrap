@@ -1,0 +1,11 @@
+- name: Add pom project
+  git:
+    dest: /home/vagrant/projects/pom
+    repo: git@github.com:jladdjr/pom.git
+    accept_hostkey: yes
+- name: Create pom virtualenv
+  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 pom
+  args:
+      executable: /bin/bash
+  environment:
+      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
