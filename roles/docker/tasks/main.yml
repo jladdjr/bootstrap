@@ -29,3 +29,14 @@
 - name: Run hello world container
   command: docker run hello-world
   become: true
+# https://docs.docker.com/compose/install/
+# To ensure you have the latest version, check the Compose repository release page on GitHub:
+# https://github.com/docker/compose/releases (up-to-date as of 4/16/2018)
+- name: Install docker-compose
+  shell: curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
+  become: true
+- name: Make docker-compose executable
+  file:
+      dest: /usr/bin/docker-compose
+      mode: 0755
+  become: true
