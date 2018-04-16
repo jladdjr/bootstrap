@@ -1,0 +1,30 @@
+- name: Copy .vimrc
+  copy:
+      src: .vimrc
+      dest: /home/vagrant
+      mode: 0755
+# https://gist.github.com/romainl/9970697
+- name: Install Pathogen - add required dir (autoload)
+  file:
+      dest: /home/vagrant/.vim/autoload
+      state: directory
+      mode: 0755
+- name: Install Pathogen - add required dir (bundle)
+  file:
+      dest: /home/vagrant/.vim/bundle
+      state: directory
+      mode: 0755
+- name: Install Pathogen - download Pathogen
+  get_url:
+      url: https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+      dest: /home/vagrant/.vim/autoload/pathogen.vim
+      mode: 0755
+- name: Install Pathogen - source Pathogen in vimrc
+  lineinfile:
+      line: execute pathogen#infect()
+      path: /home/vagrant/.vimrc
+      insertbefore: BOF
+#- name: Install colorsupport using Pathogen
+#  git:
+#      repo: https://github.com/vim-scripts/colorsupport.vim.git
+#      dest: /home/vagrant/.vim/bundle/colorsupport.vim
