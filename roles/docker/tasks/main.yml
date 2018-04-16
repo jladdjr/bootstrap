@@ -1,0 +1,30 @@
+- name: Install required packages
+  yum:
+      name: "{{ item }}"
+      state: latest
+  with_items:
+      - yum-utils
+      - device-mapper-persistent-data
+      - lvm2
+  become: true
+- name: Add (stable) docker repo
+  command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+  become: true
+- name: Install docker
+  yum:
+      name: docker-ce
+      state: latest
+  become: true
+- name: Enable docker service
+  systemd:
+      name: docker
+      enabled: yes
+  become: true
+- name: Start docker service
+  systemd:
+      name: docker
+      state: started
+  become: true
+- name: Run hello world container
+  command: docker run hello-world
+  become: true

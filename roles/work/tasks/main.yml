@@ -7,3 +7,4 @@
 - include: towerkit.yml
 - include: pytest-mp.yml
 - include: awx.yml
+- include: tower.yml

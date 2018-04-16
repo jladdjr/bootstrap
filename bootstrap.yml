@@ -5,5 +5,4 @@
       - { role: projects, tags: projects }
       - { role: work, tags: work }
       - { role: dotfiles, tags: dotfiles }
-
-
+      - { role: docker, tags: docker}

@@ -3,6 +3,20 @@
     dest: /home/vagrant/git/awx
     repo: git@github.com:jladdjr/awx.git
     accept_hostkey: yes
+- name: Determine which remotes exist
+  command: git remote -v
+  args:
+      chdir: /home/vagrant/git/awx
+  register: git_remote
+- name: Add remote repo (ansible)
+  command: git remote add ansible git@github.com:ansible/awx.git
+  args:
+      chdir: /home/vagrant/git/awx
+  when: git_remote.stdout.find('ansible') == -1
+- name: Fetch ansible repo
+  command: git fetch ansible
+  args:
+      chdir: /home/vagrant/git/awx
 - name: Create awx virtualenv
   shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python2 awx
   args:
