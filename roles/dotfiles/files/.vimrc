@@ -1,6 +1,7 @@
 filetype plugin on
 filetype plugin indent on
 syntax on
+colorscheme elflord
 
 " Enable search highlighting
 set hlsearch
