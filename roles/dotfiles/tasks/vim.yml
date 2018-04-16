@@ -28,3 +28,14 @@
 #  git:
 #      repo: https://github.com/vim-scripts/colorsupport.vim.git
 #      dest: /home/vagrant/.vim/bundle/colorsupport.vim
+#https://github.com/alfredodeza/chapa.vim/tree/master
+- name: Install chapa.vim using Pathogen
+  git:
+      repo: https://github.com/alfredodeza/chapa.vim.git
+      dest: /home/vagrant/.vim/bundle/chapa.vim.git
+  tags: test
+- name: Enable chapa.vim
+  lineinfile:
+      path: /home/vagrant/.vimrc
+      line: let g:chapa_default_mappings = 1
+  tags: test
