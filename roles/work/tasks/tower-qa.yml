@@ -23,6 +23,12 @@
       chdir: /home/vagrant/git/tower-qa
   environment:
       VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+- name: Also install ipython
+  shell: . /usr/bin/virtualenvwrapper.sh && workon tower-qa && pip install ipython
+  args:
+      executable: /bin/bash
+  environment:
+      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
 - name: Create tower-qa aliases
   blockinfile:
       path: /home/vagrant/.bashrc

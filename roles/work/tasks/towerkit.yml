@@ -22,3 +22,14 @@
       chdir: /home/vagrant/git/towerkit
   environment:
       VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+- name: Create towerkit aliases
+  blockinfile:
+      path: /home/vagrant/.bashrc
+      block: |
+        export TOWERKIT_BASE_URL='http://127.0.0.1:8013'
+        alias mach='echo ${TOWERKIT_BASE_URL:8}'
+        export TOWERKIT_SCHEMA_VALIDATION=False
+        export TOWERKIT_CREDENTIAL_FILE='/home/vagrant/git/tower-qa/config/credentials.yml'
+        export TOWERKIT_USER='admin'
+        export TOWERKIT_USER_PASSWORD='fo0m4nchU'
+      marker: "# {mark} ANSIBLE MANAGED BLOCK - towerkit"
