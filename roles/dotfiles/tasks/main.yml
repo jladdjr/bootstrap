@@ -3,3 +3,8 @@
       src: .gitconfig
       dest: /home/vagrant
       mode: 0755
+- name: Copy .tmux.conf
+  copy:
+      src: .tmux.conf
+      dest: /home/vagrant
+      mode: 0755
