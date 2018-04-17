@@ -3,3 +3,10 @@ $ gcloud auth login
 $ sudo IMAGE_REPOSITORY_AUTH=`gcloud auth print-access-token` COMPOSE_TAG=devel make docker-compose
 
 $ sudo make ui-devel
+
+Decrypting credentials.vault
+$ cd /home/vagrant/git/tower-qa/config
+$ ansible-vault decrypt credentials.vault --output=credentials.yml --ask-vault-pass
+
+Update AWS creds
+$ vi ~/.bashrc
