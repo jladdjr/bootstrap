@@ -19,3 +19,8 @@
       - python-devel
       - openssl-devel
   become: true
+- name: Install nodejs
+  yum:
+      name: nodejs
+      state: latest
+  tags: test
