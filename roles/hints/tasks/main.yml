@@ -3,6 +3,7 @@
       src: hints.txt
       dest: /home/vagrant
       mode: 0755
+      force: yes
 - name: Create hint alias
   lineinfile:
       line: alias hints='cat /home/vagrant/hints.txt'
