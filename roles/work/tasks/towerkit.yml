@@ -27,7 +27,7 @@
       path: /home/vagrant/.bashrc
       block: |
         export TOWERKIT_BASE_URL='http://127.0.0.1:8013'
-        alias mach='echo ${TOWERKIT_BASE_URL:8}'
+        alias mach='echo ${TOWERKIT_BASE_URL:7}'
         export TOWERKIT_SCHEMA_VALIDATION=False
         export TOWERKIT_CREDENTIAL_FILE='/home/vagrant/git/tower-qa/config/credentials.yml'
         export TOWERKIT_USER='admin'
