@@ -8,38 +8,33 @@
       - libevent-devel
       - libevent-headers
   become: true
-  tags: test
 - name: Install ncurses
   yum:
       name: ncurses-devel
       state: latest
   become: true
-  tags: test
 - name: Download libevent source
   get_url:
       url: https://github.com/downloads/libevent/libevent/libevent-2.0.21-stable.tar.gz
       dest: /usr/local/src/libevent-2.0.21-stable.tar.gz
       mode: 0755
   become: true
-  tags: test
 - name: Untar libevent
   unarchive:
       src: /usr/local/src/libevent-2.0.21-stable.tar.gz
-      dest: /usr/local/src/
+      dest: /usr/local/src
+      remote_src: yes
   become: true
-  tags: test
 - name: Configure/make libevent
-  command: ./configure && make
+  shell: ./configure && make
   args:
       chdir: /usr/local/src/libevent-2.0.21-stable
   become: true
-  tags: test
 - name: Install libevent
-  command: make install
+  shell: make install
   args:
       chdir: /usr/local/src/libevent-2.0.21-stable
   become: true
-  tags: test
 - name: Link libevent
   file:
       src: /usr/local/lib/libevent-2.0.so.5
@@ -48,29 +43,25 @@
       group: root
       state: link
   become: true
-  tags: test
 - name: Download tmux source
   get_url:
       url: https://github.com/tmux/tmux/releases/download/2.3/tmux-2.3.tar.gz
       dest: /usr/local/src/tmux-2.3.tar.gz
       mode: 0755
   become: true
-  tags: test
 - name: Untar tmux
   unarchive:
       src: /usr/local/src/tmux-2.3.tar.gz
       dest: /usr/local/src/
+      remote_src: yes
   become: true
-  tags: test
 - name: Configure/make tmux
-  command: ./configure && make
+  shell: ./configure && make
   args:
-      chdir: /usr/local/src/tmux-2.0.21-stable
+      chdir: /usr/local/src/tmux-2.3
   become: true
-  tags: test
 - name: Install tmux
-  command: make install
+  shell: make install
   args:
-      chdir: /usr/local/src/tmux-2.0.21-stable
+      chdir: /usr/local/src/tmux-2.3
   become: true
-  tags: test
