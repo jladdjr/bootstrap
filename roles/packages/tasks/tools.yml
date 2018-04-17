@@ -1,8 +1,3 @@
-- name: Install tmux
-  yum:
-      name: tmux
-      state: latest
-  become: true
 - name: Install vim
   yum:
       name: vim

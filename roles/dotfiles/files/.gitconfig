@@ -8,3 +8,10 @@
         st = status
         br = branch
         last = log -1 HEAD
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = true
+  pager = true

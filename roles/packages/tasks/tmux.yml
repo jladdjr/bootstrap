@@ -1,0 +1,76 @@
+# https://gist.github.com/pierreprinetti/86fbcd28e5cc1b3e0b9b762e4c12fad2
+- name: Remove old tmux reqs
+  yum:
+      name: '{{ item }}'
+      state: absent
+  with_items:
+      - libevent
+      - libevent-devel
+      - libevent-headers
+  become: true
+  tags: test
+- name: Install ncurses
+  yum:
+      name: ncurses-devel
+      state: latest
+  become: true
+  tags: test
+- name: Download libevent source
+  get_url:
+      url: https://github.com/downloads/libevent/libevent/libevent-2.0.21-stable.tar.gz
+      dest: /usr/local/src/libevent-2.0.21-stable.tar.gz
+      mode: 0755
+  become: true
+  tags: test
+- name: Untar libevent
+  unarchive:
+      src: /usr/local/src/libevent-2.0.21-stable.tar.gz
+      dest: /usr/local/src/
+  become: true
+  tags: test
+- name: Configure/make libevent
+  command: ./configure && make
+  args:
+      chdir: /usr/local/src/libevent-2.0.21-stable
+  become: true
+  tags: test
+- name: Install libevent
+  command: make install
+  args:
+      chdir: /usr/local/src/libevent-2.0.21-stable
+  become: true
+  tags: test
+- name: Link libevent
+  file:
+      src: /usr/local/lib/libevent-2.0.so.5
+      dest: /usr/lib64/libevent-2.0.so.5
+      owner: root
+      group: root
+      state: link
+  become: true
+  tags: test
+- name: Download tmux source
+  get_url:
+      url: https://github.com/tmux/tmux/releases/download/2.3/tmux-2.3.tar.gz
+      dest: /usr/local/src/tmux-2.3.tar.gz
+      mode: 0755
+  become: true
+  tags: test
+- name: Untar tmux
+  unarchive:
+      src: /usr/local/src/tmux-2.3.tar.gz
+      dest: /usr/local/src/
+  become: true
+  tags: test
+- name: Configure/make tmux
+  command: ./configure && make
+  args:
+      chdir: /usr/local/src/tmux-2.0.21-stable
+  become: true
+  tags: test
+- name: Install tmux
+  command: make install
+  args:
+      chdir: /usr/local/src/tmux-2.0.21-stable
+  become: true
+  tags: test

@@ -2,3 +2,4 @@
 - include: system-packages.yml
 - include: python.yml
 - include: tools.yml
+- include: tmux.yml
