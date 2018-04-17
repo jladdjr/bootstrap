@@ -1,4 +1,6 @@
 Building dev env:
+$ cd /home/vagrant/git/awx (or tower)
+$ cp awx/settings/local_settings.py.docker_compose awx/settings/local_settings.py
 $ gcloud auth login
 $ sudo IMAGE_REPOSITORY_AUTH=`gcloud auth print-access-token` COMPOSE_TAG=devel make docker-compose
 
