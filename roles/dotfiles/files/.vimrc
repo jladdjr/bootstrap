@@ -1,7 +1,7 @@
 filetype plugin on
 filetype plugin indent on
 syntax on
-colorscheme iceberg
+colorscheme onedark
 
 set tabstop=4
 set shiftwidth=4
