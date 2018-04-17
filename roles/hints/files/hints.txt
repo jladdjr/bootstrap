@@ -3,6 +3,8 @@ $ cd /home/vagrant/git/awx (or tower)
 $ cp awx/settings/local_settings.py.docker_compose awx/settings/local_settings.py
 $ gcloud auth login
 $ sudo IMAGE_REPOSITORY_AUTH=`gcloud auth print-access-token` COMPOSE_TAG=devel make docker-compose
+$ sudo docker exec -it tools_awx_1 /bin/bash
+> awx-manage createsuperuser
 
 $ sudo make ui-devel
 
