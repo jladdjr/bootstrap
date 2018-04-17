@@ -1,3 +1,10 @@
+Running pytest:
+$ py.test --pdb -c config/api.cfg --ansible-user ec2-user \
+   --ansible-host-pattern="${TOWERKIT_BASE_URL:7}" \
+   --base-url="${TOWERKIT_BASE_URL}" \
+   -k "<filter expression>" \
+   tests/api
+
 Building dev env:
 $ cd /home/vagrant/git/awx (or tower)
 $ cp awx/settings/local_settings.py.docker_compose awx/settings/local_settings.py
