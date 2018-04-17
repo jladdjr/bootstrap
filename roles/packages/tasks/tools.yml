@@ -10,6 +10,16 @@
       state: link
       force: yes
   become: true
+- name: Remove existing git
+  yum:
+      name: git
+      state: absent
+  become: true
+- name: Install latest git
+  yum:
+      name: git2u
+      state: latest
+  become: true
 # https://cloud.google.com/sdk/downloads#yum
 - name: Create gcloud repo
   copy:
