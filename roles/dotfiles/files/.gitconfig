@@ -7,7 +7,7 @@
         co = checkout
         st = status
         br = branch
-        sbr = branch --sort=-committerdate
+        sbr = branch --sort=-committerdate -a
         last = log -1 HEAD
 [color]
   diff = auto
