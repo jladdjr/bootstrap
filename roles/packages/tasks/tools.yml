@@ -26,6 +26,5 @@
       name: google-cloud-sdk
       state: latest
   become: true
-# May need to run `gcloud auth login` before this will work
 - name: Set default gcloud project
   command: gcloud config set project ansible-tower-engineering
