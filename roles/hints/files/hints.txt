@@ -14,3 +14,18 @@ $ ansible-vault decrypt credentials.vault --output=credentials.yml --ask-vault-p
 
 Update AWS creds
 $ vi ~/.bashrc
+
+View list of available vim color schemes
+$ vi
+> : colo <ctrl-d>
+
+Installed themes include:
+- iceberg
+- onedark
+- seoul256
+- OceanicNext
+- gruvbox
+- alduin
+- focuspoint
+- railscasts
+- desert256
