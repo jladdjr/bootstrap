@@ -3,8 +3,8 @@
     state: directory
     path: /home/vagrant/git
     mode: 0755
-- include: tower-qa.yml
-- include: towerkit.yml
-- include: pytest-mp.yml
-- include: awx.yml
-- include: tower.yml
+- include_tasks: tower-qa.yml
+- include_tasks: towerkit.yml
+- include_tasks: pytest-mp.yml
+- include_tasks: awx.yml
+- include_tasks: tower.yml
