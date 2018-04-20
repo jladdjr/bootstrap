@@ -4,6 +4,12 @@
     path: /home/vagrant/git
     mode: 0755
 - include_tasks: tower-qa.yml
+  loop:
+    - master
+    - release_3.2
+    - release_3.1
+  loop_control:
+    loop_var: branch
 - include_tasks: towerkit.yml
 - include_tasks: pytest-mp.yml
 - include_tasks: awx.yml

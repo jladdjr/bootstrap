@@ -1,30 +1,34 @@
-- name: Add tower-qa project
+- name: Add tower-qa project, branch {{ branch }}
   git:
-    dest: /home/vagrant/git/tower-qa
-    repo: git@github.com:jladdjr/tower-qa.git
-    accept_hostkey: yes
+      dest: /home/vagrant/git/tower-qa-{{ branch }}
+      repo: git@github.com:jladdjr/tower-qa.git
+      accept_hostkey: yes
+- name: Check out branch
+  command: git checkout {{ branch }}
+  args:
+      chdir: /home/vagrant/git/tower-qa-{{ branch }}
 - name: Create tower-qa virtualenv
-  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python2 tower-qa
+  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python2 tower-qa-{{ branch }}
   args:
       executable: /bin/bash
   environment:
       VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
 # https://github.com/capless/warrant/issues/96#issuecomment-381503013
 - name: Downgrade pip (pip 10 breaks towerkit)
-  shell: . /usr/bin/virtualenvwrapper.sh && workon tower-qa && pip install pip==9.0.3
+  shell: . /usr/bin/virtualenvwrapper.sh && workon tower-qa-{{ branch }} && pip install pip==9.0.3
   args:
       executable: /bin/bash
   environment:
       VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
 - name: Add tower-qa requirements to venv
-  shell: . /usr/bin/virtualenvwrapper.sh && workon tower-qa && pip install -r requirements.txt
+  shell: . /usr/bin/virtualenvwrapper.sh && workon tower-qa-{{ branch }} && pip install -r requirements.txt
   args:
       executable: /bin/bash
-      chdir: /home/vagrant/git/tower-qa
+      chdir: /home/vagrant/git/tower-qa-{{ branch }}
   environment:
       VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
 - name: Also install ipython
-  shell: . /usr/bin/virtualenvwrapper.sh && workon tower-qa && pip install ipython
+  shell: . /usr/bin/virtualenvwrapper.sh && workon tower-qa-{{ branch }} && pip install ipython
   args:
       executable: /bin/bash
   environment:
@@ -34,12 +38,13 @@
       path: /home/vagrant/.bashrc
       block: |
         alias v='source /usr/bin/virtualenvwrapper.sh'
-        alias w='v; workon tower-qa'
-        alias c="cd /home/vagrant/git/tower-qa; git br | grep '*'"
+        alias w='v; workon tower-qa-master'
+        alias c="cd /home/vagrant/git/tower-qa-master; git br | grep '*'"
         alias get_project_home='JDL_PROJECT_HOME=/home/vagrant/git/$(pwd | cut -d '/' -f 5)'
         alias t='get_project_home; cd ${JDL_PROJECT_HOME}/tests/api'
         alias f='get_project_home; cd ${JDL_PROJECT_HOME}/tests/lib/fixtures/api'
       marker: "# {mark} ANSIBLE MANAGED BLOCK - tower-qa"
+  when: branch == "master"
 - name: Check if AWS creds already in place
   shell: cat /home/vagrant/.bashrc
   register: bashrc
