@@ -24,3 +24,6 @@
       name: nodejs
       state: latest
   become: true
+- name: Update index of man pages
+  command: mandb
+  become: true
