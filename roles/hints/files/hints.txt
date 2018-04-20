@@ -16,7 +16,7 @@ $ sudo docker exec -it tools_awx_1 /bin/bash
 $ sudo make ui-devel
 
 Decrypting credentials.vault
-$ cd /home/vagrant/git/tower-qa/config
+$ cd /home/vagrant/git/tower-qa-$BRANCH/config
 $ ansible-vault decrypt credentials.vault --output=credentials.yml --ask-vault-pass
 
 Update AWS creds
