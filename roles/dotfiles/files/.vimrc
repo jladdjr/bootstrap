@@ -37,3 +37,6 @@ nmap <CR> o<Esc>k
 " Auto-resize split windows
 " https://vi.stackexchange.com/questions/201/make-panes-resize-when-host-window-is-resized
 :autocmd VimResized * wincmd =
+
+" Bind ? to show netrw quickmaps help entry
+autocmd FileType netrw nnoremap ? :help netrw-quickmap<CR>
