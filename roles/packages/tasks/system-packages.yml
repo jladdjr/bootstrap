@@ -1,29 +1,32 @@
-- name: Update all packages
-  yum:
-      name: '*'
-      state: latest
-  become: true
-- name: Install development tools
-  yum:
-      name: "@Development tools"
-      state: present
-  become: true
-# https://stackoverflow.com/questions/22073516/failed-to-install-python-cryptography-package-with-pip-and-setup-py
-- name: Install cryptography deps
-  yum:
-      name: "{{ item }}"
-      state: present
-  with_items:
-      - gcc
-      - libffi-devel
-      - python-devel
-      - openssl-devel
-  become: true
-- name: Install nodejs
-  yum:
-      name: nodejs
-      state: latest
-  become: true
-- name: Update index of man pages
-  command: mandb
+- block:
+    - name: Update all packages
+      yum:
+          name: '*'
+          state: latest
+    - name: Install development tools
+      yum:
+          name: "@Development tools"
+          state: present
+    # https://stackoverflow.com/questions/22073516/failed-to-install-python-cryptography-package-with-pip-and-setup-py
+    - name: Install cryptography deps
+      yum:
+          name: "{{ item }}"
+          state: present
+      with_items:
+          - gcc
+          - libffi-devel
+          - python-devel
+          - openssl-devel
+    - name: Install nodejs
+      yum:
+          name: nodejs
+          state: latest
+    - name: Remove..
+      yum:
+          name: man-pages
+          state: absent
+    - name: .. and reinstall man pages. (CentOS minimal install omits man pages)
+      yum:
+          name: man-pages
+          state: present
   become: true
