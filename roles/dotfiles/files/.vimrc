@@ -40,3 +40,6 @@ nmap <CR> o<Esc>k
 
 " Bind ? to show netrw quickmaps help entry
 autocmd FileType netrw nnoremap ? :help netrw-quickmap<CR>
+
+" Remove netrw banner
+let g:netrw_banner = 0
