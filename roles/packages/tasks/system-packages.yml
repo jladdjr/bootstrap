@@ -7,6 +7,10 @@
       yum:
           name: "@Development tools"
           state: present
+    - name: Install other helpful packages
+      yum:
+          name: net-tools
+          state: present
     # https://stackoverflow.com/questions/22073516/failed-to-install-python-cryptography-package-with-pip-and-setup-py
     - name: Install cryptography deps
       yum:
