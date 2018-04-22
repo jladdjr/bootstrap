@@ -9,8 +9,11 @@
           state: present
     - name: Install other helpful packages
       yum:
-          name: net-tools
+          name: "{{ item }}"
           state: present
+      with_items:
+          - net-tools
+          - pass
     # https://stackoverflow.com/questions/22073516/failed-to-install-python-cryptography-package-with-pip-and-setup-py
     - name: Install cryptography deps
       yum:
