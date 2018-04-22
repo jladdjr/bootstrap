@@ -1,4 +1,9 @@
 - hosts: all
+  tasks:
+    - name: Set timezone (EST)
+      command: timedatectl set-timezone America/New_York
+      become: true
+- hosts: all
   roles:
       - { role: keys, tags: keys }
       - { role: packages, tags: packages }
