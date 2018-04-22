@@ -1,0 +1,10 @@
+- name: install mutt + dependencies
+  pacman: name={{ item }} state=present
+  with_items:
+    - neomutt
+    - notmuch
+    - msmtp
+    - offlineimap
+- name: (TODO) Copy over required files
+  debug:
+    msg: (TODO) Copy over required files

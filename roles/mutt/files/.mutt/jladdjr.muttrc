@@ -1,0 +1,7 @@
+set from = "jladdjr@gmail.com"
+set sendmail = "/usr/bin/msmtp -a jladdjr"
+set sendmail_wait = 0
+set mbox = "+gmail.com/archive"
+set postponed = "+gmail.com/drafts"
+set signature = ~/.mutt/sig-jim
+unset record

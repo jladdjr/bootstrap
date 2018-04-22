@@ -1,0 +1,11 @@
+# Unidentified files
+application/octet-stream; ~/.mutt/view_attachment.sh %s "-"
+
+# HTML mail
+text/html; ~/.mutt/view_html.py %s "-"
+
+# QuickLook in OSX
+image/*                  ; /usr/bin/qlmanage -p 2>/dev/null %s
+audio/*                  ; /usr/bin/qlmanage -p 2>/dev/null %s
+video/*                  ; /usr/bin/qlmanage -p 2>/dev/null %s
+application/*            ; /usr/bin/qlmanage -p 2>/dev/null %s
