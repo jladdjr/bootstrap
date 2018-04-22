@@ -12,3 +12,4 @@
       - { role: dotfiles, tags: dotfiles }
       - { role: docker, tags: docker}
       - { role: hints, tags: hints}
+      - { role: mutt, tags: mutt}
