@@ -7,7 +7,10 @@
     - offlineimap
 - name: (TODO) Copy over required files
   debug:
-    msg: (TODO) Copy over required files
+    msg: "(TODO) Copy over required files"
+- name: (TODO) Add cron job to run offlineimap
+  debug:
+      msg: "(TODO) Add cron job to run offlineimap: */8 * * * * /usr/bin/offlineimap -u quiet"
 - name: Add .bashrc aliases
   blockinfile:
      marker: "# {mark} ANSIBLE MANAGED BLOCK - mutt"
