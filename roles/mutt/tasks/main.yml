@@ -8,3 +8,9 @@
 - name: (TODO) Copy over required files
   debug:
     msg: (TODO) Copy over required files
+- name: Add .bashrc aliases
+  blockinfile:
+     marker: "# {mark} ANSIBLE MANAGED BLOCK - mutt"
+     path: /home/vagrant/.bashrc
+     block: |
+         alias nm='neomutt'
