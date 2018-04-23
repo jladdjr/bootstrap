@@ -220,9 +220,7 @@ bind compose p postpone-message
 bind index p recall-message
 
 # Contact management autocompletion -------------------------------------------
-set query_command = "~/.mutt/search-previous-contacts '%s'"
-bind editor <Tab> complete-query
-bind editor ^T    complete
+bind editor <Tab> complete
 
 # Search ----------------------------------------------------------------------
 macro index / "<enter-command>unset wait_key<enter><shell-escape>~/.mutt/mutt-notmuch-py <enter><change-folder-readonly>~/.cache/mutt_results/<enter>" "search mail (using notmuch)"
