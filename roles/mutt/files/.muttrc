@@ -125,7 +125,6 @@ set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 #bind index gg           first-entry         # more vimmy
 #bind index G            last-entry          # even more vimmy
 bind index R            group-reply         # reply-all
-bind index <tab>        sync-mailbox        # synchronize with mail store
 bind index <space>      collapse-thread     # expand/collapse a thread
 bind index <backtab>    collapse-all        # expand/collapse all threads
 
