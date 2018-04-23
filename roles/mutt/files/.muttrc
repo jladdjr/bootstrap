@@ -51,7 +51,7 @@ unignore from: to: cc: date: subject: # show only these
 # Account Settings ------------------------------------------------------------
 
 # Default inbox.
-set spoolfile = "+gmail.com/Inbox"
+set spoolfile = "+gmail.com/INBOX"
 
 # Alternate email addresses.
 alternates jladd@redhat.com
