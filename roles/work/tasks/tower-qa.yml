@@ -33,6 +33,16 @@
       executable: /bin/bash
   environment:
       VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+- name: Determine which remotes exist
+  command: git remote -v
+  args:
+      chdir: /home/vagrant/git/tower-qa-{{ branch }}
+  register: git_remote
+- name: Add remote repo (ansible)
+  command: git remote add ansible git@github.com:ansible/tower-qa.git
+  args:
+      chdir: /home/vagrant/git/tower-qa-{{ branch }}
+  when: git_remote.stdout.find('ansible') == -1
 - name: Create tower-qa aliases
   blockinfile:
       path: /home/vagrant/.bashrc
