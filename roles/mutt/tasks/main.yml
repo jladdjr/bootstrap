@@ -3,7 +3,7 @@
       src: flatcap-neomutt-epel-7.repo
       dest: /etc/yum.repos.d
   become: true
-- name: install mutt + dependencies
+- name: Install mutt + dependencies
   yum: name={{ item }} state=present
   with_items:
     - neomutt
@@ -11,12 +11,29 @@
     - msmtp
     - offlineimap
   become: true
-- name: (TODO) Copy over required files
-  debug:
-    msg: "(TODO) Copy over required files"
-- name: (TODO) Add cron job to run offlineimap
-  debug:
-      msg: "(TODO) Add cron job to run offlineimap: */8 * * * * /usr/bin/offlineimap -u quiet"
+- name: Copy over configuration files
+  copy:
+      src: "{{ item }}"
+      dest: /home/vagrant/
+      mode: 0600
+  with_items:
+      - .msmtprc
+      - .muttrc
+      - .notmuch-config
+      - .offlineimaprc
+- name: Copy over configuration folders
+  copy:
+      src: "{{ item }}"
+      dest: /home/vagrant/
+      mode: 0700
+  with_items:
+      - .mutt
+      - .mail
+- name: Run offlineimap periodically (uncomment job after syncing mail with `offlineimap` for the first time)
+  cron:
+      name: offlineimap
+      minute: "*/8"
+      job: "#/usr/bin/offlineimap -u quiet"
 - name: Add .bashrc aliases
   blockinfile:
      marker: "# {mark} ANSIBLE MANAGED BLOCK - mutt"
