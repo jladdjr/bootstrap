@@ -1,0 +1,9 @@
+- hosts: all
+  roles:
+      - { role: keys, tags: keys }
+      - { role: system, tags: system }
+      - { role: dev-tools, tags: dev-tools }
+      - { role: repos, tags: repos }
+      - { role: misc-repos, tags: misc-repos }
+      - { role: mutt, tags: mutt }
+      - { role: hints, tags: hints }

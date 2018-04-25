@@ -10,7 +10,12 @@
     - release_3.1
   loop_control:
     loop_var: branch
+  tags: tower-qa
 - include_tasks: towerkit.yml
+  tags: towerkit
 - include_tasks: pytest-mp.yml
+  tags: pytest-mp
 - include_tasks: awx.yml
+  tags: awx
 - include_tasks: tower.yml
+  tags: tower

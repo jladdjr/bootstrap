@@ -1,0 +1,13 @@
+# https://cloud.google.com/sdk/downloads#yum
+- name: Create gcloud repo
+  copy:
+      src: google-cloud-sdk.repo
+      dest: /etc/yum.repos.d
+  become: true
+- name: Install gcloud
+  yum:
+      name: google-cloud-sdk
+      state: latest
+  become: true
+- name: Set default gcloud project
+  command: gcloud config set project ansible-tower-engineering

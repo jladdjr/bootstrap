@@ -7,13 +7,10 @@
       yum:
           name: "@Development tools"
           state: present
-    - name: Install other helpful packages
+    - name: Install net-tools 
       yum:
-          name: "{{ item }}"
+          name: net-tools
           state: present
-      with_items:
-          - net-tools
-          - pass
     # https://stackoverflow.com/questions/22073516/failed-to-install-python-cryptography-package-with-pip-and-setup-py
     - name: Install cryptography deps
       yum:
@@ -24,15 +21,11 @@
           - libffi-devel
           - python-devel
           - openssl-devel
-    - name: Install nodejs
-      yum:
-          name: nodejs
-          state: latest
-    - name: Remove..
+    - name: Remove man pages
       yum:
           name: man-pages
           state: absent
-    - name: .. and reinstall man pages. (CentOS minimal install omits man pages)
+    - name: Reinstall man pages. (CentOS minimal install omits man pages)
       yum:
           name: man-pages
           state: present

@@ -9,3 +9,8 @@
       name: tmux2u
       state: latest
   become: true
+- name: Copy .tmux.conf
+  copy:
+      src: .tmux.conf
+      dest: /home/vagrant
+      mode: 0755

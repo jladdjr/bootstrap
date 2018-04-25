@@ -1,5 +1,0 @@
-- include_tasks: repos.yml
-- include_tasks: system-packages.yml
-- include_tasks: python.yml
-- include_tasks: tools.yml
-- include_tasks: tmux.yml

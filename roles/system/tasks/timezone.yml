@@ -1,0 +1,3 @@
+- name: Set timezone (EST)
+  command: timedatectl set-timezone America/New_York
+  become: true

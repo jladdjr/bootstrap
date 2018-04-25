@@ -4,14 +4,3 @@
      path: /home/vagrant/.bashrc
      block: |
          alias h='cd $(pwd | cut -d '/' -f 1-5); pwd'  # Move to head (top) folder of git projects (bit hacky)
-- name: Copy .gitconfig
-  copy:
-      src: .gitconfig
-      dest: /home/vagrant
-      mode: 0755
-- name: Copy .tmux.conf
-  copy:
-      src: .tmux.conf
-      dest: /home/vagrant
-      mode: 0755
-- include_tasks: vim.yml

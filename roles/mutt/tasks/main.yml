@@ -1,10 +1,16 @@
+- name: Create neomutt repo repo
+  copy:
+      src: flatcap-neomutt-epel-7.repo
+      dest: /etc/yum.repos.d
+  become: true
 - name: install mutt + dependencies
-  pacman: name={{ item }} state=present
+  yum: name={{ item }} state=present
   with_items:
     - neomutt
     - notmuch
     - msmtp
     - offlineimap
+  become: true
 - name: (TODO) Copy over required files
   debug:
     msg: "(TODO) Copy over required files"

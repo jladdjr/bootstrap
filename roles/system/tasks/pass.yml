@@ -1,0 +1,5 @@
+- name: Install pass
+  yum:
+    name: pass
+    state: latest
+  become: true
