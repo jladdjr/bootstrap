@@ -1,5 +1,11 @@
 To deploy fresh environment:
-$ vagrant up
 
-To re-run provision playbook:
+```bash
+$ vagrant up
+```
+
+To re-run playbook:
+
+```bash
 $ vagrant provision
+```
