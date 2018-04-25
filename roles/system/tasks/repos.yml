@@ -1,4 +1,4 @@
-- name: Install
+- name: Install IUS Repository
   yum:
       name: https://centos7.iuscommunity.org/ius-release.rpm
       state: present
