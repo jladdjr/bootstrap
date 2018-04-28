@@ -16,7 +16,7 @@
           server 0.us.pool.ntp.org
           server 1.us.pool.ntp.org
           server 2.us.pool.ntp.org
-          server 3.us.pool.ntp.org 
+          server 3.us.pool.ntp.org
     - name: Increase size of clock adjustments
       lineinfile:
         path: /etc/ntp.conf
@@ -31,4 +31,9 @@
       service:
         name: ntpd
         state: started
+    - name: Resync time (forcefully) every 30 minutes
+      cron:
+          name: Forcefully reset time
+          minute: "*/30"
+          job: "systemctl stop ntpd && sleep 5 && /usr/sbin/ntpd -gq && sleep 5 && systemctl start ntpd"
   become: true
