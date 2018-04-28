@@ -65,6 +65,9 @@ mailboxes +@jladdjr \
           +gmail.com/\#todo \
           +gmail.com/\#read \
           +gmail.com/\#waiting \
+          +gmail.com/\#file-away\
+          +gmail.com/\job\ search \
+          +gmail.com/\Go \
           +gmail.com/archive \
           +gmail.com/sent \
           +gmail.com/drafts \
@@ -91,7 +94,7 @@ mailboxes +@jladdjr \
           +redhat.com/RedHat.Prod-Dept \
           +redhat.com/RedHat.RDU-AnnounceList \
           +redhat.com/RedHat.AnnounceList \
-          +gmail.com/archive \
+          +redhat.com/archive \
           +redhat.com/sent \
           +redhat.com/drafts \
           +redhat.com/trash \
