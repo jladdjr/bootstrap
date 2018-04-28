@@ -11,6 +11,15 @@
   loop_control:
     loop_var: branch
   tags: tower-qa
+- include_tasks: ansible.yml
+  loop:
+      - devel
+      - stable-2.5
+      - stable-2.4
+      - stable-2.3
+  loop_control:
+    loop_var: branch
+  tags: ansible
 - include_tasks: towerkit.yml
   tags: towerkit
 - include_tasks: pytest-mp.yml

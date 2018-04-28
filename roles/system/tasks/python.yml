@@ -35,11 +35,3 @@
       block: |
           export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
           source /usr/bin/virtualenvwrapper.sh
-- name: Install ansible
-  pip:
-      name: ansible
-      state: latest
-      executable: pip3.6
-  become: true
-  tags:
-      - ansible
