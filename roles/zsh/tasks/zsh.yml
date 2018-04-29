@@ -1,0 +1,10 @@
+- name: Install zsh
+  yum:
+      name: zsh
+      state: latest
+  become: true
+  tags: test
+# http://ohmyz.sh/
+- name: Install oh-my-zsh
+  shell: sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  tags: test
