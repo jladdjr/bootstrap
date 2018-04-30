@@ -1,22 +1,8 @@
 - name: Add ansible project, branch {{ branch }}
   git:
       dest: /home/vagrant/git/ansible-{{ branch }}
-      repo: git@github.com:jladdjr/ansible.git
+      repo: git@github.com:ansible/ansible.git
       accept_hostkey: yes
-- name: Determine which remotes exist
-  command: git remote -v
-  args:
-      chdir: /home/vagrant/git/ansible-{{ branch }}
-  register: git_remote
-- name: Add remote repo (ansible)
-  command: git remote add ansible git@github.com:ansible/ansible.git
-  args:
-      chdir: /home/vagrant/git/ansible-{{ branch }}
-  when: git_remote.stdout.find('ansible/ansible') == -1
-- name: Fetch remote repo (ansible)
-  command: git fetch ansible
-  args:
-      chdir: /home/vagrant/git/ansible-{{ branch }}
 - name: Get current branch
   shell: git branch | grep '{{ branch }}'
   args:
@@ -24,8 +10,7 @@
   register: git_branch
   failed_when: git_branch.rc > 1
 - name: Check out branch
-  command: git checkout -b {{ branch }}
-  #command: git checkout -b {{ branch }} origin/{{ branch }}
+  command: git checkout {{ branch }}
   args:
       chdir: /home/vagrant/git/ansible-{{ branch }}
   when: git_branch.rc == 1
@@ -35,7 +20,6 @@
       executable: /bin/bash
   environment:
       VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
-# https://github.com/capless/warrant/issues/96#issuecomment-381503013
 - name: Add ansible requirements to venv
   shell: . /usr/bin/virtualenvwrapper.sh && workon ansible-{{ branch }} && pip install -r requirements.txt
   args:
