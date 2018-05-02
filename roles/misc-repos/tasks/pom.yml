@@ -13,3 +13,12 @@
   lineinfile:
       path: /home/vagrant/.bashrc
       line: alias pom="cd /home/vagrant/git/pom; git br | grep '*'"
+- name: Install postgres
+  yum:
+      name: "{{ item }}"
+      state: latest
+  with_items:
+      - postgresql
+      - postgresql-server
+  become: true
+  tags: test
