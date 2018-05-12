@@ -5,6 +5,7 @@
   ignore_errors: yes
   register: which_pass
 - block:
+  # TODO: Need to install newer version of tree for `pass find` to work
   - name: Download pass source
     git:
       dest: /tmp/password-store
