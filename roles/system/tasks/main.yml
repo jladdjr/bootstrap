@@ -1,12 +1,17 @@
 - import_tasks: repos.yml
   tags: repos
+
 - import_tasks: system-packages.yml
   tags: system-packages
+
 - import_tasks: ntp.yml
   tags: ntp
+
 - import_tasks: timezone.yml
   tags: timezone
+
 - import_tasks: python.yml
   tags: python
+
 - import_tasks: pass.yml
   tags: pass

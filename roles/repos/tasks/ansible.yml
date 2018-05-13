@@ -1,29 +1,33 @@
 - name: Add ansible project, branch {{ branch }}
   git:
-      dest: /home/vagrant/git/ansible-{{ branch }}
-      repo: git@github.com:ansible/ansible.git
-      accept_hostkey: yes
+    dest: /home/vagrant/git/ansible-{{ branch }}
+    repo: git@github.com:ansible/ansible.git
+    accept_hostkey: yes
+
 - name: Get current branch
   shell: git branch | grep '{{ branch }}'
   args:
-      chdir: /home/vagrant/git/ansible-{{ branch }}
+    chdir: /home/vagrant/git/ansible-{{ branch }}
   register: git_branch
   failed_when: git_branch.rc > 1
+
 - name: Check out branch
   command: git checkout {{ branch }}
   args:
-      chdir: /home/vagrant/git/ansible-{{ branch }}
+    chdir: /home/vagrant/git/ansible-{{ branch }}
   when: git_branch.rc == 1
+
 - name: Create ansible virtualenv
   shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python2 ansible-{{ branch }}
   args:
-      executable: /bin/bash
+    executable: /bin/bash
   environment:
-      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+
 - name: Add ansible requirements to venv
   shell: . /usr/bin/virtualenvwrapper.sh && workon ansible-{{ branch }} && pip install -r requirements.txt
   args:
-      executable: /bin/bash
-      chdir: /home/vagrant/git/ansible-{{ branch }}
+    executable: /bin/bash
+    chdir: /home/vagrant/git/ansible-{{ branch }}
   environment:
-      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3

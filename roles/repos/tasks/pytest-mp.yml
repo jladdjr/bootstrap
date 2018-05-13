@@ -3,19 +3,22 @@
     dest: /home/vagrant/git/pytest-mp
     repo: git@github.com:jladdjr/pytest-mp.git
     accept_hostkey: yes
+
 - name: Create pytest-mp virtualenv
   shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python2 pytest-mp
   args:
-      executable: /bin/bash
+    executable: /bin/bash
   environment:
-      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+
 - name: Determine which remotes exist
   command: git remote -v
   args:
-      chdir: /home/vagrant/git/pytest-mp
+    chdir: /home/vagrant/git/pytest-mp
   register: git_remote
+
 - name: Add remote repo (ansible)
   command: git remote add ansible git@github.com:ansible/pytest-mp.git
   args:
-      chdir: /home/vagrant/git/pytest-mp
+    chdir: /home/vagrant/git/pytest-mp
   when: git_remote.stdout.find('ansible') == -1

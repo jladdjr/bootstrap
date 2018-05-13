@@ -1,37 +1,42 @@
 - name: Install Python3
   yum:
-      name: python36u
-      state: present
+    name: python36u
+    state: present
   become: true
+
 - name: Install Pip3
   yum:
-      name: python36u-pip
-      state: present
+    name: python36u-pip
+    state: present
   become: true
+
 - name: Update Pip3
   pip:
-      name: pip
-      state: latest
-      executable: pip3.6
+    name: pip
+    state: latest
+    executable: pip3.6
   become: true
+
 - name: Create link for python3
   file:
-      src: /bin/python3.6
-      path: /bin/python3
-      state: link
-      owner: root
-      group: root
+    src: /bin/python3.6
+    path: /bin/python3
+    state: link
+    owner: root
+    group: root
   become: true
+
 - name: Install virtualenvwrapper
   pip:
-      name: virtualenvwrapper
-      state: latest
-      executable: pip3.6
+    name: virtualenvwrapper
+    state: latest
+    executable: pip3.6
   become: true
+
 - name: Source virtualenvwrapper
   blockinfile:
-      marker: "# {mark} ANSIBLE MANAGED BLOCK - virtualenvwrapper"
-      path: /home/vagrant/.bash_profile
-      block: |
-          export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-          source /usr/bin/virtualenvwrapper.sh
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - virtualenvwrapper"
+    path: /home/vagrant/.bash_profile
+    block: |
+      export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+      source /usr/bin/virtualenvwrapper.sh

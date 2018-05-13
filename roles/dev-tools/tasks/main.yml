@@ -1,14 +1,20 @@
 - import_tasks: bash.yml
   tags: bash
+
 - import_tasks: vim.yml
   tags: vim
+
 - import_tasks: git.yml
   tags: git
+
 - import_tasks: tmux.yml
   tags: tmux
+
 - import_tasks: docker.yml
   tags: docker
+
 - import_tasks: gcloud.yml
   tags: gcloud
+
 - import_tasks: nodejs.yml
   tags: nodejs

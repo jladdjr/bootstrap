@@ -3,43 +3,49 @@
     dest: /home/vagrant/git/towerkit
     repo: git@github.com:jladdjr/towerkit.git
     accept_hostkey: yes
+
 - name: Create towerkit virtualenv
   shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python2 towerkit
   args:
-      executable: /bin/bash
+    executable: /bin/bash
   environment:
-      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+
 - name: Downgrade pip (pip 10 breaks towerkit)
   shell: . /usr/bin/virtualenvwrapper.sh && workon towerkit && pip install pip==9.0.3
   args:
-      executable: /bin/bash
+    executable: /bin/bash
   environment:
-      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+
 - name: Add towerkit requirements to venv
   shell: . /usr/bin/virtualenvwrapper.sh && workon towerkit && pip install -r requirements.txt
   args:
-      executable: /bin/bash
-      chdir: /home/vagrant/git/towerkit
+    executable: /bin/bash
+    chdir: /home/vagrant/git/towerkit
   environment:
-      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+
 - name: Determine which remotes exist
   command: git remote -v
   args:
-      chdir: /home/vagrant/git/towerkit
+    chdir: /home/vagrant/git/towerkit
   register: git_remote
+
 - name: Add remote repo (ansible)
   command: git remote add ansible git@github.com:ansible/towerkit.git
   args:
-      chdir: /home/vagrant/git/towerkit
+    chdir: /home/vagrant/git/towerkit
   when: git_remote.stdout.find('ansible') == -1
+
 - name: Create towerkit aliases
   blockinfile:
-      path: /home/vagrant/.bashrc
-      block: |
-        export TOWERKIT_BASE_URL='http://127.0.0.1:8013'
-        alias mach='echo ${TOWERKIT_BASE_URL:8}'
-        export TOWERKIT_SCHEMA_VALIDATION=False
-        export TOWERKIT_CREDENTIAL_FILE='/home/vagrant/git/tower-qa/config/credentials.yml'
-        export TOWERKIT_USER='admin'
-        export TOWERKIT_USER_PASSWORD='fo0m4nchU'
-      marker: "# {mark} ANSIBLE MANAGED BLOCK - towerkit"
+    path: /home/vagrant/.bashrc
+    block: |
+      export TOWERKIT_BASE_URL='http://127.0.0.1:8013'
+      alias mach='echo ${TOWERKIT_BASE_URL:8}'
+      export TOWERKIT_SCHEMA_VALIDATION=False
+      export TOWERKIT_CREDENTIAL_FILE='/home/vagrant/git/tower-qa/config/credentials.yml'
+      export TOWERKIT_USER='admin'
+      export TOWERKIT_USER_PASSWORD='fo0m4nchU'
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - towerkit"

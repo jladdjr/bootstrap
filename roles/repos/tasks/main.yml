@@ -3,6 +3,7 @@
     state: directory
     path: /home/vagrant/git
     mode: 0755
+
 - include_tasks: tower-qa.yml
   loop:
     - master
@@ -11,20 +12,25 @@
   loop_control:
     loop_var: branch
   tags: tower-qa
+
 - include_tasks: ansible.yml
   loop:
-      - devel
-      - stable-2.5
-      - stable-2.4
-      - stable-2.3
+    - devel
+    - stable-2.5
+    - stable-2.4
+    - stable-2.3
   loop_control:
     loop_var: branch
   tags: ansible
+
 - include_tasks: towerkit.yml
   tags: towerkit
+
 - include_tasks: pytest-mp.yml
   tags: pytest-mp
+
 - include_tasks: awx.yml
   tags: awx
+
 - include_tasks: tower.yml
   tags: tower

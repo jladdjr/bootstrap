@@ -4,28 +4,33 @@
     executable: /bin/bash
   ignore_errors: yes
   register: which_pass
+
 - block:
   - name: Ensure tree not installed using yum
     yum:
       name: tree
       state: absent
     become: true
+
   # http://mama.indstate.edu/users/ice/tree/
   - name: Download tree source
     get_url:
       dest: /tmp/tree-1.7.0.tgz
       url: http://mama.indstate.edu/users/ice/tree/src/tree-1.7.0.tgz
+
   - name: Extract tree source
     unarchive:
       remote_src: yes
       src: /tmp/tree-1.7.0.tgz
       dest: /tmp
+
   - name: Install tree
     shell: make & make install
     args:
       executable: /bin/bash
       chdir: /tmp/tree-1.7.0
     become: true
+
   - name: Remove tree source
     file:
       path: '/tmp/{{ item }}'
@@ -33,11 +38,13 @@
     with_items:
       - tree-1.7.0.tgz
       - tree-1.7.0
+
   - name: Download pass source
     git:
       dest: /tmp/password-store
       repo: https://git.zx2c4.com/password-store
       version: 1.7.1  # latest version as of 5/2018
+
   # https://git.zx2c4.com/password-store/tree/INSTALL
   - name: Install pass
     shell: make install
@@ -45,6 +52,7 @@
       chdir: /tmp/password-store
       executable: /bin/bash
     become: true
+
   - name: Remove pass source
     file:
       path: /tmp/password-store

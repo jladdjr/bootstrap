@@ -1,8 +1,9 @@
 - name: Create neomutt repo repo
   copy:
-      src: flatcap-neomutt-epel-7.repo
-      dest: /etc/yum.repos.d
+    src: flatcap-neomutt-epel-7.repo
+    dest: /etc/yum.repos.d
   become: true
+
 - name: Install mutt + dependencies
   yum: name={{ item }} state=present
   with_items:
@@ -11,32 +12,36 @@
     - msmtp
     - offlineimap
   become: true
+
 - name: Copy over configuration files
   copy:
-      src: "{{ item }}"
-      dest: /home/vagrant/
-      mode: 0600
+    src: "{{ item }}"
+    dest: /home/vagrant/
+    mode: 0600
   with_items:
-      - .msmtprc
-      - .muttrc
-      - .notmuch-config
-      - .offlineimaprc
+    - .msmtprc
+    - .muttrc
+    - .notmuch-config
+    - .offlineimaprc
+
 - name: Copy over configuration folders
   copy:
-      src: "{{ item }}"
-      dest: /home/vagrant/
-      mode: 0700
+    src: "{{ item }}"
+    dest: /home/vagrant/
+    mode: 0700
   with_items:
-      - .mutt
-      - .mail
+    - .mutt
+    - .mail
+
 - name: Run offlineimap periodically (uncomment job after syncing mail with `offlineimap` for the first time)
   cron:
-      name: offlineimap
-      minute: "*/8"
-      job: "#/usr/bin/offlineimap -u quiet"
+    name: offlineimap
+    minute: "*/8"
+    job: "#/usr/bin/offlineimap -u quiet"
+
 - name: Add .bashrc aliases
   blockinfile:
-     marker: "# {mark} ANSIBLE MANAGED BLOCK - mutt"
-     path: /home/vagrant/.bashrc
-     block: |
-         alias nm='neomutt'
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - mutt"
+    path: /home/vagrant/.bashrc
+    block: |
+      alias nm='neomutt'

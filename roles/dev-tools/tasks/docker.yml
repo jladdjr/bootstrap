@@ -2,35 +2,42 @@
 - block:
     - name: Install required packages
       yum:
-          name: "{{ item }}"
-          state: latest
+        name: "{{ item }}"
+        state: latest
       with_items:
-          - yum-utils
-          - device-mapper-persistent-data
-          - lvm2
+        - yum-utils
+        - device-mapper-persistent-data
+        - lvm2
+
     - name: Add (stable) docker repo
       command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
     - name: Install docker
       yum:
-          name: docker-ce
-          state: latest
+        name: docker-ce
+        state: latest
+
     - name: Enable docker service
       systemd:
-          name: docker
-          enabled: yes
+        name: docker
+        enabled: yes
+
     - name: Start docker service
       systemd:
-          name: docker
-          state: started
+        name: docker
+        state: started
+
     - name: Run hello world container
       command: docker run hello-world
+
     # https://docs.docker.com/compose/install/
     # To ensure you have the latest version, check the Compose repository release page on GitHub:
     # https://github.com/docker/compose/releases (up-to-date as of 4/16/2018)
     - name: Install docker-compose
       shell: curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
+
     - name: Make docker-compose executable
       file:
-          dest: /usr/bin/docker-compose
-          mode: 0755
+        dest: /usr/bin/docker-compose
+        mode: 0755
   become: true

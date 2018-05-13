@@ -3,36 +3,42 @@
     dest: /home/vagrant/git/awx
     repo: git@github.com:jladdjr/awx.git
     accept_hostkey: yes
+
 - name: Determine which remotes exist
   command: git remote -v
   args:
-      chdir: /home/vagrant/git/awx
+    chdir: /home/vagrant/git/awx
   register: git_remote
+
 - name: Add remote repo (ansible)
   command: git remote add ansible git@github.com:ansible/awx.git
   args:
-      chdir: /home/vagrant/git/awx
+    chdir: /home/vagrant/git/awx
   when: git_remote.stdout.find('ansible') == -1
+
 - name: Fetch ansible repo
   command: git fetch ansible
   args:
-      chdir: /home/vagrant/git/awx
+    chdir: /home/vagrant/git/awx
+
 - name: Create awx virtualenv
   shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python2 awx
   args:
-      executable: /bin/bash
+    executable: /bin/bash
   environment:
-      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+
 # https://github.com/capless/warrant/issues/96#issuecomment-381503013
 - name: Downgrade pip
   shell: . /usr/bin/virtualenvwrapper.sh && workon awx && pip install pip==9.0.3
   args:
-      executable: /bin/bash
+    executable: /bin/bash
   environment:
-      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+
 - name: Create awx aliases
   blockinfile:
-      path: /home/vagrant/.bashrc
-      block: |
-        alias awx="cd /home/vagrant/git/awx; git br | grep '*'"
+    path: /home/vagrant/.bashrc
+    block: |
+      alias awx="cd /home/vagrant/git/awx; git br | grep '*'"
       marker: "# {mark} ANSIBLE MANAGED BLOCK - awx"

@@ -1,15 +1,17 @@
 - name: Remove existing git
   yum:
-      name: git
-      state: absent
+    name: git
+    state: absent
   become: true
+
 - name: Install latest git
   yum:
-      name: git2u
-      state: latest
+    name: git2u
+    state: latest
   become: true
+
 - name: Copy .gitconfig
   copy:
-      src: .gitconfig
-      dest: /home/vagrant
-      mode: 0755
+    src: .gitconfig
+    dest: /home/vagrant
+    mode: 0755

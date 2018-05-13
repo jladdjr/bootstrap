@@ -1,69 +1,79 @@
 - name: Add tower-qa project, branch {{ branch }}
   git:
-      dest: /home/vagrant/git/tower-qa-{{ branch }}
-      repo: git@github.com:jladdjr/tower-qa.git
-      accept_hostkey: yes
+    dest: /home/vagrant/git/tower-qa-{{ branch }}
+    repo: git@github.com:jladdjr/tower-qa.git
+    accept_hostkey: yes
+
 - name: Check out branch
   command: git checkout {{ branch }}
   args:
-      chdir: /home/vagrant/git/tower-qa-{{ branch }}
+    chdir: /home/vagrant/git/tower-qa-{{ branch }}
+
 - name: Create tower-qa virtualenv
   shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python2 tower-qa-{{ branch }}
   args:
-      executable: /bin/bash
+    executable: /bin/bash
   environment:
-      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+
 # https://github.com/capless/warrant/issues/96#issuecomment-381503013
 - name: Downgrade pip (pip 10 breaks towerkit)
   shell: . /usr/bin/virtualenvwrapper.sh && workon tower-qa-{{ branch }} && pip install pip==9.0.3
   args:
-      executable: /bin/bash
+    executable: /bin/bash
   environment:
-      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+
 - name: Add tower-qa requirements to venv
   shell: . /usr/bin/virtualenvwrapper.sh && workon tower-qa-{{ branch }} && pip install -r requirements.txt
   args:
-      executable: /bin/bash
-      chdir: /home/vagrant/git/tower-qa-{{ branch }}
+    executable: /bin/bash
+    chdir: /home/vagrant/git/tower-qa-{{ branch }}
   environment:
-      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+
 - name: Also install ipython
   shell: . /usr/bin/virtualenvwrapper.sh && workon tower-qa-{{ branch }} && pip install ipython
   args:
-      executable: /bin/bash
+    executable: /bin/bash
   environment:
-      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+
 - name: Determine which remotes exist
   command: git remote -v
   args:
-      chdir: /home/vagrant/git/tower-qa-{{ branch }}
+    chdir: /home/vagrant/git/tower-qa-{{ branch }}
   register: git_remote
+
 - name: Add remote repo (ansible)
   command: git remote add ansible git@github.com:ansible/tower-qa.git
   args:
-      chdir: /home/vagrant/git/tower-qa-{{ branch }}
+    chdir: /home/vagrant/git/tower-qa-{{ branch }}
   when: git_remote.stdout.find('ansible') == -1
+
 - name: Create tower-qa aliases
   blockinfile:
-      path: /home/vagrant/.bashrc
-      block: |
-        alias v='source /usr/bin/virtualenvwrapper.sh'
-        alias w='v; workon tower-qa-master'
-        alias c="cd /home/vagrant/git/tower-qa-master; git br | grep '*'"
-        alias get_project_home='JDL_PROJECT_HOME=/home/vagrant/git/$(pwd | cut -d '/' -f 5)'
-        alias t='get_project_home; cd ${JDL_PROJECT_HOME}/tests/api'
-        alias f='get_project_home; cd ${JDL_PROJECT_HOME}/tests/lib/fixtures/api'
-      marker: "# {mark} ANSIBLE MANAGED BLOCK - tower-qa"
+    path: /home/vagrant/.bashrc
+    block: |
+      alias v='source /usr/bin/virtualenvwrapper.sh'
+      alias w='v; workon tower-qa-master'
+      alias c="cd /home/vagrant/git/tower-qa-master; git br | grep '*'"
+      alias get_project_home='JDL_PROJECT_HOME=/home/vagrant/git/$(pwd | cut -d '/' -f 5)'
+      alias t='get_project_home; cd ${JDL_PROJECT_HOME}/tests/api'
+      alias f='get_project_home; cd ${JDL_PROJECT_HOME}/tests/lib/fixtures/api'
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - tower-qa"
   when: branch == "master"
+
 - name: Check if AWS creds already in place
   shell: cat /home/vagrant/.bashrc
   register: bashrc
+
 - name: Create placeholder for AWS creds
   blockinfile:
-      path: /home/vagrant/.bashrc
-      block: |
-        # Required by playbooks/inventory-ec2.py
-        export AWS_ACCESS_KEY_ID='CHANGEME'
-        export AWS_SECRET_ACCESS_KEY='CHANGEME'
-      marker: "# {mark} ANSIBLE MANAGED BLOCK - AWS Creds"
+    path: /home/vagrant/.bashrc
+    block: |
+      # Required by playbooks/inventory-ec2.py
+      export AWS_ACCESS_KEY_ID='CHANGEME'
+      export AWS_SECRET_ACCESS_KEY='CHANGEME'
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - AWS Creds"
   when: bashrc.stdout.find('AWS_ACCESS_KEY_ID') == -1

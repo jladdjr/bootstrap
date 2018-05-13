@@ -1,32 +1,37 @@
 - block:
     - name: Update all packages
       yum:
-          name: '*'
-          state: latest
+        name: '*'
+        state: latest
+
     - name: Install development tools
       yum:
-          name: "@Development tools"
-          state: present
+        name: "@Development tools"
+        state: present
+
     - name: Install net-tools 
       yum:
-          name: net-tools
-          state: present
+        name: net-tools
+        state: present
+
     # https://stackoverflow.com/questions/22073516/failed-to-install-python-cryptography-package-with-pip-and-setup-py
     - name: Install cryptography deps
       yum:
-          name: "{{ item }}"
-          state: present
+        name: "{{ item }}"
+        state: present
       with_items:
-          - gcc
-          - libffi-devel
-          - python-devel
-          - openssl-devel
+        - gcc
+        - libffi-devel
+        - python-devel
+        - openssl-devel
+
     - name: Remove man pages
       yum:
-          name: man-pages
-          state: absent
+        name: man-pages
+        state: absent
+
     - name: Reinstall man pages. (CentOS minimal install omits man pages)
       yum:
-          name: man-pages
-          state: present
+        name: man-pages
+        state: present
   become: true
