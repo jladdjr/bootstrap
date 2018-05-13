@@ -26,6 +26,13 @@
       executable: /bin/bash
       chdir: /tmp/tree-1.7.0
     become: true
+  - name: Remove tree source
+    file:
+      path: '/tmp/{{ item }}'
+      state: absent
+    with_items:
+      - tree-1.7.0.tgz
+      - tree-1.7.0
   - name: Download pass source
     git:
       dest: /tmp/password-store
