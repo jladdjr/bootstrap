@@ -48,4 +48,5 @@
       export TOWERKIT_CREDENTIAL_FILE='/home/vagrant/git/tower-qa/config/credentials.yml'
       export TOWERKIT_USER='admin'
       export TOWERKIT_USER_PASSWORD='fo0m4nchU'
+      alias tk="cd /home/vagrant/git/towerkit; git br | grep '*'; workon towerkit"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - towerkit"

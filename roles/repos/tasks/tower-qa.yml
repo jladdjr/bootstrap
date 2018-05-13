@@ -51,18 +51,25 @@
     chdir: /home/vagrant/git/tower-qa-{{ branch }}
   when: git_remote.stdout.find('ansible') == -1
 
-- name: Create tower-qa aliases
+- name: Create aliases for tower-qa
   blockinfile:
     path: /home/vagrant/.bashrc
     block: |
       alias v='source /usr/bin/virtualenvwrapper.sh'
-      alias w='v; workon tower-qa-master'
-      alias c="cd /home/vagrant/git/tower-qa-master; git br | grep '*'"
+      alias tq="cd /home/vagrant/git/tower-qa-master; git br | grep '*'; workon tower-qa-master"
       alias get_project_home='JDL_PROJECT_HOME=/home/vagrant/git/$(pwd | cut -d '/' -f 5)'
       alias t='get_project_home; cd ${JDL_PROJECT_HOME}/tests/api'
       alias f='get_project_home; cd ${JDL_PROJECT_HOME}/tests/lib/fixtures/api'
     marker: "# {mark} ANSIBLE MANAGED BLOCK - tower-qa"
   when: branch == "master"
+
+- name: Create aliases for tower-qa release branches
+  blockinfile:
+    path: /home/vagrant/.bashrc
+    block: |
+      alias tq{{ branch | replace('release_', '') | replace('.', '') }}="cd /home/vagrant/git/tower-qa-{{ branch }}; git br | grep '*'; workon tower-qa-{{ branch }}"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - tower-qa ({{ branch }})"
+  when: branch != "master"
 
 - name: Check if AWS creds already in place
   shell: cat /home/vagrant/.bashrc
