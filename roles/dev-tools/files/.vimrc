@@ -45,4 +45,4 @@ autocmd FileType netrw nnoremap ? :help netrw-quickmap<CR>
 let g:netrw_banner = 0
 
 " Toggle (relative) numbers
-nmap <C-L> :set relativenumber!<CR>:set number!<CR>
+nmap <C-I> :set relativenumber!<CR>:set number!<CR>
