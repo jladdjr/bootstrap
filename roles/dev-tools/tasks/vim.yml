@@ -12,9 +12,18 @@
   become: true
 - name: Copy .vimrc
   copy:
-      src: .vimrc
+      src: vim/.vimrc
       dest: /home/vagrant
       mode: 0755
+- name: Adjust behaviour for specific filetypes - add required dir (after/ftplugin)
+  file:
+      dest: /home/vagrant/.vim/after/ftplugin
+      state: directory
+      mode: 0755
+- name: Adjust behaviour for specific filetypes - copy custom yaml settings
+  copy:
+      src: vim/yaml.vim
+      dest: /home/vagrant/.vim/after/ftplugin
 # https://gist.github.com/romainl/9970697
 - name: Install Pathogen - add required dir (autoload)
   file:
