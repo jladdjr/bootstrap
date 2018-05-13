@@ -31,7 +31,7 @@
     mode: 0700
   with_items:
     - .mutt
-    - .mail
+    - mapped
 
 - name: Run offlineimap periodically (uncomment job after syncing mail with `offlineimap` for the first time)
   cron:

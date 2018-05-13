@@ -15,7 +15,7 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 
-    tempfile="`dirname ~/.mail/temporary/attached`/attached".$(date +"%m.%d.%y.%H.%M.%S")
+    tempfile="`dirname ~/mapped/.mail/temporary/attached`/attached".$(date +"%m.%d.%y.%H.%M.%S")
     clipboard=`pbpaste`
     if [[ $clipboard == http* ]]
     then

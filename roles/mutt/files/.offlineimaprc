@@ -20,7 +20,7 @@ postsynchook = notmuch new
 
 [Repository Jim-Local]
 type = Maildir
-localfolders = ~/.mail/gmail.com
+localfolders = ~/mapped/.mail/gmail.com
 nametrans = lambda folder: {'drafts'        : '[Gmail]/Drafts',
                             'sent'          : '[Gmail]/Sent Mail',
                             'starred'       : '[Gmail]/Starred',
@@ -52,7 +52,7 @@ nametrans = lambda folder: {'[Gmail]/Drafts'                    : 'drafts',
 
 [Repository RH-Local]
 type = Maildir
-localfolders = ~/.mail/redhat.com
+localfolders = ~/mapped/.mail/redhat.com
 nametrans = lambda folder: {'drafts'        : '[Gmail]/Drafts',
                             'sent'          : '[Gmail]/Sent Mail',
                             'starred'       : '[Gmail]/Starred',
