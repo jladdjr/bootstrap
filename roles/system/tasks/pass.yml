@@ -5,7 +5,27 @@
   ignore_errors: yes
   register: which_pass
 - block:
-  # TODO: Need to install newer version of tree for `pass find` to work
+  - name: Ensure tree not installed using yum
+    yum:
+      name: tree
+      state: absent
+    become: true
+  # http://mama.indstate.edu/users/ice/tree/
+  - name: Download tree source
+    get_url:
+      dest: /tmp/tree-1.7.0.tgz
+      url: http://mama.indstate.edu/users/ice/tree/src/tree-1.7.0.tgz
+  - name: Extract tree source
+    unarchive:
+      remote_src: yes
+      src: /tmp/tree-1.7.0.tgz
+      dest: /tmp
+  - name: Install tree
+    shell: make & make install
+    args:
+      executable: /bin/bash
+      chdir: /tmp/tree-1.7.0
+    become: true
   - name: Download pass source
     git:
       dest: /tmp/password-store

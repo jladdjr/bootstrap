@@ -21,4 +21,3 @@
       - postgresql
       - postgresql-server
   become: true
-  tags: test
