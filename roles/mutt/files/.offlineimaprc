@@ -6,6 +6,8 @@ accounts = Jim,RH
 fsync = False
 keepalive = 60
 
+metadata = ~/mapped/.offlineimap
+
 [Account Jim]
 localrepository = Jim-Local
 remoterepository = Jim-Remote
@@ -35,7 +37,7 @@ folderfilter = lambda folder: (folder not in ['[Gmail]/Trash',
                                             ]) and 'Airmail' not in folder
 
 [Repository Jim-Remote]
-maxconnections = 3
+maxconnections = 1
 type = Gmail
 auth_mechanisms = GSSAPI, CRAM-MD5, PLAIN, LOGIN
 sslcacertfile = /etc/ssl/certs/ca-bundle.crt
@@ -61,7 +63,7 @@ nametrans = lambda folder: {'drafts'        : '[Gmail]/Drafts',
                            }.get(folder, folder)
 
 [Repository RH-Remote]
-maxconnections = 3
+maxconnections = 1
 type = Gmail
 auth_mechanisms = GSSAPI, CRAM-MD5, PLAIN, LOGIN
 sslcacertfile = /etc/ssl/certs/ca-bundle.crt
