@@ -11,6 +11,7 @@
     - notmuch
     - msmtp
     - offlineimap
+    - lynx
   become: true
 
 - name: Copy over configuration files
