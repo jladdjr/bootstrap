@@ -49,7 +49,6 @@ Vagrant.configure(2) do |config|
   #
   # yum install dkms
   # yum update kernel
-  # yum update -y kernel-tools kernel-debug-devel kernel-headers kernel-tools-libs ?
   # yum install kernel-devel
   # reboot
   # uname -a (get kernel version)
