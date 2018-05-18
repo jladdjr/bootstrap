@@ -27,7 +27,6 @@ nametrans = lambda folder: {'drafts'        : '[Gmail]/Drafts',
                             'sent'          : '[Gmail]/Sent Mail',
                             'starred'       : '[Gmail]/Starred',
                             'trash'         : '[Gmail]/Trash',
-                            'archive'       : '[Gmail]/All Mail',
                            }.get(folder, folder)
 
 folderfilter = lambda folder: (folder not in ['[Gmail]/Trash',
@@ -48,7 +47,6 @@ nametrans = lambda folder: {'[Gmail]/Drafts'                    : 'drafts',
                             '[Gmail]/Sent Mail'                 : 'sent',
                             '[Gmail]/Starred'                   : 'starred',
                             '[Gmail]/Trash'                     : 'trash',
-                            '[Gmail]/All Mail'                  : 'archive',
                            }.get(folder, folder)
 
 [Repository RH-Local]
@@ -58,7 +56,6 @@ nametrans = lambda folder: {'drafts'        : '[Gmail]/Drafts',
                             'sent'          : '[Gmail]/Sent Mail',
                             'starred'       : '[Gmail]/Starred',
                             'trash'         : '[Gmail]/Trash',
-                            'archive'       : '[Gmail]/All Mail',
                            }.get(folder, folder)
 
 [Repository RH-Remote]
@@ -73,5 +70,4 @@ nametrans = lambda folder: {'[Gmail]/Drafts'            : 'drafts',
                             '[Gmail]/Sent Mail'         : 'sent',
                             '[Gmail]/Starred'           : 'starred',
                             '[Gmail]/Trash'             : 'trash',
-                            '[Gmail]/All Mail'          : 'archive',
                            }.get(folder, folder)
