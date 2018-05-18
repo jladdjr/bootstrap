@@ -1,0 +1,42 @@
+# Account Settings ------------------------------------------------------------
+
+# Default inbox.
+set spoolfile = "+redhat.com/INBOX"
+
+# Mailboxes to show in the sidebar.
+mailboxes +@rh \
+          +redhat.com/INBOX \
+          +redhat.com/participating \
+          +redhat.com/My\ PRs \
+          +redhat.com/PRs \
+          +redhat.com/\#same-day-service \
+          +redhat.com/\#get-back-to-folks \
+          +redhat.com/\#todo \
+          +redhat.com/\#read \
+          +redhat.com/\#waiting \
+          +redhat.com/\Ansible.Tower \
+          +redhat.com/\Ansible.Announce \
+          +redhat.com/\Ansible.Engineering \
+          +redhat.com/\Ansible.TechDiscuss \
+          +redhat.com/\Ansible.Tower \
+          +redhat.com/New\ repo \
+          +redhat.com/RewardZone \
+          +redhat.com/RedHat.AnnounceList \
+          +redhat.com/RedHat.People\ Team \
+          +redhat.com/RedHat.Prod-Dept \
+          +redhat.com/RedHat.RDU-AnnounceList \
+          +redhat.com/RedHat.AnnounceList \
+          +redhat.com/release-announcement \
+          +redhat.com/archive \
+          +redhat.com/sent \
+          +redhat.com/drafts \
+          +redhat.com/trash \
+          +@search \
+          +temporary/search \
+
+# Set the proper account when opening folder
+folder-hook redhat.com/* source ~/.mutt/rh.muttrc
+
+# Automatically hide read messages when switching certain folders
+#folder-hook redhat.com/memo 'push "l~U<enter>"'
+#folder-hook draughtcraft.com/INBOX 'push "l~U<enter>"'

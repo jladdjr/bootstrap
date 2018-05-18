@@ -14,6 +14,13 @@
     - lynx
   become: true
 
+- name: Copy over system configuration
+  copy:
+    src: neomuttrc
+    dest: /etc
+    mode: 0644
+  become: true
+
 - name: Copy over configuration files
   copy:
     src: "{{ item }}"
@@ -21,7 +28,8 @@
     mode: 0600
   with_items:
     - .msmtprc
-    - .muttrc
+    - .neomuttrc.work
+    - .neomuttrc.personal
     - .notmuch-config
     - .offlineimaprc
 
@@ -45,4 +53,5 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK - mutt"
     path: /home/vagrant/.bashrc
     block: |
-      alias nm='neomutt'
+      alias nm='neomutt -F ~/.neomuttrc.work'
+      alias nm2='neomutt -F ~/.neomuttrc.personal'

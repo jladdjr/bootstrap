@@ -42,7 +42,6 @@ type = Gmail
 auth_mechanisms = GSSAPI, CRAM-MD5, PLAIN, LOGIN
 sslcacertfile = /etc/ssl/certs/ca-bundle.crt
 remoteuser = jladdjr@gmail.com
-#remotepasseval = get_pass(account='jladdjr@gmail.com')
 remotepass = CHANGME
 realdelete = no
 nametrans = lambda folder: {'[Gmail]/Drafts'                    : 'drafts',
@@ -68,7 +67,6 @@ type = Gmail
 auth_mechanisms = GSSAPI, CRAM-MD5, PLAIN, LOGIN
 sslcacertfile = /etc/ssl/certs/ca-bundle.crt
 remoteuser = jladd@redhat.com
-#remotepass = get_keychain_pass(account='jladd@redhat.com')
 remotepass = CHANGEME
 realdelete = no
 nametrans = lambda folder: {'[Gmail]/Drafts'            : 'drafts',

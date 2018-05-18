@@ -49,90 +49,6 @@ set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)
 ignore *  # Ignore all headers
 unignore from: to: cc: date: subject: # show only these
 
-# Account Settings ------------------------------------------------------------
-
-# Default inbox.
-set spoolfile = "+gmail.com/INBOX"
-
-# Alternate email addresses.
-alternates jladd@redhat.com
-
-# Mailboxes to show in the sidebar.
-mailboxes +@jladdjr \
-          +gmail.com/INBOX \
-          +gmail.com/\#same-day-service \
-          +gmail.com/\#get-back-to-folks \
-          +gmail.com/\#todo \
-          +gmail.com/\#read \
-          +gmail.com/\#waiting \
-          +gmail.com/\#file-away\
-          +gmail.com/amazon \
-          +gmail.com/bills \
-          +gmail.com/businesses \
-          +gmail.com/calendar \
-          +gmail.com/claudia \
-          +gmail.com/delivery \
-          +gmail.com/Duke \
-          +gmail.com/from_work \
-          +gmail.com/Go \
-          +gmail.com/health \
-          +gmail.com/house \
-          +gmail.com/insurance \
-          +gmail.com/job\ search \
-          +gmail.com/legal \
-          +gmail.com/linkedin \
-          +gmail.com/listserv \
-          +gmail.com/medical \
-          +gmail.com/meetups \
-          +gmail.com/money \
-          +gmail.com/newsletter \
-          +gmail.com/non-profits \
-          +gmail.com/recruiting \
-          +gmail.com/security \
-          +gmail.com/survey \
-          +gmail.com/travel \
-          +gmail.com/archive \
-          +gmail.com/sent \
-          +gmail.com/drafts \
-          +gmail.com/trash \
-          +@rh \
-          +redhat.com/INBOX \
-          +redhat.com/participating \
-          +redhat.com/My\ PRs \
-          +redhat.com/PRs \
-          +redhat.com/\#same-day-service \
-          +redhat.com/\#get-back-to-folks \
-          +redhat.com/\#todo \
-          +redhat.com/\#read \
-          +redhat.com/\#waiting \
-          +redhat.com/\Ansible.Tower \
-          +redhat.com/\Ansible.Announce \
-          +redhat.com/\Ansible.Engineering \
-          +redhat.com/\Ansible.TechDiscuss \
-          +redhat.com/\Ansible.Tower \
-          +redhat.com/New\ repo \
-          +redhat.com/RewardZone \
-          +redhat.com/RedHat.AnnounceList \
-          +redhat.com/RedHat.People\ Team \
-          +redhat.com/RedHat.Prod-Dept \
-          +redhat.com/RedHat.RDU-AnnounceList \
-          +redhat.com/RedHat.AnnounceList \
-          +redhat.com/release-announcement \
-          +redhat.com/archive \
-          +redhat.com/sent \
-          +redhat.com/drafts \
-          +redhat.com/trash \
-          +@search \
-          +temporary/search \
-
-# Set the proper account when switching folders.
-folder-hook gmail.com/* source ~/.mutt/jladdjr.muttrc
-folder-hook redhat.com/* source ~/.mutt/rh.muttrc
-
-# Automatically hide read messages when switching certain folders
-#folder-hook redhat.com/memo 'push "l~U<enter>"'
-#folder-hook draughtcraft.com/INBOX 'push "l~U<enter>"'
-
 # Update the `reading from disk` progress bar increment (for faster reads)
 folder-hook . 'set read_inc=1000'
 folder-hook . 'set time_inc=500'
@@ -149,9 +65,10 @@ set sort_re                                     # thread based on regex
 set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 
 # Index Key Bindings ----------------------------------------------------------
-#bind index gg           first-entry         # more vimmy
-#bind index G            last-entry          # even more vimmy
-bind index R            group-reply         # reply-all
+bind index g noop                           # .. so that we can bind 'gg'
+bind index gg           first-entry         # more vimmy
+bind index G            last-entry          # even more vimmy
+bind index, pager R     group-reply         # reply-all
 bind index <space>      collapse-thread     # expand/collapse a thread
 bind index <backtab>    collapse-all        # expand/collapse all threads
 
@@ -200,11 +117,9 @@ bind index,pager <right>  sidebar-open
 # Pager Key Bindings ----------------------------------------------------------
 bind pager k  previous-line
 bind pager j  next-line
-#bind pager gg top
-#bind pager G  bottom
-bind pager R  group-reply
-bind pager [  previous-entry
-bind pager ]  next-entry
+bind pager g noop                           # .. so that we can bind 'gg'
+bind pager gg top
+bind pager G  bottom
 bind pager i  exit
 
 # View attachments properly.
