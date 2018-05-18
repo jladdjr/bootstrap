@@ -66,8 +66,31 @@ mailboxes +@jladdjr \
           +gmail.com/\#read \
           +gmail.com/\#waiting \
           +gmail.com/\#file-away\
-          +gmail.com/\job\ search \
-          +gmail.com/\Go \
+          +gmail.com/amazon \
+          +gmail.com/bills \
+          +gmail.com/businesses \
+          +gmail.com/calendar \
+          +gmail.com/claudia \
+          +gmail.com/delivery \
+          +gmail.com/Duke \
+          +gmail.com/from_work \
+          +gmail.com/Go \
+          +gmail.com/health \
+          +gmail.com/house \
+          +gmail.com/insurance \
+          +gmail.com/job\ search \
+          +gmail.com/legal \
+          +gmail.com/linkedin \
+          +gmail.com/listserv \
+          +gmail.com/medical \
+          +gmail.com/meetups \
+          +gmail.com/money \
+          +gmail.com/newsletter \
+          +gmail.com/non-profits \
+          +gmail.com/recruiting \
+          +gmail.com/security \
+          +gmail.com/survey \
+          +gmail.com/travel \
           +gmail.com/archive \
           +gmail.com/sent \
           +gmail.com/drafts \
@@ -94,6 +117,7 @@ mailboxes +@jladdjr \
           +redhat.com/RedHat.Prod-Dept \
           +redhat.com/RedHat.RDU-AnnounceList \
           +redhat.com/RedHat.AnnounceList \
+          +redhat.com/release-announcement \
           +redhat.com/archive \
           +redhat.com/sent \
           +redhat.com/drafts \
