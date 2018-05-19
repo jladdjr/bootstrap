@@ -5,8 +5,9 @@ Vagrant.configure(2) do |config|
   config.vm.box = "centos/7"
 
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = "6000"
-    vb.cpus = "3"
+    vb.memory = "10000"
+    vb.cpus = "5"
+    vb.customize ["modifyvm", :id, "--vram", "128"]
   end
 
   config.vm.network "forwarded_port", guest: 8043, host: 8043  # awx/tower
