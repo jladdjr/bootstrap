@@ -51,3 +51,20 @@ folder-hook gmail.com/* source ~/.mutt/jladdjr.muttrc
 # Automatically hide read messages when switching certain folders
 #folder-hook redhat.com/memo 'push "l~U<enter>"'
 #folder-hook draughtcraft.com/INBOX 'push "l~U<enter>"'
+
+# Gmail mappings
+bind index,pager l noop
+macro index,pager li "<save-message>+gmail.com/INBOX<enter><sync-mailbox>" "save message to inbox"
+macro index,pager ls "<save-message>+gmail.com/#same-day-service<enter><sync-mailbox>" "save message to #same-day-service"
+macro index,pager lg "<save-message>+gmail.com/#get-back-to-folks<enter><sync-mailbox>" "save message to #get-back-to-folks"
+macro index,pager lt "<save-message>+gmail.com/#todo<enter><sync-mailbox>" "save message to #todo"
+macro index,pager lr "<save-message>+gmail.com/#read<enter><sync-mailbox>" "save message to #read"
+macro index,pager lw "<save-message>+gmail.com/#waiting<enter><sync-mailbox>" "save message to #waiting"
+
+bind index,pager g noop
+macro index,pager gi "c=gmail.com/INBOX<enter>" "open inbox"
+macro index,pager gs "c=gmail.com/#same-day-service<enter>" "open #same-day-service"
+macro index,pager gg "c=gmail.com/#get-back-to-folks<enter>" "open #get-back-to-folks"
+macro index,pager gt "c=gmail.com/#todo<enter>" "open #todo"
+macro index,pager gr "c=gmail.com/#read<enter>" "open #read"
+macro index,pager gw "c=gmail.com/#waiting<enter>" "open #waiting"
