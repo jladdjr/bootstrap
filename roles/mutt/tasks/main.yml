@@ -51,10 +51,15 @@
     - .mutt
     - mapped
 
+- name: Ensure alias file exists in shared folder
+  file:
+    path: /home/vagrant/mapped/alias
+    state: touch
+
 - name: Run offlineimap periodically (uncomment job after syncing mail with `offlineimap` for the first time)
   cron:
     name: offlineimap
-    minute: "*/8"
+    minute: "*/5"
     job: "#/usr/bin/offlineimap -1 -u quiet"
 
 - name: Add .bashrc aliases
