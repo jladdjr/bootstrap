@@ -63,6 +63,7 @@ macro index,pager lr "<save-message>+gmail.com/#read<enter><sync-mailbox>" "save
 macro index,pager lw "<save-message>+gmail.com/#waiting<enter><sync-mailbox>" "save message to #waiting"
 
 bind index,pager g noop
+macro index,pager gl "c?/" "open mailbox"
 macro index,pager gi "c=gmail.com/INBOX<enter>" "open inbox"
 macro index,pager gs "c=gmail.com/#same-day-service<enter>" "open #same-day-service"
 macro index,pager gg "c=gmail.com/#get-back-to-folks<enter>" "open #get-back-to-folks"

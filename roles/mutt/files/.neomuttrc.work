@@ -52,6 +52,7 @@ macro index,pager lr "<save-message>+redhat.com/#read<enter><sync-mailbox>" "sav
 macro index,pager lw "<save-message>+redhat.com/#waiting<enter><sync-mailbox>" "save message to #waiting"
 
 bind index,pager g noop
+macro index,pager gl "c?/" "open mailbox"
 macro index,pager gi "c=redhat.com/INBOX<enter>" "open inbox"
 macro index,pager gp "c=redhat.com/participating<enter>" "open participating"
 macro index,pager gs "c=redhat.com/#same-day-service<enter>" "open #same-day-service"
