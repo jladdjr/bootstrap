@@ -40,3 +40,22 @@ folder-hook redhat.com/* source ~/.mutt/rh.muttrc
 # Automatically hide read messages when switching certain folders
 #folder-hook redhat.com/memo 'push "l~U<enter>"'
 #folder-hook draughtcraft.com/INBOX 'push "l~U<enter>"'
+
+# Gmail mappings
+bind index,pager l noop
+macro index,pager li "<save-message>+redhat.com/INBOX<enter><sync-mailbox>" "save message to inbox"
+macro index,pager lp "<save-message>+redhat.com/participating<enter><sync-mailbox>" "save message to participating"
+macro index,pager ls "<save-message>+redhat.com/#same-day-service<enter><sync-mailbox>" "save message to #same-day-service"
+macro index,pager lg "<save-message>+redhat.com/#get-back-to-folks<enter><sync-mailbox>" "save message to #get-back-to-folks"
+macro index,pager lt "<save-message>+redhat.com/#todo<enter><sync-mailbox>" "save message to #todo"
+macro index,pager lr "<save-message>+redhat.com/#read<enter><sync-mailbox>" "save message to #read"
+macro index,pager lw "<save-message>+redhat.com/#waiting<enter><sync-mailbox>" "save message to #waiting"
+
+bind index,pager g noop
+macro index,pager gi "c=redhat.com/INBOX<enter>" "open inbox"
+macro index,pager gp "c=redhat.com/participating<enter>" "open participating"
+macro index,pager gs "c=redhat.com/#same-day-service<enter>" "open #same-day-service"
+macro index,pager gg "c=redhat.com/#get-back-to-folks<enter>" "open #get-back-to-folks"
+macro index,pager gt "c=redhat.com/#todo<enter>" "open #todo"
+macro index,pager gr "c=redhat.com/#read<enter>" "open #read"
+macro index,pager gw "c=redhat.com/#waiting<enter>" "open #waiting"
