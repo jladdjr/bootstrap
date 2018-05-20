@@ -1,3 +1,5 @@
+- include_vars: mutt_secrets.yml
+
 - name: Create neomutt repo repo
   copy:
     src: flatcap-neomutt-epel-7.repo
@@ -14,26 +16,33 @@
     - lynx
   become: true
 
-- name: Copy over system configuration
+- name: Copy system config
   copy:
     src: neomuttrc
     dest: /etc
     mode: 0644
   become: true
 
-- name: Copy over configuration files
+- name: Copy config files
   copy:
     src: "{{ item }}"
     dest: /home/vagrant/
     mode: 0600
   with_items:
-    - .msmtprc
     - .neomuttrc.work
     - .neomuttrc.personal
     - .notmuch-config
-    - .offlineimaprc
 
-- name: Copy over configuration folders
+- name: Copy templated config files
+  template:
+    src: "{{ item }}"
+    dest: "/home/vagrant/{{ item|replace('.j2','') }}"
+    mode: 0600
+  with_items:
+    - .offlineimaprc.j2
+    - .msmtprc.j2
+
+- name: Copy config folders
   copy:
     src: "{{ item }}"
     dest: /home/vagrant/
