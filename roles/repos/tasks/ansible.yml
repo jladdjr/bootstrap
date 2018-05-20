@@ -3,6 +3,7 @@
     dest: /home/vagrant/git/ansible-{{ branch }}
     repo: git@github.com:ansible/ansible.git
     accept_hostkey: yes
+  tags: ansible
 
 - name: Get current branch
   shell: git branch | grep '{{ branch }}'
@@ -10,12 +11,14 @@
     chdir: /home/vagrant/git/ansible-{{ branch }}
   register: git_branch
   failed_when: git_branch.rc > 1
+  tags: ansible
 
 - name: Check out branch
   command: git checkout {{ branch }}
   args:
     chdir: /home/vagrant/git/ansible-{{ branch }}
   when: git_branch.rc == 1
+  tags: ansible
 
 - name: Create ansible virtualenv
   shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python2 ansible-{{ branch }}
@@ -23,6 +26,7 @@
     executable: /bin/bash
   environment:
     VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+  tags: ansible
 
 - name: Add ansible requirements to venv
   shell: . /usr/bin/virtualenvwrapper.sh && workon ansible-{{ branch }} && pip install -r requirements.txt
@@ -31,3 +35,11 @@
     chdir: /home/vagrant/git/ansible-{{ branch }}
   environment:
     VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+  tags: ansible
+
+- name: Create ansible alias
+  lineinfile:
+    path: /home/vagrant/.bashrc
+    line: alias a='workon ansible-devel; source /home/vagrant/git/ansible-devel/hacking/env-setup > /dev/null 2>&1; ansible --version | head -1'
+  tags: ansible
+  when: branch == "devel"
