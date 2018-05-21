@@ -5,10 +5,11 @@
 - name: Determine if privilege escalation is needed
   set_fact:
     use_become: "{{ 'true' if 'root' in home_dir else 'false' }}"
+    colorscheme: "{{ 'iceberg' if 'root' in home_dir else 'onedark' }}"
 
 - name: Copy .vimrc
-  copy:
-    src: vim/.vimrc
+  template:
+    src: .vimrc
     dest: "{{ home_dir }}"
     mode: 0755
   become: "{{ use_become }}"

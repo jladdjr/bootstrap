@@ -1,7 +1,7 @@
 filetype plugin on
 filetype plugin indent on
 syntax on
-colorscheme onedark
+colorscheme {{ colorscheme }}
 
 " http://vim.wikia.com/wiki/Indenting_source_code#Explanation_of_the_options
 set shiftwidth=4
