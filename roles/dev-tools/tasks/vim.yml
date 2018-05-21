@@ -30,17 +30,14 @@
     dest: /home/vagrant/.vim/after/ftplugin
 
 # https://gist.github.com/romainl/9970697
-- name: Install Pathogen - add required dir (autoload)
+- name: Install Pathogen - add required dirs
   file:
-    dest: /home/vagrant/.vim/autoload
+    dest: "/home/vagrant/.vim/{{ item }}"
     state: directory
     mode: 0755
-
-- name: Install Pathogen - add required dir (bundle)
-  file:
-    dest: /home/vagrant/.vim/bundle
-    state: directory
-    mode: 0755
+  with_items:
+    - autoload
+    - bundle
 
 - name: Install Pathogen - download Pathogen
   get_url:
