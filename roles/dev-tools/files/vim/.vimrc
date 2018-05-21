@@ -47,3 +47,6 @@ let g:netrw_banner = 0
 
 " Toggle (relative) numbers
 nmap <C-I> :set relativenumber!<CR>:set number!<CR>
+
+" https://stackoverflow.com/questions/5019315/vim-backspace-key-only-works-on-new-text
+set backspace=indent,eol,start
