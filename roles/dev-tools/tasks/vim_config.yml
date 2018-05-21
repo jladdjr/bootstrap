@@ -1,0 +1,93 @@
+- name: Applying vim config for user
+  debug:
+    msg: "home_dir is {{ home_dir }}"
+
+- name: Determine if privilege escalation is needed
+  set_fact:
+    use_become: "{{ 'true' if 'root' in home_dir else 'false' }}"
+
+- name: Copy .vimrc
+  copy:
+    src: vim/.vimrc
+    dest: "{{ home_dir }}"
+    mode: 0755
+  become: "{{ use_become }}"
+
+- name: Adjust behaviour for specific filetypes - add required dir (after/ftplugin)
+  file:
+    dest: "{{ home_dir }}/.vim/after/ftplugin"
+    state: directory
+    mode: 0755
+  become: "{{ use_become }}"
+
+- name: Adjust behaviour for specific filetypes - copy custom yaml settings
+  copy:
+    src: vim/yaml.vim
+    dest: "{{ home_dir }}/.vim/after/ftplugin"
+  become: "{{ use_become }}"
+
+# https://gist.github.com/romainl/9970697
+- name: Install Pathogen - add required dirs
+  file:
+    dest: "{{ home_dir }}/.vim/{{ folder }}"
+    state: directory
+    mode: 0755
+  with_items:
+    - autoload
+    - bundle
+  loop_control:
+    loop_var: folder
+  become: "{{ use_become }}"
+
+- name: Install Pathogen - download Pathogen
+  get_url:
+    url: https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+    dest: "{{ home_dir }}/.vim/autoload/pathogen.vim"
+    mode: 0755
+  become: "{{ use_become }}"
+
+- name: Install Pathogen - source Pathogen in vimrc
+  lineinfile:
+    line: execute pathogen#infect()
+    path: "{{ home_dir }}/.vimrc"
+    insertbefore: BOF
+  become: "{{ use_become }}"
+
+# Background on enabling 256 colors
+# https://push.cx/2008/256-color-xterms-in-ubuntu
+- name: Install vim color theme - desert256
+  git:
+    repo: https://github.com/vim-scripts/desert256.vim.git
+    dest: "{{ home_dir }}/.vim/bundle/desert256.vim"
+  become: "{{ use_become }}"
+
+- name: Install vim color theme - railscasts
+  git:
+    repo: https://github.com/jpo/vim-railscasts-theme.git
+    dest: "{{ home_dir }}/.vim/bundle/railscasts.vim"
+  become: "{{ use_become }}"
+
+- name: Install vim color theme - github
+  git:
+    repo: https://github.com/endel/vim-github-colorscheme
+    dest: "{{ home_dir }}/.vim/bundle/github.vim"
+  become: "{{ use_become }}"
+
+- name: Install vim color theme - awesome-vim-colorschemes
+  git:
+    repo: https://github.com/rafi/awesome-vim-colorschemes.git
+    dest: "{{ home_dir }}/.vim/bundle/awesome-vim-colorschemes.vim"
+  become: "{{ use_become }}"
+
+#https://github.com/alfredodeza/chapa.vim/tree/master
+- name: Install chapa.vim using Pathogen
+  git:
+    repo: https://github.com/alfredodeza/chapa.vim.git
+    dest: "{{ home_dir }}/.vim/bundle/chapa.vim.git"
+  become: "{{ use_become }}"
+
+- name: Enable chapa.vim
+  lineinfile:
+    path: "{{ home_dir }}/.vimrc"
+    line: let g:chapa_default_mappings = 1
+  become: "{{ use_become }}"

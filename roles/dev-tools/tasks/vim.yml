@@ -12,74 +12,9 @@
     force: yes
   become: true
 
-- name: Copy .vimrc
-  copy:
-    src: vim/.vimrc
-    dest: /home/vagrant
-    mode: 0755
-
-- name: Adjust behaviour for specific filetypes - add required dir (after/ftplugin)
-  file:
-    dest: /home/vagrant/.vim/after/ftplugin
-    state: directory
-    mode: 0755
-
-- name: Adjust behaviour for specific filetypes - copy custom yaml settings
-  copy:
-    src: vim/yaml.vim
-    dest: /home/vagrant/.vim/after/ftplugin
-
-# https://gist.github.com/romainl/9970697
-- name: Install Pathogen - add required dirs
-  file:
-    dest: "/home/vagrant/.vim/{{ item }}"
-    state: directory
-    mode: 0755
-  with_items:
-    - autoload
-    - bundle
-
-- name: Install Pathogen - download Pathogen
-  get_url:
-    url: https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
-    dest: /home/vagrant/.vim/autoload/pathogen.vim
-    mode: 0755
-
-- name: Install Pathogen - source Pathogen in vimrc
-  lineinfile:
-    line: execute pathogen#infect()
-    path: /home/vagrant/.vimrc
-    insertbefore: BOF
-
-# Background on enabling 256 colors
-# https://push.cx/2008/256-color-xterms-in-ubuntu
-- name: Install vim color theme - desert256
-  git:
-    repo: https://github.com/vim-scripts/desert256.vim.git
-    dest: /home/vagrant/.vim/bundle/desert256.vim
-
-- name: Install vim color theme - railscasts
-  git:
-    repo: https://github.com/jpo/vim-railscasts-theme.git
-    dest: /home/vagrant/.vim/bundle/railscasts.vim
-
-- name: Install vim color theme - github
-  git:
-    repo: https://github.com/endel/vim-github-colorscheme
-    dest: /home/vagrant/.vim/bundle/github.vim
-
-- name: Install vim color theme - awesome-vim-colorschemes
-  git:
-    repo: https://github.com/rafi/awesome-vim-colorschemes.git
-    dest: /home/vagrant/.vim/bundle/awesome-vim-colorschemes.vim
-
-#https://github.com/alfredodeza/chapa.vim/tree/master
-- name: Install chapa.vim using Pathogen
-  git:
-    repo: https://github.com/alfredodeza/chapa.vim.git
-    dest: /home/vagrant/.vim/bundle/chapa.vim.git
-
-- name: Enable chapa.vim
-  lineinfile:
-    path: /home/vagrant/.vimrc
-    line: let g:chapa_default_mappings = 1
+- include_tasks: vim_config.yml
+  loop:
+    - /home/vagrant
+    - /root
+  loop_control:
+    loop_var: home_dir

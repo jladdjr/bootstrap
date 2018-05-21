@@ -8,3 +8,6 @@ bootstrap:
 
 mail:
 	ansible-playbook -i $(INVENTORY) --vault-password-file get-vault-pass.sh --tags mutt provision.yml
+
+vim:
+	ansible-playbook -i $(INVENTORY) --tags vim provision.yml
