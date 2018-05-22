@@ -4,3 +4,13 @@
     path: /home/vagrant/.bashrc
     block: |
       alias h='cd $(pwd | cut -d '/' -f 1-5); pwd'  # Move to head (top) folder of git projects (bit hacky)
+
+      # History
+      # https://www.gnu.org/software/bash/manual/html_node/Bash-History-Builtins.html
+      shopt -s histappend   # append to history, don't overwrite it
+      export HISTCONTROL=   # allow duplicate entries
+      export HISTSIZE=      # unlimited history
+      export HISTFILESIZE=  # unlimited history
+      export HISTTIMEFORMAT="%F %T: "
+      export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"  # Append command to history after it completes (use `history -r` to reload history in other sessions)
+      echo "--- new session ---" >> $HISTFILE
