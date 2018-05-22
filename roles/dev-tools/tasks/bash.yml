@@ -15,5 +15,6 @@
       export HISTTIMEFORMAT="%F %T: "
       export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"  # Append command to history after it completes (use `history -r` to reload history in other sessions)
 
+      # In history file, note when new session is started
       # https://stackoverflow.com/questions/911168/how-to-detect-if-my-shell-script-is-running-through-a-pipe
-      if [ -t 1 ]; then echo "--- new session ---" >> $HISTFILE; fi
+      if [ -t 1 ]; then echo -e "#$(date +%s)\n#--- new session ---" >> $HISTFILE; fi
