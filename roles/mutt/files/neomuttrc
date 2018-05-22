@@ -71,6 +71,7 @@ bind index G            last-entry          # even more vimmy
 bind index R            group-reply         # reply-all
 bind index <space>      collapse-thread     # expand/collapse a thread
 bind index <backtab>    collapse-all        # expand/collapse all threads
+bind index D    undelete-message
 
 # Ctrl-R to mark all as read
 macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
@@ -122,6 +123,7 @@ bind pager R  group-reply
 #bind pager gg top
 bind pager G  bottom
 bind pager i  exit
+bind pager D    undelete-message
 
 # View attachments properly.
 macro attach <return> "<view-mailcap><exit>"
