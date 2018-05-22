@@ -8,6 +8,7 @@
       # History
       # https://www.gnu.org/software/bash/manual/html_node/Bash-History-Builtins.html
       shopt -s histappend   # append to history, don't overwrite it
+      export HISTFILE="/home/vagrant/mapped/bash_history"
       export HISTCONTROL=   # allow duplicate entries
       export HISTSIZE=      # unlimited history
       export HISTFILESIZE=  # unlimited history
