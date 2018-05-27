@@ -41,4 +41,4 @@
     path: /home/vagrant/.bashrc
     block: |
       alias tower="cd /home/vagrant/git/tower; git br | grep '*'"
-      marker: "# {mark} ANSIBLE MANAGED BLOCK - tower"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - tower"
