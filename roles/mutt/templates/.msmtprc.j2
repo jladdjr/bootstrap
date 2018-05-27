@@ -7,7 +7,7 @@ from jladdjr@gmail.com
 user jladdjr@gmail.com
 tls on
 tls_trust_file /etc/ssl/certs/ca-bundle.crt
-password {{ MUTT_PERSONAL_PASSWORD }}
+password {{ MUTT_PERSONAL_PASSWORD | default('CHANGEME') }}
 
 account redhat
 host smtp.gmail.com
@@ -18,6 +18,6 @@ from jladd@redhat.com
 user jladd@redhat.com
 tls on
 tls_trust_file /etc/ssl/certs/ca-bundle.crt
-password {{ MUTT_REDHAT_PASSWORD }}
+password {{ MUTT_REDHAT_PASSWORD | default('CHANGEME') }}
 
 account default : jladdjr

@@ -1,6 +1,10 @@
-- include_vars: mutt_secrets.yml
+- name: Ensure mapped folder exists
+  file:
+    path: /home/vagrant/mapped
+    state: directory
+    mode: 0700
 
-- name: Create neomutt repo repo
+- name: Create neomutt repo
   copy:
     src: flatcap-neomutt-epel-7.repo
     dest: /etc/yum.repos.d
@@ -16,14 +20,14 @@
     - lynx
   become: true
 
-- name: Copy system config
+- name: Copy neomuttrc to /etc
   copy:
     src: neomuttrc
     dest: /etc
     mode: 0644
   become: true
 
-- name: Copy config files
+- name: Copy mutt / notmuch dotfiles
   copy:
     src: "{{ item }}"
     dest: /home/vagrant/
@@ -33,7 +37,7 @@
     - .neomuttrc.personal
     - .notmuch-config
 
-- name: Copy templated config files
+- name: Create offlineimaprc / msmtprc dotfiles (requires mutt passwords)
   template:
     src: "{{ item }}"
     dest: "/home/vagrant/{{ item|replace('.j2','') }}"
@@ -42,14 +46,22 @@
     - .offlineimaprc.j2
     - .msmtprc.j2
 
-- name: Copy config folders
+- name: Create .mutt folder
   copy:
-    src: "{{ item }}"
+    src: .mutt
     dest: /home/vagrant/
     mode: 0700
-  with_items:
-    - .mutt
-    - mapped
+
+- name: Is mapped/.mail folder present?
+  command: file /home/vagrant/mapped/.mail
+  register: dotmail
+
+- name: .. if not, create the file
+  copy:
+    src: mapped/.mail
+    dest: /home/vagrant/mapped
+    mode: 0700
+  when: dotmail.stdout.find('No such file or directory') != -1
 
 - name: Ensure alias file exists in shared folder
   file:

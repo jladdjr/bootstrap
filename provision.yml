@@ -1,9 +1,4 @@
 # Provisions dev environment for work and personal projects
-#
-# Requirements:
-# * mutt role expects a vault file, located at /home/vagrant/mapped/mutt_secrets.yml, to define:
-#   - MUTT_PERSONAL_PASSWORD (password for personal e-mail)
-#   - MUTT_REDHAT_PASSWORD (password for work e-mail)
 
 - hosts: all
   roles:

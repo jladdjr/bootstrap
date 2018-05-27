@@ -1,3 +1,9 @@
+- name: Ensure mapped folder exists
+  file:
+    path: /home/vagrant/mapped
+    state: directory
+    mode: 0700
+
 - name: Add .bashrc aliases
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK - .bashrc"
