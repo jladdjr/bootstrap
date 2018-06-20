@@ -43,3 +43,10 @@
     line: alias a='workon ansible-devel; source /home/vagrant/git/ansible-devel/hacking/env-setup > /dev/null 2>&1; ansible --version | head -1'
   tags: ansible
   when: branch == "devel"
+
+- name: Disable host key checking when running Ansible
+  lineinfile:
+    path: /home/vagrant/.bashrc
+    line: export ANSIBLE_HOST_KEY_CHECKING=False
+  tags: ansible
+  when: branch == "devel"
