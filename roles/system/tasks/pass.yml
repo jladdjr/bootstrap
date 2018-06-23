@@ -60,7 +60,6 @@
 
   - name: Set PASSWORD_STORE_DIR
     lineinfile:
-      line: export PASSWORD_STORE_DIR="/home/vagrant/mapped/.password-store"
       path: /home/vagrant/.bashrc
-      state: present
+      line: export PASSWORD_STORE_DIR="/home/vagrant/mapped/.password-store"
   when: which_pass.rc != 0

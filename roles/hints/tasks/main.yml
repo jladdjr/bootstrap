@@ -7,6 +7,5 @@
 
 - name: Create hint alias
   lineinfile:
-    line: alias hints='cat /home/vagrant/hints.txt'
     path: /home/vagrant/.bashrc
-    state: present
+    line: alias hints='cat /home/vagrant/hints.txt'

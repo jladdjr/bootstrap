@@ -49,8 +49,8 @@
 
 - name: Install Pathogen - source Pathogen in vimrc
   lineinfile:
-    line: execute pathogen#infect()
     path: "{{ home_dir }}/.vimrc"
+    line: execute pathogen#infect()
     insertbefore: BOF
   become: "{{ use_become }}"
 

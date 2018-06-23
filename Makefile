@@ -15,5 +15,8 @@ mail:
 	# MUTT_REDHAT_PASSWORD: MY_PASSWORD
 	ansible-playbook -i $(INVENTORY) --extra-vars=@/home/vagrant/mapped/mutt_secrets.yml --vault-password-file get-vault-pass.sh --tags mutt provision.yml
 
+tower-qa:
+	ansible-playbook -i $(INVENTORY) --tags tower-qa provision.yml
+
 vim:
 	ansible-playbook -i $(INVENTORY) --tags vim provision.yml
