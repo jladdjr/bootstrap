@@ -20,6 +20,12 @@
     - lynx
   become: true
 
+- name: Update Lynx settings
+  lineinfile:
+    path: /etc/lynx.cfg
+    line: REFERER_WITH_QUERY:PARTIAL
+  become: true
+
 - name: Copy neomuttrc to /etc
   copy:
     src: neomuttrc
