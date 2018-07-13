@@ -20,8 +20,11 @@
   when: git_branch.rc == 1
   tags: ansible
 
+# Use --system-site-packages in order to use selinux package (provided by libselinux-python rpm)
+# https://dmsimard.com/2016/01/08/selinux-python-virtualenv-chroot-and-ansible-dont-play-nice/
+# https://github.com/ansible/ansible/issues/34340#issuecomment-355214723
 - name: Create ansible virtualenv
-  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python2 ansible-{{ branch }}
+  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python2 --system-site-packages ansible-{{ branch }}
   args:
     executable: /bin/bash
   environment:
@@ -29,7 +32,7 @@
   tags: ansible
 
 - name: Add ansible requirements to venv
-  shell: . /usr/bin/virtualenvwrapper.sh && workon ansible-{{ branch }} && pip install -r requirements.txt
+  shell: . /usr/bin/virtualenvwrapper.sh && workon ansible-{{ branch }} && pip install -U -r requirements.txt
   args:
     executable: /bin/bash
     chdir: /home/vagrant/git/ansible-{{ branch }}
