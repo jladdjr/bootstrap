@@ -34,4 +34,9 @@
       yum:
         name: man-pages
         state: present
+
+    - name: Install bash completion
+      yum:
+        name: bash-completion
+        state: present
   become: true
