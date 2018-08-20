@@ -5,7 +5,7 @@
 
 - name: Add private github key
   copy:
-    src: /Users/jladd/.ssh/id_rsa
+    src: /Users/jim/.ssh/id_rsa
     dest: /home/vagrant/.ssh/id_rsa
     mode: 0600
 
@@ -17,7 +17,7 @@
 
 - name: Add private github key (root)
   copy:
-    src: /Users/jladd/.ssh/id_rsa
+    src: /Users/jim/.ssh/id_rsa
     dest: /root/.ssh/id_rsa
     mode: 0600
   become: true
