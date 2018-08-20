@@ -57,7 +57,7 @@ In VirtualBox GUI:
 - Select vm, click Show. In VirtualBox VM menu,
   select Devices -> Insert Guest Additions CD image..
 
-In vm:
+In vm (if cdrom not already mounted):
 # mkdir -p /mount/cdrom
 # mount /dev/cdrom /mount/cdrom
 
