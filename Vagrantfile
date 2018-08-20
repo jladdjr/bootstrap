@@ -46,7 +46,6 @@ https://wiki.centos.org/HowTos/Virtualization/VirtualBox/CentOSguest
 Update VirtualBox to make sure we have latest version of VirtualBox guest utils
 
 In vm:
-# yum install dkms
 # yum update kernel
 # yum install kernel-devel
 (power down vm)
