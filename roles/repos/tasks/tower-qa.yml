@@ -5,8 +5,31 @@
     accept_hostkey: yes
   tags: tower-qa
 
+- name: Determine which remotes exist
+  command: git remote -v
+  args:
+    chdir: /home/vagrant/git/tower-qa-{{ branch }}
+  register: git_remote
+  tags: tower-qa
+
+- name: Add remote repo (ansible)
+  command: "{{ item }}"
+  args:
+    chdir: /home/vagrant/git/tower-qa-{{ branch }}
+  with_items:
+    - git remote add ansible git@github.com:ansible/tower-qa.git
+    - git fetch ansible
+  when: git_remote.stdout.find('ansible') == -1
+  tags: tower-qa
+
 - name: Check out branch
   command: git checkout {{ branch }}
+  args:
+    chdir: /home/vagrant/git/tower-qa-{{ branch }}
+  tags: tower-qa
+
+- name: Push branch to personal repo
+  command: git push --set-upstream origin
   args:
     chdir: /home/vagrant/git/tower-qa-{{ branch }}
   tags: tower-qa
@@ -53,20 +76,6 @@
   lineinfile:
     path: /home/vagrant/.bashrc
     line: export IPYTHONDIR=/home/vagrant/mapped/.ipython
-  tags: tower-qa
-
-- name: Determine which remotes exist
-  command: git remote -v
-  args:
-    chdir: /home/vagrant/git/tower-qa-{{ branch }}
-  register: git_remote
-  tags: tower-qa
-
-- name: Add remote repo (ansible)
-  command: git remote add ansible git@github.com:ansible/tower-qa.git
-  args:
-    chdir: /home/vagrant/git/tower-qa-{{ branch }}
-  when: git_remote.stdout.find('ansible') == -1
   tags: tower-qa
 
 - name: Create aliases for tower-qa
