@@ -14,6 +14,7 @@ Vagrant.configure(2) do |config|
     ansible.playbook = "provision.yml"
   end
 
+  config.vm.network "forwarded_port", guest: 8888, host: 8888  # jupyter
   config.vm.network "forwarded_port", guest: 8043, host: 8043  # awx/tower
   config.vm.network "forwarded_port", guest: 80, host: 8080    # pom - prod
   config.vm.network "forwarded_port", guest: 8000, host: 8001  # pom - test
