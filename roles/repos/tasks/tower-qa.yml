@@ -22,10 +22,25 @@
   when: git_remote.stdout.find('ansible') == -1
   tags: tower-qa
 
-- name: Check out branch
+- name: Determine if branch already checked out
+  command: git branch
+  args:
+    chdir: /home/vagrant/git/tower-qa-{{ branch }}
+  register: git_branch
+  tags: tower-qa
+
+- name: Check out new branch
   command: git checkout -b {{ branch }} ansible/{{ branch }}
   args:
     chdir: /home/vagrant/git/tower-qa-{{ branch }}
+  when: git_branch.stdout.find(branch) == -1
+  tags: tower-qa
+
+- name: Check out existing branch
+  command: git checkout {{ branch }}
+  args:
+    chdir: /home/vagrant/git/tower-qa-{{ branch }}
+  when: git_branch.stdout.find(branch) != -1
   tags: tower-qa
 
 - name: Push branch to personal repo
