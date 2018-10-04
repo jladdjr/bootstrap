@@ -23,7 +23,7 @@
   tags: tower-qa
 
 - name: Check out branch
-  command: git checkout {{ branch }}
+  command: git checkout -b {{ branch }} ansible/{{ branch }}
   args:
     chdir: /home/vagrant/git/tower-qa-{{ branch }}
   tags: tower-qa
