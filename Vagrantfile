@@ -5,8 +5,8 @@ Vagrant.configure(2) do |config|
   config.vm.box = "centos/7"
 
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = "10000"
-    vb.cpus = "5"
+    vb.memory = "5000"
+    vb.cpus = "2"
     vb.customize ["modifyvm", :id, "--vram", "128"]
   end
 
