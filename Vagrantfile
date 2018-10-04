@@ -59,13 +59,14 @@ In VirtualBox GUI:
   select Devices -> Insert Guest Additions CD image..
 
 In vm (if cdrom not already mounted):
-# mkdir -p /mount/cdrom
-# mount /dev/cdrom /mount/cdrom
+# mkdir -p /media/cdrom
+# mount /dev/cdrom /media/cdrom
 
 # uname -a (get kernel version)
 # rpm -q kernel-devel (confirm matches kernel version)
 
 # cd /mount/cdrom
+# yum install -y gcc make perl (required by VBoxLinuxAdditions.run)
 # ./VBoxLinuxAdditions.run
 
 ## Something to try in the future
