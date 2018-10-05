@@ -4,5 +4,4 @@ set sendmail_wait = 0
 set mbox = "+redhat.com/archive"
 set postponed = "+redhat.com/drafts"
 set signature = ~/.mutt/sig-redhat
-set sig_on_top = yes
 unset record
