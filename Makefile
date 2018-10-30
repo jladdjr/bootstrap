@@ -9,7 +9,7 @@ bash:
 bootstrap:
 	ansible-playbook -i $(INVENTORY) --tags bootstrap provision.yml
 
-mail:
+mutt:
 	# Expects an ansible-vault file, mutt_secrets.yml, which should take the form:
 	# MUTT_PERSONAL_PASSWORD: MY_PASSWORD
 	# MUTT_REDHAT_PASSWORD: MY_PASSWORD
