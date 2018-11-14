@@ -6,32 +6,14 @@ set spoolfile = "+redhat.com/INBOX"
 # Mailboxes to show in the sidebar.
 mailboxes +@rh \
           +redhat.com/INBOX \
-          +redhat.com/participating \
-          +redhat.com/My\ PRs \
-          +redhat.com/PRs \
+          +redhat.com/group \
+          +redhat.com/world \
           +redhat.com/\#same-day-service \
           +redhat.com/\#get-back-to-folks \
           +redhat.com/\#todo \
           +redhat.com/\#read \
           +redhat.com/\#waiting \
-          +redhat.com/\#tower-qe \
-          +redhat.com/\#docs \
           +redhat.com/\#expense \
-          +redhat.com/Ansible.Tower \
-          +redhat.com/Ansible.Announce \
-          +redhat.com/Ansible.Engineering \
-          +redhat.com/Ansible.TechDiscuss \
-          +redhat.com/Ansible.Tower \
-          +redhat.com/New\ repo \
-          +redhat.com/RewardZone \
-          +redhat.com/RedHat.AnnounceList \
-          +redhat.com/RedHat.People\ Team \
-          +redhat.com/RedHat.Prod-Dept \
-          +redhat.com/RedHat.RDU-AnnounceList \
-          +redhat.com/RedHat.AnnounceList \
-          +redhat.com/release-announcement \
-          +redhat.com/Jenkins\ mail \
-          +redhat.com/launchpad \
           +redhat.com/archive \
           +redhat.com/sent \
           +redhat.com/drafts \
@@ -49,7 +31,6 @@ folder-hook redhat.com/* source ~/.mutt/rh.muttrc
 # Gmail mappings
 bind index,pager l noop
 macro index,pager li "<save-message>+redhat.com/INBOX<enter><sync-mailbox>" "save message to inbox"
-macro index,pager lp "<save-message>+redhat.com/participating<enter><sync-mailbox>" "save message to participating"
 macro index,pager ls "<save-message>+redhat.com/#same-day-service<enter><sync-mailbox>" "save message to #same-day-service"
 macro index,pager lg "<save-message>+redhat.com/#get-back-to-folks<enter><sync-mailbox>" "save message to #get-back-to-folks"
 macro index,pager lt "<save-message>+redhat.com/#todo<enter><sync-mailbox>" "save message to #todo"
@@ -59,7 +40,6 @@ macro index,pager lw "<save-message>+redhat.com/#waiting<enter><sync-mailbox>" "
 bind index,pager g noop
 macro index,pager gl "c?/" "open mailbox"
 macro index,pager gi "c=redhat.com/INBOX<enter>" "open inbox"
-macro index,pager gp "c=redhat.com/participating<enter>" "open participating"
 macro index,pager gs "c=redhat.com/#same-day-service<enter>" "open #same-day-service"
 macro index,pager gg "c=redhat.com/#get-back-to-folks<enter>" "open #get-back-to-folks"
 macro index,pager gt "c=redhat.com/#todo<enter>" "open #todo"
