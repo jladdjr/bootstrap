@@ -155,6 +155,7 @@ set attach_format = "%u%D%I %t%4n %T%.40d%> [%.7m/%.10M, %.6e%?C?, %C?, %s] "
 macro compose a  "<enter-command>source ~/.mutt/attach|<enter>"
 send-hook ~A exec '`rm -f ~/mapped/.mail/temporary/attached*`'
 bind compose p postpone-message
+bind compose f attach-file
 bind index p recall-message
 
 # Contact management autocompletion -------------------------------------------
