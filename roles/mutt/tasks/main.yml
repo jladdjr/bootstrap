@@ -85,5 +85,5 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK - mutt"
     path: /home/vagrant/.bashrc
     block: |
-      alias nm='neomutt -F ~/.neomuttrc.work'
-      alias nm2='neomutt -F ~/.neomuttrc.personal'
+      alias nm='pushd .; cd ~/mapped; neomutt -F ~/.neomuttrc.work; popd'
+      alias nm2='pushd .; cd ~/mapped; neomutt -F ~/.neomuttrc.personal; popd'
