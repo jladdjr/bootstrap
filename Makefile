@@ -18,6 +18,9 @@ mutt:
 pass:
 	ansible-playbook -i $(INVENTORY) --tags pass provision.yml
 
+timezone:
+	ansible-playbook -i $(INVENTORY) --tags timezone provision.yml
+
 tower-qa:
 	ansible-playbook -i $(INVENTORY) --tags tower-qa provision.yml
 
