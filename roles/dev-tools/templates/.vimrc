@@ -53,3 +53,6 @@ set backspace=indent,eol,start
 
 " http://vimdoc.sourceforge.net/htmldoc/options.html#'spellfile'
 set spellfile=/home/vagrant/mapped/en.utf-8.add
+
+" deletes everything beneath current line
+let @d="jma:'a,$ d^M"
