@@ -39,4 +39,9 @@
       yum:
         name: bash-completion
         state: present
+
+    - name: Install locate / updatedb
+      yum:
+        name: mlocate
+        state: present
   become: true
