@@ -72,6 +72,7 @@ bind index R            group-reply         # reply-all
 bind index <space>      collapse-thread     # expand/collapse a thread
 bind index <backtab>    collapse-all        # expand/collapse all threads
 bind index D    undelete-message
+bind index p recall-message
 
 # Ctrl-R to mark all as read
 macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
@@ -156,7 +157,6 @@ macro compose a  "<enter-command>source ~/.mutt/attach|<enter>"
 send-hook ~A exec '`rm -f ~/mapped/.mail/temporary/attached*`'
 bind compose p postpone-message
 bind compose f attach-file
-bind index p recall-message
 
 # Contact management autocompletion -------------------------------------------
 bind editor <Tab> complete
