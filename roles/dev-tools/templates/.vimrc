@@ -56,3 +56,6 @@ set spellfile=/home/vagrant/mapped/en.utf-8.add
 
 " deletes everything beneath current line
 let @d="jma:'a,$ d^M"
+
+" delete mutt signature at bottom
+let @r="ma/^--^MkmdGd'd^[ggg'a"
