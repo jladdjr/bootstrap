@@ -42,6 +42,7 @@
     - .neomuttrc.work
     - .neomuttrc.personal
     - .notmuch-config
+    - .gpg.rc
 
 - name: Create offlineimaprc / msmtprc dotfiles (requires mutt passwords)
   template:

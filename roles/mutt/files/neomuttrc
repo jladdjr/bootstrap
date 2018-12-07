@@ -157,9 +157,12 @@ macro compose a  "<enter-command>source ~/.mutt/attach|<enter>"
 send-hook ~A exec '`rm -f ~/mapped/.mail/temporary/attached*`'
 bind compose p postpone-message
 bind compose f attach-file
+bind compose N pgp-menu
 
 # Contact management autocompletion -------------------------------------------
 bind editor <Tab> complete
 
 # Search ----------------------------------------------------------------------
 macro index / "<enter-command>unset wait_key<enter><shell-escape>~/.mutt/mutt-notmuch-py <enter><change-folder-readonly>~/.cache/mutt_results/<enter>" "search mail (using notmuch)"
+
+source ~/.gpg.rc
