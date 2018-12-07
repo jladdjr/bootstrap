@@ -12,13 +12,6 @@
   environment:
     VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
 
-- name: Downgrade pip (pip 10 breaks towerkit)
-  shell: . /usr/bin/virtualenvwrapper.sh && workon towerkit && pip install pip==9.0.3
-  args:
-    executable: /bin/bash
-  environment:
-    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
-
 - name: Add towerkit requirements to venv
   shell: . /usr/bin/virtualenvwrapper.sh && workon towerkit && pip install -r requirements.txt
   args:

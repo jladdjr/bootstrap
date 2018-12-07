@@ -28,14 +28,6 @@
   environment:
     VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
 
-# https://github.com/capless/warrant/issues/96#issuecomment-381503013
-- name: Downgrade pip
-  shell: . /usr/bin/virtualenvwrapper.sh && workon awx && pip install pip==9.0.3
-  args:
-    executable: /bin/bash
-  environment:
-    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
-
 - name: Create awx aliases
   blockinfile:
     path: /home/vagrant/.bashrc

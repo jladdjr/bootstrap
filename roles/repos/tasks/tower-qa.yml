@@ -60,15 +60,6 @@
     VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
   tags: tower-qa
 
-# https://github.com/capless/warrant/issues/96#issuecomment-381503013
-- name: Downgrade pip (pip 10 breaks towerkit)
-  shell: . /usr/bin/virtualenvwrapper.sh && workon tower-qa-{{ branch }} && pip install pip==9.0.3
-  args:
-    executable: /bin/bash
-  environment:
-    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
-  tags: tower-qa
-
 - name: Add tower-qa requirements to venv
   shell: . /usr/bin/virtualenvwrapper.sh && workon tower-qa-{{ branch }} && pip install -U -r requirements.txt
   args:
