@@ -9,7 +9,7 @@
 - include_tasks: tower-qa.yml
   loop:
     - devel
-    - release_3.3
+    - release_3.3.3
     - release_3.2
     - release_3.1
   loop_control:
