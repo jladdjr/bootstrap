@@ -15,10 +15,6 @@ set hlsearch
 " displayed.
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
-" Highlight column 120
-highlight ColorColumn ctermbg=magenta
-call matchadd('ColorColumn', '\%121v', 100)
-
 " Relative line numbers for window in focus
 " Absolute line numbers for all other windows
 " https://jeffkreeftmeijer.com/vim-number/
