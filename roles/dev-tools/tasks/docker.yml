@@ -41,3 +41,13 @@
         dest: /usr/bin/docker-compose
         mode: 0755
   become: true
+
+# https://techoverflow.net/2017/03/01/solving-docker-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket/
+# May want to use user module instead: https://docs.ansible.com/ansible/latest/modules/user_module.html
+- name: Get current user
+  shell: whoami
+  register: shell
+
+- name: Add {{ shell.stdout }} to docker group (so docker can be run w/out sudo)
+  shell: usermod -a -G docker {{ shell.stdout }}
+  become: true
