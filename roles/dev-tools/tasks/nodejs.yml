@@ -1,4 +1,11 @@
-- name: Install nodejs
+# https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions-enterprise-linux-fedora-and-snap-packages
+- name: Install nodejs repo
+  shell: curl -sL https://rpm.nodesource.com/setup_8.x | bash -
+  args:
+    warn: false
+  become: true
+
+- name: Install node, npm
   yum:
     name: nodejs
     state: latest
