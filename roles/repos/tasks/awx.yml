@@ -32,5 +32,5 @@
   blockinfile:
     path: /home/vagrant/.bashrc
     block: |
-      alias awx="cd /home/vagrant/git/awx; git br | grep '*'"
+      alias awx="workon awx; cd /home/vagrant/git/awx; git br | grep '*'"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - awx"
