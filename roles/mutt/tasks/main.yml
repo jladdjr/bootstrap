@@ -1,6 +1,6 @@
 - name: Ensure mapped folder exists
   file:
-    path: /home/vagrant/mapped
+    path: ~/mapped
     state: directory
     mode: 0700
 
@@ -32,7 +32,7 @@
 - name: Copy mutt / notmuch dotfiles
   copy:
     src: "{{ item }}"
-    dest: /home/vagrant/
+    dest: ~
     mode: 0600
   with_items:
     - .neomuttrc.work
@@ -43,7 +43,7 @@
 - name: Create offlineimaprc / msmtprc dotfiles (requires mutt passwords)
   template:
     src: "{{ item }}"
-    dest: "/home/vagrant/{{ item|replace('.j2','') }}"
+    dest: "~/{{ item|replace('.j2','') }}"
     mode: 0600
   with_items:
     - .offlineimaprc.j2
@@ -52,23 +52,23 @@
 - name: Create .mutt folder
   copy:
     src: .mutt
-    dest: /home/vagrant/
+    dest: ~/
     mode: 0700
 
 - name: Is mapped/.mail folder present?
-  command: file /home/vagrant/mapped/.mail
+  command: file ~/mapped/.mail
   register: dotmail
 
 - name: .. if not, create the file
   copy:
     src: mapped/.mail
-    dest: /home/vagrant/mapped
+    dest: ~/mapped
     mode: 0700
   when: dotmail.stdout.find('No such file or directory') != -1
 
 - name: Ensure alias file exists in shared folder
   file:
-    path: /home/vagrant/mapped/alias
+    path: ~/mapped/alias
     state: touch
 
 - name: Run offlineimap periodically (uncomment job after syncing mail with `offlineimap` for the first time)
@@ -80,7 +80,7 @@
 - name: Add .bashrc aliases
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK - mutt"
-    path: /home/vagrant/.bashrc
+    path: ~/.bashrc
     block: |
       alias nm='pushd .; cd ~/mapped; neomutt -F ~/.neomuttrc.work; popd'
       alias nm2='pushd .; cd ~/mapped; neomutt -F ~/.neomuttrc.personal; popd'

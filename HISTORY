@@ -26,3 +26,4 @@ History
 - Install tmux-resurrect plugin (for tmux)
 - Install tmux-focus-events plugin (for vim)
 - Configure git to use a global .gitignore file
+- Playbooks reference ~ instead of /home/vagrant explicitly

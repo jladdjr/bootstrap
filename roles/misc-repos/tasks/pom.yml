@@ -1,6 +1,6 @@
 - name: Add pom project
   git:
-    dest: /home/vagrant/git/pom
+    dest: ~/git/pom
     repo: git@github.com:jladdjr/pom.git
     accept_hostkey: yes
 
@@ -13,8 +13,8 @@
 
 - name: Create aliases for pom
   lineinfile:
-    path: /home/vagrant/.bashrc
-    line: alias pom="cd /home/vagrant/git/pom; git br | grep '*'"
+    path: ~/.bashrc
+    line: alias pom="cd ~/git/pom; git br | grep '*'"
 
 - name: Install postgres
   yum:

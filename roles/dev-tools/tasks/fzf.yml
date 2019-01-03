@@ -9,7 +9,7 @@
   # https://github.com/junegunn/fzf
   - name: Download fzf source
     git:
-      dest: /home/vagrant/.fzf
+      dest: ~/.fzf
       repo: https://github.com/junegunn/fzf.git
       version: 0.17.5  # latest version as of 1/2019
 
@@ -17,18 +17,18 @@
     shell: ./install
     args:
       executable: /bin/bash
-      chdir: /home/vagrant/.fzf
+      chdir: ~/.fzf
   when: which_fzf.rc != 0
 
 # https://github.com/mileszs/ack.vim
 - name: Install fzf.vim plugin
   git:
     repo: https://github.com/junegunn/fzf.vim
-    dest: "/home/vagrant/.vim/bundle/fzf.vim"
+    dest: "~/.vim/bundle/fzf.vim"
 
 - name: Add configuration for fzf.vim plugin
   blockinfile:
-    path: /home/vagrant/.vimrc
+    path: ~/.vimrc
     block: |
       " Add .fzf to run-time path
       set rtp+=~/.fzf
@@ -65,8 +65,8 @@
 
   - name: Add .cargo/bin to PATH
     lineinfile:
-      path: "/home/vagrant/.bashrc"
-      line: export PATH=/home/vagrant/.cargo/bin:$PATH
+      path: "~/.bashrc"
+      line: export PATH=~/.cargo/bin:$PATH
   # if fd found, make sure it refers to rust application (_not_ the floppy disk utility)
   when: which_fd.rc != 0 and ".cargo/bin/" not in which_fd.stdout
 
@@ -74,7 +74,7 @@
 # https://github.com/sharkdp/fd#using-fd-with-fzf
 - name: Configure fzf to use fd
   blockinfile:
-    path: /home/vagrant/.bashrc
+    path: ~/.bashrc
     block: |
       export FZF_DEFAULT_COMMAND='fd --type file'
       export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

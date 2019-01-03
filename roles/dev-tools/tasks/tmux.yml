@@ -14,13 +14,13 @@
 - name: Copy .tmux.conf
   copy:
     src: tmux.conf
-    dest: /home/vagrant/.tmux.conf
+    dest: ~/.tmux.conf
     mode: 0755
 
 - name: Run tmux in new shells
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK - tmux"
-    path: /home/vagrant/.bash_profile
+    path: ~/.bash_profile
     block: |
       if [ -z "$TMUX" ]; then
           tmux
@@ -29,23 +29,23 @@
 - name: Create git plugin directory
   file:
     state: directory
-    path: /home/vagrant/.tmux/plugins
+    path: ~/.tmux/plugins
     mode: 0755
 
 - name: Install tmux-resurrect
   git:
-    dest: /home/vagrant/.tmux/plugins
+    dest: ~/.tmux/plugins
     repo: git@github.com:tmux-plugins/tmux-resurrect
     accept_hostkey: yes
 
 - name: Source resurrect.tmux
   lineinfile:
-    path: /home/vagrant/.tmux.conf
-    line: run-shell /home/vagrant/.tmux/plugins/resurrect.tmux
+    path: ~/.tmux.conf
+    line: run-shell ~/.tmux/plugins/resurrect.tmux
 
 - name: When opening new shell, auto-join existing tmux sessions (or create new one)
   blockinfile:
-    path: /home/vagrant/.bash_profile
+    path: ~/.bash_profile
     block: |
       tmux list-sessions > /dev/null 2>&1
       if [ $? -eq 0 ]; then

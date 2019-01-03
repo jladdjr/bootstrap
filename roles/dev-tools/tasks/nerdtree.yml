@@ -1,12 +1,12 @@
 - name: Install NERDTree
   git:
-    dest: /home/vagrant/.vim/bundle/nerdtree
+    dest: ~/.vim/bundle/nerdtree
     repo: https://github.com/scrooloose/nerdtree.git
     version: 5.0.0  # latest version as of 1/2019
 
 - name: Add vim configuration for NERDTree
   blockinfile:
-    path: /home/vagrant/.vimrc
+    path: ~/.vimrc
     block: |
       " NERDTree
       map <C-n> :NERDTreeToggle<CR>

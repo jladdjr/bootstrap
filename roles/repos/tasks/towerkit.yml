@@ -1,6 +1,6 @@
 - name: Add towerkit project
   git:
-    dest: /home/vagrant/git/towerkit
+    dest: ~/git/towerkit
     repo: git@github.com:jladdjr/towerkit.git
     version: devel
     accept_hostkey: yes
@@ -16,31 +16,31 @@
   shell: . /usr/bin/virtualenvwrapper.sh && workon towerkit && pip install -r requirements.txt
   args:
     executable: /bin/bash
-    chdir: /home/vagrant/git/towerkit
+    chdir: ~/git/towerkit
   environment:
     VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
 
 - name: Determine which remotes exist
   command: git remote -v
   args:
-    chdir: /home/vagrant/git/towerkit
+    chdir: ~/git/towerkit
   register: git_remote
 
 - name: Add remote repo (ansible)
   command: git remote add ansible git@github.com:ansible/towerkit.git
   args:
-    chdir: /home/vagrant/git/towerkit
+    chdir: ~/git/towerkit
   when: git_remote.stdout.find('ansible') == -1
 
 - name: Create towerkit aliases
   blockinfile:
-    path: /home/vagrant/.bashrc
+    path: ~/.bashrc
     block: |
       export TOWERKIT_BASE_URL='http://127.0.0.1:8013'
       alias mach='echo ${TOWERKIT_BASE_URL:8}'
       export TOWERKIT_SCHEMA_VALIDATION=False
-      export TOWERKIT_CREDENTIAL_FILE='/home/vagrant/git/tower-qa-devel/config/credentials.yml'
+      export TOWERKIT_CREDENTIAL_FILE='~/git/tower-qa-devel/config/credentials.yml'
       export TOWERKIT_USER='admin'
       export TOWERKIT_USER_PASSWORD='fo0m4nchU'
-      alias tk="cd /home/vagrant/git/towerkit; git br | grep '*'; workon towerkit"
+      alias tk="cd ~/git/towerkit; git br | grep '*'; workon towerkit"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - towerkit"

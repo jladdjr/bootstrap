@@ -14,7 +14,7 @@
 
 - include_tasks: vim_config.yml
   loop:
-    - /home/vagrant
+    - ~
     - /root
   loop_control:
     loop_var: home_dir
