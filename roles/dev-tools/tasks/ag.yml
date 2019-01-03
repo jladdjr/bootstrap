@@ -43,10 +43,10 @@
   - name: Install ack vim plugin
     git:
       repo: https://github.com/mileszs/ack.vim.git
-      dest: "/home/vagrant/.vim/bundle/ack.vim"
+      dest: "~/.vim/bundle/ack.vim"
 
   - name: Configure ack plugin to use Ag
     lineinfile:
-      path: "/home/vagrant/.vimrc"
+      path: "~/.vimrc"
       line: let g:ackprg = 'ag --nogroup --nocolor --column'
   when: which_ag.rc != 0

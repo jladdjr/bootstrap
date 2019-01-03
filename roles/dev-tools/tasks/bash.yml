@@ -1,20 +1,20 @@
 - name: Ensure mapped folder exists
   file:
-    path: /home/vagrant/mapped
+    path: ~/mapped
     state: directory
     mode: 0700
 
 - name: Add .bashrc aliases
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK - .bashrc"
-    path: /home/vagrant/.bashrc
+    path: ~/.bashrc
     block: |
       alias h='cd $(pwd | cut -d '/' -f 1-5); pwd'  # Move to head (top) folder of git projects (bit hacky)
 
       # History
       # https://www.gnu.org/software/bash/manual/html_node/Bash-History-Builtins.html
       shopt -s histappend   # append to history, don't overwrite it
-      export HISTFILE="/home/vagrant/mapped/bash_history"
+      export HISTFILE="~/mapped/bash_history"
       export HISTCONTROL=   # allow duplicate entries
       export HISTSIZE=      # unlimited history
       export HISTFILESIZE=  # unlimited history

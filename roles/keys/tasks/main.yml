@@ -6,7 +6,7 @@
 - name: Add private github key
   copy:
     src: /Users/jim/.ssh/id_rsa
-    dest: /home/vagrant/.ssh/id_rsa
+    dest: ~/.ssh/id_rsa
     mode: 0600
 
 - name: Add public github key(s) (root)

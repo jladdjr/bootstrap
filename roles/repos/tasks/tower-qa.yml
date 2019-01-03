@@ -1,6 +1,6 @@
 - name: Add tower-qa project, branch {{ branch }}
   git:
-    dest: /home/vagrant/git/tower-qa-{{ branch }}
+    dest: ~/git/tower-qa-{{ branch }}
     repo: git@github.com:jladdjr/tower-qa.git
     accept_hostkey: yes
   tags: tower-qa
@@ -8,14 +8,14 @@
 - name: Determine which remotes exist
   command: git remote -v
   args:
-    chdir: /home/vagrant/git/tower-qa-{{ branch }}
+    chdir: ~/git/tower-qa-{{ branch }}
   register: git_remote
   tags: tower-qa
 
 - name: Add remote repo (ansible)
   command: "{{ item }}"
   args:
-    chdir: /home/vagrant/git/tower-qa-{{ branch }}
+    chdir: ~/git/tower-qa-{{ branch }}
   with_items:
     - git remote add ansible git@github.com:ansible/tower-qa.git
     - git fetch ansible
@@ -25,28 +25,28 @@
 - name: Determine if branch already checked out
   command: git branch
   args:
-    chdir: /home/vagrant/git/tower-qa-{{ branch }}
+    chdir: ~/git/tower-qa-{{ branch }}
   register: git_branch
   tags: tower-qa
 
 - name: Check out new branch
   command: git checkout -b {{ branch }} ansible/{{ branch }}
   args:
-    chdir: /home/vagrant/git/tower-qa-{{ branch }}
+    chdir: ~/git/tower-qa-{{ branch }}
   when: git_branch.stdout.find(branch) == -1
   tags: tower-qa
 
 - name: Check out existing branch
   command: git checkout {{ branch }}
   args:
-    chdir: /home/vagrant/git/tower-qa-{{ branch }}
+    chdir: ~/git/tower-qa-{{ branch }}
   when: git_branch.stdout.find(branch) != -1
   tags: tower-qa
 
 - name: Push branch to personal repo
   command: git push --set-upstream origin
   args:
-    chdir: /home/vagrant/git/tower-qa-{{ branch }}
+    chdir: ~/git/tower-qa-{{ branch }}
   tags: tower-qa
 
 # Use --system-site-packages in order to use selinux package (provided by libselinux-python rpm)
@@ -64,7 +64,7 @@
   shell: . /usr/bin/virtualenvwrapper.sh && workon tower-qa-{{ branch }} && pip install -U -r requirements.txt
   args:
     executable: /bin/bash
-    chdir: /home/vagrant/git/tower-qa-{{ branch }}
+    chdir: ~/git/tower-qa-{{ branch }}
   environment:
     VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
   tags: tower-qa
@@ -80,17 +80,17 @@
 # http://ipython.readthedocs.io/en/stable/config/intro.html#setting-configurable-options
 - name: Place IPython config folder in mapped folder
   lineinfile:
-    path: /home/vagrant/.bashrc
-    line: export IPYTHONDIR=/home/vagrant/mapped/.ipython
+    path: ~/.bashrc
+    line: export IPYTHONDIR=~/mapped/.ipython
   tags: tower-qa
 
 - name: Create aliases for tower-qa
   blockinfile:
-    path: /home/vagrant/.bashrc
+    path: ~/.bashrc
     block: |
       alias v='source /usr/bin/virtualenvwrapper.sh'
-      alias tq="cd /home/vagrant/git/tower-qa-devel; git br | grep '*'; workon tower-qa-devel"
-      alias get_project_home='JDL_PROJECT_HOME=/home/vagrant/git/$(pwd | cut -d '/' -f 5)'
+      alias tq="cd ~/git/tower-qa-devel; git br | grep '*'; workon tower-qa-devel"
+      alias get_project_home='JDL_PROJECT_HOME=~/git/$(pwd | cut -d '/' -f 5)'
       alias t='get_project_home; cd ${JDL_PROJECT_HOME}/tests/api'
       alias f='get_project_home; cd ${JDL_PROJECT_HOME}/tests/lib/fixtures/api'
     marker: "# {mark} ANSIBLE MANAGED BLOCK - tower-qa"
@@ -99,21 +99,21 @@
 
 - name: Create aliases for tower-qa release branches
   blockinfile:
-    path: /home/vagrant/.bashrc
+    path: ~/.bashrc
     block: |
-      alias tq{{ branch | replace('release_', '') | replace('.', '') }}="cd /home/vagrant/git/tower-qa-{{ branch }}; git br | grep '*'; workon tower-qa-{{ branch }}"
+      alias tq{{ branch | replace('release_', '') | replace('.', '') }}="cd ~/git/tower-qa-{{ branch }}; git br | grep '*'; workon tower-qa-{{ branch }}"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - tower-qa ({{ branch }})"
   when: branch != "devel"
   tags: tower-qa
 
 - name: Check if AWS creds already in place
-  shell: cat /home/vagrant/.bashrc
+  shell: cat ~/.bashrc
   register: bashrc
   tags: tower-qa
 
 - name: Create placeholder for AWS creds
   blockinfile:
-    path: /home/vagrant/.bashrc
+    path: ~/.bashrc
     block: |
       # Required by playbooks/inventory-ec2.py
       export AWS_ACCESS_KEY_ID='CHANGEME'

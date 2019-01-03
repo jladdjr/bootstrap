@@ -1,7 +1,7 @@
 - name: Create git directory
   file:
     state: directory
-    path: /home/vagrant/git
+    path: ~/git
     mode: 0755
 
 # Must tag both include_tasks task as well as tasks in included file:

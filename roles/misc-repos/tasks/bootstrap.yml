@@ -1,10 +1,10 @@
 - name: Add bootstrap project
   git:
-    dest: /home/vagrant/git/bootstrap
+    dest: ~/git/bootstrap
     repo: git@github.com:jladdjr/bootstrap.git
     accept_hostkey: yes
 
 - name: Add bootstrap alias
   lineinfile:
-    path: /home/vagrant/.bashrc
-    line: alias b="cd /home/vagrant/git/bootstrap; git br | grep '*'"
+    path: ~/.bashrc
+    line: alias b="cd ~/git/bootstrap; git br | grep '*'"

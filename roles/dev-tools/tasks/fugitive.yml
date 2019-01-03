@@ -1,4 +1,4 @@
 - name: Install fugitive vim plugin
   git:
     repo: https://github.com/tpope/vim-fugitive.git
-    dest: "/home/vagrant/.vim/bundle/fugitive.vim"
+    dest: "~/.vim/bundle/fugitive.vim"

@@ -1,11 +1,11 @@
 - name: Copy hints file
   copy:
     src: hints.txt
-    dest: /home/vagrant
+    dest: ~
     mode: 0755
     force: yes
 
 - name: Create hint alias
   lineinfile:
-    path: /home/vagrant/.bashrc
-    line: alias hints='cat /home/vagrant/hints.txt'
+    path: ~/.bashrc
+    line: alias hints='cat ~/hints.txt'

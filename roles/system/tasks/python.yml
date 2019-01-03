@@ -30,7 +30,7 @@
 - name: Source virtualenvwrapper
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK - virtualenvwrapper"
-    path: /home/vagrant/.bash_profile
+    path: ~/.bash_profile
     block: |
       export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
       source /usr/bin/virtualenvwrapper.sh

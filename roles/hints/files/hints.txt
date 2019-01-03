@@ -6,7 +6,7 @@ $ py.test --pdb -c config/api.cfg --ansible-user ec2-user \
    tests/api
 
 Building dev env:
-$ cd /home/vagrant/git/awx (or tower)
+$ cd ~/git/awx (or tower)
 $ cp awx/settings/local_settings.py.docker_compose awx/settings/local_settings.py
 $ gcloud auth login
 $ sudo IMAGE_REPOSITORY_AUTH=`gcloud auth print-access-token` COMPOSE_TAG=devel make docker-compose
@@ -16,7 +16,7 @@ $ sudo docker exec -it tools_awx_1 /bin/bash
 $ sudo make ui-devel
 
 Decrypting credentials.vault
-$ cd /home/vagrant/git/tower-qa-$BRANCH/config
+$ cd ~/git/tower-qa-$BRANCH/config
 $ ansible-vault decrypt credentials.vault --output=credentials.yml --ask-vault-pass
 
 Update AWS creds

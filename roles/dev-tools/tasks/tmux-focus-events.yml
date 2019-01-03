@@ -1,21 +1,21 @@
 - name: Install tmux-focus-events vim plugin
   git:
     repo: https://github.com/tmux-plugins/vim-tmux-focus-events.git
-    dest: "/home/vagrant/.vim/bundle/vim-tmux-focus-events"
+    dest: "~/.vim/bundle/vim-tmux-focus-events"
 
 - name: Enable focus-events for tmux-focus-events
   lineinfile:
-    path: /home/vagrant/.tmux.conf
+    path: ~/.tmux.conf
     line: set -g focus-events on
 
 # https://vi.stackexchange.com/a/13092/20662
 - name: Enable autoread in vim
   lineinfile:
-    path: /home/vagrant/.vimrc
+    path: ~/.vimrc
     line: set autoread
 
 # https://stackoverflow.com/a/20418591/10669572
 - name: Enable autoread when changing buffers
   lineinfile:
-    path: /home/vagrant/.vimrc
+    path: ~/.vimrc
     line: au FocusGained,BufEnter * :checktime

@@ -1,25 +1,25 @@
 - name: Add tower project
   git:
-    dest: /home/vagrant/git/tower
+    dest: ~/git/tower
     repo: git@github.com:jladdjr/tower.git
     accept_hostkey: yes
 
 - name: Determine which remotes exist
   command: git remote -v
   args:
-    chdir: /home/vagrant/git/tower
+    chdir: ~/git/tower
   register: git_remote
 
 - name: Add remote repo (ansible)
   command: git remote add ansible git@github.com:ansible/tower.git
   args:
-    chdir: /home/vagrant/git/tower
+    chdir: ~/git/tower
   when: git_remote.stdout.find('ansible') == -1
 
 - name: Fetch ansible repo
   command: git fetch ansible
   args:
-    chdir: /home/vagrant/git/tower
+    chdir: ~/git/tower
 
 - name: Create tower virtualenv
   shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python2 tower
@@ -30,12 +30,12 @@
 
 - name: Create tower aliases
   blockinfile:
-    path: /home/vagrant/.bashrc
+    path: ~/.bashrc
     block: |
-      alias tower="cd /home/vagrant/git/tower; git br | grep '*'"
+      alias tower="cd ~/git/tower; git br | grep '*'"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - tower"
 
   - name: Add .ignore file (for ag)
     copy:
       src: files/ag/dot_ignore
-      dest: /home/vagrant/git/tower/.ignore
+      dest: ~/git/tower/.ignore

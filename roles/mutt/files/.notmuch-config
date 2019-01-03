@@ -12,7 +12,7 @@
 #
 
 [database]
-path=/home/vagrant/mapped/.mail
+path=~/mapped/.mail
 
 # User configuration
 #
