@@ -1,7 +1,10 @@
-- name: Install Python3
+- name: Install Python3 (including header files)
   yum:
-    name: python36u
+    name: "{{ item }}"
     state: present
+  with_items:
+    - python36u
+    - python36u-devel
   become: true
 
 - name: Install Pip3
