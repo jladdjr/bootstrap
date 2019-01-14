@@ -1,0 +1,12 @@
+History
+=======
+
+1.0:
+- Basic system packages / configuration
+- Dev environment
+- Test environment
+- Mutt
+- Configuration for vim, tmux
+
+1.0.1:
+- Install ack
