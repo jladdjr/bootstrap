@@ -1,0 +1,5 @@
+- name: Install ack
+  yum:
+    name: ack
+    state: latest
+  become: true
