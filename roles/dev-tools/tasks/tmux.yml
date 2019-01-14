@@ -16,3 +16,12 @@
     src: .tmux.conf
     dest: /home/vagrant
     mode: 0755
+
+- name: Run tmux in new shells
+  blockinfile:
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - tmux"
+    path: /home/vagrant/.bash_profile
+    block: |
+      if [ -z "$TMUX" ]; then
+          tmux
+      fi
