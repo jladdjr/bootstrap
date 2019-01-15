@@ -9,7 +9,12 @@ History
 - Configuration for vim, tmux
 
 1.0.1:
-- Misc improvements
+- Install nodejs from nodesource
+- Install bash-completion
+- Misc mapped folder tweaks
+- Simplify mutt mailboxes
+- Bind f key for adding files in Mutt's compose mode
+- Fix issue with checking out tower-qa branch from ansible
 
 1.0.2:
 - Install ack
