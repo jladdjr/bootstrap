@@ -11,13 +11,9 @@
   become: true
 
 - name: Install mutt + dependencies
-  yum: name={{ item }} state=present
-  with_items:
-    - neomutt
-    - notmuch
-    - msmtp
-    - offlineimap
-    - lynx
+  yum:
+    name: ['neomutt', 'notmuch', 'msmtp', 'offlineimap', 'lynx']
+    state: present
   become: true
 
 - name: Update Lynx settings
