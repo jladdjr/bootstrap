@@ -44,4 +44,9 @@
       yum:
         name: mlocate
         state: present
+
+    - name: Install htop
+      yum:
+        name: htop
+        state: present
   become: true
