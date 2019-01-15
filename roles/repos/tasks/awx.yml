@@ -34,3 +34,8 @@
     block: |
       alias awx="workon awx; cd /home/vagrant/git/awx; git br | grep '*'"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - awx"
+
+  - name: Add .ignore file (for ag)
+    copy:
+      src: files/ag/dot_ignore
+      dest: /home/vagrant/git/awx/.ignore
