@@ -3,6 +3,9 @@ INVENTORY=inventory
 ag:
 	ansible-playbook -i $(INVENTORY) --tags ag provision.yml
 
+fzf:
+	ansible-playbook -i $(INVENTORY) --tags fzf provision.yml
+
 ansible:
 	ansible-playbook -i $(INVENTORY) --tags ansible provision.yml
 

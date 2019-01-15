@@ -8,6 +8,10 @@
 - import_tasks: ag.yml
   tags: ag
 
+# fzf requires vim / pathogen to be installed first
+- import_tasks: fzf.yml
+  tags: fzf
+
 - import_tasks: git.yml
   tags: git
 

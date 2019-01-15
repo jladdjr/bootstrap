@@ -1,0 +1,71 @@
+- name: Determine if fzf installed
+  shell: which fzf
+  args:
+    executable: /bin/bash
+  ignore_errors: yes
+  register: which_fzf
+
+- block:
+  # https://github.com/junegunn/fzf
+  - name: Download fzf source
+    git:
+      dest: /home/vagrant/.fzf
+      repo: https://github.com/junegunn/fzf.git
+      version: 0.17.5  # latest version as of 1/2019
+
+  - name: Build fzf
+    shell: ./install
+    args:
+      executable: /bin/bash
+      chdir: /home/vagrant/.fzf
+
+  # https://github.com/mileszs/ack.vim
+  - name: Install fzf.vim plugin
+    git:
+      repo: https://github.com/junegunn/fzf.vim
+      dest: "/home/vagrant/.vim/bundle/fzf.vim"
+
+  - name: Add configuration for fzf.vim plugin
+    blockinfile:
+      path: /home/vagrant/.vimrc
+      block: |
+        " Add .fzf to run-time path
+        set rtp+=~/.fzf
+
+        " Automatically use Ack!
+        cnoreabbrev Ack Ack!
+        nnoremap <Leader>a :Ack!<Space>
+
+        " Shortcuts for Buffers, Files, Tags
+        let mapleader = "'"
+        nmap ; :Buffers<CR>
+        nmap <Leader>t :Files<CR>
+        nmap <Leader>r :Tags<CR>
+      marker: '" {mark} ANSIBLE MANAGED BLOCK - fzf.vim'
+
+  # Pipe fd results (instead of find's) to fzf; fd respects .[git]ignore files
+  - name: Install fd requirements
+    yum:
+      name: cargo
+      state: present
+    become: true
+
+  - name: Install fd
+    shell: cargo install fd-find
+    args:
+      executable: /bin/bash
+
+  - name: Add .cargo/bin to PATH
+    lineinfile:
+      path: "/home/vagrant/.bashrc"
+      line: export PATH=/home/vagrant/.cargo/bin:$PATH
+
+  # https://github.com/sharkdp/fd#using-fd-with-fzf
+  - name: Configure fzf to use fd
+    blockinfile:
+      path: /home/vagrant/.bashrc
+      block: |
+        export FZF_DEFAULT_COMMAND='fd --type file'
+        export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+      marker: "# {mark} ANSIBLE MANAGED BLOCK - fzf"
+  when: which_fzf.rc != 0
