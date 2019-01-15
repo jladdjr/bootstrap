@@ -4,6 +4,10 @@
 - import_tasks: vim.yml
   tags: vim
 
+# ag requires vim / pathogen to be installed first
+- import_tasks: ag.yml
+  tags: ag
+
 - import_tasks: git.yml
   tags: git
 

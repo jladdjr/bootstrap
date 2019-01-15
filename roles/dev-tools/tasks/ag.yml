@@ -1,0 +1,52 @@
+# Requires the "Development Tools" group of packages but we assume these have already been installed
+
+- name: Determine if Ag installed
+  shell: which ag
+  args:
+    executable: /bin/bash
+  ignore_errors: yes
+  register: which_ag
+
+- block:
+  - name: Install Ag requirements
+    yum:
+     name: ['pcre-devel', 'xz-devel', 'zlib-devel']
+     state: present
+    become: true
+
+  # https://github.com/ggreer/the_silver_searcher
+  - name: Download Ag source
+    git:
+      dest: /tmp/ag
+      repo: https://github.com/ggreer/the_silver_searcher.git
+      version: 2.2.0  # latest version as of 1/2019
+
+  - name: Build Ag
+    shell: ./build.sh
+    args:
+      executable: /bin/bash
+      chdir: /tmp/ag
+
+  - name: Install Ag
+    shell: make install
+    args:
+      executable: /bin/bash
+      chdir: /tmp/ag
+    become: true
+
+  - name: Remove Ag source
+    file:
+      path: /tmp/ag
+      state: absent
+
+  # https://github.com/mileszs/ack.vim
+  - name: Install ack vim plugin
+    git:
+      repo: https://github.com/mileszs/ack.vim.git
+      dest: "/home/vagrant/.vim/bundle/ack.vim"
+
+  - name: Configure ack plugin to use Ag
+    lineinfile:
+      path: "/home/vagrant/.vimrc"
+      line: let g:ackprg = 'ag --nogroup --nocolor --column'
+  when: which_ag.rc != 0
