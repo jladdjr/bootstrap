@@ -14,6 +14,9 @@
 - import_tasks: nerdtree.yml
   tags: nerdtree
 
+- import_tasks: fugitive.yml
+  tags: fugitive
+
 - import_tasks: git.yml
   tags: git
 
