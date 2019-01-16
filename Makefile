@@ -27,6 +27,9 @@ mutt:
 nerdtree:
 	ansible-playbook -i $(INVENTORY) --tags nerdtree provision.yml
 
+networking:
+	ansible-playbook -i $(INVENTORY) --tags networking provision.yml
+
 nodejs:
 	ansible-playbook -i $(INVENTORY) --tags nodejs provision.yml
 
