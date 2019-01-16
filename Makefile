@@ -6,6 +6,9 @@ ag:
 fzf:
 	ansible-playbook -i $(INVENTORY) --tags fzf provision.yml
 
+nerdtree:
+	ansible-playbook -i $(INVENTORY) --tags nerdtree provision.yml
+
 ansible:
 	ansible-playbook -i $(INVENTORY) --tags ansible provision.yml
 
