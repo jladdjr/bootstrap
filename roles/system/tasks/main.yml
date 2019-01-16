@@ -4,6 +4,9 @@
 - import_tasks: system-packages.yml
   tags: system-packages
 
+- import_tasks: networking.yml
+  tags: networking
+
 - import_tasks: ntp.yml
   tags: ntp
 
