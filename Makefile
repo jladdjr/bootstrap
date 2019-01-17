@@ -44,3 +44,6 @@ tower-qa:
 
 vim:
 	ansible-playbook -i $(INVENTORY) --tags vim provision.yml
+
+vim_with_plugins:
+	ansible-playbook -i $(INVENTORY) --tags vim_with_plugins provision.yml

@@ -2,20 +2,20 @@
   tags: bash
 
 - import_tasks: vim.yml
-  tags: vim
+  tags: [vim, vim_with_plugins]
 
 # ag, fzf, and NERDTree require vim / pathogen to be installed first
 - import_tasks: ag.yml
-  tags: ag
+  tags: [ag, vim_with_plugins]
 
 - import_tasks: fzf.yml
-  tags: fzf
+  tags: [fzf, vim_with_plugins]
 
 - import_tasks: nerdtree.yml
-  tags: nerdtree
+  tags: [nerdtree, vim_with_plugins]
 
 - import_tasks: fugitive.yml
-  tags: fugitive
+  tags: [fugitive, vim_with_plugins]
 
 - import_tasks: git.yml
   tags: git
