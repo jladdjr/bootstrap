@@ -50,6 +50,10 @@ set backspace=indent,eol,start
 " http://vimdoc.sourceforge.net/htmldoc/options.html#'spellfile'
 set spellfile=/home/vagrant/mapped/en.utf-8.add
 
+" Always show status line
+" http://vim.wikia.com/wiki/Displaying_status_line_always
+set laststatus=2
+
 " deletes everything beneath current line
 let @d="jma:'a,$ d^M"
 
