@@ -40,8 +40,8 @@
       " Shortcuts for Buffers, Files, Tags
       let mapleader = "'"
       nmap ; :Buffers<CR>
-      nmap <Leader>t :Files<CR>
-      nmap <Leader>r :Tags<CR>
+      nmap <Leader>f :Files<CR>
+      nmap <Leader>t :Tags<CR>
     marker: '" {mark} ANSIBLE MANAGED BLOCK - fzf.vim'
 
 - name: Determine if fd installed
