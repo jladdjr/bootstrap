@@ -42,6 +42,9 @@ timezone:
 tmux:
 	ansible-playbook -i $(INVENTORY) --tags tmux provision.yml
 
+tmux-focus-events:
+	ansible-playbook -i $(INVENTORY) --tags tmux-focus-events provision.yml
+
 tower-qa:
 	ansible-playbook -i $(INVENTORY) --tags tower-qa provision.yml
 

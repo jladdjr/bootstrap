@@ -23,4 +23,5 @@ History
 - Install fzf, fd
 - Install NERDTree
 - Install jq
-- Install tmux-resurrect plugin
+- Install tmux-resurrect plugin (for tmux)
+- Install tmux-focus-events plugin (for vim)
