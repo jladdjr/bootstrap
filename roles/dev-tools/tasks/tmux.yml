@@ -25,3 +25,20 @@
       if [ -z "$TMUX" ]; then
           tmux
       fi
+
+- name: Create git plugin directory
+  file:
+    state: directory
+    path: /home/vagrant/.tmux/plugins
+    mode: 0755
+
+- name: Install tmux-resurrect
+  git:
+    dest: /home/vagrant/.tmux/plugins
+    repo: git@github.com:tmux-plugins/tmux-resurrect
+    accept_hostkey: yes
+
+- name: Source resurrect.tmux
+  lineinfile:
+    path: /home/vagrant/.tmux.conf
+    line: run-shell /home/vagrant/.tmux/plugins/resurrect.tmux
