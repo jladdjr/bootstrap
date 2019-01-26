@@ -39,6 +39,9 @@ pass:
 timezone:
 	ansible-playbook -i $(INVENTORY) --tags timezone provision.yml
 
+tmux:
+	ansible-playbook -i $(INVENTORY) --tags tmux provision.yml
+
 tower-qa:
 	ansible-playbook -i $(INVENTORY) --tags tower-qa provision.yml
 
