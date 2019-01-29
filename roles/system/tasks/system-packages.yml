@@ -25,6 +25,11 @@
         - python-devel
         - openssl-devel
 
+    - name: Install openldap-devel (required by awx venv)
+      yum:
+        name: openldap-devel
+        state: latest
+
     - name: Remove man pages
       yum:
         name: man-pages
