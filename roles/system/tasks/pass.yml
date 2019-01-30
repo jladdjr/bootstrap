@@ -65,3 +65,29 @@
       path: /home/vagrant/.bashrc
       line: export PASSWORD_STORE_DIR="/home/vagrant/mapped/.password-store"
   when: which_pass.rc != 0
+
+- name: Ensure gpg-agent.conf is present
+  file:
+    path: /home/vagrant/.gnupg/gpg-agent.conf
+    mode: 0644
+    owner: vagrant
+    group: vagrant
+    state: touch
+
+- name: Set default-cache-ttl for gpg-agent to one hour
+  lineinfile:
+    path: /home/vagrant/.gnupg/gpg-agent.conf
+    regexp: 'default-cache-ttl'
+    line: 'default-cache-ttl 3600'
+
+- name: Set max-cache-ttl for gpg-agent to one hour
+  lineinfile:
+    path: /home/vagrant/.gnupg/gpg-agent.conf
+    regexp: 'max-cache-ttl'
+    line: 'max-cache-ttl 3600'
+
+- name: Reload gpg-agent config
+  shell: pkill --signal SIGHUP gpg-agent
+  args:
+    executable: /bin/bash
+  become: true
