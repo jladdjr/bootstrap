@@ -25,10 +25,16 @@
         - python-devel
         - openssl-devel
 
-    - name: Install openldap-devel (required by awx venv)
+    - name: Install packages required by awx venvs
       yum:
-        name: openldap-devel
+        name: "{{ packages }}"
         state: latest
+      vars:
+        packages:
+          - openldap-devel
+          - libcurl-devel  # for pycurl
+          - libxslt-devel  # for ovirt-engine-sdk-python
+          - libxml2-devel  # for ovirt-engine-sdk-python
 
     - name: Remove man pages
       yum:
