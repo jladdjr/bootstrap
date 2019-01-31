@@ -15,3 +15,14 @@
     src: .gitconfig
     dest: /home/vagrant
     mode: 0755
+
+- name: Create .gitignore_global
+  copy:
+    src: dot_gitignore_global
+    dest: /home/vagrant/.gitignore_global
+    mode: 0600
+
+- name: Configure git to use global .gitignore file
+  shell: git config --global core.excludesfile /home/vagrant/.gitignore_global
+  args:
+    executable: /bin/bash
