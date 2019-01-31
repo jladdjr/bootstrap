@@ -18,6 +18,9 @@ fugitive:
 fzf:
 	ansible-playbook -i $(INVENTORY) --tags fzf provision.yml
 
+git:
+	ansible-playbook -i $(INVENTORY) --tags git provision.yml
+
 mutt:
 	# Expects an ansible-vault file, mutt_secrets.yml, which should take the form:
 	# MUTT_PERSONAL_PASSWORD: MY_PASSWORD
