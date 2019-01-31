@@ -67,12 +67,13 @@ set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 # Index Key Bindings ----------------------------------------------------------
 #bind index g noop                           # .. so that we can bind 'gg'
 #bind index gg           first-entry         # more vimmy
+bind index <Tab>        next-unread-mailbox
 bind index G            last-entry          # even more vimmy
 bind index R            group-reply         # reply-all
 bind index <space>      collapse-thread     # expand/collapse a thread
 bind index <backtab>    collapse-all        # expand/collapse all threads
-bind index D    undelete-message
-bind index p recall-message
+bind index D            undelete-message
+bind index p            recall-message
 
 # Ctrl-R to mark all as read
 macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
