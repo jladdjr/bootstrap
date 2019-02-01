@@ -59,7 +59,8 @@ folder-hook . 'set write_inc=1000'
 set date_format = "%m/%d/%y %I:%M%p"            # sane date format
 set index_format = "[%Z]%M %D %-21.21F %s"      # sane index format
 set sort = threads                              # like gmail
-set sort_aux = reverse-last-date-received       # like gmail
+set sort_aux = last-date-received               # sort msgs and threads by date (ascending)
+                                                # order top-level messages based on last msg in thread
 set uncollapse_jump                             # don't collapse on an unread message
 set sort_re                                     # thread based on regex
 set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
