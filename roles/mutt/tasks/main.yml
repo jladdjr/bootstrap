@@ -75,7 +75,7 @@
   cron:
     name: offlineimap
     minute: "*/5"
-    job: "#/usr/bin/offlineimap -1 -u quiet"
+    job: "/usr/bin/offlineimap -1 -u quiet"
 
 - name: Add .bashrc aliases
   blockinfile:
