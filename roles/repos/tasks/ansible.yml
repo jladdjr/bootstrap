@@ -53,3 +53,11 @@
     line: export ANSIBLE_HOST_KEY_CHECKING=False
   tags: ansible
   when: branch == "devel"
+
+# https://docs.ansible.com/ansible/latest/reference_appendices/config.html#ansible-configuration-settings-locations
+- name: Copy ansible.cfg to home directory
+  copy:
+    src: ansible/ansible.cfg
+    dest: /home/vagrant/.ansible.cfg
+    mode: 0755
+  tags: ansible
