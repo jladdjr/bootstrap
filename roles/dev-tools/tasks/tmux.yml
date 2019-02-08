@@ -13,8 +13,8 @@
 
 - name: Copy .tmux.conf
   copy:
-    src: .tmux.conf
-    dest: /home/vagrant
+    src: tmux.conf
+    dest: /home/vagrant/.tmux.conf
     mode: 0755
 
 - name: Run tmux in new shells
