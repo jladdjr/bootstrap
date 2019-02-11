@@ -1,0 +1,22 @@
+#!/bin/bash
+
+OFFLINE_MARKER=/tmp/.tower_down
+
+
+while true; do
+    curl -I -k https://localhost:8043/api/login/ 2>/dev/null | grep -q 200
+    TOWER_STATE=$?
+
+    # Tower was down, but is now up
+    if [[ ${TOWER_STATE} -eq 0 && -f ${OFFLINE_MARKER} ]]; then
+        rm ${OFFLINE_MARKER}
+        /usr/bin/jim/notifications/notify "Tower is 🏃🏻"
+    fi
+    # Tower was up, but is now down
+    if [[ ${TOWER_STATE} -ne 0 && ! -f ${OFFLINE_MARKER} ]]; then
+        /usr/bin/jim/notifications/notify "Tower is 💀" 
+        touch ${OFFLINE_MARKER}
+    fi
+    echo "Sleeping.."
+    sleep 10
+done

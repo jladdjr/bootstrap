@@ -1,0 +1,5 @@
+#!/bin/bash
+
+eval "${@:1}"
+HOST=$(netstat -rn | grep '^0.0.0.0' | awk '{print $2}')
+ssh jim@${HOST} /Users/jim/Vagrant/mapped/bin/alert.sh \"Finished running ${@:1}\"

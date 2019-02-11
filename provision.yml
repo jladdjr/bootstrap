@@ -8,4 +8,5 @@
     - { role: repos, tags: repos }
     - { role: misc-repos, tags: misc-repos }
     - { role: mutt, tags: mutt }
+    - { role: notifications, tags: notifications }
     - { role: hints, tags: hints }

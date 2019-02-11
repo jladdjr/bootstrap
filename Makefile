@@ -36,6 +36,9 @@ networking:
 nodejs:
 	ansible-playbook -i $(INVENTORY) --tags nodejs provision.yml
 
+notifications:
+	ansible-playbook -i $(INVENTORY) --tags notifications provision.yml
+
 pass:
 	ansible-playbook -i $(INVENTORY) --tags pass provision.yml
 
