@@ -9,3 +9,9 @@
     name: jq
     state: latest
   become: true
+
+- name: Install strace
+  yum:
+    name: strace
+    state: latest
+  become: true
