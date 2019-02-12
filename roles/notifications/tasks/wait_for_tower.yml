@@ -1,0 +1,38 @@
+# Note that wait_for_tower.yml requires notify script
+# provided by alerts tasks
+
+- name: Ensure /usr/bin/jim/wait_for_tower folder exists
+  file:
+    path: /usr/bin/jim/wait_for_tower
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+  become: true
+
+- name: Add wait_for_tower folder to PATH
+  lineinfile:
+    path: ~/.bashrc
+    line: 'export PATH=/usr/bin/jim/wait_for_tower:$PATH'
+    state: present
+
+- name: Copy wait_for_tower scripts to /usr/bin/jim/wait_for_tower
+  copy:
+    src: "wait_for_tower/{{ item }}"
+    dest: /usr/bin/jim/wait_for_tower
+    mode: 0755
+    owner: root
+    group: root
+  with_items:
+    - inventory
+    - wait_for_tower
+    - wait_for_tower.yml
+  become: true
+
+- name: Add .bashrc alias / `CLUSTER_INSTANCE_1` string
+  blockinfile:
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - wait_for_tower"
+    path: ~/.bashrc
+    block: |
+      alias i='cat ~/tower_instances'
+      export CLUSTER_INSTANCE_1="devel-ansible-devel-cluster-1"

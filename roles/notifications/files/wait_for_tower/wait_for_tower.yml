@@ -1,0 +1,47 @@
+- hosts: all
+  tasks: 
+  - ec2_instance_facts:
+      region: 'us-east-1'
+      filters:
+        "tag:Name": "*{{ instance_name }}*"
+    register: ec2_instance_facts
+    until: ec2_instance_facts.instances is defined and ec2_instance_facts.instances|length > 0
+    retries: 30
+    delay: 30
+
+  - debug:
+      var: ec2_instance_facts
+
+  - set_fact:
+      tower_ip: "{{ ec2_instance_facts.instances[0].public_ip_address }}"
+      tower_name: "{{ ec2_instance_facts.instances[0].tags.Name }}"
+
+  - shell: notify "Found {{ tower_name }}"
+
+  - get_url:
+      url: "https://{{ tower_ip }}/api/login/"
+      dest: /tmp/tower_health_check
+      validate_certs: no
+      force: yes
+    register: get_url
+    until: '"failed" not in get_url.msg and get_url.status_code == 200'
+    retries: 180
+    delay: 30
+    ignore_errors: yes
+
+  - shell: notify "{{ tower_name }} {{ 'failed to come up.. ಥ益ಥ' if get_url.failed else 'is up!' }}"
+
+  - block:
+    - pause:
+        seconds: 3
+
+    - shell: notify "The address is {{ tower_ip }}"
+      when: not get_url.failed
+
+    - lineinfile:
+        create: yes
+        line: "{{ tower_name }}:\t\t{{ tower_ip }}"
+        insertafter: EOF
+        state: present
+        path: ~/tower_instances
+    when: not get_url.failed
