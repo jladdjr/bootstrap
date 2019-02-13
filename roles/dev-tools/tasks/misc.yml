@@ -1,17 +1,11 @@
-- name: Install ack
+- name: Install misc dev tools
   yum:
-    name: ack
+    name: "{{ packages }}"
     state: latest
-  become: true
-
-- name: Install jq
-  yum:
-    name: jq
-    state: latest
-  become: true
-
-- name: Install strace
-  yum:
-    name: strace
-    state: latest
+  vars:
+    packages:
+      - ack
+      - jq
+      - strace
+      - telnet
   become: true
