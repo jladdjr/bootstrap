@@ -6,7 +6,7 @@
     accept_hostkey: yes
 
 - name: Create towerkit virtualenv
-  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python2 towerkit
+  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 towerkit
   args:
     executable: /bin/bash
   environment:

@@ -22,7 +22,7 @@
     chdir: ~/git/awx
 
 - name: Create awx virtualenv
-  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python2 awx
+  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 awx
   args:
     executable: /bin/bash
   environment:
