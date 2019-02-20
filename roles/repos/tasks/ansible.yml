@@ -1,23 +1,52 @@
 - name: Add ansible project, branch {{ branch }}
   git:
     dest: ~/git/ansible-{{ branch }}
-    repo: git@github.com:ansible/ansible.git
+    repo: git@github.com:jladdjr/ansible.git
     accept_hostkey: yes
   tags: ansible
 
-- name: Get current branch
-  shell: git branch | grep '{{ branch }}'
+- name: Determine which remotes exist
+  command: git remote -v
+  args:
+    chdir: ~/git/ansible-{{ branch }}
+  register: git_remote
+  tags: ansible
+
+- name: Add remote repo (ansible)
+  command: "{{ item }}"
+  args:
+    chdir: ~/git/ansible-{{ branch }}
+  with_items:
+    - git remote add ansible git@github.com:ansible/ansible.git
+    - git fetch ansible
+  when: git_remote.stdout.find('ansible/ansible') == -1
+  tags: ansible
+
+- name: Determine if branch already checked out
+  command: git branch
   args:
     chdir: ~/git/ansible-{{ branch }}
   register: git_branch
-  failed_when: git_branch.rc > 1
   tags: ansible
 
-- name: Check out branch
+- name: Check out new branch
+  command: git checkout -b {{ branch }} ansible/{{ branch }}
+  args:
+    chdir: ~/git/ansible-{{ branch }}
+  when: git_branch.stdout.find(branch) == -1
+  tags: ansible
+
+- name: Check out existing branch
   command: git checkout {{ branch }}
   args:
     chdir: ~/git/ansible-{{ branch }}
-  when: git_branch.rc == 1
+  when: git_branch.stdout.find(branch) != -1
+  tags: ansible
+
+- name: Push branch to personal repo
+  command: git push --set-upstream origin
+  args:
+    chdir: ~/git/ansible-{{ branch }}
   tags: ansible
 
 # Use --system-site-packages in order to use selinux package (provided by libselinux-python rpm)
@@ -40,12 +69,20 @@
     VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
   tags: ansible
 
-- name: Create ansible alias
+- name: Create alias to source ansible
   lineinfile:
     path: ~/.bashrc
-    line: alias a='workon ansible-devel; source ~/git/ansible-devel/hacking/env-setup > /dev/null 2>&1; ansible --version | head -1'
+    line: alias ans='workon ansible-devel; source ~/git/ansible-devel/hacking/env-setup > /dev/null 2>&1; ansible --version | head -1'
   tags: ansible
   when: branch == "devel"
+
+- name: Create aliases for ansible release branches
+  blockinfile:
+    path: ~/.bashrc
+    block: |
+      alias a{{ branch | replace('devel', '') | replace('stable-', '') | replace('.', '') }}="cd ~/git/ansible-{{ branch }}; git br | grep '*'; echo ''; workon ansible-{{ branch }}; source ~/git/ansible-devel/hacking/env-setup > /dev/null 2>&1; ansible --version | head -1"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - ansible ({{ branch }})"
+  tags: ansible
 
 - name: Disable host key checking when running Ansible
   lineinfile:

@@ -29,3 +29,4 @@ History
 - Configure git to use a global .gitignore file
 - Playbooks reference ~ instead of /home/vagrant explicitly
 - Add notification scripts (wait_for_tower, run_and_notify, local_tower_healthcheck)
+- Pull Ansible from personal repos by default
