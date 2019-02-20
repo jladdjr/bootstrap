@@ -6,7 +6,7 @@
         "tag:Name": "*{{ instance_name }}*"
     register: ec2_instance_facts
     until: ec2_instance_facts.instances is defined and ec2_instance_facts.instances|length > 0
-    retries: 30
+    retries: 45
     delay: 30
 
   - debug:
@@ -17,6 +17,11 @@
       tower_name: "{{ ec2_instance_facts.instances[0].tags.Name }}"
 
   - shell: notify "Found {{ tower_name }}"
+
+  - pause:
+      seconds: 3
+
+  - shell: notify "The address is {{ tower_ip }}"
 
   - get_url:
       url: "https://{{ tower_ip }}/api/login/"
@@ -31,17 +36,10 @@
 
   - shell: notify "{{ tower_name }} {{ 'failed to come up.. ಥ益ಥ' if get_url.failed else 'is up!' }}"
 
-  - block:
-    - pause:
-        seconds: 3
-
-    - shell: notify "The address is {{ tower_ip }}"
-      when: not get_url.failed
-
-    - lineinfile:
-        create: yes
-        line: "{{ tower_name }}:\t\t{{ tower_ip }}"
-        insertafter: EOF
-        state: present
-        path: ~/tower_instances
+  - lineinfile:
+      create: yes
+      line: "{{ tower_name }}:\t\t{{ tower_ip }}"
+      insertafter: EOF
+      state: present
+      path: ~/tower_instances
     when: not get_url.failed
