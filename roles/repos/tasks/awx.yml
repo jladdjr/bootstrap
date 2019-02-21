@@ -32,7 +32,7 @@
   blockinfile:
     path: ~/.bashrc
     block: |
-      alias awx="workon awx; cd ~/git/awx; git br | grep '*'"
+      alias awx="workon awx; cd ~/git/awx; python --version | head -1; git br | grep '*'"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - awx"
 
 - name: Add .ignore file (for ag)

@@ -72,7 +72,7 @@
 - name: Create alias to source ansible
   lineinfile:
     path: ~/.bashrc
-    line: alias ans='workon ansible-devel; source ~/git/ansible-devel/hacking/env-setup > /dev/null 2>&1; ansible --version | head -1'
+    line: alias ans='workon ansible-devel; source ~/git/ansible-devel/hacking/env-setup > /dev/null 2>&1; python --version | head -1; ansible --version | head -1'
   tags: ansible
   when: branch == "devel"
 
@@ -80,7 +80,7 @@
   blockinfile:
     path: ~/.bashrc
     block: |
-      alias a{{ branch | replace('devel', '') | replace('stable-', '') | replace('.', '') }}="cd ~/git/ansible-{{ branch }}; git br | grep '*'; echo ''; workon ansible-{{ branch }}; source ~/git/ansible-devel/hacking/env-setup > /dev/null 2>&1; ansible --version | head -1"
+      alias a{{ branch | replace('devel', '') | replace('stable-', '') | replace('.', '') }}="cd ~/git/ansible-{{ branch }}; workon ansible-{{ branch }}; source ~/git/ansible-devel/hacking/env-setup > /dev/null 2>&1; python --version | head -1; ansible --version | head -1; echo ''; git br | grep '*'"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - ansible ({{ branch }})"
   tags: ansible
 
