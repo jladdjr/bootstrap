@@ -3,23 +3,27 @@
     dest: ~/git/awx
     repo: git@github.com:jladdjr/awx.git
     accept_hostkey: yes
+  tags: awx
 
 - name: Determine which remotes exist
   command: git remote -v
   args:
     chdir: ~/git/awx
   register: git_remote
+  tags: awx
 
 - name: Add remote repo (ansible)
   command: git remote add ansible git@github.com:ansible/awx.git
   args:
     chdir: ~/git/awx
   when: git_remote.stdout.find('ansible') == -1
+  tags: awx
 
 - name: Fetch ansible repo
   command: git fetch ansible
   args:
     chdir: ~/git/awx
+  tags: awx
 
 - name: Create awx virtualenv
   shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 awx
@@ -27,6 +31,7 @@
     executable: /bin/bash
   environment:
     VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+  tags: awx
 
 - name: Create awx aliases
   blockinfile:
@@ -34,8 +39,10 @@
     block: |
       alias awx="workon awx; cd ~/git/awx; python --version | head -1; git br | grep '*'"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - awx"
+  tags: awx
 
 - name: Add .ignore file (for ag)
   copy:
     src: files/ag/dot_ignore
     dest: ~/git/awx/.ignore
+  tags: awx

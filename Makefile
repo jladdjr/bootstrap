@@ -6,6 +6,9 @@ ag:
 ansible:
 	ansible-playbook -i $(INVENTORY) --tags ansible provision.yml
 
+awx:
+	ansible-playbook -i $(INVENTORY) --tags awx provision.yml
+
 bash:
 	ansible-playbook -i $(INVENTORY) --tags bash provision.yml
 
