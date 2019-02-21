@@ -17,9 +17,12 @@
       var: ec2_instance_facts
 
   - set_fact:
-      tower_ip: "{{ ec2_instance_facts.instances[0].public_ip_address }}"
-      tower_dns: "{{ ec2_instance_facts.instances[0].public_dns_name }}"
-      tower_name: "{{ ec2_instance_facts.instances[0].tags.Name }}"
+      sorted_instances: "{{ ec2_instance_facts.instances|sort(reverse=True, attribute='launch_time') }}"
+
+  - set_fact:
+      tower_ip: "{{ sorted_instances[0].public_ip_address }}"
+      tower_dns: "{{ sorted_instances[0].public_dns_name }}"
+      tower_name: "{{ sorted_instances[0].tags.Name }}"
 
   - shell: notify "Found {{ tower_name }}"
 
