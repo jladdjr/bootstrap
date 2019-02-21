@@ -54,6 +54,9 @@ tmux:
 tmux-focus-events:
 	ansible-playbook -i $(INVENTORY) --tags tmux-focus-events provision.yml
 
+towerkit:
+	ansible-playbook -i $(INVENTORY) --tags towerkit provision.yml
+
 tower-qa:
 	ansible-playbook -i $(INVENTORY) --tags tower-qa provision.yml
 

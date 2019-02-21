@@ -4,6 +4,7 @@
     repo: git@github.com:jladdjr/towerkit.git
     version: devel
     accept_hostkey: yes
+  tags: towerkit
 
 - name: Create towerkit virtualenv
   shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 towerkit
@@ -11,6 +12,7 @@
     executable: /bin/bash
   environment:
     VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+  tags: towerkit
 
 - name: Add towerkit requirements to venv
   shell: . /usr/bin/virtualenvwrapper.sh && workon towerkit && pip install -r requirements.txt
@@ -19,18 +21,21 @@
     chdir: ~/git/towerkit
   environment:
     VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+  tags: towerkit
 
 - name: Determine which remotes exist
   command: git remote -v
   args:
     chdir: ~/git/towerkit
   register: git_remote
+  tags: towerkit
 
 - name: Add remote repo (ansible)
   command: git remote add ansible git@github.com:ansible/towerkit.git
   args:
     chdir: ~/git/towerkit
   when: git_remote.stdout.find('ansible') == -1
+  tags: towerkit
 
 - name: Create towerkit aliases
   blockinfile:
@@ -44,3 +49,4 @@
       export TOWERKIT_USER_PASSWORD='fo0m4nchU'
       alias tk="cd ~/git/towerkit; v; workon towerkit; python --version | head -1; git br | grep '*'"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - towerkit"
+  tags: towerkit
