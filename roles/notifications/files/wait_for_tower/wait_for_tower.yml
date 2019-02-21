@@ -1,13 +1,17 @@
 - hosts: all
   tasks: 
-  - ec2_instance_facts:
-      region: 'us-east-1'
-      filters:
-        "tag:Name": "*{{ instance_name }}*"
-    register: ec2_instance_facts
-    until: ec2_instance_facts.instances is defined and ec2_instance_facts.instances|length > 0
-    retries: 45
-    delay: 30
+  - block:
+    - ec2_instance_facts:
+        region: 'us-east-1'
+        filters:
+          "tag:Name": "*{{ instance_name }}*"
+      register: ec2_instance_facts
+      until: ec2_instance_facts.instances is defined and ec2_instance_facts.instances|length > 0
+      retries: 45
+      delay: 30
+    rescue:
+      - shell: notify "Failed to find ec2 instance with name '{{ instance_name }}'"
+      - meta: end_play
 
   - debug:
       var: ec2_instance_facts
