@@ -4,7 +4,7 @@
     state: directory
     mode: 0700
 
-- name: Add .bashrc aliases
+- name: In .bashrc, add aliases, configure HISTORY, create venv shortcut
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK - .bashrc"
     path: ~/.bashrc
@@ -24,3 +24,5 @@
       # In history file, note when new session is started
       # https://stackoverflow.com/questions/911168/how-to-detect-if-my-shell-script-is-running-through-a-pipe
       if [ -t 1 ]; then echo -e "#$(date +%s)\n#--- new session ---" >> $HISTFILE; fi
+
+      alias v='source /usr/bin/virtualenvwrapper.sh'
