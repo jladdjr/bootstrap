@@ -1,7 +1,6 @@
 #!/bin/bash
 
 source /usr/bin/virtualenvwrapper.sh
-workon ansible-devel
-source /home/vagrant/git/ansible-devel/hacking/env-setup > /dev/null 2>&1
+workon py2-ansible
 
 ansible-playbook -i /usr/bin/jim/wait_for_tower/inventory -e instance_name=$1 /usr/bin/jim/wait_for_tower/wait_for_tower.yml
