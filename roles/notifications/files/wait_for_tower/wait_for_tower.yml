@@ -18,6 +18,7 @@
 
   - set_fact:
       tower_ip: "{{ ec2_instance_facts.instances[0].public_ip_address }}"
+      tower_dns: "{{ ec2_instance_facts.instances[0].public_dns_name }}"
       tower_name: "{{ ec2_instance_facts.instances[0].tags.Name }}"
 
   - shell: notify "Found {{ tower_name }}"
@@ -42,7 +43,7 @@
 
   - lineinfile:
       create: yes
-      line: "{{ tower_name }}:\t\t{{ tower_ip }}"
+      line: "{{ tower_name }}:\t\t{{ tower_ip }}\t\t{{ tower_dns }}"
       insertafter: EOF
       state: present
       path: ~/tower_instances
