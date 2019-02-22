@@ -1,0 +1,4 @@
+- name: Install ZoomWin
+  git:
+    dest: ~/.vim/bundle/zoomwin
+    repo: https://github.com/taylor/vim-zoomwin.git

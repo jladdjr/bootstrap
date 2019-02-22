@@ -14,6 +14,9 @@
 - import_tasks: nerdtree.yml
   tags: [nerdtree, vim_with_plugins]
 
+- import_tasks: zoomwin.yml
+  tags: [zoomwin, vim_with_plugins]
+
 - import_tasks: fugitive.yml
   tags: [fugitive, vim_with_plugins]
 
