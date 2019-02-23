@@ -66,6 +66,14 @@
       line: export PASSWORD_STORE_DIR="/var/mapped/.password-store"
   when: which_pass.rc != 0
 
+- name: Ensure .gnupg directory is present
+  file:
+    path: ~/.gnupg
+    mode: 0700
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+    state: directory
+
 - name: Ensure gpg-agent.conf is present
   file:
     path: ~/.gnupg/gpg-agent.conf
