@@ -13,7 +13,7 @@
 - name: Copy .gitconfig
   copy:
     src: .gitconfig
-    dest: ~
+    dest: "{{ lookup('env', 'HOME') }}"
     mode: 0755
 
 - name: Create .gitignore_global

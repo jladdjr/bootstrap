@@ -52,7 +52,7 @@
 - name: Create .mutt folder
   copy:
     src: .mutt
-    dest: ~/
+    dest: "{{ lookup('env', 'HOME') }}"
     mode: 0700
 
 - name: Is mapped/.mail folder present?
