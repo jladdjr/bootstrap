@@ -44,6 +44,17 @@
       nmap <Leader>t :Tags<CR>
     marker: '" {mark} ANSIBLE MANAGED BLOCK - fzf.vim'
 
+- name: Install fd requirements
+  yum:
+    name: cargo
+    state: present
+  become: true
+
+- name: Add .cargo/bin to PATH
+  lineinfile:
+    path: "~/.bashrc"
+    line: export PATH=~/.cargo/bin:$PATH
+
 - name: Determine if fd installed
   shell: which fd
   args:
@@ -51,22 +62,10 @@
   ignore_errors: yes
   register: which_fd
 
-- block:
-  - name: Install fd requirements
-    yum:
-      name: cargo
-      state: present
-    become: true
-
-  - name: Install fd
-    shell: cargo install fd-find
-    args:
-      executable: /bin/bash
-
-  - name: Add .cargo/bin to PATH
-    lineinfile:
-      path: "~/.bashrc"
-      line: export PATH=~/.cargo/bin:$PATH
+- name: Install fd
+  shell: cargo install fd-find
+  args:
+    executable: /bin/bash
   # if fd found, make sure it refers to rust application (_not_ the floppy disk utility)
   when: which_fd.rc != 0 and ".cargo/bin/" not in which_fd.stdout
 
