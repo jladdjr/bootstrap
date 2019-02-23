@@ -60,12 +60,13 @@
     file:
       path: /tmp/password-store
       state: absent
-
-  - name: Set PASSWORD_STORE_DIR
-    lineinfile:
-      path: ~/.bashrc
-      line: export PASSWORD_STORE_DIR="/var/mapped/.password-store"
   when: which_pass.rc != 0
+  tags: pass
+
+- name: Set PASSWORD_STORE_DIR
+  lineinfile:
+    path: ~/.bashrc
+    line: export PASSWORD_STORE_DIR="/var/mapped/.password-store"
   tags: pass
 
 - name: Ensure .gnupg directory is present
