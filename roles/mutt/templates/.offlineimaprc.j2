@@ -6,7 +6,7 @@ accounts = Jim,RH
 fsync = False
 keepalive = 60
 
-metadata = ~/mapped/.offlineimap
+metadata = /var/mapped/.offlineimap
 
 [Account Jim]
 localrepository = Jim-Local
@@ -22,7 +22,7 @@ postsynchook = notmuch new
 
 [Repository Jim-Local]
 type = Maildir
-localfolders = ~/mapped/.mail/gmail.com
+localfolders = /var/mapped/.mail/gmail.com
 nametrans = lambda folder: {'drafts'        : '[Gmail]/Drafts',
                             'sent'          : '[Gmail]/Sent Mail',
                             'starred'       : '[Gmail]/Starred',
@@ -51,7 +51,7 @@ nametrans = lambda folder: {'[Gmail]/Drafts'                    : 'drafts',
 
 [Repository RH-Local]
 type = Maildir
-localfolders = ~/mapped/.mail/redhat.com
+localfolders = /var/mapped/.mail/redhat.com
 nametrans = lambda folder: {'drafts'        : '[Gmail]/Drafts',
                             'sent'          : '[Gmail]/Sent Mail',
                             'starred'       : '[Gmail]/Starred',

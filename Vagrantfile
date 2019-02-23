@@ -22,7 +22,7 @@ Vagrant.configure(2) do |config|
   config.ssh.forward_x11 = true
 
   # https://www.vagrantup.com/docs/synced-folders/basic_usage.html
-  config.vm.synced_folder "../mapped", "/home/vagrant/mapped"
+  config.vm.synced_folder "../mapped", "/var/mapped"
 end
 
 __END__

@@ -81,12 +81,12 @@
 - name: Place IPython config folder in mapped folder
   lineinfile:
     path: ~/.bashrc
-    line: export IPYTHONDIR=~/mapped/.ipython
+    line: export IPYTHONDIR=/var/mapped/.ipython
   tags: tower-qa
 
 - name: Ensure IPython config folder (and profile_default sub-directory) exist
   file:
-    dest: ~/mapped/.ipython/profile_default
+    dest: /var/mapped/.ipython/profile_default
     state: directory
     mode: 0755
 
@@ -94,7 +94,7 @@
 - name: Copy over IPython config
   copy:
     src: ipython_config.py
-    dest: ~/mapped/.ipython/profile_default
+    dest: /var/mapped/.ipython/profile_default
 
 - name: Create aliases for tower-qa
   blockinfile:

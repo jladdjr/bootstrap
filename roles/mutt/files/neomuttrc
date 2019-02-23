@@ -1,8 +1,8 @@
 source ~/.mutt/vombatidae.mutt
 
 # Paths -----------------------------------------------------------------------
-set folder           = ~/mapped/.mail           # mailbox location
-set alias_file       = ~/mapped/alias           # where to store aliases
+set folder           = /var/mapped/.mail           # mailbox location
+set alias_file       = /var/mapped/alias           # where to store aliases
 set header_cache     = ~/.mutt/cache/headers    # where to store headers
 set message_cachedir = ~/.mutt/cache/bodies     # where to store bodies
 set certificate_file = ~/.mutt/certificates     # where to store certs
@@ -156,7 +156,7 @@ set attach_format = "%u%D%I %t%4n %T%.40d%> [%.7m/%.10M, %.6e%?C?, %C?, %s] "
 
 # Composition options ---------------------------------------------------------
 macro compose a  "<enter-command>source ~/.mutt/attach|<enter>"
-send-hook ~A exec '`rm -f ~/mapped/.mail/temporary/attached*`'
+send-hook ~A exec '`rm -f /var/mapped/.mail/temporary/attached*`'
 bind compose p postpone-message
 bind compose f attach-file
 bind compose N pgp-menu

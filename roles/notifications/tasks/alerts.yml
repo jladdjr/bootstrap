@@ -1,6 +1,6 @@
-- name: Ensure ~/mapped/bin folder exists
+- name: Ensure /var/mapped/bin folder exists
   file:
-    path: ~/mapped/bin
+    path: /var/mapped/bin
     state: directory
     mode: 0755
     owner: vagrant
@@ -9,7 +9,7 @@
 - name: Copy alert.sh to mapped folder
   copy:
     src: alerts/alert.sh
-    dest: ~/mapped/bin
+    dest: /var/mapped/bin
     mode: 0755
     owner: vagrant
     group: vagrant

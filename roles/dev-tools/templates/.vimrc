@@ -48,7 +48,7 @@ nmap <C-I> :set relativenumber!<CR>:set number!<CR>
 set backspace=indent,eol,start
 
 " http://vimdoc.sourceforge.net/htmldoc/options.html#'spellfile'
-set spellfile=~/mapped/en.utf-8.add
+set spellfile=/var/mapped/en.utf-8.add
 
 " Always show status line
 " http://vim.wikia.com/wiki/Displaying_status_line_always

@@ -63,7 +63,7 @@
   - name: Set PASSWORD_STORE_DIR
     lineinfile:
       path: ~/.bashrc
-      line: export PASSWORD_STORE_DIR="~/mapped/.password-store"
+      line: export PASSWORD_STORE_DIR="/var/mapped/.password-store"
   when: which_pass.rc != 0
 
 - name: Ensure gpg-agent.conf is present

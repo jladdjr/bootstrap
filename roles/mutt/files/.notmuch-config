@@ -12,7 +12,7 @@
 #
 
 [database]
-path=~/mapped/.mail
+path=/var/mapped/.mail
 
 # User configuration
 #

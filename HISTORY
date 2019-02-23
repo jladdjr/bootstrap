@@ -32,3 +32,4 @@ History
 - Pull Ansible from personal repos by default
 - Lazy load virtualenvwrapper.sh
 - Configure hostname
+- Moved mapped folder to /var/mapped

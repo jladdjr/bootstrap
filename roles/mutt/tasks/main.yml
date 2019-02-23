@@ -1,6 +1,6 @@
 - name: Ensure mapped folder exists
   file:
-    path: ~/mapped
+    path: /var/mapped
     state: directory
     mode: 0700
 
@@ -32,7 +32,7 @@
 - name: Copy mutt / notmuch dotfiles
   copy:
     src: "{{ item }}"
-    dest: ~
+    dest: "{{ lookup('env', 'HOME') }}"
     mode: 0600
   with_items:
     - .neomuttrc.work
@@ -56,19 +56,19 @@
     mode: 0700
 
 - name: Is mapped/.mail folder present?
-  command: file ~/mapped/.mail
+  command: file /var/mapped/.mail
   register: dotmail
 
 - name: .. if not, create the file
   copy:
     src: mapped/.mail
-    dest: ~/mapped
+    dest: /var/mapped
     mode: 0700
   when: dotmail.stdout.find('No such file or directory') != -1
 
 - name: Ensure alias file exists in shared folder
   file:
-    path: ~/mapped/alias
+    path: /var/mapped/alias
     state: touch
 
 - name: Run offlineimap periodically (uncomment job after syncing mail with `offlineimap` for the first time)
@@ -82,5 +82,5 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK - mutt"
     path: ~/.bashrc
     block: |
-      alias nm='pushd .; cd ~/mapped; neomutt -F ~/.neomuttrc.work; popd'
-      alias nm2='pushd .; cd ~/mapped; neomutt -F ~/.neomuttrc.personal; popd'
+      alias nm='pushd .; cd /var/mapped; neomutt -F ~/.neomuttrc.work; popd'
+      alias nm2='pushd .; cd /var/mapped; neomutt -F ~/.neomuttrc.personal; popd'
