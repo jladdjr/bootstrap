@@ -35,7 +35,7 @@
       alias tower="cd ~/git/tower; git br | grep '*'"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - tower"
 
-  - name: Add .ignore file (for ag)
-    copy:
-      src: files/ag/dot_ignore
-      dest: ~/git/tower/.ignore
+- name: Add .ignore file (for ag)
+  copy:
+    src: files/ag/dot_ignore
+    dest: ~/git/tower/.ignore
