@@ -93,7 +93,7 @@
 # https://ipython.readthedocs.io/en/stable/config/intro.html#introduction-to-ipython-configuration
 - name: Copy over IPython config
   copy:
-    src: ipython_config.py
+    src: ipython/ipython_config.py
     dest: /var/mapped/.ipython/profile_default
 
 - name: Create aliases for tower-qa
