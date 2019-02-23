@@ -20,14 +20,14 @@
 - import_tasks: fugitive.yml
   tags: [fugitive, vim_with_plugins]
 
-- import_tasks: tmux-focus-events.yml
-  tags: [tmux-focus-events, vim_with_plugins]
-
 - import_tasks: git.yml
   tags: git
 
 - import_tasks: tmux.yml
   tags: tmux
+
+- import_tasks: tmux-focus-events.yml
+  tags: [tmux-focus-events, vim_with_plugins]
 
 - import_tasks: docker.yml
   tags: docker
