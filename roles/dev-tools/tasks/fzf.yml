@@ -56,7 +56,7 @@
     line: export PATH=~/.cargo/bin:$PATH
 
 - name: Determine if fd installed
-  shell: which fd
+  shell: PATH="~/.cargo/bin:$PATH" which fd
   args:
     executable: /bin/bash
   ignore_errors: yes
