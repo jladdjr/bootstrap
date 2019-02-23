@@ -20,9 +20,11 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 8000, host: 8001  # pom - test
 
   config.ssh.forward_x11 = true
+  config.ssh.username = 'jim'
 
   # https://www.vagrantup.com/docs/synced-folders/basic_usage.html
-  config.vm.synced_folder "../mapped", "/var/mapped"
+  config.vm.synced_folder "../mapped", "/var/mapped",
+      owner: "jim", group: "vagrant"
 end
 
 __END__
