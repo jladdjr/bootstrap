@@ -1,0 +1,20 @@
+- name: Update hostname
+  hostname:
+    name: "{{ server_name }}"
+  become: true
+  tags: hostname
+
+- name: Update /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    regexp: '^127\.0\.0\.1'
+    line: '127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 {{ server_name }}'
+  become: true
+  tags: hostname
+
+- name: Get hostname
+  command: hostname
+  register: hostname
+
+- name: Ensure hostname has been set correctly
+  assert: { that: "'{{ server_name }}' == hostname.stdout" }

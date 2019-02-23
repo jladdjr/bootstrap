@@ -24,6 +24,9 @@ fzf:
 git:
 	ansible-playbook -i $(INVENTORY) --tags git provision.yml
 
+hostname:
+	ansible-playbook -i $(INVENTORY) --tags hostname provision.yml
+
 mutt:
 	# Expects an ansible-vault file, mutt_secrets.yml, which should take the form:
 	# MUTT_PERSONAL_PASSWORD: MY_PASSWORD

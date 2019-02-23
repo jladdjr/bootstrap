@@ -31,3 +31,4 @@ History
 - Add notification scripts (wait_for_tower, run_and_notify, local_tower_healthcheck)
 - Pull Ansible from personal repos by default
 - Lazy load virtualenvwrapper.sh
+- Configure hostname
