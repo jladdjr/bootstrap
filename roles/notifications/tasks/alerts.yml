@@ -3,16 +3,16 @@
     path: /var/mapped/bin
     state: directory
     mode: 0755
-    owner: vagrant
-    group: vagrant
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
 
 - name: Copy alert.sh to mapped folder
   copy:
     src: alerts/alert.sh
     dest: /var/mapped/bin
     mode: 0755
-    owner: vagrant
-    group: vagrant
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
 
 - name: Ensure /usr/bin/jim/notifications folder exists
   file:

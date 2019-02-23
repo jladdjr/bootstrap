@@ -78,8 +78,8 @@
   file:
     path: ~/.gnupg/gpg-agent.conf
     mode: 0644
-    owner: vagrant
-    group: vagrant
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
     state: touch
 
 - name: Set default-cache-ttl for gpg-agent to one hour
