@@ -7,7 +7,7 @@
     group: vagrant
   become: true
 
-- name: In .bashrc, add aliases, configure HISTORY, create venv shortcut
+- name: Add bash configuration
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK - .bashrc"
     path: ~/.bashrc
@@ -29,3 +29,68 @@
       if [ -t 1 ]; then echo -e "#$(date +%s)\n#--- new session ---" >> $HISTFILE; fi
 
       alias v='source /usr/bin/virtualenvwrapper.sh'
+
+      # Set prompt
+
+      # get current branch in git repo
+      function parse_git_branch() {
+          BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+          if [ ! "${BRANCH}" == "" ]
+          then
+              STAT=`parse_git_dirty`
+              echo "[${BRANCH}${STAT}] "
+          else
+              echo ""
+          fi
+      }
+
+      # get current status of git repo
+      function parse_git_dirty {
+          status=`git status 2>&1 | tee`
+          dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
+          untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
+          ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
+          newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
+          renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
+          deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
+          bits=''
+          if [ "${renamed}" == "0" ]; then
+              bits=">${bits}"
+          fi
+          if [ "${ahead}" == "0" ]; then
+              bits="*${bits}"
+          fi
+          if [ "${newfile}" == "0" ]; then
+              bits="+${bits}"
+          fi
+          if [ "${untracked}" == "0" ]; then
+              bits="?${bits}"
+          fi
+          if [ "${deleted}" == "0" ]; then
+              bits="x${bits}"
+          fi
+          if [ "${dirty}" == "0" ]; then
+              bits="!${bits}"
+          fi
+          if [ ! "${bits}" == "" ]; then
+              echo " ${bits}"
+          else
+              echo ""
+          fi
+      }
+
+      # Abbreviated directory
+      # https://unix.stackexchange.com/questions/26844/abbreviated-current-directory-in-shell-prompt
+      prompt_dir () {
+        p="${PWD#${HOME}}"
+        [ "${PWD}" != "${p}" ] && printf "~"
+        IFS=/
+        for q in ${p:1}
+          do printf /${q:0:1}
+        done
+        printf "${q:1}"
+      }
+
+      # Prompt colors:
+      # https://unix.stackexchange.com/questions/124407/what-color-codes-can-i-use-in-my-ps1-prompt
+      export PS1="\\[$(tput setaf 34)\\]\\u@\\h \\[$(tput setaf 172)\\]\`prompt_dir\` \\[$(tput setaf 34)\\]$ \\[$(tput setaf 32)\\]\`parse_git_branch\`\\[$(tput sgr0)\\]"

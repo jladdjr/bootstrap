@@ -33,3 +33,6 @@ History
 - Lazy load virtualenvwrapper.sh
 - Configure hostname
 - Moved mapped folder to /var/mapped
+
+1.0.3:
+- Set BASH prompt
