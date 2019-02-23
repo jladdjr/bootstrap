@@ -106,4 +106,5 @@
   args:
     executable: /bin/bash
   become: true
+  ignore_errors: yes  # gpg-agent isn't always up and running
   tags: pass
