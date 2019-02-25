@@ -6,6 +6,7 @@
     executable: /bin/bash
   ignore_errors: yes
   register: which_ag
+  tags: ag
 
 - block:
   - name: Install Ag requirements
@@ -38,15 +39,18 @@
     file:
       path: /tmp/ag
       state: absent
-
-  # https://github.com/mileszs/ack.vim
-  - name: Install ack vim plugin
-    git:
-      repo: https://github.com/mileszs/ack.vim.git
-      dest: "~/.vim/bundle/ack.vim"
-
-  - name: Configure ack plugin to use Ag
-    lineinfile:
-      path: "~/.vimrc"
-      line: let g:ackprg = 'ag --nogroup --nocolor --column'
   when: which_ag.rc != 0
+  tags: ag
+
+# https://github.com/mileszs/ack.vim
+- name: Install ack vim plugin
+  git:
+    repo: https://github.com/mileszs/ack.vim.git
+    dest: "~/.vim/bundle/ack.vim"
+  tags: ag
+
+- name: Configure ack plugin to use Ag
+  lineinfile:
+    path: "~/.vimrc"
+    line: let g:ackprg = 'ag --nogroup --nocolor --column'
+  tags: ag
