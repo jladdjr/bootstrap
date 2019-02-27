@@ -38,3 +38,6 @@
 
 - include_tasks: tower.yml
   tags: tower
+
+- include_tasks: ansible-runner.yml
+  tags: runner

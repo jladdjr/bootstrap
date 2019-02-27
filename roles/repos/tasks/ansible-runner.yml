@@ -1,0 +1,70 @@
+- name: Add ansible-runner project
+  git:
+    dest: ~/git/ansible-runner
+    repo: git@github.com:jladdjr/ansible-runner.git
+    version: master
+    accept_hostkey: yes
+  tags: runner
+
+- name: Create ansible-runner virtualenv
+  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 runner
+  args:
+    executable: /bin/bash
+  environment:
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+  tags: runner
+
+- name: Install ansible-runner to venv (using pip's editable mode)
+  shell: . /usr/bin/virtualenvwrapper.sh && workon runner && pip install -e . 
+  args:
+    executable: /bin/bash
+    chdir: ~/git/ansible-runner
+  environment:
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+  tags: runner
+
+# Note: I'm not sure why, but pip installing ansible is not adding the ansible binary to the venv
+# Not going to worry about that here, though, since runner only needs the ansible python library
+- name: Install ansible (devel) to venv
+  shell: . /usr/bin/virtualenvwrapper.sh && workon runner && pip install -I git+http://github.com/ansible/ansible.git@devel
+  args:
+    executable: /bin/bash
+    chdir: ~/git/ansible-runner
+  environment:
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+  tags: runner
+
+- name: Install pytest, mock, tox to venv
+  shell: ". /usr/bin/virtualenvwrapper.sh && workon runner && pip install {{ item }}"
+  args:
+    executable: /bin/bash
+    chdir: ~/git/ansible-runner
+  environment:
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+  with_items:
+    - pytest
+    - mock
+    - tox
+  tags: runner
+
+- name: Determine which remotes exist
+  command: git remote -v
+  args:
+    chdir: ~/git/ansible-runner
+  register: git_remote
+  tags: runner
+
+- name: Add remote repo (ansible)
+  command: git remote add ansible git@github.com:ansible/ansible-runner.git
+  args:
+    chdir: ~/git/ansible-runner
+  when: git_remote.stdout.find('ansible/ansible') == -1
+  tags: runner
+
+- name: Create runner aliases
+  blockinfile:
+    path: ~/.bashrc
+    block: |
+      alias run="cd ~/git/ansible-runner; v; workon runner; python --version | head -1; git br | grep '*'"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - runner"
+  tags: runner

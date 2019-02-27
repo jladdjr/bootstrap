@@ -36,3 +36,4 @@ History
 
 1.0.3:
 - Set BASH prompt
+- Add ansible-runner repo
