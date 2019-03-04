@@ -6,6 +6,9 @@ ag:
 ansible:
 	ansible-playbook -i $(INVENTORY) --tags ansible provision.yml
 
+ansible-engineering:
+	ansible-playbook -i $(INVENTORY) --tags ansible-engineering provision.yml
+
 ansible-runner:
 	ansible-playbook -i $(INVENTORY) --tags runner provision.yml
 

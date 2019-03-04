@@ -1,0 +1,29 @@
+- name: Add ansible-engineering project
+  git:
+    dest: ~/git/ansible-engineering
+    repo: git@github.com:jladdjr/ansible-engineering.git
+    version: master
+    accept_hostkey: yes
+  tags: ansible-engineering
+
+- name: Determine which remotes exist
+  command: git remote -v
+  args:
+    chdir: ~/git/ansible-engineering
+  register: git_remote
+  tags: ansible-engineering
+
+- name: Add remote repo (ansible)
+  command: git remote add ansible git@github.com:ansible/ansible-engineering.git
+  args:
+    chdir: ~/git/ansible-engineering
+  when: git_remote.stdout.find('ansible/ansible') == -1
+  tags: ansible-engineering
+
+- name: Create ansible-engineering aliases
+  blockinfile:
+    path: ~/.bashrc
+    block: |
+      alias eng="cd ~/git/ansible-engineering"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - ansible-engineering"
+  tags: ansible-engineering
