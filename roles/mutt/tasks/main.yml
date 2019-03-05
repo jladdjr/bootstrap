@@ -77,10 +77,16 @@
     minute: "*/5"
     job: "/usr/bin/offlineimap -1 -u quiet"
 
+- name: Create folder for storing mutt attachments
+  file:
+    path: /var/mapped/mutt
+    state: directory
+    mode: 0700
+
 - name: Add .bashrc aliases
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK - mutt"
     path: ~/.bashrc
     block: |
-      alias nm='pushd .; cd /var/mapped; neomutt -F ~/.neomuttrc.work; popd'
-      alias nm2='pushd .; cd /var/mapped; neomutt -F ~/.neomuttrc.personal; popd'
+      alias nm='pushd .; cd /var/mapped/mutt; neomutt -F ~/.neomuttrc.work; popd'
+      alias nm2='pushd .; cd /var/mapped/mutt; neomutt -F ~/.neomuttrc.personal; popd'
