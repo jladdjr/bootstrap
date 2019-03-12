@@ -34,7 +34,7 @@ History
 - Configure hostname
 - Moved mapped folder to /var/mapped
 
-1.0.3:
+1.0.3 ("Munich"):
 - Set BASH prompt
 - Add ansible-runner repo
 - In vim, open new split panes to right and bottom
