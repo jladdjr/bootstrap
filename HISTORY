@@ -16,7 +16,7 @@ History
 - Bind f key for adding files in Mutt's compose mode
 - Fix issue with checking out tower-qa branch from ansible
 
-1.0.2:
+1.0.2 ("Berlin"):
 - Install ack
 - Install ag
 - Install htop
@@ -37,3 +37,4 @@ History
 1.0.3:
 - Set BASH prompt
 - Add ansible-runner repo
+- In vim, open new split panes to right and bottom

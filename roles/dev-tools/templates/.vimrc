@@ -31,6 +31,11 @@ augroup END
 nmap <S-Enter> O<Esc>j
 nmap <CR> o<Esc>k
 
+" Open new split panes to right and bottom
+" https://thoughtbot.com/blog/vim-splits-move-faster-and-more-naturally
+set splitbelow
+set splitright
+
 " Auto-resize split windows
 " https://vi.stackexchange.com/questions/201/make-panes-resize-when-host-window-is-resized
 :autocmd VimResized * wincmd =
