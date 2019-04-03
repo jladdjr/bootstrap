@@ -1,0 +1,34 @@
+- name: Add tower-packaging project
+  git:
+    dest: ~/git/tower-packaging
+    repo: git@github.com:jladdjr/tower-packaging.git
+    accept_hostkey: yes
+  tags: tower-packaging
+
+- name: Determine which remotes exist
+  command: git remote -v
+  args:
+    chdir: ~/git/tower-packaging
+  register: git_remote
+  tags: tower-packaging
+
+- name: Add remote repo (ansible)
+  command: git remote add ansible git@github.com:ansible/tower-packaging.git
+  args:
+    chdir: ~/git/tower-packaging
+  when: git_remote.stdout.find('ansible') == -1
+  tags: tower-packaging
+
+- name: Fetch ansible repo
+  command: git fetch ansible
+  args:
+    chdir: ~/git/tower-packaging
+  tags: tower-packaging
+
+- name: Create tower-packaging aliases
+  blockinfile:
+    path: ~/.bashrc
+    block: |
+      alias tp="cd ~/git/tower-packaging; git br | grep '*'"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - tower-packaging"
+  tags: tower-packaging
