@@ -7,7 +7,7 @@
           "tag:Name": "*{{ instance_name }}*"
       register: ec2_instance_facts
       until: ec2_instance_facts.instances is defined and ec2_instance_facts.instances|length > 0
-      retries: 45
+      retries: 60
       delay: 30
     rescue:
       - shell: notify "Failed to find ec2 instance with name '{{ instance_name }}'"
