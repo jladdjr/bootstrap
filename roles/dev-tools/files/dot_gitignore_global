@@ -1,3 +1,4 @@
 .ignore
 *.swp
 nohup.out
+tmp
