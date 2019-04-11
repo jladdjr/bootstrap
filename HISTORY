@@ -39,3 +39,4 @@ History
 - Add ansible-runner repo
 - In vim, open new split panes to right and bottom
 - Add tower-packaging repo
+- Install rhubarb (enables Gbrowse in vim)

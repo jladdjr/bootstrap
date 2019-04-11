@@ -18,7 +18,10 @@
   tags: [zoomwin, vim_with_plugins]
 
 - import_tasks: fugitive.yml
-  tags: [fugitive, vim_with_plugins]
+  tags: [fugitive, rhubarb, vim_with_plugins]
+
+- import_tasks: rhubarb.yml
+  tags: [rhubarb, vim_with_plugins]
 
 - import_tasks: git.yml
   tags: git
