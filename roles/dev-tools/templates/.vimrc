@@ -15,16 +15,15 @@ set hlsearch
 " displayed.
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
-" Relative line numbers for window in focus
-" Absolute line numbers for all other windows
+" Relative line numbers for Python
 " https://jeffkreeftmeijer.com/vim-number/
-set number relativenumber
-
-augroup numbertoggle
+augroup relativenumbers
   autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+  autocmd BufNewFile,BufRead *.py set number relativenumber
 augroup END
+
+" Toggle (relative) numbers
+map <C-I> :set relativenumber!<CR>:set number!<CR>
 
 " Insert newline w/out entering edit mode
 " http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
@@ -45,9 +44,6 @@ autocmd FileType netrw nnoremap ? :help netrw-quickmap<CR>
 
 " Remove netrw banner
 let g:netrw_banner = 0
-
-" Toggle (relative) numbers
-nmap <C-I> :set relativenumber!<CR>:set number!<CR>
 
 " https://stackoverflow.com/questions/5019315/vim-backspace-key-only-works-on-new-text
 set backspace=indent,eol,start
