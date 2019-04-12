@@ -33,11 +33,22 @@
     VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
   tags: awx
 
-- name: Create awx aliases
+- name: Create awx alias, derez function
   blockinfile:
     path: ~/.bashrc
     block: |
       alias awx="v; workon awx; cd ~/git/awx; python --version | head -1; git br | grep '*'"
+
+      # Thoroughly remove awx containers, images and ui build artifacts
+      derez () {
+          awx
+          docker ps --all -q | xargs docker stop
+          docker ps --all -q | xargs docker rm
+          make docker-clean
+          make clean-ui
+          docker ps --all
+          docker images
+      }
     marker: "# {mark} ANSIBLE MANAGED BLOCK - awx"
   tags: awx
 
