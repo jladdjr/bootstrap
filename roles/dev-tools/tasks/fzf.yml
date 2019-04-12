@@ -38,7 +38,6 @@
       nnoremap <Leader>a :Ack!<Space>
 
       " Shortcuts for Buffers, Files, Tags
-      let mapleader = "'"
       nmap ; :Buffers<CR>
       nmap <Leader>f :Files<CR>
       nmap <Leader>t :Tags<CR>

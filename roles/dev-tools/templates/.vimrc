@@ -3,6 +3,8 @@ filetype plugin indent on
 syntax on
 colorscheme {{ colorscheme }}
 
+let mapleader = "'"
+
 " http://vim.wikia.com/wiki/Indenting_source_code#Explanation_of_the_options
 set shiftwidth=4
 set expandtab
