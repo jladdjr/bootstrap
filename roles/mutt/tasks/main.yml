@@ -83,6 +83,12 @@
     state: directory
     mode: 0700
 
+- name: Create tmp folder for mutt
+  file:
+    path: /var/mapped/mutt/tmp
+    state: directory
+    mode: 0700
+
 - name: Add .bashrc aliases
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK - mutt"

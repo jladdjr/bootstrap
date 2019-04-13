@@ -4,4 +4,4 @@
 application/octet-stream; ~/.mutt/view_attachment.sh %s "-"
 
 # HTML mail
-text/html; lynx %s; nametemplate=%s.html
+text/html; open_link_on_host %s; nametemplate=%s.html
