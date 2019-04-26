@@ -42,3 +42,4 @@ History
 - Install rhubarb (enables Gbrowse in vim)
 - Only use relative line numbers for Python
 - Use same mapleader (') across vimrc
+- Python folding in Vim

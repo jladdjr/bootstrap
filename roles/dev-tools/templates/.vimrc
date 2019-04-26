@@ -62,3 +62,10 @@ let @d="jma:'a,$ d^M"
 
 " delete mutt signature at bottom
 let @r="ma/^--^MkmdGd'd^[ggg'a"
+
+" Python folding
+" https://stackoverflow.com/a/360634/10669572
+set foldmethod=indent
+set foldnestmax=2
+nnoremap <space> za
+vnoremap <space> zf
