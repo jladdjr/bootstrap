@@ -64,4 +64,5 @@
     path: ~/.bashrc
     block: |
       alias i='cat ~/tower_instances'
+      alias ii="cat ~/tower_instances | tail -n 1 | awk '{print \$3}'"
       export CLUSTER_INSTANCE_1="devel-ansible-devel-cluster-1"
