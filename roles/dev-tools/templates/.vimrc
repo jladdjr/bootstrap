@@ -3,6 +3,9 @@ filetype plugin indent on
 syntax on
 colorscheme {{ colorscheme }}
 
+" Don't create swap files
+set noswapfile
+
 let mapleader = "'"
 
 " http://vim.wikia.com/wiki/Indenting_source_code#Explanation_of_the_options
