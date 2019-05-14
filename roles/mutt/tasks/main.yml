@@ -12,7 +12,7 @@
 
 - name: Install mutt + dependencies
   yum:
-    name: ['neomutt', 'notmuch', 'msmtp', 'offlineimap', 'lynx']
+    name: ['neomutt', 'notmuch', 'msmtp', 'offlineimap', 'lynx', 'pandoc']
     state: present
   become: true
 

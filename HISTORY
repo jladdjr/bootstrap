@@ -43,3 +43,4 @@ History
 - Only use relative line numbers for Python
 - Use same mapleader (') across vimrc
 - Python folding in Vim
+- Macro to convert mutt e-mails from markdown to html
