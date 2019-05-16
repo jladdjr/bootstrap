@@ -20,6 +20,9 @@
 - import_tasks: fugitive.yml
   tags: [fugitive, rhubarb, vim_with_plugins]
 
+- import_tasks: unimpaired.yml
+  tags: [unimpaired, vim_with_plugins]
+
 - import_tasks: rhubarb.yml
   tags: [rhubarb, vim_with_plugins]
 
