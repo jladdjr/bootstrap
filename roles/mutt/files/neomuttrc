@@ -157,7 +157,7 @@ set attach_format = "%u%D%I %t%4n %T%.40d%> [%.7m/%.10M, %.6e%?C?, %C?, %s] "
 # Composition options ---------------------------------------------------------
 macro compose a  "<enter-command>source ~/.mutt/attach|<enter>"
 macro compose \e4    ": set pipe_decode\n|pandoc -s > /var/mapped/tmp/preview.html; open_link_on_host /var/mapped/tmp/preview.html\n: unset pipe_decode\n"  # Preview markdown message converted to html
-macro compose \e5 "F pandoc -s -f markdown -t html \ny^T^Utext/html; charset=us-ascii\n"  # Convert markdown message to html#
+macro compose \e5 "F pandoc -s -f markdown -t html \ny^T^Utext/html; charset=utf-8\n"  # Convert markdown message to html#
 set wait_key=no
 send-hook ~A exec '`rm -f /var/mapped/.mail/temporary/attached*`'
 bind compose p postpone-message
