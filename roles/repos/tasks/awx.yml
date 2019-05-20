@@ -45,7 +45,7 @@
           docker ps --all -q | xargs docker stop
           docker ps --all -q | xargs docker rm
           make docker-clean
-          make clean-ui
+          make clean
           docker ps --all
           docker images
       }
