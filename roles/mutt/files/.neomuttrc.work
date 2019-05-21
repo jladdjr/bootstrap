@@ -27,6 +27,10 @@ folder-hook redhat.com/* source ~/.mutt/rh.muttrc
 #folder-hook redhat.com/memo 'push "l~U<enter>"'
 #folder-hook draughtcraft.com/INBOX 'push "l~U<enter>"'
 
+# Only show new mail by default
+set sidebar_new_mail_only = yes
+sidebar_whitelist '+redhat.com/INBOX'
+
 # Gmail mappings
 bind index,pager l noop
 macro index,pager li "<save-message>+redhat.com/INBOX<enter><sync-mailbox>" "save message to inbox"
