@@ -49,3 +49,9 @@ macro index,pager gg "c=gmail.com/#get-back-to-folks<enter>" "open #get-back-to-
 macro index,pager gt "c=gmail.com/#todo<enter>" "open #todo"
 macro index,pager gr "c=gmail.com/#read<enter>" "open #read"
 macro index,pager gw "c=gmail.com/#waiting<enter>" "open #waiting"
+
+# sidebar coloring
+color sidebar_indicator color119 color234       # grass green  / standard gray bg
+color sidebar_new color253 color234             # light gray   / standard gray bg
+color sidebar_flagged color253 color234         # light gray   / standard gray bg
+color sidebar_highlight color247 color234       # dark gray    / standard gray bg

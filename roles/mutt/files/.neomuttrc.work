@@ -48,3 +48,10 @@ macro index,pager gg "c=redhat.com/#get-back-to-folks<enter>" "open #get-back-to
 macro index,pager gt "c=redhat.com/#todo<enter>" "open #todo"
 macro index,pager gr "c=redhat.com/#read<enter>" "open #read"
 macro index,pager gw "c=redhat.com/#waiting<enter>" "open #waiting"
+
+# sidebar coloring
+color sidebar_indicator color39 color234        # IBM blue   / standard gray bg
+#color sidebar_indicator color160 color234       # RH red     / standard gray bg
+color sidebar_new color253 color234             # light gray / standard gray bg
+color sidebar_flagged color253 color234         # light gray / standard gray bg
+color sidebar_highlight color247 color234       # dark gray  / standard gray bg

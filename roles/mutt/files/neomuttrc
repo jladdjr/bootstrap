@@ -31,15 +31,17 @@ unset recall             # don't ask to recall messages on compose
 set sidebar_visible = yes
 set sidebar_width   = 26
 set sidebar_divider_char = '  '
-color sidebar_indicator color73 default
-color sidebar_new yellow default
-color sidebar_highlight white color238
-color progress white color238
 set sidebar_format = "%B%* %?N?%N?"
 set sidebar_short_path
 set sidebar_folder_indent
 set sidebar_indent_string="  "
 set mail_check_stats
+
+# sidebar coloring
+color sidebar_indicator color208 color234       # orange       / standard gray bg
+color sidebar_new color253 color234             # light gray   / standard gray bg
+color sidebar_flagged color253 color234         # light gray   / standard gray bg
+color sidebar_highlight color247 color234       # dark gray    / standard gray bg
 
 # Status Bar ------------------------------------------------------------------
 set status_chars  = " *%A"
