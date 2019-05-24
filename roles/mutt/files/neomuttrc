@@ -36,6 +36,7 @@ set sidebar_short_path
 set sidebar_folder_indent
 set sidebar_indent_string="  "
 set mail_check_stats
+set sidebar_next_new_wrap = yes
 
 # sidebar coloring
 color sidebar_indicator color208 color234       # orange       / standard gray bg
@@ -70,7 +71,7 @@ set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 # Index Key Bindings ----------------------------------------------------------
 #bind index g noop                           # .. so that we can bind 'gg'
 #bind index gg           first-entry         # more vimmy
-bind index <Tab>        next-unread-mailbox
+macro index "."       "<sidebar-next-new><Right>" "open next unread maildir"
 bind index G            last-entry          # even more vimmy
 bind index R            group-reply         # reply-all
 bind index <space>      collapse-thread     # expand/collapse a thread
