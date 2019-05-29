@@ -23,6 +23,9 @@
 - import_tasks: unimpaired.yml
   tags: [unimpaired, vim_with_plugins]
 
+- import_tasks: syntastic.yml
+  tags: [syntastic, vim_with_plugins]
+
 - import_tasks: rhubarb.yml
   tags: [rhubarb, vim_with_plugins]
 
