@@ -8,6 +8,7 @@ mailboxes +@rh \
           +redhat.com/INBOX \
           +redhat.com/group \
           +redhat.com/world \
+          +redhat.com/ansible \
           +redhat.com/\#same-day-service \
           +redhat.com/\#get-back-to-folks \
           +redhat.com/\#todo \
