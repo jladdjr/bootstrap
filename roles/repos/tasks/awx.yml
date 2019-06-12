@@ -33,7 +33,7 @@
     VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
   tags: awx
 
-- name: Create awx alias, derez function
+- name: Create awx alias and derez / preload_tower functions
   blockinfile:
     path: ~/.bashrc
     block: |
@@ -49,6 +49,13 @@
           docker ps --all
           docker images
       }
+
+      preload_tower () {
+          docker exec -ti tools_awx_1 bash -c 'awx-manage createsuperuser --username=admin --email=admin@localhost --no-input'
+          docker exec -ti tools_awx_1 bash -c 'awx-manage update_password --username=admin --password=password'
+          docker exec -ti tools_awx_1 bash -c 'awx-manage create_preload_data'
+      }
+
     marker: "# {mark} ANSIBLE MANAGED BLOCK - awx"
   tags: awx
 
