@@ -8,4 +8,5 @@
       - jq
       - strace
       - telnet
+      - nc
   become: true
