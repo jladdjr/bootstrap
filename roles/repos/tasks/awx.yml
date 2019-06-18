@@ -41,7 +41,6 @@
 
       # Thoroughly remove awx containers, images and ui build artifacts
       derez () {
-          awx
           docker ps --all -q | xargs docker stop
           docker ps --all -q | xargs docker rm
           make docker-clean
