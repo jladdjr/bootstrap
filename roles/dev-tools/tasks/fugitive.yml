@@ -3,3 +3,12 @@
     repo: https://github.com/tpope/vim-fugitive.git
     dest: "~/.vim/bundle/fugitive.vim"
   tags: [fugitive, rhubarb]
+
+- name: Add configuration for fugitive
+  blockinfile:
+    path: ~/.vimrc
+    block: |
+      " Shortcuts for quickfix (useful for navigating quickfix window created by fugitive's Glog command)
+      map <C-j> :cn<CR>
+      map <C-k> :cp<CR>
+    marker: '" {mark} ANSIBLE MANAGED BLOCK - fugitive.vim'
