@@ -45,3 +45,5 @@ History
 - Python folding in Vim
 - Macro to convert mutt e-mails from markdown to html
 - Install syntastic (syntax checking in vim)
+
+1.0.4 ("Paris")
