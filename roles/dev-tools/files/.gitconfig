@@ -10,6 +10,7 @@
         r = remote -v
         sbr = branch --sort=-committerdate -a
         last = log -1 HEAD
+        llog = log --pretty='%<(11)%h %<(18)%an %s'
 [color]
   diff = auto
   status = auto
