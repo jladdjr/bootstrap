@@ -9,6 +9,9 @@ ansible:
 ansible-engineering:
 	ansible-playbook -i $(INVENTORY) --tags ansible-engineering provision.yml
 
+ansible-license:
+	ansible-playbook -i $(INVENTORY) --tags ansible-license provision.yml
+
 ansible-runner:
 	ansible-playbook -i $(INVENTORY) --tags runner provision.yml
 

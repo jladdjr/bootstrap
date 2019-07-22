@@ -43,6 +43,9 @@
 - include_tasks: ansible-runner.yml
   tags: runner
 
+- include_tasks: ansible-license.yml
+  tags: ansible-license
+
 - include_tasks: tower-packaging.yml
   tags: tower-packaging
 

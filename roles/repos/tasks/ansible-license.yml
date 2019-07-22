@@ -1,0 +1,46 @@
+- name: Add ansible-license project
+  git:
+    dest: ~/git/ansible-license
+    repo: git@github.com:jladdjr/ansible-license.git
+    version: master
+    accept_hostkey: yes
+  tags: ansible-license
+
+- name: Create ansible-license virtualenv
+  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 ansible-license
+  args:
+    executable: /bin/bash
+  environment:
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+  tags: ansible-license
+
+- name: Install pip-tools
+  shell: ". /usr/bin/virtualenvwrapper.sh && workon ansible-license && pip install pip-tools"
+  args:
+    executable: /bin/bash
+    chdir: ~/git/ansible-license
+  environment:
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+  tags: ansible-license
+
+- name: Determine which remotes exist
+  command: git remote -v
+  args:
+    chdir: ~/git/ansible-license
+  register: git_remote
+  tags: ansible-license
+
+- name: Add remote repo (ansible)
+  command: git remote add ansible git@github.com:ansible/ansible-license.git
+  args:
+    chdir: ~/git/ansible-license
+  when: git_remote.stdout.find('ansible/ansible') == -1
+  tags: ansible-license
+
+- name: Create ansible-license alias
+  blockinfile:
+    path: ~/.bashrc
+    block: |
+      alias l="cd ~/git/ansible-license; v; workon ansible-license; python --version | head -1; git br | grep '*'"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - ansible-license"
+  tags: ansible-license
