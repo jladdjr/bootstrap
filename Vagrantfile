@@ -20,6 +20,7 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 3001, host: 3001  # awx-pf/tower
   config.vm.network "forwarded_port", guest: 80, host: 8080    # pom - prod
   config.vm.network "forwarded_port", guest: 8000, host: 8001  # pom - test
+  config.vm.network "forwarded_port", guest: 8093, host: 8093  # ansible-license
 
   config.ssh.forward_x11 = true
   config.ssh.username = 'jim'
