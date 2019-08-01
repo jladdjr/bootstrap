@@ -49,6 +49,12 @@
           docker images
       }
 
+      # Clear UI artifacts, rebuild UI
+      derez_ui () {
+          make clean-ui
+          make ui-devel
+      }
+
       preload_tower () {
           docker exec -ti tools_awx_1 bash -c 'awx-manage createsuperuser --username=admin --email=admin@localhost --no-input'
           docker exec -ti tools_awx_1 bash -c 'awx-manage update_password --username=admin --password=password'
