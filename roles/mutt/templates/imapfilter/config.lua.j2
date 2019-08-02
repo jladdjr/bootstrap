@@ -1,0 +1,39 @@
+-- Options
+
+--options.timeout = 120
+--options.expunge = true
+
+-- Accounts
+
+personal_account = IMAP {
+    server = 'imap.gmail.com',
+    username = 'jladdjr@gmail.com',
+    password = "{{ MUTT_PERSONAL_PASSWORD | default('CHANGME') }}"
+    ssl = 'auto'
+}
+
+redhat_account = IMAP {
+    server = 'imap.gmail.com',
+    username = 'jladd@redhat.com',
+    password = "{{ MUTT_REDHAT_PASSWORD | default('CHANGEME') }}",
+    ssl = 'auto'
+}
+
+-- Mark all mail in archive as seen (i.e. read)
+
+-- messages = personal_account["[Gmail]/All Mail"]:is_unseen()
+-- messages:mark_seen()
+--
+-- messages = redhat_account["[Gmail]/All Mail"]:is_unseen()
+-- messages:mark_seen()
+
+-- Test filter
+
+messages = personal_account["INBOX"]:contain_to('jladdjr+todo@gmail.com')
+messages:move_messages(personal_account['#todo'])
+
+-- List mailboxes
+
+-- mailboxes, folders = personal_account:list_all('')  -- or '[Gmail]'
+-- for _, m in ipairs(mailboxes) do print(m) end
+-- for _, f in ipairs(folders) do print(f) end

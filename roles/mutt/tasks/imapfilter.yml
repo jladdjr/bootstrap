@@ -1,0 +1,21 @@
+- name: Install imapfilter
+  yum:
+    name: "{{ item }}"
+    state: present
+  become: true
+  with_items:
+    - imapfilter
+    - luarocks   # adding as a convenience for interactive lua tinkering w/ lua libraries ("rocks")
+    - lua-devel  # required to import / build some rocks
+
+- name: Create ~/.imapfilter
+  file:
+    path: ~/.imapfilter
+    state: directory
+    mode: 0700
+
+- name: Render / copy config.lua to ~/.imapfilter
+  template:
+    src: imapfilter/config.lua.j2
+    dest: ~/.imapfilter/config.lua
+    mode: 0600

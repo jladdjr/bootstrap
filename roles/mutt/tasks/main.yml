@@ -6,7 +6,7 @@
 
 - name: Create neomutt repo
   copy:
-    src: flatcap-neomutt-epel-7.repo
+    src: neomutt/flatcap-neomutt-epel-7.repo
     dest: /etc/yum.repos.d
   become: true
 
@@ -24,14 +24,14 @@
 
 - name: Copy neomuttrc to /etc
   copy:
-    src: neomuttrc
+    src: neomutt/neomuttrc
     dest: /etc
     mode: 0644
   become: true
 
 - name: Copy mutt / notmuch dotfiles
   copy:
-    src: "{{ item }}"
+    src: neomutt/"{{ item }}"
     dest: "{{ lookup('env', 'HOME') }}"
     mode: 0600
   with_items:
@@ -42,7 +42,7 @@
 
 - name: Create offlineimaprc / msmtprc dotfiles (requires mutt passwords)
   template:
-    src: "{{ item }}"
+    src: neomutt/"{{ item }}"
     dest: "~/{{ item|replace('.j2','') }}"
     mode: 0600
   with_items:
@@ -51,7 +51,7 @@
 
 - name: Create .mutt folder
   copy:
-    src: .mutt
+    src: neomutt/.mutt
     dest: "{{ lookup('env', 'HOME') }}"
     mode: 0700
 
@@ -61,7 +61,7 @@
 
 - name: .. if not, create the file
   copy:
-    src: mapped/.mail
+    src: neomutt/mapped/.mail
     dest: /var/mapped
     mode: 0700
   when: dotmail.stdout.find('No such file or directory') != -1
@@ -75,7 +75,7 @@
   cron:
     name: offlineimap
     minute: "*/5"
-    job: "/usr/bin/offlineimap -1 -u quiet"
+    job: "bash -c '/usr/bin/imapfilter -l /var/mapped/imapfilter.log -t /etc/ssl/certs/ca-bundle.crt && /usr/bin/offlineimap -1 -u quiet'"
 
 - name: Create folder for storing mutt attachments
   file:
@@ -96,3 +96,6 @@
     block: |
       alias nm='pushd .; cd /var/mapped/mutt; neomutt -F ~/.neomuttrc.work; popd'
       alias nm2='pushd .; cd /var/mapped/mutt; neomutt -F ~/.neomuttrc.personal; popd'
+
+- name: Install / configure imapfilter
+  import_tasks: imapfilter.yml
