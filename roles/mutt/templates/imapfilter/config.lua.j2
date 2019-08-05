@@ -19,6 +19,12 @@ redhat_account = IMAP {
     ssl = 'auto'
 }
 
+
+-- Delete calendar alerts
+messages = personal_account["INBOX"]:match_subject('^Alert - .*')
+messages:delete_messages()
+
+
 -- Mark all mail in archive as seen (i.e. read)
 
 -- messages = personal_account["[Gmail]/All Mail"]:is_unseen()
@@ -27,10 +33,12 @@ redhat_account = IMAP {
 -- messages = redhat_account["[Gmail]/All Mail"]:is_unseen()
 -- messages:mark_seen()
 
+
 -- Test filter
 
 messages = personal_account["INBOX"]:contain_to('jladdjr+todo@gmail.com')
 messages:move_messages(personal_account['#todo'])
+
 
 -- List mailboxes
 
