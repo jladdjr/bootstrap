@@ -78,6 +78,7 @@ bind index <space>      collapse-thread     # expand/collapse a thread
 bind index <backtab>    collapse-all        # expand/collapse all threads
 bind index D            undelete-message
 bind index p            recall-message
+macro index i            "<shell-escape>/usr/bin/offlineimap -f INBOX<enter>" "fetch inbox"
 
 # Ctrl-R to mark all as read
 macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
