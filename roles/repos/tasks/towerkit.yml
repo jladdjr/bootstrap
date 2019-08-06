@@ -47,6 +47,6 @@
       export TOWERKIT_CREDENTIAL_FILE='/home/jim/git/tower-qa-devel/config/credentials.yml'
       export TOWERKIT_USER='admin'
       export TOWERKIT_USER_PASSWORD='fo0m4nchU'
-      alias tk="cd ~/git/towerkit; v; workon towerkit; python --version | head -1; git br | grep '*'"
+      alias tk="cd ~/git/towerkit; vw; workon towerkit; python --version | head -1; git br | grep '*'"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - towerkit"
   tags: towerkit

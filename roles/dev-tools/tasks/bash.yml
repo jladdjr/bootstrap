@@ -28,7 +28,10 @@
       # https://stackoverflow.com/questions/911168/how-to-detect-if-my-shell-script-is-running-through-a-pipe
       if [ -t 1 ]; then echo -e "#$(date +%s)\n#--- new session ---" >> $HISTFILE; fi
 
-      alias v='source /usr/bin/virtualenvwrapper.sh'
+      # Re-open vim session
+      alias v='vim -S tmp/session.vim'
+
+      alias vw='source /usr/bin/virtualenvwrapper.sh'
 
       # Set prompt
 

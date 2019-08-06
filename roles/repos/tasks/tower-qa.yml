@@ -100,8 +100,7 @@
   blockinfile:
     path: ~/.bashrc
     block: |
-      alias v='source /usr/bin/virtualenvwrapper.sh'
-      alias tq="cd ~/git/tower-qa-devel; v; workon tower-qa-devel; python --version | head -1; git br | grep '*'"
+      alias tq="cd ~/git/tower-qa-devel; vw; workon tower-qa-devel; python --version | head -1; git br | grep '*'"
       alias get_project_home='JDL_PROJECT_HOME=~/git/$(pwd | cut -d '/' -f 5)'
       alias t='get_project_home; cd ${JDL_PROJECT_HOME}/tests/api'
       alias f='get_project_home; cd ${JDL_PROJECT_HOME}/tests/lib/fixtures/api'
@@ -113,7 +112,7 @@
   blockinfile:
     path: ~/.bashrc
     block: |
-      alias tq{{ branch | replace('release_', '') | replace('.', '') }}="cd ~/git/tower-qa-{{ branch }}; v; workon tower-qa-{{ branch }}; python --version | head -1; git br | grep '*'"
+      alias tq{{ branch | replace('release_', '') | replace('.', '') }}="cd ~/git/tower-qa-{{ branch }}; vw; workon tower-qa-{{ branch }}; python --version | head -1; git br | grep '*'"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - tower-qa ({{ branch }})"
   when: branch != "devel"
   tags: tower-qa

@@ -35,6 +35,9 @@ map <C-I> :set relativenumber!<CR>:set number!<CR>
 nmap <S-Enter> O<Esc>j
 nmap <CR> o<Esc>k
 
+" Save session
+nmap <Leader>v :mksession! tmp/session.vim
+
 " Open new split panes to right and bottom
 " https://thoughtbot.com/blog/vim-splits-move-faster-and-more-naturally
 set splitbelow

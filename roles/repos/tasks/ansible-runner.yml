@@ -65,6 +65,6 @@
   blockinfile:
     path: ~/.bashrc
     block: |
-      alias run="cd ~/git/ansible-runner; v; workon runner; python --version | head -1; git br | grep '*'"
+      alias run="cd ~/git/ansible-runner; vw; workon runner; python --version | head -1; git br | grep '*'"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - runner"
   tags: runner
