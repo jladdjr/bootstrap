@@ -50,7 +50,7 @@
       }
 
       # Clear UI artifacts, rebuild UI
-      derez_ui () {
+      rebuild_ui () {
           make clean-ui
           make ui-devel
       }
