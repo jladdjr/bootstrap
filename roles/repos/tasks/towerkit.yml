@@ -45,8 +45,21 @@
       alias mach='echo ${AWXKIT_BASE_URL:8}'
       export AWXKIT_SCHEMA_VALIDATION=False
       export AWXKIT_CREDENTIAL_FILE='/home/jim/git/tower-qa-devel/config/credentials.yml'
+      export AWXKIT_PROJECT_FILE='/home/jim/.akit/projects.yml'
       export AWXKIT_USER='admin'
       export AWXKIT_USER_PASSWORD='fo0m4nchU'
       alias tk="cd ~/git/towerkit; vw; workon towerkit; python --version | head -1; git br | grep '*'"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - towerkit"
   tags: towerkit
+
+- name: Make .akit config directory
+  file:
+    dest: ~/.akit
+    state: directory
+    mode: 0755
+
+- name: Create projects (scm url) file
+  copy:
+    src: akit/projects.yml
+    dest: ~/.akit/projects.yml
+    mode: 0755

@@ -1,0 +1,5 @@
+---
+git: 'https://github.com/ansible/test-playbooks.git'
+svn: 'https://github.com/ansible/test-playbooks'
+hg: 'https://bitbucket.org/ansibleengineering/test-playbooks-hg'
+
