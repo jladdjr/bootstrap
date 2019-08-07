@@ -1,7 +1,7 @@
 Running pytest:
 $ py.test --pdb -c config/api.cfg --ansible-user ec2-user \
-   --ansible-host-pattern="${TOWERKIT_BASE_URL:8}" \
-   --base-url="${TOWERKIT_BASE_URL}" \
+   --ansible-host-pattern="${AWXKIT_BASE_URL:8}" \
+   --base-url="${AWXKIT_BASE_URL}" \
    -k "<filter expression>" \
    tests/api
 
