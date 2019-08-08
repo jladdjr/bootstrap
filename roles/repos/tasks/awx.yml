@@ -37,7 +37,7 @@
   blockinfile:
     path: ~/.bashrc
     block: |
-      alias awx="vw; workon awx; cd ~/git/awx; python --version | head -1; git br | grep '*'"
+      alias a="vw; workon awx; cd ~/git/awx; python --version | head -1; git br | grep '*'"
 
       # Thoroughly remove awx containers, images and ui build artifacts
       derez () {
