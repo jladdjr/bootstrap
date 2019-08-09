@@ -50,6 +50,11 @@
           docker images
       }
 
+      dropdb () {
+          docker stop tools_postgres_1
+          docker rm tools_postgres_1
+      }
+
       # Clear UI artifacts, rebuild UI
       rebuild_ui () {
           make clean-ui
