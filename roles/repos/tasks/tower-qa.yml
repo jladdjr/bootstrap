@@ -102,8 +102,6 @@
     block: |
       alias tq="cd ~/git/tower-qa-devel; vw; workon tower-qa-devel; python --version | head -1; git br | grep '*'"
       alias get_project_home='JDL_PROJECT_HOME=~/git/$(pwd | cut -d '/' -f 5)'
-      alias t='get_project_home; cd ${JDL_PROJECT_HOME}/tests/api'
-      alias f='get_project_home; cd ${JDL_PROJECT_HOME}/tests/lib/fixtures/api'
     marker: "# {mark} ANSIBLE MANAGED BLOCK - tower-qa"
   when: branch == "devel"
   tags: tower-qa
