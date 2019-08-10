@@ -97,3 +97,5 @@
       # Prompt colors:
       # https://unix.stackexchange.com/questions/124407/what-color-codes-can-i-use-in-my-ps1-prompt
       export PS1="\\[$(tput setaf 34)\\]\\u@\\h \\[$(tput setaf 172)\\]\`prompt_dir\` \\[$(tput setaf 34)\\]$ \\[$(tput setaf 32)\\]\`parse_git_branch\`\\[$(tput sgr0)\\]"
+
+      alias t='ssh jim@tokyo'
