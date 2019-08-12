@@ -50,7 +50,7 @@
           docker images
       }
 
-      dropdb () {
+      rmdb () {
           docker stop tools_postgres_1
           docker rm tools_postgres_1
       }
