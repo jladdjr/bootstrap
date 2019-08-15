@@ -98,4 +98,15 @@
       # https://unix.stackexchange.com/questions/124407/what-color-codes-can-i-use-in-my-ps1-prompt
       export PS1="\\[$(tput setaf 34)\\]\\u@\\h \\[$(tput setaf 172)\\]\`prompt_dir\` \\[$(tput setaf 34)\\]$ \\[$(tput setaf 32)\\]\`parse_git_branch\`\\[$(tput sgr0)\\]"
 
+      f () {
+          HEAD1=$(git rev-list -n 1 ansible/devel)
+          git fetch ansible
+          HEAD2=$(git rev-list -n 1 ansible/devel)
+          git diff --stat ${HEAD1}..${HEAD2}
+      }
+
+      alias d='git diff ${HEAD1}..${HEAD2}'
+      alias o='git diff --stat ${HEAD1}..${HEAD2}'
+      alias l='git llog ${HEAD1}..${HEAD2}'
+
       alias t='ssh jim@tokyo'
