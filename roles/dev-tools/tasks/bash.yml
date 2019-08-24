@@ -29,7 +29,7 @@
       if [ -t 1 ]; then echo -e "#$(date +%s)\n#--- new session ---" >> $HISTFILE; fi
 
       # Re-open vim session
-      alias v='vim -S tmp/session.vim'
+      alias v='vi `find . | fzf`'
 
       alias vw='source /usr/bin/virtualenvwrapper.sh'
 
