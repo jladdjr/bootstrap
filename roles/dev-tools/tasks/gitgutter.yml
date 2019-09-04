@@ -1,0 +1,14 @@
+- name: Install gitgutter vim plugin
+  git:
+    repo: https://github.com/airblade/vim-gitgutter.git
+    dest: "~/.vim/bundle/gitgutter.vim"
+  tags: [gitgutter]
+
+
+- name: Add configuration for gitgutter
+  blockinfile:
+    path: ~/.vimrc
+    block: |
+      " Configuration for vim-gitgutter
+      set updatetime=400
+    marker: '" {mark} ANSIBLE MANAGED BLOCK - gitgutter.vim'

@@ -33,6 +33,9 @@ fzf:
 git:
 	ansible-playbook -i $(INVENTORY) --tags git provision.yml
 
+gitgutter:
+	ansible-playbook -i $(INVENTORY) --tags gitgutter provision.yml
+
 hostname:
 	ansible-playbook -i $(INVENTORY) --tags hostname provision.yml
 
