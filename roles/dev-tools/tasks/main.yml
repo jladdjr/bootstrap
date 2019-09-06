@@ -32,6 +32,9 @@
 - import_tasks: rhubarb.yml
   tags: [rhubarb, vim_with_plugins]
 
+- import_tasks: localvimrc.yml
+  tags: [localvimrc, vim_with_plugins]
+
 - import_tasks: git.yml
   tags: git
 

@@ -39,6 +39,9 @@ gitgutter:
 hostname:
 	ansible-playbook -i $(INVENTORY) --tags hostname provision.yml
 
+localvimrc:
+	ansible-playbook -i $(INVENTORY) --tags localvimrc provision.yml
+
 mutt:
 	# Expects an ansible-vault file, mutt_secrets.yml, which should take the form:
 	# MUTT_PERSONAL_PASSWORD: MY_PASSWORD
