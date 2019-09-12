@@ -28,8 +28,8 @@
       # https://stackoverflow.com/questions/911168/how-to-detect-if-my-shell-script-is-running-through-a-pipe
       if [ -t 1 ]; then echo -e "#$(date +%s)\n#--- new session ---" >> $HISTFILE; fi
 
-      # Re-open vim session
-      alias v='vi `find . | fzf`'
+      # Open all files changed in this branch (compared to ansible/devel)
+      alias v='vi `git diff --name-only $(git merge-base HEAD ansible/devel)`'
 
       alias vw='source /usr/bin/virtualenvwrapper.sh'
 
