@@ -9,6 +9,8 @@
     path: ~/.vimrc
     block: |
       " Syntastic
+      " In order for Syntastic to correctly show errors
+      " make sure that flake8 is kept up-to-date!
       let g:syntastic_always_populate_loc_list = 1
       let g:syntastic_auto_loc_list = 1
       let g:syntastic_check_on_open = 1
