@@ -99,9 +99,10 @@
       export PS1="\\[$(tput setaf 34)\\]\\u@\\h \\[$(tput setaf 172)\\]\`prompt_dir\` \\[$(tput setaf 34)\\]$ \\[$(tput setaf 32)\\]\`parse_git_branch\`\\[$(tput sgr0)\\]"
 
       f () {
-          HEAD1=$(git rev-list -n 1 ansible/devel)
+          DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@")
+          HEAD1=$(git rev-list -n 1 ansible/${DEFAULT_BRANCH})
           git fetch ansible
-          HEAD2=$(git rev-list -n 1 ansible/devel)
+          HEAD2=$(git rev-list -n 1 ansible/${DEFAULT_BRANCH})
           git diff --stat ${HEAD1}..${HEAD2}
       }
 
