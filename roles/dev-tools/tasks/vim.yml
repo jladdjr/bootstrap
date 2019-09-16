@@ -18,3 +18,10 @@
     - /root
   loop_control:
     loop_var: home_dir
+
+- name: periodically renice vim commands
+  cron:
+    name: renice vim
+    minute: "*/5"
+    job: renice -17 $(pgrep vim)
+  become: true
