@@ -29,9 +29,9 @@ unset recall             # don't ask to recall messages on compose
 
 # Sidebar Patch ---------------------------------------------------------------
 set sidebar_visible = yes
-set sidebar_width   = 26
+set sidebar_width   = 30
 set sidebar_divider_char = '  '
-set sidebar_format = "%B%* %?N?%N?"
+set sidebar_format = "%B%* %S"  # Show name of mailbox, total number of msgs (size)
 set sidebar_short_path
 set sidebar_folder_indent
 set sidebar_indent_string="  "
