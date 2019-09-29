@@ -32,27 +32,27 @@
 - name: Copy mutt / notmuch dotfiles
   copy:
     src: neomutt/"{{ item }}"
-    dest: "{{ lookup('env', 'HOME') }}"
+    dest: "{{ lookup('env', 'HOME') }}/.{{ item }}"
     mode: 0600
   with_items:
-    - .neomuttrc.work
-    - .neomuttrc.personal
-    - .notmuch-config
-    - .gpg.rc
+    - neomuttrc.work
+    - neomuttrc.personal
+    - notmuch-config
+    - gpg.rc
 
 - name: Create offlineimaprc / msmtprc dotfiles (requires mutt passwords)
   template:
     src: neomutt/"{{ item }}"
-    dest: "~/{{ item|replace('.j2','') }}"
+    dest: "~/.{{ item|replace('.j2','') }}"
     mode: 0600
   with_items:
-    - .offlineimaprc.j2
-    - .msmtprc.j2
+    - offlineimaprc.j2
+    - msmtprc.j2
 
 - name: Create .mutt folder
   copy:
-    src: neomutt/.mutt
-    dest: "{{ lookup('env', 'HOME') }}"
+    src: neomutt/mutt
+    dest: "{{ lookup('env', 'HOME') }}/.mutt"
     mode: 0700
 
 - name: Is mapped/.mail folder present?
@@ -61,8 +61,8 @@
 
 - name: .. if not, create the file
   copy:
-    src: neomutt/mapped/.mail
-    dest: /var/mapped
+    src: neomutt/mapped/mail
+    dest: /var/mapped/.mail
     mode: 0700
   when: dotmail.stdout.find('No such file or directory') != -1
 
