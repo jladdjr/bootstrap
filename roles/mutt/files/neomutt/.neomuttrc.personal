@@ -8,13 +8,12 @@ mailboxes +@jladdjr \
           +gmail.com/INBOX \
           +gmail.com/group \
           +gmail.com/world \
-          +gmail.com/\#same-day-service \
-          +gmail.com/\#get-back-to-folks \
-          +gmail.com/\#todo \
-          +gmail.com/\#read \
+          +gmail.com/\#day \
+          +gmail.com/\#week \
+          +gmail.com/\#month \
+          +gmail.com/\#overdue \
+          +gmail.com/\#extremely-overdue \
           +gmail.com/\#waiting \
-          +gmail.com/\#file-away\
-          +gmail.com/qrp-labs \
           +gmail.com/archive \
           +gmail.com/sent \
           +gmail.com/drafts \
@@ -32,6 +31,11 @@ folder-hook gmail.com/* source ~/.mutt/jladdjr.muttrc
 # Only show new mail by default
 set sidebar_new_mail_only = yes
 sidebar_whitelist '+gmail.com/INBOX'
+sidebar_whitelist '+gmail.com/#day'
+sidebar_whitelist '+gmail.com/#week'
+sidebar_whitelist '+gmail.com/#month'
+sidebar_whitelist '+gmail.com/#overdue'
+sidebar_whitelist '+gmail.com/#extremely-overdue'
 
 # Gmail mappings
 bind index,pager l noop

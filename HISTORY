@@ -51,3 +51,5 @@ History
 - tkit -> akit
 - Install vim-gitgutter
 - Install vim-localvimrc 
+- Create #day, #week, #month, #[extremesly-]overdue mailboxes
+  (and associated imapfilter rules)

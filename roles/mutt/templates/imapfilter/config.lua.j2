@@ -24,6 +24,19 @@ redhat_account = IMAP {
 messages = personal_account["INBOX"]:match_subject('^Alert - .*')
 messages:delete_messages()
 
+-- Label old e-mails as overdue
+messages = personal_account["INBOX"]:is_older(1)
+  + personal_account["group"]:is_older(2)
+  + personal_account["world"]:is_older(3)
+  + personal_account["#day"]:is_older(1)
+  + personal_account["#week"]:is_older(7)
+  + personal_account["#month"]:is_older(30)
+messages:move_messages(personal_account["#overdue"])
+
+-- Label 2 month old e-mails as extremely overdue
+messages = personal_account["#overdue"]:is_older(60)
+messages:move_messages(personal_account["#extremely-overdue"])
+
 
 -- Mark all mail in archive as seen (i.e. read)
 
