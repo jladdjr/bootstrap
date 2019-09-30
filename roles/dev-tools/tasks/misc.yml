@@ -9,4 +9,5 @@
       - strace
       - telnet
       - nc
+      - lsof
   become: true
