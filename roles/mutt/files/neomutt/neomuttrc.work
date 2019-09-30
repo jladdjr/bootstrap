@@ -3,6 +3,8 @@
 # Default inbox.
 set spoolfile = "+redhat.com/INBOX"
 
+set sidebar_format = "%B%* %?N?%N?"  # Show name of mailbox, number of unread messages
+
 # Mailboxes to show in the sidebar.
 mailboxes +@rh \
           +redhat.com/INBOX \
