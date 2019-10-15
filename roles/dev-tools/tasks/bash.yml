@@ -115,4 +115,4 @@
       alias o='git diff --stat ${HEAD1}..${HEAD2}'
       alias l='git llog ${HEAD1}..${HEAD2}'
 
-      alias t='ssh jim@tokyo'
+      alias to='ssh jim@tokyo'
