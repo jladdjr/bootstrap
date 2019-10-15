@@ -36,4 +36,5 @@
     path: ~/.bash_profile
     block: |
       export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-      source /usr/bin/virtualenvwrapper.sh
+      # Don't source virtualenvwrapper.sh; slow to load. Load as needed instead
+      #source /usr/bin/virtualenvwrapper.sh
