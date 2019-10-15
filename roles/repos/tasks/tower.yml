@@ -32,7 +32,7 @@
   blockinfile:
     path: ~/.bashrc
     block: |
-      alias tower="cd ~/git/tower; git br | grep '*'"
+      alias t="vw; workon tower; cd ~/git/tower; python --version | head -1; git br | grep '*'"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - tower"
 
 - name: Add .ignore file (for ag)
