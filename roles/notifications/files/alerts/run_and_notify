@@ -1,5 +1,11 @@
 #!/bin/bash
 
 eval "${@:1}"
+if [ $? -eq 0 ]; then
+    result="✅"
+else
+    result="❌"
+fi
+
 HOST=$(netstat -rn | grep '^0.0.0.0' | awk '{print $2}')
-ssh jim@${HOST} /Users/jim/Vagrant/mapped/bin/alert.sh \"Finished running ${@:1}\"
+ssh jim@${HOST} /Users/jim/Vagrant/mapped/bin/alert.sh \"Finished running ${@:1} $result\"
