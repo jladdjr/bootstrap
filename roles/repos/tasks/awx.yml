@@ -74,7 +74,7 @@
           docker rm tools_postgres_1
       }
 
-
+      alias update_settings='cp awx/settings/local_settings.py.docker_compose awx/settings/local_settings.py'
     marker: "# {mark} ANSIBLE MANAGED BLOCK - awx"
   tags: awx
 
