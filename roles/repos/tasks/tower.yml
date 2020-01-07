@@ -3,23 +3,27 @@
     dest: ~/git/tower
     repo: git@github.com:jladdjr/tower.git
     accept_hostkey: yes
+  tags: tower
 
 - name: Determine which remotes exist
   command: git remote -v
   args:
     chdir: ~/git/tower
   register: git_remote
+  tags: tower
 
 - name: Add remote repo (ansible)
   command: git remote add ansible git@github.com:ansible/tower.git
   args:
     chdir: ~/git/tower
   when: git_remote.stdout.find('ansible') == -1
+  tags: tower
 
 - name: Fetch ansible repo
   command: git fetch ansible
   args:
     chdir: ~/git/tower
+  tags: tower
 
 - name: Create tower virtualenv
   shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 tower
@@ -27,6 +31,7 @@
     executable: /bin/bash
   environment:
     VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+  tags: tower
 
 - name: Create tower aliases
   blockinfile:
@@ -34,8 +39,10 @@
     block: |
       alias t="vw; workon tower; cd ~/git/tower; python --version | head -1; git br | grep '*'"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - tower"
+  tags: tower
 
 - name: Add .ignore file (for ag)
   copy:
     src: files/ag/dot_ignore
     dest: ~/git/tower/.ignore
+  tags: tower
