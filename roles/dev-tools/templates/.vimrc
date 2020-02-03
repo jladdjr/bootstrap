@@ -71,7 +71,14 @@ let @r="ma/^--^MkmdGd'd^[ggg'a"
 
 " Python folding
 " https://stackoverflow.com/a/360634/10669572
-set foldmethod=indent
 set foldnestmax=2
 nnoremap <space> za
 vnoremap <space> zf
+
+" Created folds using 'indent' foldmethod when reading file
+" .. but allow manual folds after file has been loaded
+" https://vim.fandom.com/wiki/Folding#Indent_folding_with_manual_folds
+augroup vimrc
+  au BufReadPre * setlocal foldmethod=indent
+  au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+augroup END
