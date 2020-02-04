@@ -2,7 +2,7 @@
   git:
     dest: ~/git/ansible-runner
     repo: git@github.com:jladdjr/ansible-runner.git
-    version: master
+    version: devel
     accept_hostkey: yes
   tags: runner
 
@@ -15,7 +15,7 @@
   tags: runner
 
 - name: Install ansible-runner to venv (using pip's editable mode)
-  shell: . /usr/bin/virtualenvwrapper.sh && workon runner && pip install -e . 
+  shell: . /usr/bin/virtualenvwrapper.sh && workon runner && pip install -e .
   args:
     executable: /bin/bash
     chdir: ~/git/ansible-runner
