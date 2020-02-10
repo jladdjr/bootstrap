@@ -38,6 +38,11 @@ messages = personal_account["#overdue"]:is_older(60)
 messages:move_messages(personal_account["#extremely-overdue"])
 
 
+-- Forward openstenoproject/plover mail to personal mail
+messages = redhat_account['INBOX']:contain_subject('openstenoproject/plover')
+messages:move_messages(personal_account['INBOX'])
+
+
 -- Mark all mail in archive as seen (i.e. read)
 
 -- messages = personal_account["[Gmail]/All Mail"]:is_unseen()
