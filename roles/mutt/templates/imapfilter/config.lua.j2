@@ -42,6 +42,10 @@ messages:move_messages(personal_account["#extremely-overdue"])
 messages = redhat_account['INBOX']:contain_subject('openstenoproject/plover')
 messages:move_messages(personal_account['INBOX'])
 
+-- Forward didoesdigital/typey-type mail to personal mail
+messages = redhat_account['INBOX']:contain_subject('didoesdigital/typey-type')
+messages:move_messages(personal_account['INBOX'])
+
 
 -- Mark all mail in archive as seen (i.e. read)
 
