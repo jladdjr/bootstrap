@@ -30,6 +30,9 @@ augroup END
 " Toggle (relative) numbers
 map <C-I> :set relativenumber!<CR>:set number!<CR>
 
+" Toggle folding
+nmap <Leader>d :set foldenable!<CR>
+
 " Insert newline w/out entering edit mode
 " http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
 nmap <S-Enter> O<Esc>j
