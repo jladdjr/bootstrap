@@ -46,6 +46,9 @@ messages:move_messages(personal_account['INBOX'])
 messages = redhat_account['INBOX']:contain_subject('didoesdigital/typey-type')
 messages:move_messages(personal_account['INBOX'])
 
+-- Move foreman messages to foreman folder
+messages = redhat_account['INBOX']:contain_subject('foreman-ansible-modules')
+messages:move_messages(redhat_account['foreman'])
 
 -- Mark all mail in archive as seen (i.e. read)
 
