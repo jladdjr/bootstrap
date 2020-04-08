@@ -116,3 +116,5 @@
       alias l='git llog ${HEAD1}..${HEAD2}'
 
       alias to='ssh jim@tokyo'
+
+      export MAPPED_FOLDER='/var/mapped'
