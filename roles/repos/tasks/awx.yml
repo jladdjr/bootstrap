@@ -46,6 +46,7 @@
           docker ps --all -q | xargs docker rm
           make docker-clean
           make clean
+          make docker-clean-volumes
           docker ps --all
           docker images
       }
