@@ -1,3 +1,3 @@
 #!/bin/bash
 
-osascript -e "display notification \"${1}\" with title \"CentOS\" sound name \"default\""
+osascript -e "display notification \"${1}\" with title \"VM\" sound name \"default\""
