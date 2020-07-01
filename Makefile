@@ -9,9 +9,6 @@ ansible:
 ansible-engineering:
 	ansible-playbook -i $(INVENTORY) --tags ansible-engineering provision.yml
 
-ansible-license:
-	ansible-playbook -i $(INVENTORY) --tags ansible-license provision.yml
-
 ansible-runner:
 	ansible-playbook -i $(INVENTORY) --tags runner provision.yml
 
@@ -77,9 +74,6 @@ tmux-focus-events:
 
 tower:
 	ansible-playbook -i $(INVENTORY) --tags tower provision.yml
-
-towerkit:
-	ansible-playbook -i $(INVENTORY) --tags towerkit provision.yml
 
 tower-packaging:
 	ansible-playbook -i $(INVENTORY) --tags tower-packaging provision.yml
