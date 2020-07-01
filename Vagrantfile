@@ -126,8 +126,9 @@ In vm (if cdrom not already mounted):
 # rpm -q kernel-devel (confirm matches kernel version)
 
 # cd /media/cdrom
-# dnf install -y gcc make perl (required by VBoxLinuxAdditions.run)
-# ./VBoxLinuxAdditions.run
+# dnf install -y gcc make perl elfutils-libelf-devel (required by VBoxLinuxAdditions.run)
+# ./VBoxLinuxAdditions.run  (latest version used: VirtualBox Guest Additions 6.0.22 w/
+                                                  Version 6.0.22 r137980 (Qt5.6.3))
 
 # restart vm
 $ vagrant reload
