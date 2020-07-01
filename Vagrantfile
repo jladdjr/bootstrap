@@ -11,6 +11,8 @@ Vagrant.configure(2) do |config|
     vb.customize ["modifyvm", :id, "--vram", "128"]
   end
 
+  config.ssh.forward_agent = true
+
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "provision.yml"
   end
@@ -55,6 +57,21 @@ Resources:
 
 * [Known issue with xfs_{info,growfs} /dev/sda1](https://access.redhat.com/solutions/3940331)
 * [xfs file system](https://en.wikipedia.org/wiki/XFS)
+
+# Using ssh-agent
+
+On the host machine, add (default) keys:
+
+$ ssh-add
+$ ssh-add -l (or ssh-add -L to show public key
+
+If ssh-agent is not already running inside the vm, run:
+
+$ eval $(ssh-agent)
+
+This will:
+1. start ssh-agent, and
+2. source ssh-agent env vars
 
 # Bootstrapping new vm
 
