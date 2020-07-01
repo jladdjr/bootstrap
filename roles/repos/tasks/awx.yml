@@ -26,7 +26,7 @@
   tags: awx
 
 - name: Create awx virtualenv
-  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 awx
+  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 awx
   args:
     executable: /bin/bash
   environment:

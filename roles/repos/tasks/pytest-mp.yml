@@ -5,7 +5,7 @@
     accept_hostkey: yes
 
 - name: Create pytest-mp virtualenv
-  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 pytest-mp
+  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 pytest-mp
   args:
     executable: /bin/bash
   environment:

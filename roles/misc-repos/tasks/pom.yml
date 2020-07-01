@@ -5,7 +5,7 @@
     accept_hostkey: yes
 
 - name: Create pom virtualenv
-  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 pom
+  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 pom
   args:
     executable: /bin/bash
   environment:

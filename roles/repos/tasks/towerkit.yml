@@ -7,7 +7,7 @@
   tags: towerkit
 
 - name: Create towerkit virtualenv
-  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 towerkit
+  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 towerkit
   args:
     executable: /bin/bash
   environment:
@@ -15,7 +15,7 @@
   tags: towerkit
 
 - name: Add towerkit requirements to venv
-  shell: . /usr/bin/virtualenvwrapper.sh && workon towerkit && pip install -r requirements.txt
+  shell: . /usr/local/bin/virtualenvwrapper.sh && workon towerkit && pip install -r requirements.txt
   args:
     executable: /bin/bash
     chdir: ~/git/towerkit

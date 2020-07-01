@@ -7,7 +7,7 @@
   tags: ansible-license
 
 - name: Create ansible-license virtualenv
-  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 ansible-license
+  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 ansible-license
   args:
     executable: /bin/bash
   environment:
@@ -15,7 +15,7 @@
   tags: ansible-license
 
 - name: Install pip-tools
-  shell: ". /usr/bin/virtualenvwrapper.sh && workon ansible-license && pip install pip-tools"
+  shell: ". /usr/local/bin/virtualenvwrapper.sh && workon ansible-license && pip install pip-tools"
   args:
     executable: /bin/bash
     chdir: ~/git/ansible-license

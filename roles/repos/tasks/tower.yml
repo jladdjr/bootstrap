@@ -26,7 +26,7 @@
   tags: tower
 
 - name: Create tower virtualenv
-  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 tower
+  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 tower
   args:
     executable: /bin/bash
   environment:

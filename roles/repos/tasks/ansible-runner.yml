@@ -7,7 +7,7 @@
   tags: runner
 
 - name: Create ansible-runner virtualenv
-  shell: . /usr/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 runner
+  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 runner
   args:
     executable: /bin/bash
   environment:
@@ -15,7 +15,7 @@
   tags: runner
 
 - name: Install ansible-runner to venv (using pip's editable mode)
-  shell: . /usr/bin/virtualenvwrapper.sh && workon runner && pip install -e .
+  shell: . /usr/local/bin/virtualenvwrapper.sh && workon runner && pip install -e .
   args:
     executable: /bin/bash
     chdir: ~/git/ansible-runner
@@ -26,7 +26,7 @@
 # Note: I'm not sure why, but pip installing ansible is not adding the ansible binary to the venv
 # Not going to worry about that here, though, since runner only needs the ansible python library
 - name: Install ansible (devel) to venv
-  shell: . /usr/bin/virtualenvwrapper.sh && workon runner && pip install -I git+http://github.com/ansible/ansible.git@devel
+  shell: . /usr/local/bin/virtualenvwrapper.sh && workon runner && pip install -I git+http://github.com/ansible/ansible.git@devel
   args:
     executable: /bin/bash
     chdir: ~/git/ansible-runner
@@ -35,7 +35,7 @@
   tags: runner
 
 - name: Install pytest, mock, tox to venv
-  shell: ". /usr/bin/virtualenvwrapper.sh && workon runner && pip install {{ item }}"
+  shell: ". /usr/local/bin/virtualenvwrapper.sh && workon runner && pip install {{ item }}"
   args:
     executable: /bin/bash
     chdir: ~/git/ansible-runner
