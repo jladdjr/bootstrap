@@ -1,12 +1,59 @@
-- name: Install imapfilter
-  yum:
-    name: "{{ item }}"
-    state: present
-  become: true
-  with_items:
-    - imapfilter
-    - luarocks   # adding as a convenience for interactive lua tinkering w/ lua libraries ("rocks")
-    - lua-devel  # required to import / build some rocks
+- name: determine if lua already installed
+  shell: which lua
+  register: which_lua
+  ignore_errors: true
+
+- block:
+  # install lua from source;
+  # while you can install lua for centos8,
+  # I can't find a way to install the header files
+  # (i.e. lua-devel) for the version available
+  # on centos 8 .. so we just build it
+  # in order for the binaries and header files to
+  # be in sync : /
+  - name: get lua source
+    get_url:
+      url: https://www.lua.org/ftp/lua-5.4.0.tar.gz
+      dest: /tmp/lua.tar.gz
+      checksum: sha1:8cdbffa8a214a23d190d7c45f38c19518ae62e89
+
+  - name: extract lua source
+    unarchive:
+      src: /tmp/lua.tar.gz
+      dest: /tmp
+
+  - name: build lua
+    shell:
+      cmd: make all test install
+      chdir: /tmp/lua-5.4.0
+    become: true
+  when: which_lua.rc != 0
+
+- name: determine if imapfilter already installed
+  shell: which imapfilter
+  register: which_imapfilter
+  ignore_errors: true
+
+- block:
+  # just like lua.. didn't find clean way to install
+  # imapfilter from any repo .. so we're bulding it
+  # from source
+  - name: get latest imapfilter release (as source)
+    get_url:
+      url: https://github.com/lefcha/imapfilter/archive/v2.6.16.tar.gz
+      dest: /tmp/imapfilter.tar.gz
+
+  - name: extract imapfilter source code
+    unarchive:
+      src: /tmp/imapfilter.tar.gz
+      dest: /tmp
+
+  - name: build imapfilter
+    shell:
+      cmd: make all install
+      chdir: /tmp/imapfilter-2.6.16
+    become: true
+  when: which_imapfilter.rc != 0
 
 - name: Create ~/.imapfilter
   file:
