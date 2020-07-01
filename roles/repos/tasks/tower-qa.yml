@@ -100,7 +100,7 @@
   blockinfile:
     path: ~/.bashrc
     block: |
-      alias tq="cd ~/git/tower-qa-devel; vw; workon tower-qa-devel; python --version | head -1; git br | grep '*'"
+      alias tq="cd ~/git/tower-qa-devel; workon tower-qa-devel; python --version | head -1; git br | grep '*'"
       alias get_project_home='JDL_PROJECT_HOME=~/git/$(pwd | cut -d '/' -f 5)'
     marker: "# {mark} ANSIBLE MANAGED BLOCK - tower-qa"
   when: branch == "devel"
@@ -110,7 +110,7 @@
   blockinfile:
     path: ~/.bashrc
     block: |
-      alias tq{{ branch | replace('release_', '') | replace('.', '') }}="cd ~/git/tower-qa-{{ branch }}; vw; workon tower-qa-{{ branch }}; python --version | head -1; git br | grep '*'"
+      alias tq{{ branch | replace('release_', '') | replace('.', '') }}="cd ~/git/tower-qa-{{ branch }}; workon tower-qa-{{ branch }}; python --version | head -1; git br | grep '*'"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - tower-qa ({{ branch }})"
   when: branch != "devel"
   tags: tower-qa

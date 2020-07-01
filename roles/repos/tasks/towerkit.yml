@@ -48,7 +48,7 @@
       export AWXKIT_PROJECT_FILE='/home/jim/.akit/projects.yml'
       export AWXKIT_USER='admin'
       export AWXKIT_USER_PASSWORD='fo0m4nchU'
-      alias tk="cd ~/git/towerkit; vw; workon towerkit; python --version | head -1; git br | grep '*'"
+      alias tk="cd ~/git/towerkit; workon towerkit; python --version | head -1; git br | grep '*'"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - towerkit"
   tags: towerkit
 

@@ -37,7 +37,7 @@
   blockinfile:
     path: ~/.bashrc
     block: |
-      alias t="vw; workon tower; cd ~/git/tower; python --version | head -1; git br | grep '*'"
+      alias t="workon tower; cd ~/git/tower; python --version | head -1; git br | grep '*'"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - tower"
   tags: tower
 

@@ -41,6 +41,6 @@
   blockinfile:
     path: ~/.bashrc
     block: |
-      alias l="cd ~/git/ansible-license; vw; workon ansible-license; python --version | head -1; git br | grep '*'"
+      alias l="cd ~/git/ansible-license; workon ansible-license; python --version | head -1; git br | grep '*'"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - ansible-license"
   tags: ansible-license

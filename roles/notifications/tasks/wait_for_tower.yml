@@ -28,7 +28,7 @@
 - name: Create alias to source (python2) ansible
   lineinfile:
     path: ~/.bashrc
-    line: alias py2-ans='vw; workon py2-ansible; python --version | head -1; ansible --version | head -1'
+    line: alias py2-ans='workon py2-ansible; python --version | head -1; ansible --version | head -1'
 
 - name: Ensure /usr/bin/jim/wait_for_tower folder exists
   file:
