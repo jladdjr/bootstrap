@@ -9,31 +9,18 @@
 - include_tasks: tower-qa.yml
   loop:
     - devel
-    - release_3.4.0
-    - release_3.3.3
-    #- release_3.2.9
-    #- release_3.1
+    - release_3.7.0
   loop_control:
     loop_var: branch
   tags: tower-qa
-
-- include_tasks: towerkit.yml
-  tags: towerkit
 
 - include_tasks: ansible.yml
   loop:
     - devel
     - stable-2.9
-    - stable-2.8
-    - stable-2.7
-    - stable-2.6
-    - stable-2.5
   loop_control:
     loop_var: branch
   tags: ansible
-
-- include_tasks: pytest-mp.yml
-  tags: pytest-mp
 
 - include_tasks: awx.yml
   tags: awx
@@ -43,9 +30,6 @@
 
 - include_tasks: ansible-runner.yml
   tags: runner
-
-- include_tasks: ansible-license.yml
-  tags: ansible-license
 
 - include_tasks: tower-packaging.yml
   tags: tower-packaging
