@@ -1,8 +1,14 @@
+- name: Check if bootstrap project already exists
+  shell: ls ~/git/bootstrap
+  register: ls_bootstrap
+  ignore_errors: yes
+
 - name: Add bootstrap project
   git:
     dest: ~/git/bootstrap
     repo: git@github.com:jladdjr/bootstrap.git
     accept_hostkey: yes
+  when: ls_bootstrap.rc != 0
 
 - name: Add bootstrap alias
   lineinfile:
