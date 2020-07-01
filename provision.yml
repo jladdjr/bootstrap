@@ -2,7 +2,6 @@
 
 - hosts: all
   roles:
-    - { role: keys, tags: keys }
     - { role: system, tags: system }
     - { role: dev-tools, tags: dev-tools }
     - { role: repos, tags: repos }
