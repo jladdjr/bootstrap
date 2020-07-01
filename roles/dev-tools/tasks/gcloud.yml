@@ -1,15 +1,33 @@
-# https://cloud.google.com/sdk/downloads#yum
-- name: Create gcloud repo
-  copy:
-    src: google-cloud-sdk.repo
-    dest: /etc/yum.repos.d
-  become: true
+# https://cloud.google.com/sdk/docs/quickstart-linux
+- name: remove existing google-cloud-sdk folder
+  file:
+    path: ~/google-cloud-sdk
+    state: absent
 
-- name: Install gcloud
-  yum:
-    name: google-cloud-sdk
-    state: latest
-  become: true
+- name: get gcloud sdk
+  get_url:
+    # see https://cloud.google.com/sdk/docs/quickstart-linux, step 3
+    url: https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-299.0.0-linux-x86_64.tar.gz
+    dest: /tmp/google-cloud-sdk.tar.gz
+    checksum: sha256:240042ba13bdef96e2d494dc67c3c367dfb27d0db5b9cb5bce4d3a517671762f
+
+- name: extract gcloud sdk
+  unarchive:
+    src: /tmp/google-cloud-sdk.tar.gz
+    dest: ~/
+
+- name: install gcloud sdk to path
+  shell: ~/google-cloud-sdk/install.sh --quiet
+
+- name: source gcloud tools in bashrc
+  lineinfile:
+    path: ~/.bashrc
+    line: . /home/jim/google-cloud-sdk/path.bash.inc
 
 - name: Set default gcloud project
-  command: gcloud config set project ansible-tower-engineering
+  command: ~/google-cloud-sdk/bin/gcloud config set project ansible-tower-engineering
+
+- name: clean up google-cloud-sdk folder
+  file:
+    path: ~/google-cloud-sdk
+    state: absent
