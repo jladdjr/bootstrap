@@ -1,20 +1,38 @@
 History
 =======
 
-1.0:
-- Basic system packages / configuration
-- Dev environment
-- Test environment
-- Mutt
-- Configuration for vim, tmux
+2.0.0 ("red")
+- moved to CentOS 8!
+- s/yum/dnf/
+- dropped IUS repo
+- updated installation for several apps, including:
+  - git
+  - tmux
+  - imapfilter
+  - lua
+- rev'ed vim plugins
+- fixed neomutt configuration
+- using ssh-agent
 
-1.0.1:
-- Install nodejs from nodesource
-- Install bash-completion
-- Misc mapped folder tweaks
-- Simplify mutt mailboxes
-- Bind f key for adding files in Mutt's compose mode
-- Fix issue with checking out tower-qa branch from ansible
+1.0.4 ("Paris")
+- Filter mail with imapfilter
+- tkit -> akit
+- Install vim-gitgutter
+- Install vim-localvimrc
+- Create #day, #week, #month, #[extremesly-]overdue mailboxes
+  (and associated imapfilter rules)
+
+1.0.3 ("Munich"):
+- Set BASH prompt
+- Add ansible-runner repo
+- In vim, open new split panes to right and bottom
+- Add tower-packaging repo
+- Install rhubarb (enables Gbrowse in vim)
+- Only use relative line numbers for Python
+- Use same mapleader (') across vimrc
+- Python folding in Vim
+- Macro to convert mutt e-mails from markdown to html
+- Install syntastic (syntax checking in vim)
 
 1.0.2 ("Berlin"):
 - Install ack
@@ -34,22 +52,17 @@ History
 - Configure hostname
 - Moved mapped folder to /var/mapped
 
-1.0.3 ("Munich"):
-- Set BASH prompt
-- Add ansible-runner repo
-- In vim, open new split panes to right and bottom
-- Add tower-packaging repo
-- Install rhubarb (enables Gbrowse in vim)
-- Only use relative line numbers for Python
-- Use same mapleader (') across vimrc
-- Python folding in Vim
-- Macro to convert mutt e-mails from markdown to html
-- Install syntastic (syntax checking in vim)
+1.0.1:
+- Install nodejs from nodesource
+- Install bash-completion
+- Misc mapped folder tweaks
+- Simplify mutt mailboxes
+- Bind f key for adding files in Mutt's compose mode
+- Fix issue with checking out tower-qa branch from ansible
 
-1.0.4 ("Paris")
-- Filter mail with imapfilter
-- tkit -> akit
-- Install vim-gitgutter
-- Install vim-localvimrc 
-- Create #day, #week, #month, #[extremesly-]overdue mailboxes
-  (and associated imapfilter rules)
+1.0.0:
+- Basic system packages / configuration
+- Dev environment
+- Test environment
+- Mutt
+- Configuration for vim, tmux
