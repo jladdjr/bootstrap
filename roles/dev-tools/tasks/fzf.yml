@@ -11,7 +11,7 @@
     git:
       dest: ~/.fzf
       repo: https://github.com/junegunn/fzf.git
-      version: 0.17.5  # latest version as of 1/2019
+      version: 0.21.1  # latest version as of 6/30/20
 
   - name: Build fzf
     shell: ./install
@@ -44,7 +44,7 @@
     marker: '" {mark} ANSIBLE MANAGED BLOCK - fzf.vim'
 
 - name: Install fd requirements
-  yum:
+  dnf:
     name: cargo
     state: present
   become: true
