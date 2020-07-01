@@ -1,34 +1,24 @@
 # Note that wait_for_tower.yml requires notify script
 # provided by alerts tasks
 
-# HACK:
-# Creating virtualenv specifically for running Ansible w/ Python 2 because
-# .. the get_url ansible module fails to run because
-# .. it requires the selinux Python package
-# .. which is available through the system's site-packages (provided by libselinux-python)
-# .. but apparently these are _only visible to Python 2_
-
-# Use --system-site-packages in order to use selinux package (provided by libselinux-python rpm)
-# https://dmsimard.com/2016/01/08/selinux-python-virtualenv-chroot-and-ansible-dont-play-nice/
-# https://github.com/ansible/ansible/issues/34340#issuecomment-355214723
-- name: Create py2-ansible virtualenv
-  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python2 --system-site-packages py2-ansible
+- name: Create ansible29 virtualenv
+  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv ansible29
   args:
     executable: /bin/bash
   environment:
     VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
 
 - name: Install Ansible and requirements for wait_for_tower in venv
-  shell: . /usr/local/bin/virtualenvwrapper.sh && workon py2-ansible && pip install -U -I ansible boto3
+  shell: . /usr/local/bin/virtualenvwrapper.sh && workon ansible29 && pip install -U -I ansible boto3
   args:
     executable: /bin/bash
   environment:
     VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
 
-- name: Create alias to source (python2) ansible
+- name: Create alias to source ansible
   lineinfile:
     path: ~/.bashrc
-    line: alias py2-ans='workon py2-ansible; python --version | head -1; ansible --version | head -1'
+    line: alias ans29='workon ansible29; python --version | head -1; ansible --version | head -1'
 
 - name: Ensure /usr/bin/jim/wait_for_tower folder exists
   file:
