@@ -6,8 +6,9 @@ set spoolfile = "+redhat.com/INBOX"
 set sidebar_format = "%B%* %?N?%N?"  # Show name of mailbox, number of unread messages
 
 # Mailboxes to show in the sidebar.
-mailboxes +@rh \
-          +redhat.com/INBOX \
+# TODO: restore @rh, @search, temporary/search
+#       see named-mailboxes
+mailboxes +redhat.com/INBOX \
           +redhat.com/group \
           +redhat.com/world \
           +redhat.com/ansible \
@@ -21,9 +22,7 @@ mailboxes +@rh \
           +redhat.com/archive \
           +redhat.com/sent \
           +redhat.com/drafts \
-          +redhat.com/trash \
-          +@search \
-          +temporary/search \
+          +redhat.com/trash
 
 # Set the proper account when opening folder
 folder-hook redhat.com/* source ~/.mutt/rh.muttrc

@@ -4,8 +4,9 @@
 set spoolfile = "+gmail.com/INBOX"
 
 # Mailboxes to show in the sidebar.
-mailboxes +@jladdjr \
-          +gmail.com/INBOX \
+# TODO: restore @jladdjr, @search, temporary/search
+#       see named-mailboxes
+mailboxes +gmail.com/INBOX \
           +gmail.com/group \
           +gmail.com/world \
           +gmail.com/\#day \
@@ -14,9 +15,7 @@ mailboxes +@jladdjr \
           +gmail.com/\#overdue \
           +gmail.com/\#extremely-overdue \
           +gmail.com/\#waiting \
-          +gmail.com/drafts \
-          +@search \
-          +temporary/search \
+          +gmail.com/drafts
 
 # Set the proper account when opening folder
 folder-hook gmail.com/* source ~/.mutt/jladdjr.muttrc
