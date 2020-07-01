@@ -8,4 +8,4 @@
     - { role: misc-repos, tags: misc-repos }
     - { role: mutt, tags: mutt }
     - { role: notifications, tags: notifications }
-    - { role: hints, tags: hints }
+    - { role: getting_started, tags: getting_started }

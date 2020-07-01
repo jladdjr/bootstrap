@@ -1,0 +1,11 @@
+- name: Copy getting_started file
+  copy:
+    src: getting_started.txt
+    dest: "{{ lookup('env', 'HOME') }}"
+    mode: 0755
+    force: yes
+
+- name: Create getting_started alias
+  lineinfile:
+    path: ~/.bashrc
+    line: alias start='cat ~/getting_started.txt'
