@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "centos/7"
+  config.vm.box = "centos/8"
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "5000"
@@ -18,9 +18,6 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 8013, host: 8013  # awx/tower
   config.vm.network "forwarded_port", guest: 8043, host: 8043  # awx/tower
   config.vm.network "forwarded_port", guest: 3001, host: 3001  # awx-pf/tower
-  config.vm.network "forwarded_port", guest: 80, host: 8080    # pom - prod
-  config.vm.network "forwarded_port", guest: 8000, host: 8001  # pom - test
-  config.vm.network "forwarded_port", guest: 8093, host: 8093  # ansible-license
 
   config.ssh.forward_x11 = true
   config.ssh.username = 'jim'
@@ -32,12 +29,22 @@ end
 
 __END__
 
+# Bootstrapping new vm
+
+- uncomment `config.ssh.username` in Vagrantfile
+- useradd jim; passwd jim
+- copy vagrant's authorized_keys file to jim home dir
+- add jim to sudoers
+
+Note: `vagrant ssh -p` will let you log in using your own keys
+instead of vagrant's.
+
 # How to install guest additions (to enable shared folders)
 https://wiki.centos.org/HowTos/Virtualization/VirtualBox/CentOSguest
 
 ## Overview
 - cannot mount folder from host to guest without guest additions
-- centos/7 box does not come with guest additions by default
+- centos/8 box does not come with guest additions by default
 - when installing guest additions:
   - kernel header files must be present and must match kernel version
     (so, good idea to update kernel first, then install kernel header files)
@@ -47,19 +54,23 @@ https://wiki.centos.org/HowTos/Virtualization/VirtualBox/CentOSguest
 - vagrant community has plugin to address this (which may be able to be used
   in place of the following steps). See `Vagrant plugin` section below.
 
-## Installing guest additions on CentOS 7 VirtualBox
+## Installing guest additions on CentOS 8 VirtualBox
 
 Update VirtualBox to make sure we have latest version of VirtualBox guest utils
 
 In vm:
-# yum update kernel
-# yum install kernel-devel
+# dnf --enablerepo=extras install -y epel-release
+# dnf upgrade
+# dnf groupinstall -y "Development Tools"
+# dnf update kernel          # may not be needed after doing
+# dnf install kernel-devel   # `dnf upgrade`
 (power down vm)
 
 In VirtualBox GUI:
+- Update VirtualBox
 - With vm powered down..
 - Add cdrom device (leave drive empty)
-- Power on vm
+- Power on vm (vagrant up)
 - Select vm, click Show. In VirtualBox VM menu,
   select Devices -> Insert Guest Additions CD image..
 
@@ -71,14 +82,27 @@ In vm (if cdrom not already mounted):
 # rpm -q kernel-devel (confirm matches kernel version)
 
 # cd /mount/cdrom
-# yum install -y gcc make perl (required by VBoxLinuxAdditions.run)
+# dnf install -y gcc make perl (required by VBoxLinuxAdditions.run)
 # ./VBoxLinuxAdditions.run
+
+# restart vm
+$ vagrant reload
+
+Towards the end of the vm booting up, should see:
+    ==> default: Machine booted and ready!
+    ==> default: Checking for guest additions in VM...
+    ==> default: Rsyncing folder: /Users/jim/Vagrant/centos8/ => /vagrant
+    ==> default: Mounting shared folders...
+        default: /var/mapped => /Users/jim/Vagrant/mapped
+
+In vm, should now see:
+* /var/mapped, with files owned by jim:vagrant
 
 ## Something to try in the future
 
-### geerlingguy/centos7
+### geerlingguy/centos8
 
-https://app.vagrantup.com/geerlingguy/boxes/centos7
+https://app.vagrantup.com/geerlingguy/boxes/centos8
 
 It looks like this comes with guest additions installed.
 That said, it's not an official image and it's not technically
