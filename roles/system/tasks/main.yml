@@ -7,8 +7,8 @@
 - import_tasks: networking.yml
   tags: networking
 
-- import_tasks: ntp.yml
-  tags: ntp
+- import_tasks: systemd-timesyncd.yml
+  tags: systemd-timesyncd
 
 - import_tasks: timezone.yml
   tags: timezone
