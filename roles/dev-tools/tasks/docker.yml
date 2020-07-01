@@ -1,21 +1,21 @@
 # https://docs.docker.com/install/linux/docker-ce/centos/
 - block:
-    - name: Install required packages
-      yum:
-        name: "{{ item }}"
+    - name: Install docker dependencies
+      dnf:
+        name: ['device-mapper-persistent-data', 'lvm2']
         state: latest
-      with_items:
-        - yum-utils
-        - device-mapper-persistent-data
-        - lvm2
 
     - name: Add (stable) docker repo
-      command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+      command: dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+      args:
+        warn: false  # ansible's dnf module doesn't seem to support adding repos
 
     - name: Install docker
-      yum:
-        name: docker-ce
-        state: latest
+      # --nobest required in order to install containerd.io >= 1.2.2-3
+      # error: https://gist.github.com/jladdjr/a85921880790dcade9c2548e8f1cd3d9
+      shell: dnf install -y docker-ce --nobest
+      args:
+        warn: false  # dnf module does not seem to support --nobest option
 
     - name: Enable docker service
       systemd:
@@ -32,9 +32,11 @@
 
     # https://docs.docker.com/compose/install/
     # To ensure you have the latest version, check the Compose repository release page on GitHub:
-    # https://github.com/docker/compose/releases (up-to-date as of 4/16/2018)
+    # https://github.com/docker/compose/releases (up-to-date as of 6/30/20)
     - name: Install docker-compose
-      shell: curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
+      shell: curl -L https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
+      args:
+        warn: false  # use shell module instead of get_url in order to use `$()` in command
 
     - name: Make docker-compose executable
       file:
