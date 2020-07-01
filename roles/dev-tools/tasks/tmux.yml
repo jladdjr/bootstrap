@@ -1,13 +1,6 @@
-# https://gist.github.com/pierreprinetti/86fbcd28e5cc1b3e0b9b762e4c12fad2
-- name: Remove old tmux
-  yum:
-    name: tmux
-    state: absent
-  become: true
-
 - name: Install latest tmux
-  yum:
-    name: tmux2u
+  dnf:
+    name: tmux
     state: latest
   become: true
 
