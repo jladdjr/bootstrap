@@ -1,13 +1,5 @@
 - name: Install misc dev tools
-  yum:
-    name: "{{ packages }}"
+  dnf:
+    name: ['ack', 'jq', 'strace', 'telnet', 'nc', 'lsof']
     state: latest
-  vars:
-    packages:
-      - ack
-      - jq
-      - strace
-      - telnet
-      - nc
-      - lsof
   become: true
