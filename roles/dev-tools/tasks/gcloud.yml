@@ -26,8 +26,3 @@
 
 - name: Set default gcloud project
   command: ~/google-cloud-sdk/bin/gcloud config set project ansible-tower-engineering
-
-- name: clean up google-cloud-sdk folder
-  file:
-    path: ~/google-cloud-sdk
-    state: absent
