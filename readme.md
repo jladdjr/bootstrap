@@ -18,6 +18,10 @@ If this repo has been checked out inside the vm, can use `make` to re-run specif
 $ make mutt
 ```
 
+.. or call ansible-playbook directly:
+
+`ansible-playbook -i inventory provision.yml`
+
 ## Requirements:
 
 ### `auth` role
