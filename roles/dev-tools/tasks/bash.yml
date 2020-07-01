@@ -31,8 +31,6 @@
       # Open all files changed in this branch (compared to ansible/<default branch>)
       alias v='vi $(git diff --name-only $(git merge-base HEAD ansible/$(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@")))'
 
-      alias vw='source /usr/bin/virtualenvwrapper.sh'
-
       # Set prompt
 
       # get current branch in git repo
