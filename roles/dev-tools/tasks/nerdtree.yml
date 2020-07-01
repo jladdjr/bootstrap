@@ -2,7 +2,7 @@
   git:
     dest: ~/.vim/bundle/nerdtree
     repo: https://github.com/scrooloose/nerdtree.git
-    version: 5.0.0  # latest version as of 1/2019
+    version: 6.9.0  # latest version as of 6/30/20
 
 - name: Add vim configuration for NERDTree
   blockinfile:
