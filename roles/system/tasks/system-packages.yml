@@ -1,32 +1,31 @@
 - block:
     - name: Update all packages
-      yum:
+      dnf:
         name: '*'
         state: latest
 
     - name: Install development tools
-      yum:
+      dnf:
         name: "@Development tools"
         state: present
 
     - name: Install net-tools 
-      yum:
+      dnf:
         name: net-tools
         state: present
 
     # https://stackoverflow.com/questions/22073516/failed-to-install-python-cryptography-package-with-pip-and-setup-py
     - name: Install cryptography deps
-      yum:
-        name: "{{ item }}"
+      dnf:
+        name:
+          - gcc
+          - libffi-devel
+          - python3-devel
+          - openssl-devel
         state: present
-      with_items:
-        - gcc
-        - libffi-devel
-        - python-devel
-        - openssl-devel
 
     - name: Install packages required by awx venvs
-      yum:
+      dnf:
         name: "{{ packages }}"
         state: latest
       vars:
@@ -37,27 +36,27 @@
           - libxml2-devel  # for ovirt-engine-sdk-python
 
     - name: Remove man pages
-      yum:
+      dnf:
         name: man-pages
         state: absent
 
     - name: Reinstall man pages. (CentOS minimal install omits man pages)
-      yum:
+      dnf:
         name: man-pages
         state: present
 
     - name: Install bash completion
-      yum:
+      dnf:
         name: bash-completion
         state: present
 
     - name: Install locate / updatedb
-      yum:
+      dnf:
         name: mlocate
         state: present
 
     - name: Install htop
-      yum:
+      dnf:
         name: htop
         state: present
   become: true
