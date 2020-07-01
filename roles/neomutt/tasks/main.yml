@@ -7,19 +7,39 @@
 - name: Create neomutt repo
   copy:
     src: neomutt/flatcap-neomutt-epel-7.repo
-    dest: /etc/yum.repos.d
+    dest: /etc/dnf.repos.d
   become: true
 
+# https://neomutt.org/distro/fedora
+# * without this copr, see depsolve errors:
+#   https://gist.github.com/jladdjr/f99f917dffdf7da4894b9126928eae12)
+#- name: Enable neomutt copr
+#  shell: dnf copr -y enable flatcap/neomutt
+#  args:
+#    warn: false  # ansible's dnf module doesn't seem to support enabling copr's
+#  become: true
+
 - name: Install neomutt + dependencies
-  yum:
-    name: ['neomutt', 'notmuch', 'msmtp', 'offlineimap', 'lynx', 'pandoc']
+  dnf:
+    name: ['neomutt', 'notmuch', 'msmtp']
     state: present
+  become: true
+
+- name: Install neomutt dependencies only available via pip
+  shell: python3 -m pip install {{ item }}
+  with_items:
+    - rfc6555 # dep not being installed correctly when pip installing offlineimap
+              # error: https://gist.github.com/jladdjr/cbe10df157f1563663090afc4cbe5bd7
+    - offlineimap
+    - lynx
+    - pandoc
   become: true
 
 - name: Update Lynx settings
   lineinfile:
     path: /etc/lynx.cfg
     line: REFERER_WITH_QUERY:PARTIAL
+    create: yes
   become: true
 
 - name: Copy neomuttrc to /etc
@@ -31,7 +51,7 @@
 
 - name: Copy neomutt / notmuch dotfiles
   copy:
-    src: neomutt/"{{ item }}"
+    src: "neomutt/{{ item }}"
     dest: "{{ lookup('env', 'HOME') }}/.{{ item }}"
     mode: 0600
   with_items:
@@ -42,7 +62,7 @@
 
 - name: Create offlineimaprc / msmtprc dotfiles (requires neomutt passwords)
   template:
-    src: neomutt/"{{ item }}"
+    src: "{{ item }}"
     dest: "~/.{{ item|replace('.j2','') }}"
     mode: 0600
   with_items:
@@ -51,7 +71,7 @@
 
 - name: Create .mutt folder
   copy:
-    src: neomutt/mutt
+    src: neomutt/mutt/  # copy contents *inside* mutt folder, not folder itself
     dest: "{{ lookup('env', 'HOME') }}/.mutt"
     mode: 0700
 
@@ -94,8 +114,8 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK - neomutt"
     path: ~/.bashrc
     block: |
-      alias nm='pushd .; cd /var/mapped/mutt; neomutt -F ~/.neomuttrc.work; popd'
-      alias nm2='pushd .; cd /var/mapped/mutt; neomutt -F ~/.neomuttrc.personal; popd'
+      alias n='pushd .; cd /var/mapped/mutt; neomutt -F ~/.neomuttrc.work; popd'
+      alias n2='pushd .; cd /var/mapped/mutt; neomutt -F ~/.neomuttrc.personal; popd'
 
 - name: Install / configure imapfilter
   import_tasks: imapfilter.yml
