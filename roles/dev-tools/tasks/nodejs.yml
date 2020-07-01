@@ -1,6 +1,6 @@
 # https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions-enterprise-linux-fedora-and-snap-packages
 - name: Install nodejs repo
-  shell: curl -sL https://rpm.nodesource.com/setup_8.x | bash -
+  shell: curl -sL https://rpm.nodesource.com/setup_14.x | bash -  # latest as of 6/30/20
   args:
     warn: false
   become: true
