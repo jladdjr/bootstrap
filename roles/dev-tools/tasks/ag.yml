@@ -10,7 +10,7 @@
 
 - block:
   - name: Install Ag requirements
-    yum:
+    dnf:
      name: ['pcre-devel', 'xz-devel', 'zlib-devel']
      state: present
     become: true
@@ -20,7 +20,7 @@
     git:
       dest: /tmp/ag
       repo: https://github.com/ggreer/the_silver_searcher.git
-      version: 2.2.0  # latest version as of 1/2019
+      version: 2.2.0  # latest version as of 6/2020
 
   - name: Build Ag
     shell: ./build.sh
