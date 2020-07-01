@@ -1,12 +1,6 @@
-- name: Remove existing git
-  yum:
-    name: git
-    state: absent
-  become: true
-
 - name: Install latest git
-  yum:
-    name: git2u
+  dnf:
+    name: git-all
     state: latest
   become: true
 
