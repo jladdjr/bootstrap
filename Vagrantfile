@@ -3,6 +3,7 @@
 
 Vagrant.configure(2) do |config|
   config.vm.box = "centos/8"
+  config.disksize.size = '45GB'
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "5000"
@@ -28,6 +29,32 @@ Vagrant.configure(2) do |config|
 end
 
 __END__
+
+# Required Vagrant Plugins
+
+# https://github.com/sprotheroe/vagrant-disksize
+# note:
+# * only works with virtualbox
+# * disk size can only be increased
+vagrant plugin install vagrant-disksize
+
+# Expanding disk size after first boot
+
+(assumes vagrant-disksize was installed before calling `vagrant up` for first time)
+
+1. Log into vm
+2. `sudo cfdisk /dev/sda`
+    * Select Resize
+    * Accept 'New size: 45G'
+    * Select Write, type Yes
+    * Select Quit
+3. `sudo xfs_growfs /`
+4. `df -h | grep sda1` should confirm new size
+
+Resources:
+
+* [Known issue with xfs_{info,growfs} /dev/sda1](https://access.redhat.com/solutions/3940331)
+* [xfs file system](https://en.wikipedia.org/wiki/XFS)
 
 # Bootstrapping new vm
 
