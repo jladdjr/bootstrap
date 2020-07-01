@@ -7,8 +7,8 @@
   tags: pass
 
 - block:
-  - name: Ensure tree not installed using yum
-    yum:
+  - name: Ensure tree not installed using dnf
+    dnf:
       name: tree
       state: absent
     become: true
