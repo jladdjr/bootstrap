@@ -107,7 +107,7 @@ In vm:
 # dnf upgrade
 # dnf groupinstall -y "Development Tools"
 # dnf update kernel          # may not be needed after doing
-# dnf install kernel-devel   # `dnf upgrade`
+# dnf update kernel-devel    # `dnf upgrade`
 (power down vm)
 
 In VirtualBox GUI:
@@ -125,7 +125,7 @@ In vm (if cdrom not already mounted):
 # uname -a (get kernel version)
 # rpm -q kernel-devel (confirm matches kernel version)
 
-# cd /mount/cdrom
+# cd /media/cdrom
 # dnf install -y gcc make perl (required by VBoxLinuxAdditions.run)
 # ./VBoxLinuxAdditions.run
 
