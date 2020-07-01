@@ -10,7 +10,7 @@
     dest: /etc/yum.repos.d
   become: true
 
-- name: Install mutt + dependencies
+- name: Install neomutt + dependencies
   yum:
     name: ['neomutt', 'notmuch', 'msmtp', 'offlineimap', 'lynx', 'pandoc']
     state: present
@@ -29,7 +29,7 @@
     mode: 0644
   become: true
 
-- name: Copy mutt / notmuch dotfiles
+- name: Copy neomutt / notmuch dotfiles
   copy:
     src: neomutt/"{{ item }}"
     dest: "{{ lookup('env', 'HOME') }}/.{{ item }}"
@@ -40,7 +40,7 @@
     - notmuch-config
     - gpg.rc
 
-- name: Create offlineimaprc / msmtprc dotfiles (requires mutt passwords)
+- name: Create offlineimaprc / msmtprc dotfiles (requires neomutt passwords)
   template:
     src: neomutt/"{{ item }}"
     dest: "~/.{{ item|replace('.j2','') }}"
@@ -91,7 +91,7 @@
 
 - name: Add .bashrc aliases
   blockinfile:
-    marker: "# {mark} ANSIBLE MANAGED BLOCK - mutt"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - neomutt"
     path: ~/.bashrc
     block: |
       alias nm='pushd .; cd /var/mapped/mutt; neomutt -F ~/.neomuttrc.work; popd'

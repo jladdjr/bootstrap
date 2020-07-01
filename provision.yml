@@ -6,6 +6,6 @@
     - { role: dev-tools, tags: dev-tools }
     - { role: repos, tags: repos }
     - { role: misc-repos, tags: misc-repos }
-    - { role: mutt, tags: mutt }
+    - { role: neomutt, tags: neomutt }
     - { role: notifications, tags: notifications }
     - { role: getting_started, tags: getting_started }
