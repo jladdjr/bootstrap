@@ -47,6 +47,9 @@
 - import_tasks: docker.yml
   tags: docker
 
+- import_tasks: podman.yml
+  tags: podman
+
 - import_tasks: gcloud.yml
   tags: gcloud
 

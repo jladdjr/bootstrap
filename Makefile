@@ -60,6 +60,9 @@ notifications:
 pass:
 	ansible-playbook -i $(INVENTORY) --tags pass provision.yml
 
+podman:
+	ansible-playbook -i $(INVENTORY) --tags podman provision.yml
+
 rhubarb:
 	ansible-playbook -i $(INVENTORY) --extra-vars=@/var/mapped/rhubarb_secrets.yml --vault-password-file get-vault-pass.sh --tags rhubarb provision.yml
 
