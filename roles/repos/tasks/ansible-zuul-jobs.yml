@@ -1,0 +1,11 @@
+- name: Add ansible-zuul-jobs project
+  git:
+    dest: ~/git/ansible-zuul-jobs
+    repo: git@github.com:jladdjr/ansible-zuul-jobs.git
+    version: master
+    accept_hostkey: yes
+
+- name: Create runner aliases
+  lineinfile:
+    path: ~/.bashrc
+    line: alias zj="cd ~/git/ansible-zuul-jobs; git br | grep '*'"

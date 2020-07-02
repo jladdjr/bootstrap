@@ -1,0 +1,11 @@
+- name: Add project-config project
+  git:
+    dest: ~/git/project-config
+    repo: git@github.com:jladdjr/project-config.git
+    version: master
+    accept_hostkey: yes
+
+- name: Create runner aliases
+  lineinfile:
+    path: ~/.bashrc
+    line: alias pc="cd ~/git/project-config; git br | grep '*'"

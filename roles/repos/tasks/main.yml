@@ -36,3 +36,7 @@
 
 - include_tasks: ansible-engineering.yml
   tags: ansible-engineering
+
+- include_tasks: project-config.yml
+
+- include_tasks: ansible-zuul-jobs.yml.yml
