@@ -1,0 +1,70 @@
+# https://docs.solokeys.dev/building/
+
+- name: determine if ARM compiler already present
+  shell: which arm-none-eabi-gcc
+  register: which_arm
+  ignore_errors: yes
+  tags: solo
+
+- block:
+  # https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads
+  - name: install latest ARM compiler toolchain
+    get_url:
+      # arm-none-eabi-gcc (GNU Arm Embedded Toolchain 9-2020-q2-update) 9.3.1 20200408 (release)
+      url: https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2?revision=05382cca-1721-44e1-ae19-1e7c3dc96118&la=en&hash=D7C9D18FCA2DD9F894FD9F3C3DC9228498FA281A
+      dest: /tmp/gcc-arm-linux.tar.bz2
+      checksum: md5:2b9eeccc33470f9d3cda26983b9d2dc6
+    tags: solo
+
+  - name: extract ARM compiler
+    unarchive:
+      scr: /tmp/gcc-arm-linux.tar.bz2
+      dest: ~/
+    tags: solo
+
+  # arm readme is at
+  # gcc-arm-none-eabi-9-2020-q2-update/share/doc/gcc-arm-none-eabi/readme.txt
+
+  - name: add ARM binaries to path
+    lineinfile:
+      path: ~/.bashrc
+      line: export PATH=$PATH:/home/jim/gcc-arm-none-eabi-9-2020-q2-update/bin
+    tags: solo
+  when: which_arm.rc != 0
+
+- name: create solo virtualenv
+  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 solo
+  args:
+    executable: /bin/bash
+  environment:
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+  tags: solo
+
+- name: install solo-python to solo venv
+  shell: . /usr/local/bin/virtualenvwrapper.sh && workon solo && pip3 install solo-python
+  tags: solo
+  
+- name: create alias for loading solo venv
+  lineinfile:
+    path: ~/.bashrc
+    line: alias s="cd ~/git/solo/solo; workon solo; python --version | head -1; git br | grep '*'"
+  tags: solo
+
+- name: ensure ~/git/solo dir exists
+  file:
+    path: ~/git/solo  # will create git directory if missing
+    state: directory
+  tags: solo
+
+- name: clone solo repo
+  git:
+    repo: git@github.com:solokeys/solo.git
+    dest: ~/git/solo/solo
+    version: 4.0.0  # latest as of 7/1/20
+  tags: solo
+
+- name: install solo repo requirments into solo venv
+  shell: . /usr/local/bin/virtualenvwrapper.sh && workon solo && pip3 install -U -r tools/requirements.txt
+  args:
+    chdir: ~/git/solo/solo
+  tags: solo

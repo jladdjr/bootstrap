@@ -9,3 +9,4 @@
     - { role: neomutt, tags: neomutt }
     - { role: notifications, tags: notifications }
     - { role: getting_started, tags: getting_started }
+    - { role: solo, tags: solo }
