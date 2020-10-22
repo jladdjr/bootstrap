@@ -13,25 +13,30 @@ if [ "$(date +%S)" != 00 ]; then
 fi
 
 . /var/git/zuul-alert/token.sh
-cat $STATUS_FILE > ${STATUS_FILE}.old
-curl -s -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/notifications | jq ". | length" | tee $STATUS_FILE
 
+# update status file
+cat $STATUS_FILE > ${STATUS_FILE}.old
+raw_notifications=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/notifications)
+echo $raw_notifications | jq ". | length" | tee $STATUS_FILE
+
+# compare new / old status
 new=$(cat $STATUS_FILE)
 old=$(cat ${STATUS_FILE}.old)
 
-# if there's a new notification
-# .. send a mac notification
-# .. and automatically open the link (again, on the mac host)
 if [ $new -gt $old ]; then
-    # TODO: save json response and parse saved response, instead of making repeat requests
-    title=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/notifications | jq -r ". | sort_by(-(.id | tonumber))[0].subject.title")
-    latest_comment_url=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/notifications | jq -r ". | sort_by(-(.id | tonumber))[0].subject.latest_comment_url")
-    latest_comment_api_url=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/notifications | jq -r ". | sort_by(-(.id | tonumber))[0].subject.latest_comment_url")
+    # get issue title
+    raw_latest_notification=$(echo $raw_notifications | jq -r "sort_by(-(.id | tonumber))[0]")
+    title=$(echo $raw_latest_notification | jq -r ".subject.title")
+    latest_comment_api_url=$(echo $raw_latest_notification | jq -r ".subject.latest_comment_url")
     latest_comment_url=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" ${latest_comment_api_url} | jq -r ".html_url")
 
     # mac notification
+    echo $title > ${STATUS_FILE}.title
     /usr/bin/jim/notifications/notify "${title}"
 
+    sleep 5
+
     # open link on host
+    echo ${latest_comment_url} > ${STATUS_FILE}.latest_comment_url
     /usr/bin/jim/open_link_on_host ${latest_comment_url}
 fi
