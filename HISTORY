@@ -3,6 +3,7 @@ History
 
 3.0.0
 - move to Fedora 33!
+- drop Vim
 
 2.0.0
 - moved to CentOS 8!

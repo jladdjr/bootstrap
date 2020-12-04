@@ -137,7 +137,7 @@ macro attach <return> "<view-mailcap><exit>"
 macro pager \Cu "|urlview<enter>" "call urlview to open links"
 
 # Editor ----------------------------------------------------------------------
-set editor = "vim -c 'set spell spelllang=en textwidth=0 wrapmargin=0 | normal }jO'" # compose in vim w/ spellcheck
+set editor = "emacs" # compose in emacs
 
 # Compose View Options --------------------------------------------------------
 set realname = "Jim Ladd"            # who am i?

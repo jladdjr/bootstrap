@@ -21,32 +21,20 @@ bash:
 bootstrap:
 	ansible-playbook -i $(INVENTORY) --tags bootstrap provision.yml
 
-fugitive:
-	ansible-playbook -i $(INVENTORY) --tags fugitive provision.yml
-
 fzf:
 	ansible-playbook -i $(INVENTORY) --tags fzf provision.yml
 
 git:
 	ansible-playbook -i $(INVENTORY) --tags git provision.yml
 
-gitgutter:
-	ansible-playbook -i $(INVENTORY) --tags gitgutter provision.yml
-
 hostname:
 	ansible-playbook -i $(INVENTORY) --tags hostname provision.yml
-
-localvimrc:
-	ansible-playbook -i $(INVENTORY) --tags localvimrc provision.yml
 
 mutt:
 	# Expects an ansible-vault file, mutt_secrets.yml, which should take the form:
 	# MUTT_PERSONAL_PASSWORD: MY_PASSWORD
 	# MUTT_REDHAT_PASSWORD: MY_PASSWORD
 	ansible-playbook -i $(INVENTORY) --extra-vars=@/var/mapped/mutt_secrets.yml --vault-password-file get-vault-pass.sh --tags mutt provision.yml
-
-nerdtree:
-	ansible-playbook -i $(INVENTORY) --tags nerdtree provision.yml
 
 networking:
 	ansible-playbook -i $(INVENTORY) --tags networking provision.yml
@@ -62,9 +50,6 @@ pass:
 
 podman:
 	ansible-playbook -i $(INVENTORY) --tags podman provision.yml
-
-rhubarb:
-	ansible-playbook -i $(INVENTORY) --extra-vars=@/var/mapped/rhubarb_secrets.yml --vault-password-file get-vault-pass.sh --tags rhubarb provision.yml
 
 solo:
 	ansible-playbook -i $(INVENTORY) --tags solo provision.yml
@@ -86,9 +71,3 @@ tower-packaging:
 
 tower-qa:
 	ansible-playbook -i $(INVENTORY) --tags tower-qa provision.yml
-
-vim:
-	ansible-playbook -i $(INVENTORY) --tags vim provision.yml
-
-vim_with_plugins:
-	ansible-playbook -i $(INVENTORY) --tags vim_with_plugins provision.yml

@@ -1,5 +1,0 @@
-- name: Install fugitive vim plugin
-  git:
-    repo: https://github.com/tpope/vim-unimpaired.git
-    dest: "~/.vim/bundle/unimpaired.vim"
-  tags: [unimpaired]

@@ -20,29 +20,6 @@
       chdir: ~/.fzf
   when: which_fzf.rc != 0
 
-# https://github.com/mileszs/ack.vim
-- name: Install fzf.vim plugin
-  git:
-    repo: https://github.com/junegunn/fzf.vim
-    dest: "~/.vim/bundle/fzf.vim"
-
-- name: Add configuration for fzf.vim plugin
-  blockinfile:
-    path: ~/.vimrc
-    block: |
-      " Add .fzf to run-time path
-      set rtp+=~/.fzf
-
-      " Automatically use Ack!
-      cnoreabbrev Ack Ack!
-      nnoremap <Leader>a :Ack!<Space>
-
-      " Shortcuts for Buffers, Files, Tags
-      nmap ; :Buffers<CR>
-      nmap <Leader>f :Files<CR>
-      nmap <Leader>t :Tags<CR>
-    marker: '" {mark} ANSIBLE MANAGED BLOCK - fzf.vim'
-
 - name: Install fd requirements
   dnf:
     name: cargo
