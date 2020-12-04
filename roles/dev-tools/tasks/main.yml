@@ -30,3 +30,6 @@
 
 - import_tasks: misc.yml
   tags: misc-devtools
+
+- import_tasks: emacs.yml
+  tags: emacs
