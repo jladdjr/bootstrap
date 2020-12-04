@@ -1,7 +1,10 @@
 History
 =======
 
-2.0.0 ("red")
+3.0.0
+- move to Fedora 33!
+
+2.0.0
 - moved to CentOS 8!
 - s/yum/dnf/
 - dropped IUS repo
@@ -14,7 +17,7 @@ History
 - fixed neomutt configuration
 - using ssh-agent
 
-1.0.4 ("Paris")
+1.0.4
 - Filter mail with imapfilter
 - tkit -> akit
 - Install vim-gitgutter
@@ -22,7 +25,7 @@ History
 - Create #day, #week, #month, #[extremesly-]overdue mailboxes
   (and associated imapfilter rules)
 
-1.0.3 ("Munich"):
+1.0.3
 - Set BASH prompt
 - Add ansible-runner repo
 - In vim, open new split panes to right and bottom
@@ -34,7 +37,7 @@ History
 - Macro to convert mutt e-mails from markdown to html
 - Install syntastic (syntax checking in vim)
 
-1.0.2 ("Berlin"):
+1.0.2
 - Install ack
 - Install ag
 - Install htop

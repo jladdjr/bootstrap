@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "centos/8"
+  config.vm.box = "generic/fedora33"
   config.disksize.size = '45GB'
 
   config.vm.provider "virtualbox" do |vb|
