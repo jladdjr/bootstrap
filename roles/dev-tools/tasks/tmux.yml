@@ -3,12 +3,14 @@
     name: tmux
     state: latest
   become: true
+  tags: tmux
 
 - name: Copy .tmux.conf
   copy:
     src: tmux.conf
     dest: ~/.tmux.conf
     mode: 0755
+  tags: tmux
 
 - name: Run tmux in new shells
   blockinfile:
@@ -18,23 +20,27 @@
       if [ -z "$TMUX" ]; then
           tmux
       fi
+  tags: tmux
 
 - name: Create git plugin directory
   file:
     state: directory
     path: ~/.tmux/plugins
     mode: 0755
+  tags: tmux
 
 - name: Install tmux-resurrect
   git:
     dest: ~/.tmux/plugins
     repo: http://github.com/tmux-plugins/tmux-resurrect.git
     accept_hostkey: yes
+  tags: tmux
 
 - name: Source resurrect.tmux
   lineinfile:
     path: ~/.tmux.conf
     line: run-shell ~/.tmux/plugins/resurrect.tmux
+  tags: tmux
 
 - name: When opening new shell, auto-join existing tmux sessions (or create new one)
   blockinfile:
@@ -49,3 +55,4 @@
           tmux
       fi
     marker: "# {mark} ANSIBLE MANAGED BLOCK - tmux"
+  tags: tmux
