@@ -1,45 +1,101 @@
-- name: Install python3 (including header files)
+#################################################################################
+# For Fedora33 (12/5/20)
+#
+# -------------------------------------------------------------------------------
+#
+# Existing system python:
+#
+# python3.9
+#
+# from:
+#  dnf package: python3
+#
+# aliases:
+#  - /usr/bin/python3
+#  - /usr/bin/python3.9
+#
+# required by:
+#  - dnf      <----- which means you can't uninstall the system python
+#
+# -------------------------------------------------------------------------------
+#
+# Existing system pip:
+#
+# pip-3.9
+#
+# from:
+#  dnf package python3-pip
+#
+# aliases:
+# - /usr/bin/pip
+# - /usr/bin/pip-3
+# - /usr/bin/pip-3.9
+# - /usr/bin/pip3
+# - /usr/bin/pip3.9
+#  -------------------------------------------------------------------------------
+#
+#  What we install here:
+#
+#  python3.6
+#
+#  from:
+#   dnf package python3.6
+#
+#  aliases:
+#  - /usr/bin/python3.6
+#
+#  .. and ..
+#
+#  pip3.6
+#
+#  using get-pip.py with python3.6
+#
+#  aliases:
+#  - /usr/local/bin/pip
+#  - /usr/local/bin/pip3
+#  - /usr/local/bin/pip3.6
+#
+#################################################################################
+
+- name: Install python3.6
   dnf:
     name:
-      - python3        # Includes several aliases for python [1] and
-                       # python3-pip [1]
-      - python3-devel
+      - python3.6  # on fedora33 this does not include pip3.6
     state: present
   become: true
+  tags: python
 
-# [1] as of 6/30/20, python aliases include:
-# * /usr/bin/python3
-# * /usr/bin/python3.6
-# * /usr/bin/python3.6m
+- name: Install pip3.6
+  block:
+    - name: Get get-pip.py
+      get_url:
+        url: https://bootstrap.pypa.io/get-pip.py
+        dest: /tmp
+      tags: python
 
-# [2] as of 6/30/20, python3-pip includes:
-# * /usr/bin/pip-3
-# * /usr/bin/pip-3.6
-# * /usr/bin/pip3
-# * /usr/bin/pip3.6
+    - name: Install pip for python3.6
+      shell: python3.6 get-pip.py
+      args:
+        chdir: /tmp
+      become: true
+      tags: python
 
-- name: Create link for python
-  file:
-    src: /bin/python3
-    path: /bin/python
-    state: link
-    owner: root
-    group: root
+- name: Update pip3.6
+  shell: pip3.6 install -U pip
   become: true
-
-- name: Update pip3
-  shell: pip3 install -U pip
-  become: true
+  tags: python
 
 - name: Install virtualenvwrapper
-  shell: pip3 install -U virtualenvwrapper
+  shell: pip3.6 install -U virtualenvwrapper
   become: true
+  tags: python
 
 - name: Source virtualenvwrapper
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK - virtualenvwrapper"
     path: ~/.bash_profile
     block: |
-      export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+      export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.6
       #lazy-load virtualenvwrapper
       source /usr/local/bin/virtualenvwrapper.sh
+  tags: python

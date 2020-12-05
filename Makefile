@@ -51,6 +51,9 @@ notifications:
 pass:
 	ansible-playbook -i $(INVENTORY) --tags pass provision.yml
 
+python:
+	ansible-playbook -i $(INVENTORY) --tags python provision.yml
+
 podman:
 	ansible-playbook -i $(INVENTORY) --tags podman provision.yml
 
