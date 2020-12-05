@@ -35,16 +35,6 @@
           - libxslt-devel  # for ovirt-engine-sdk-python
           - libxml2-devel  # for ovirt-engine-sdk-python
 
-    - name: Remove man pages
-      dnf:
-        name: man-pages
-        state: absent
-
-    - name: Reinstall man pages. (CentOS minimal install omits man pages)
-      dnf:
-        name: man-pages
-        state: present
-
     - name: Install bash completion
       dnf:
         name: bash-completion
