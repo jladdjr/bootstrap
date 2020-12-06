@@ -66,6 +66,9 @@ podman:
 solo:
 	ansible-playbook -i $(INVENTORY) --tags solo provision.yml
 
+system-packages:
+	ansible-playbook -i $(INVENTORY) --tags system-packages provision.yml
+
 timezone:
 	ansible-playbook -i $(INVENTORY) --tags timezone provision.yml
 
