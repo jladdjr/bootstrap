@@ -1,12 +1,14 @@
 # https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions-enterprise-linux-fedora-and-snap-packages
 - name: Install nodejs repo
-  shell: curl -sL https://rpm.nodesource.com/setup_14.x | bash -  # latest as of 6/30/20
+  shell: curl -sL https://rpm.nodesource.com/setup_10.x | bash -  # required by awx (12/5/20)
   args:
     warn: false
   become: true
+  tags: nodejs
 
 - name: Install node, npm
-  yum:
+  dnf:
     name: nodejs
-    state: latest
+    state: present
   become: true
+  tags: nodejs
