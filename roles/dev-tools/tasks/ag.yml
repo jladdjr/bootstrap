@@ -1,43 +1,6 @@
-# Requires the "Development Tools" group of packages but we assume these have already been installed
-
-- name: Determine if Ag installed
-  shell: which ag
-  args:
-    executable: /bin/bash
-  ignore_errors: yes
-  register: which_ag
-  tags: ag
-
-- block:
-  - name: Install Ag requirements
-    dnf:
-     name: ['pcre-devel', 'xz-devel', 'zlib-devel']
-     state: present
-    become: true
-
-  # https://github.com/ggreer/the_silver_searcher
-  - name: Download Ag source
-    git:
-      dest: /tmp/ag
-      repo: https://github.com/ggreer/the_silver_searcher.git
-      version: 2.2.0  # latest version as of 6/2020
-
-  - name: Build Ag
-    shell: ./build.sh
-    args:
-      executable: /bin/bash
-      chdir: /tmp/ag
-
-  - name: Install Ag
-    shell: make install
-    args:
-      executable: /bin/bash
-      chdir: /tmp/ag
-    become: true
-
-  - name: Remove Ag source
-    file:
-      path: /tmp/ag
-      state: absent
-  when: which_ag.rc != 0
-  tags: ag
+# https://github.com/ggreer/the_silver_searcher#linux
+- name: Install Ag
+  dnf:
+   name: the_silver_searcher
+   state: latest
+  become: true
