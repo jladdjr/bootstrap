@@ -30,6 +30,9 @@ emacs:
 fzf:
 	ansible-playbook -i $(INVENTORY) --tags fzf provision.yml
 
+gcloud:
+	ansible-playbook -i $(INVENTORY) --tags gcloud provision.yml
+
 git:
 	ansible-playbook -i $(INVENTORY) --tags git provision.yml
 
