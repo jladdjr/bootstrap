@@ -21,6 +21,9 @@ bash:
 bootstrap:
 	ansible-playbook -i $(INVENTORY) --tags bootstrap provision.yml
 
+docker:
+	ansible-playbook -i $(INVENTORY) --tags docker provision.yml
+
 emacs:
 	ansible-playbook -i $(INVENTORY) --tags emacs provision.yml
 

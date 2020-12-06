@@ -1,21 +1,37 @@
-# https://docs.docker.com/install/linux/docker-ce/centos/
+# https://docs.docker.com/engine/install/fedora/
 - block:
     - name: Install docker dependencies
       dnf:
         name: ['device-mapper-persistent-data', 'lvm2']
         state: latest
 
-    - name: Add (stable) docker repo
-      command: dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-      args:
-        warn: false  # ansible's dnf module doesn't seem to support adding repos
+    - name: Add package to manage DNF repos
+      dnf:
+        name: dnf-plugins-core
+
+    # don't think an ansible module for `dnf config-manager` exists yet:
+    # https://github.com/ansible/ansible/issues/46963
+    - name: Add docker repo for Fedora33
+      command: dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+
+    # the main repo (docker-ce-stable) doesn't have all docker rpms (as of 12/5/20)
+    # .. but the docker-ce-test repo does, and seems usable
+    # https://github.com/docker/for-linux/issues/1114#issuecomment-734269990
+    #
+    # It may be worth noting that some users are bypassing this issue by using the F33 repo for docker
+    # https://github.com/docker/for-linux/issues/1114#issuecomment-736660591
+    - name: Enable docker-ce-test
+      command: dnf config-manager --set-enabled docker-ce-test
 
     - name: Install docker
-      # --nobest required in order to install containerd.io >= 1.2.2-3
-      # error: https://gist.github.com/jladdjr/a85921880790dcade9c2548e8f1cd3d9
-      shell: dnf install -y docker-ce --nobest
-      args:
-        warn: false  # dnf module does not seem to support --nobest option
+      dnf:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+
+    - name: Enable backwards compatibility for Cgroups (requires REBOOT to take effect!)
+      command: grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"
 
     - name: Enable docker service
       systemd:
@@ -32,9 +48,9 @@
 
     # https://docs.docker.com/compose/install/
     # To ensure you have the latest version, check the Compose repository release page on GitHub:
-    # https://github.com/docker/compose/releases (up-to-date as of 6/30/20)
+    # https://github.com/docker/compose/releases (up-to-date as of 12/5/20)
     - name: Install docker-compose
-      shell: curl -L https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
+      shell: curl -L https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
       args:
         warn: false  # use shell module instead of get_url in order to use `$()` in command
 
