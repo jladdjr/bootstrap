@@ -1,0 +1,34 @@
+- name: Add ansible-builder project
+  git:
+    dest: ~/git/ansible-builder
+    repo: git@github.com:jladdjr/ansible-builder.git
+    accept_hostkey: yes
+  tags: ansible-builder
+
+- name: Determine which remotes exist
+  command: git remote -v
+  args:
+    chdir: ~/git/ansible-builder
+  register: git_remote
+  tags: ansible-builder
+
+- name: Add remote repo (ansible)
+  command: git remote add ansible git@github.com:ansible/ansible-builder.git
+  args:
+    chdir: ~/git/ansible-builder
+  when: git_remote.stdout.find('ansible') != 0
+  tags: ansible-builder
+
+- name: Fetch ansible repo
+  command: git fetch ansible
+  args:
+    chdir: ~/git/ansible-builder
+  tags: ansible-builder
+
+- name: Create ansible-builder virtualenv
+  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3.6 ansible-builder
+  args:
+    executable: /bin/bash
+  environment:
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.6
+  tags: ansible-builder

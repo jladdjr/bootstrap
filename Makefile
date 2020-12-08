@@ -15,6 +15,9 @@ ansible-runner:
 awx:
 	ansible-playbook -i $(INVENTORY) --tags awx provision.yml
 
+ansible-builder:
+	ansible-playbook -i $(INVENTORY) --tags ansible-builder provision.yml
+
 bash:
 	ansible-playbook -i $(INVENTORY) --tags bash provision.yml
 

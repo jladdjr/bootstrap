@@ -31,6 +31,9 @@
 - include_tasks: ansible-runner.yml
   tags: runner
 
+- include_tasks: ansible-builder.yml
+  tags: ansible-builder
+
 - include_tasks: tower-packaging.yml
   tags: tower-packaging
 
