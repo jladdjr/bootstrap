@@ -12,6 +12,8 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK - .bashrc"
     path: ~/.bashrc
     block: |
+      export EDITOR="emacs"
+
       alias h='cd $(pwd | cut -d '/' -f 1-5); pwd'  # Move to head (top) folder of git projects (bit hacky)
 
       # History
