@@ -14,6 +14,13 @@
         name: net-tools
         state: present
 
+    # https://unix.stackexchange.com/a/568275
+    - name: Install cron
+      dnf:
+        name:
+          - cronie
+          - cronie-anacron
+
     # https://stackoverflow.com/questions/22073516/failed-to-install-python-cryptography-package-with-pip-and-setup-py
     - name: Install cryptography deps
       dnf:
