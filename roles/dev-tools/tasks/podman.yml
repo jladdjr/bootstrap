@@ -1,6 +1,4 @@
-# https://podman.io/getting-started/installation.html
 - name: Install podman
   dnf:
     name: podman
     state: latest
-  tags: podman

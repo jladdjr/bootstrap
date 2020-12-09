@@ -22,6 +22,9 @@
 - import_tasks: podman.yml
   tags: podman
 
+- import_tasks: podman.yml
+  tags: podman
+
 - import_tasks: gcloud.yml
   tags: gcloud
 
