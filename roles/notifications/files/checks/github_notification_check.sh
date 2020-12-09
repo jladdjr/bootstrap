@@ -12,8 +12,6 @@ if [ "$(date +%S)" != 00 ]; then
     exit
 fi
 
-. /var/git/zuul-alert/token.sh
-
 # update status file
 cat $STATUS_FILE > ${STATUS_FILE}.old
 raw_notifications=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/notifications)
