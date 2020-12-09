@@ -118,3 +118,6 @@
       alias to='ssh jim@tokyo'
 
       export MAPPED_FOLDER='/var/mapped'
+
+      # github_notification_check.sh
+      export GITHUB_TOKEN = "FIXME"
