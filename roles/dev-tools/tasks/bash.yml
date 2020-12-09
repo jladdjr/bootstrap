@@ -120,4 +120,4 @@
       export MAPPED_FOLDER='/var/mapped'
 
       # github_notification_check.sh
-      export GITHUB_TOKEN = "FIXME"
+      export GITHUB_TOKEN="FIXME"
