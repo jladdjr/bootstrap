@@ -3,6 +3,8 @@
 nohup.out
 tmp
 
+pytestdebug.log
+
 # emacs files
 # https://github.com/github/gitignore/blob/master/Global/Emacs.gitignore
 *~
