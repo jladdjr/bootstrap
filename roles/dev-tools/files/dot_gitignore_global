@@ -2,3 +2,12 @@
 *.swp
 nohup.out
 tmp
+
+# emacs files
+# https://github.com/github/gitignore/blob/master/Global/Emacs.gitignore
+*~
+\#*\#
+*.elc
+auto-save-list
+tramp
+.\#*
