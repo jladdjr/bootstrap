@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# if $1 is a path to the local mapped folder
+# update the path to reflect the host's filesystem
+#
+# if $1 is not a path to the local mapped folder
+# his has no effect
 guest_mapped="/var/mapped"
 host_mapped="/Users/jim/Vagrant/mapped"
 path=${1/$guest_mapped/$host_mapped}
