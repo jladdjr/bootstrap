@@ -1,7 +1,0 @@
-# https://neomutt.org/guide/mimesupport
-
-# Unidentified files
-application/octet-stream; ~/.mutt/view_attachment.sh %s "-"
-
-# HTML mail
-text/html; open_link_on_host %s; nametemplate=%s.html
