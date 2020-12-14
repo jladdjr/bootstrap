@@ -9,7 +9,6 @@
 - include_tasks: tower-qa.yml
   loop:
     - devel
-    - release_3.7.0
   loop_control:
     loop_var: branch
   tags: tower-qa
