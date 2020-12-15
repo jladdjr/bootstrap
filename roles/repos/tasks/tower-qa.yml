@@ -53,11 +53,11 @@
 # https://dmsimard.com/2016/01/08/selinux-python-virtualenv-chroot-and-ansible-dont-play-nice/
 # https://github.com/ansible/ansible/issues/34340#issuecomment-355214723
 - name: Create tower-qa virtualenv
-  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 --system-site-packages tower-qa-{{ branch }}
+  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3.6 --system-site-packages tower-qa-{{ branch }}
   args:
     executable: /bin/bash
   environment:
-    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.6
   tags: tower-qa
 
 - name: Add tower-qa requirements to venv
@@ -66,7 +66,7 @@
     executable: /bin/bash
     chdir: ~/git/tower-qa-{{ branch }}
   environment:
-    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.6
   tags: tower-qa
 
 - name: Also install ipython
@@ -74,7 +74,7 @@
   args:
     executable: /bin/bash
   environment:
-    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.6
   tags: tower-qa
 
 # http://ipython.readthedocs.io/en/stable/config/intro.html#setting-configurable-options

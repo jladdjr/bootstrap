@@ -7,11 +7,11 @@
   tags: ansible-license
 
 - name: Create ansible-license virtualenv
-  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3 ansible-license
+  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3.6 ansible-license
   args:
     executable: /bin/bash
   environment:
-    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.6
   tags: ansible-license
 
 - name: Install pip-tools
@@ -20,7 +20,7 @@
     executable: /bin/bash
     chdir: ~/git/ansible-license
   environment:
-    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.6
   tags: ansible-license
 
 - name: Determine which remotes exist

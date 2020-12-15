@@ -11,7 +11,7 @@
   args:
     executable: /bin/bash
   environment:
-    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.6
   tags: runner
 
 - name: Install ansible-runner to venv (using pip's editable mode)
@@ -20,7 +20,7 @@
     executable: /bin/bash
     chdir: ~/git/ansible-runner
   environment:
-    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.6
   tags: runner
 
 # Note: I'm not sure why, but pip installing ansible is not adding the ansible binary to the venv
@@ -31,7 +31,7 @@
     executable: /bin/bash
     chdir: ~/git/ansible-runner
   environment:
-    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.6
   tags: runner
 
 - name: Install pytest, mock, tox to venv
@@ -40,7 +40,7 @@
     executable: /bin/bash
     chdir: ~/git/ansible-runner
   environment:
-    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.6
   with_items:
     - pytest
     - mock
