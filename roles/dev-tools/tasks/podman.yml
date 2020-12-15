@@ -1,4 +1,9 @@
+# pull podman from fedora repo instead of updates
+# * podman v2.2.0 fails to find image layer during multistage builds
+# * podman v2.1.1 builds images correctly, though
 - name: Install podman
   dnf:
     name: podman
     state: latest
+    disablerepo: updates
+  become: true
