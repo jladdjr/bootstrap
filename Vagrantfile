@@ -128,8 +128,10 @@ In vm (if cdrom not already mounted):
 # uname -a (get kernel version)
 # rpm -q kernel-devel (confirm matches kernel version)
 
+# dnf remove virtualbox-guest-additions (or rpm -e --nodeps ... if you need to)
+
 # cd /media/cdrom
-# dnf install -y gcc make perl elfutils-libelf-devel (required by VBoxLinuxAdditions.run)
+# dnf install -y gcc make perl elfutils-libelf-devel bzip2 (required by VBoxLinuxAdditions.run)
 # ./VBoxLinuxAdditions.run  (latest version used: VirtualBox Guest Additions 6.0.22 w/
                                                   Version 6.0.22 r137980 (Qt5.6.3))
 
