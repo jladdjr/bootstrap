@@ -44,6 +44,9 @@ vagrant plugin install vagrant-disksize
 
 (assumes vagrant-disksize was installed before calling `vagrant up` for first time)
 
+Add the following in the `Vagrant.configure(2) ..` block:
+   config.disksize.size = '45GB'
+
 1. Log into vm
 2. `sudo cfdisk /dev/sda`
     * Select Resize
