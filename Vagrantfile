@@ -87,17 +87,18 @@ Note: `vagrant ssh -p` will let you log in using your own keys
 instead of vagrant's.
 
 # How to install guest additions (to enable shared folders)
-https://wiki.centos.org/HowTos/Virtualization/VirtualBox/CentOSguest
+
+Although generic/fedora33 comes with guest additions
+you will need to update it if you updaet the kernel
+(e.g. w/ `dnf update`).
+
 
 ## Overview
 - cannot mount folder from host to guest without guest additions
-- centos/8 box does not come with guest additions by default
 - when installing guest additions:
   - kernel header files must be present and must match kernel version
-    (so, good idea to update kernel first, then install kernel header files)
   - VirtualBox guest addition script must be compatible with kernel version
     (so, important to update VirtualBox before attempting to install guest additions)
-- apparently, when the kernel updates, the existing guest additions may no longer work?
 - vagrant community has plugin to address this (which may be able to be used
   in place of the following steps). See `Vagrant plugin` section below.
 
@@ -106,7 +107,6 @@ https://wiki.centos.org/HowTos/Virtualization/VirtualBox/CentOSguest
 Update VirtualBox to make sure we have latest version of VirtualBox guest utils
 
 In vm:
-# dnf --enablerepo=extras install -y epel-release
 # dnf upgrade
 # dnf groupinstall -y "Development Tools"
 # dnf update kernel          # may not be needed after doing
@@ -147,14 +147,6 @@ In vm, should now see:
 * /var/mapped, with files owned by jim:vagrant
 
 ## Something to try in the future
-
-### geerlingguy/centos8
-
-https://app.vagrantup.com/geerlingguy/boxes/centos8
-
-It looks like this comes with guest additions installed.
-That said, it's not an official image and it's not technically
-vanialla CentOS..
 
 ### Vagrant plugin
 
