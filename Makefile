@@ -27,6 +27,9 @@ bootstrap:
 docker:
 	ansible-playbook -i $(INVENTORY) --tags docker provision.yml
 
+elapsed_time:
+	ansible-playbook -i $(INVENTORY) --tags elapsed_time provision.yml
+
 emacs:
 	ansible-playbook -i $(INVENTORY) --tags emacs provision.yml
 

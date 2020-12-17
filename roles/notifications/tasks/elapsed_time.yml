@@ -1,0 +1,31 @@
+- name: Ensure /usr/bin/jim folder exists
+  file:
+    path: /usr/bin/jim
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+  become: true
+
+- name: Ensure /var/mapped/tmp folder exists
+  file:
+    path: /var/mapped/tmp
+    state: directory
+    mode: 0755
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+
+- name: Add /usr/bin/jim folder to PATH
+  lineinfile:
+    path: ~/.bashrc
+    line: 'export PATH=/usr/bin/jim:$PATH'
+    state: present
+
+- name: Copy elapsed_time.sh script to /usr/bin/jim
+  copy:
+    src: elapsed_time.sh
+    dest: /usr/bin/jim
+    mode: 0755
+    owner: root
+    group: root
+  become: true
