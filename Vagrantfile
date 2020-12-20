@@ -3,12 +3,13 @@
 
 Vagrant.configure(2) do |config|
   config.vm.box = "generic/fedora33"
-  config.disksize.size = '45GB'
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "5000"
     vb.cpus = "2"
-    vb.customize ["modifyvm", :id, "--vram", "128"]
+    vb.customize ["modifyvm", :id, "--usb", "on"]
+    vb.customize ["usbfilter", "add", "0", "--target", :id, "--name", "ESP",
+                  "--vendorid", "0x10c4", "--productid", "0xea60"]
   end
 
   config.ssh.forward_agent = true
