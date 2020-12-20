@@ -7,3 +7,6 @@
 
 - import_tasks: bootstrap.yml
   tags: bootstrap
+
+- import_tasks: blog.yml
+  tags: blog

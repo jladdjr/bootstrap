@@ -1,0 +1,5 @@
+- name: Add blog
+  git:
+    dest: ~/git/jladdjr.github.io
+    repo: git@github.com:jladdjr/jladdjr.github.io
+    accept_hostkey: yes

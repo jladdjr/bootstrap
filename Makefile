@@ -23,6 +23,9 @@ ansible-builder:
 bash:
 	ansible-playbook -i $(INVENTORY) --tags bash provision.yml
 
+blog:
+	ansible-playbook -i $(INVENTORY) --tags blog provision.yml
+
 bootstrap:
 	ansible-playbook -i $(INVENTORY) --tags bootstrap provision.yml
 
