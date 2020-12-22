@@ -22,6 +22,7 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 8013, host: 8013  # awx/tower
   config.vm.network "forwarded_port", guest: 8043, host: 8043  # awx/tower
   config.vm.network "forwarded_port", guest: 3001, host: 3001  # awx-pf/tower
+  config.vm.network "forwarded_port", guest: 5000, host: 5000  # pluto-destroyer
 
   config.ssh.forward_x11 = true
   config.ssh.username = 'jim'
