@@ -1,0 +1,23 @@
+- name: Ensure /usr/bin/jim/notifications folder exists
+  file:
+    path: /usr/bin/jim/notifications
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+  become: true
+
+- name: Add /usr/bin/jim/notifications folder to PATH
+  lineinfile:
+    path: ~/.bashrc
+    line: 'export PATH=/usr/bin/jim/notifications:$PATH'
+    state: present
+
+- name: Copy slack_status_check.sh script to /usr/bin/jim/notifications
+  copy:
+    src: checks/slack_status_check.sh
+    dest: /usr/bin/jim/notifications
+    mode: 0755
+    owner: root
+    group: root
+  become: true
