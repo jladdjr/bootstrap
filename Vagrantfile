@@ -43,7 +43,12 @@ __END__
 vagrant plugin install vagrant-disksize
 
 # Expanding disk size after first boot
-
+# Last successfully used this process with:
+# macOS Catalina, Version 10.15.7
+# Fedora release 33 (Thirty Three) - 5.9.13-200.fc33.x86_64
+# VirtualBox Version 6.1.16 r140961 (Qt5.6.3)
+# Vagrant 2.2.14
+# vagrant-disksize (0.1.3, global)
 (assumes vagrant-disksize was installed before calling `vagrant up` for first time)
 
 Add the following in the `Vagrant.configure(2) ..` block:
