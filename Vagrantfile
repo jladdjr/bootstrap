@@ -3,6 +3,7 @@
 
 Vagrant.configure(2) do |config|
   config.vm.box = "generic/fedora33"
+  config.disksize.size = '60GB'
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "5000"
