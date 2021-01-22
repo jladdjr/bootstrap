@@ -13,8 +13,8 @@ Vagrant.configure(2) do |config|
                   "--vendorid", "0x10c4", "--productid", "0xea60"]
     vb.customize ['usbfilter', 'add', '1', '--target', :id, '--name', 'SOLO',
                   '--vendorid', '0x0483', '--productid', '0xa2ca']
-    vb.customize ['usbfilter', 'add', '2', '--target', :id, '--name', 'yubikey',
-                  '--vendorid', '0x1050', '--productid', '0x0407']
+    #vb.customize ['usbfilter', 'add', '2', '--target', :id, '--name', 'yubikey',
+    #              '--vendorid', '0x1050', '--productid', '0x0407']
   end
 
   config.ssh.forward_agent = true
