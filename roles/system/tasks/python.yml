@@ -57,9 +57,6 @@
 #
 #################################################################################
 
-# strangely enough, this results in the following error when running `make docker-compose`
-# for awx:
-#   Error loading Python lib '/tmp/_MEIDyKA1k/libpython3.7m.so.1.0
 - name: Make sure system has pip installed
   dnf:
     name: python3-pip
