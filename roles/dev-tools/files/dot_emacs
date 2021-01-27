@@ -1,0 +1,34 @@
+;; .emacs
+
+;; add melpa package archive
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/"))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(diff-switches "-u")
+ '(package-selected-packages '(magit)))
+
+;;; uncomment for CJK utf-8 support for non-Asian users
+;; (require 'un-define)
+
+(windmove-default-keybindings)
+
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
+
+;; wrap lines after 80 chars
+;; https://emacs.stackexchange.com/questions/30221/wrap-lines-at-80-characters
+(add-hook 'text-mode-hook #'auto-fill-mode)
+(setq-default fill-column 160)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

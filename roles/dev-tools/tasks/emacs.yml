@@ -3,3 +3,9 @@
     name: emacs
     state: latest
   become: true
+
+- name: Install emacs dot file
+  copy:
+    scr: dot_emacs
+    dest: "{{ lookup('env', 'HOME') }}"
+    mode: 644
