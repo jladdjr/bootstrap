@@ -4,8 +4,8 @@
     state: latest
   become: true
 
-- name: Install emacs dot file
+- name: Install .spaceemacs dot file
   copy:
-    scr: dot_emacs
-    dest: "{{ lookup('env', 'HOME') }}"
+    scr: dot_spacemacs
+    dest: "{{ lookup('env', 'HOME') }}"/.spacemacs
     mode: 644
