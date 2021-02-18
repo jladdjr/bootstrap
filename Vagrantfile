@@ -28,6 +28,10 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 8043, host: 8043  # awx/tower
   config.vm.network "forwarded_port", guest: 3001, host: 3001  # awx-pf/tower
   config.vm.network "forwarded_port", guest: 9000, host: 9000  # pluto-destroyer
+  config.vm.network "forwarded_port", guest: 9200, host: 9200  # elasticsearch
+  config.vm.network "forwarded_port", guest: 9300, host: 9300  # elasticsearch
+  config.vm.network "forwarded_port", guest: 8085, host: 8085  # logstash
+  config.vm.network "forwarded_port", guest: 5601, host: 5601  # kibana
 
   config.ssh.forward_x11 = true
   config.ssh.username = 'jim'
