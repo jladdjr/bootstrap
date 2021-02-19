@@ -6,6 +6,6 @@
 
 - name: Install .spaceemacs dot file
   copy:
-    scr: dot_spacemacs
-    dest: "{{ lookup('env', 'HOME') }}"/.spacemacs
+    src: dot_spacemacs
+    dest: "{{ lookup('env', 'HOME') }}/.spacemacs"
     mode: 644
