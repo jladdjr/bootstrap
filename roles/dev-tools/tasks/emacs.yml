@@ -8,4 +8,4 @@
   copy:
     src: dot_spacemacs
     dest: "{{ lookup('env', 'HOME') }}/.spacemacs"
-    mode: 644
+    mode: 0644
