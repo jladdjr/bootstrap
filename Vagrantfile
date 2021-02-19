@@ -3,7 +3,7 @@
 
 Vagrant.configure(2) do |config|
   config.vm.box = "generic/fedora33"
-  config.disksize.size = '60GB'
+  #config.disksize.size = '60GB'
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "5000"
@@ -19,9 +19,9 @@ Vagrant.configure(2) do |config|
 
   config.ssh.forward_agent = true
 
-  config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "provision.yml"
-  end
+  #config.vm.provision "ansible" do |ansible|
+  #  ansible.playbook = "provision.yml"
+  #end
 
   config.vm.network "forwarded_port", guest: 8888, host: 8888  # jupyter
   config.vm.network "forwarded_port", guest: 8013, host: 8013  # awx/tower
@@ -42,6 +42,14 @@ Vagrant.configure(2) do |config|
 end
 
 __END__
+
+# Update Vagrant, Fedora Box
+
+- **WAIT** to update MacOS.
+- **VERIFY** virtualbox, vagrant support any new versions before installing.
+- https://www.virtualbox.org/wiki/Downloads
+- https://www.vagrantup.com/downloads
+- vagrant box update --box generic/fedora33
 
 # Required Vagrant Plugins
 
