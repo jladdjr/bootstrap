@@ -8,4 +8,4 @@
     - { role: misc-repos, tags: misc-repos }
     - { role: notifications, tags: notifications }
     - { role: getting_started, tags: getting_started }
-    - { role: solo, tags: solo }
+    #- { role: solo, tags: solo }
