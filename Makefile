@@ -1,5 +1,7 @@
 INVENTORY=inventory
 
+all:
+	ansible-playbook -i $(INVENTORY) provision.yml
 alerts:
 	ansible-playbook -i $(INVENTORY) --tags alerts provision.yml
 ag:
