@@ -1,8 +1,14 @@
 - block:
-    - name: Update all packages
-      dnf:
-        name: '*'
-        state: latest
+   # if I got this wrong, and the kernel *is* updated
+   # that can break guest additions
+   #
+   #- name: Update all packages
+   #   dnf:
+   #     name: '*'
+   #     state: latest
+   #     exclude:
+   #       - kernel*
+   #       - virtualbox-guest-additions
 
     - name: Install development tools
       dnf:
