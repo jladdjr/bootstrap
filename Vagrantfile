@@ -37,8 +37,9 @@ Vagrant.configure(2) do |config|
   config.ssh.username = 'jim'
 
   # https://www.vagrantup.com/docs/synced-folders/basic_usage.html
-  config.vm.synced_folder "../mapped", "/var/mapped",
-      owner: "jim", group: "vagrant"
+  # https://github.com/dustymabe/vagrant-sshfs
+  # requires: vagrant plugin install vagrant-sshfs
+  config.vm.synced_folder "../mapped", "/var/mapped", type: "sshfs"
 end
 
 __END__
