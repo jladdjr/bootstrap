@@ -23,6 +23,7 @@ Vagrant.configure(2) do |config|
   #  ansible.playbook = "provision.yml"
   #end
 
+  config.vm.network "private_network", ip: "192.168.10.42"
   config.vm.network "forwarded_port", guest: 8888, host: 8888  # jupyter
   config.vm.network "forwarded_port", guest: 8013, host: 8013  # awx/tower
   config.vm.network "forwarded_port", guest: 8043, host: 8043  # awx/tower
@@ -37,9 +38,9 @@ Vagrant.configure(2) do |config|
   config.ssh.username = 'jim'
 
   # https://www.vagrantup.com/docs/synced-folders/basic_usage.html
-  # https://github.com/dustymabe/vagrant-sshfs
-  # requires: vagrant plugin install vagrant-sshfs
-  config.vm.synced_folder "../mapped", "/var/mapped", type: "sshfs"
+  # note: requires private network (defined here - see private_network)
+  config.vm.synced_folder "../mapped", "/var/mapped", type: "nfs"
+
 end
 
 __END__
