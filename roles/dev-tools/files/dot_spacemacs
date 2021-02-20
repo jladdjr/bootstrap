@@ -510,6 +510,8 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq projectile-project-search-path '("~/git/"))
   )
 
+  (custom-set-variables '(evil-want-C-i-jump t))
+
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
 This function is called only while dumping Spacemacs configuration. You can
