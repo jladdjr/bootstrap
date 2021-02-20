@@ -79,6 +79,9 @@ Add the following in the `Vagrant.configure(2) ..` block:
     * Select Write, type Yes
     * Select Quit
 3.  lvextend +10G /dev/mapper/fedora_fedora33-root (or however much space was added)
+    NOTE: on 2/20/21 I needed to use this instead:
+    # lvdisplay (to look up logical volume path)
+    # lvextend -L +40G /dev/fedora_fedora33/root
 3. `sudo xfs_growfs /`
 4. `df -h | grep sda1` should confirm new size
 
