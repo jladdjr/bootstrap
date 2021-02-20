@@ -72,11 +72,12 @@ Add the following in the `Vagrant.configure(2) ..` block:
    config.disksize.size = '45GB'
 
 1. Log into vm
-2. `sudo cfdisk /dev/sda`
+2. `sudo cfdisk /dev/sda` <--------- I found this step unneccesary
     * Select Resize
     * Accept 'New size: 45G'
     * Select Write, type Yes
     * Select Quit
+3.  lvextend +10G /dev/mapper/fedora_fedora33-root (or however much space was added)
 3. `sudo xfs_growfs /`
 4. `df -h | grep sda1` should confirm new size
 
