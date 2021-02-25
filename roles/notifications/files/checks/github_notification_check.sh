@@ -6,6 +6,13 @@ if [ ! -f $STATUS_FILE ]; then
     echo "?" > $STATUS_FILE
 fi
 
+# don't check outside of working hours
+if [[ "$(date +%H)" -lt 8 || "$(date +%H)" -gt 15 ]]; then
+    status=$(cat "${STATUS_FILE}")
+    echo "${status}*"
+    exit
+fi
+
 # only run once a minute
 if [ "$(date +%S)" != 00 ]; then
     cat $STATUS_FILE
