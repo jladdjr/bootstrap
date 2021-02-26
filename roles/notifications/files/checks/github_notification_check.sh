@@ -7,7 +7,7 @@ if [ ! -f $STATUS_FILE ]; then
 fi
 
 # don't check outside of working hours
-if [[ "$(date +%H)" -lt 8 || "$(date +%H)" -gt 15 ]]; then
+if [[ "$(date +%H)" -lt 8 || "$(date +%H)" -gt 17 ]]; then
     status=$(cat "${STATUS_FILE}")
     echo "${status}*"
     exit
