@@ -1,6 +1,7 @@
 # https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions-enterprise-linux-fedora-and-snap-packages
+# https://nodejs.medium.com/node-js-v15-0-0-is-here-deb00750f278 (Node 15)
 - name: Install nodejs repo
-  shell: curl -sL https://rpm.nodesource.com/setup_14.x | bash -  # required by awx (12/14/20)
+  shell: curl -sL https://rpm.nodesource.com/setup_15.x | bash -  # I _think_ we can pull down 15 now
   args:
     warn: false
   become: true
