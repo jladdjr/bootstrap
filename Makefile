@@ -52,6 +52,9 @@ git:
 hostname:
 	ansible-playbook -i $(INVENTORY) --tags hostname provision.yml
 
+iwilldo:
+	ansible-playbook -i $(INVENTORY) --tags iwilldo provision.yml
+
 networking:
 	ansible-playbook -i $(INVENTORY) --tags networking provision.yml
 

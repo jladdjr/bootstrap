@@ -10,3 +10,6 @@
 
 - import_tasks: blog.yml
   tags: blog
+
+- import_tasks: iwilldo.yml
+  tags: iwilldo

@@ -1,0 +1,19 @@
+- name: Add iwilldo
+  git:
+    dest: ~/git/iwilldo
+    repo: git@github.com:jladdjr/iwilldo.git
+    accept_hostkey: yes
+  tags: iwilldo
+
+- name: Create iwilldo virtualenv
+  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3.6 --system-site-packages iwilldo
+  args:
+    executable: /bin/bash
+  environment:
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.6
+  tags: iwilldo
+
+- name: Add iwilldo alias
+  lineinfile:
+    path: ~/.bashrc
+    line: alias i="cd ~/git/iwilldo; git br | grep '*'"
