@@ -9,5 +9,7 @@
 
 - import_tasks: slack_status_check.yml
 
+- import_tasks: github_status_check.yml
+
 - import_tasks: elapsed_time.yml
   tags: elapsed_time
