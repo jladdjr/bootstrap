@@ -1,37 +1,84 @@
-- name: Add awx project
-  git:
-    dest: ~/git/awx
-    repo: git@github.com:jladdjr/awx.git
-    accept_hostkey: yes
+- name: Determine if repo has already been created
+  stat:
+    path: ~/git/awx
+  register: repo_dir
   tags: awx
 
-- name: Determine which remotes exist
-  command: git remote -v
-  args:
-    chdir: ~/git/awx
-  register: git_remote
-  tags: awx
+- block:
+  - name: Add awx project
+    git:
+      dest: ~/git/awx
+      repo: git@github.com:jladdjr/awx.git
+      accept_hostkey: yes
+    tags: awx
 
-- name: Add remote repo (ansible)
-  command: git remote add ansible git@github.com:ansible/awx.git
-  args:
-    chdir: ~/git/awx
-  when: git_remote.stdout.find('ansible') == -1
-  tags: awx
+  - name: Determine which remotes exist
+    command: git remote -v
+    args:
+      chdir: ~/git/awx
+    register: git_remote
+    tags: awx
 
-- name: Fetch ansible repo
-  command: git fetch ansible
-  args:
-    chdir: ~/git/awx
-  tags: awx
+  - name: Add remote repo (ansible)
+    command: git remote add ansible git@github.com:ansible/awx.git
+    args:
+      chdir: ~/git/awx
+    when: git_remote.stdout.find('ansible') == -1
+    tags: awx
 
-- name: Create awx virtualenv
-  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3.6 awx
+  - name: Fetch ansible repo
+    command: git fetch ansible
+    args:
+      chdir: ~/git/awx
+    tags: awx
+  when: not repo_dir.stat.exists
+
+- name: Clear existing awx virtualenv
+  shell: . /usr/local/bin/virtualenvwrapper.sh && rmvirtualenv awx
   args:
     executable: /bin/bash
   environment:
-    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.6
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.8
+  register: venv_list
   tags: awx
+  when: recreate_venvs|default(false)
+
+- name: Determine if virtualenv exists
+  shell: . /usr/local/bin/virtualenvwrapper.sh && lsvirtualenv -b
+  args:
+    executable: /bin/bash
+  environment:
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.8
+  register: venv_list
+  tags: awx
+
+- block:
+  - name: Create awx virtualenv
+    shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3.8 awx
+    args:
+      executable: /bin/bash
+    environment:
+      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.8
+    tags: awx
+
+  - name: Install venv requirements
+    shell: . /usr/local/bin/virtualenvwrapper.sh && workon awx && pip install -U -r requirements/requirements_dev.txt
+    args:
+      executable: /bin/bash
+      chdir: ~/git/awx
+    environment:
+      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.8
+    tags: awx
+
+  - name: Install awxkit
+    shell: . /usr/local/bin/virtualenvwrapper.sh && workon awx && pip install -U -e awxkit
+    args:
+      executable: /bin/bash
+      chdir: ~/git/awx
+    environment:
+      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.8
+    tags: awx
+  when: "'awx' not in venv_list.stdout"
 
 - name: Create awx alias and derez / preload_tower / wipe_instance functions
   blockinfile:

@@ -19,6 +19,9 @@ ansible-runner:
 awx:
 	ansible-playbook -i $(INVENTORY) --tags awx provision.yml
 
+awx-fresh-venv:
+	ansible-playbook -i $(INVENTORY) --tags awx -e recreate_venvs=true provision.yml
+
 ansible-builder:
 	ansible-playbook -i $(INVENTORY) --tags ansible-builder provision.yml
 

@@ -26,9 +26,9 @@
   tags: ansible-builder
 
 - name: Create ansible-builder virtualenv
-  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3.6 ansible-builder
+  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3.8 ansible-builder
   args:
     executable: /bin/bash
   environment:
-    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.6
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.8
   tags: ansible-builder

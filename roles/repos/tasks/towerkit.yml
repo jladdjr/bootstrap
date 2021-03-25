@@ -7,11 +7,11 @@
   tags: towerkit
 
 - name: Create towerkit virtualenv
-  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3.6 towerkit
+  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3.8 towerkit
   args:
     executable: /bin/bash
   environment:
-    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.6
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.8
   tags: towerkit
 
 - name: Add towerkit requirements to venv
@@ -20,7 +20,7 @@
     executable: /bin/bash
     chdir: ~/git/towerkit
   environment:
-    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.6
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.8
   tags: towerkit
 
 - name: Determine which remotes exist

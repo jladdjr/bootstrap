@@ -6,11 +6,11 @@
   tags: iwilldo
 
 - name: Create iwilldo virtualenv
-  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3.6 --system-site-packages iwilldo
+  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3.8 --system-site-packages iwilldo
   args:
     executable: /bin/bash
   environment:
-    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.6
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.8
   tags: iwilldo
 
 - name: Add iwilldo alias

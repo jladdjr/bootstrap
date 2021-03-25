@@ -6,14 +6,14 @@
   args:
     executable: /bin/bash
   environment:
-    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.6
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.8
 
 - name: Install Ansible and requirements for wait_for_tower in venv
   shell: . /usr/local/bin/virtualenvwrapper.sh && workon ansible29 && pip install -U -I ansible boto3
   args:
     executable: /bin/bash
   environment:
-    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.6
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.8
 
 - name: Create alias to source ansible
   lineinfile:
