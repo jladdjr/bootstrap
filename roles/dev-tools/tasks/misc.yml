@@ -1,5 +1,5 @@
 - name: Install misc dev tools
   dnf:
-    name: ['ack', 'jq', 'strace', 'telnet', 'nc', 'lsof']
+    name: ['ack', 'jq', 'strace', 'telnet', 'nc', 'lsof', 'traceroute']
     state: latest
   become: true
