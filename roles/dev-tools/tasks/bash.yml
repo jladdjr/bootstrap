@@ -121,3 +121,6 @@
 
       # github_notification_check.sh
       export GITHUB_TOKEN="FIXME"
+
+      # restart local DNS service
+      alias r='sudo systemctl restart systemd-resolved.service
