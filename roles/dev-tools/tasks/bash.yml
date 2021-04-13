@@ -100,9 +100,9 @@
 
       f () {
           DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@")
-          HEAD1=$(git rev-list -n 1 ansible/${DEFAULT_BRANCH})
+          export HEAD1=$(git rev-list -n 1 ansible/${DEFAULT_BRANCH})
           git fetch ansible
-          HEAD2=$(git rev-list -n 1 ansible/${DEFAULT_BRANCH})
+          export HEAD2=$(git rev-list -n 1 ansible/${DEFAULT_BRANCH})
           git diff --stat ${HEAD1}..${HEAD2}
       }
 
