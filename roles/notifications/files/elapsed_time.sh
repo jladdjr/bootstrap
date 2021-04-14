@@ -6,9 +6,12 @@ if [ ! -f "$timestamp_file" ]; then
 fi
 start=$(cat $timestamp_file)
 
-
 now=$(date +%s)
 diff_in_secs=$(( now - start ))
+if (( $diff_in_secs == $now )); then
+    exit
+fi
+
 diff_in_mins=$(( diff_in_secs / 60 ))
 diff_in_hours=$(( diff_in_mins / 60 ))
 diff_in_days=$(( diff_in_hours / 24 ))
