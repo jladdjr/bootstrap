@@ -28,6 +28,7 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 8013, host: 8013  # awx/tower
   config.vm.network "forwarded_port", guest: 8043, host: 8043  # awx/tower
   config.vm.network "forwarded_port", guest: 3001, host: 3001  # awx-pf/tower
+  config.vm.network "forwarded_port", guest: 8000, host: 8000  # iwilldo
   config.vm.network "forwarded_port", guest: 9000, host: 9000  # pluto-destroyer
   config.vm.network "forwarded_port", guest: 9200, host: 9200  # elasticsearch
   config.vm.network "forwarded_port", guest: 9300, host: 9300  # elasticsearch
