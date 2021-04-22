@@ -9,3 +9,11 @@
     src: dot_spacemacs
     dest: "{{ lookup('env', 'HOME') }}/.spacemacs"
     mode: 0644
+
+- name: Add aliases for emacs
+  blockinfile:
+    marker: "# {mark} emacs"
+    path: ~/.bashrc
+    block: |
+      alias es='emacs --daemon'
+      alias e='emacsclient --create-frame --alternate-editor=""'
