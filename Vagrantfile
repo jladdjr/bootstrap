@@ -23,6 +23,14 @@ Vagrant.configure(2) do |config|
   #  ansible.playbook = "provision.yml"
   #end
 
+  # be sure to add firewall rules on the guest / vm for any open ports
+  # temporary:
+  # - firewall-cmd --add-port=9000/tcp
+  #
+  # permanent
+  # - firewall-cmd --permanent --add-port=9000/tcp
+  # - firewall-cmd --reload
+
   config.vm.network "private_network", ip: "192.168.10.42"
   config.vm.network "forwarded_port", guest: 8888, host: 8888  # jupyter
   config.vm.network "forwarded_port", guest: 8013, host: 8013  # awx/tower
