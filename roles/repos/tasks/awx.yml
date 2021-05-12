@@ -125,7 +125,7 @@
 
       alias update_settings='cp awx/settings/local_settings.py.docker_compose awx/settings/local_settings.py'
 
-      awx-test () { tmux new-session -d -s awx-test docker exec -it -u 0 tools_awx_1 bash --rcfile '/var/lib/awx/venv/awx/bin/activate'; tmux switch-client -t awx-test; }
+      alias at="tmux split-window docker exec -it -u 0 tools_awx_1 bash --rcfile '/var/lib/awx/venv/awx/bin/activate'"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - awx"
   tags: awx
 
