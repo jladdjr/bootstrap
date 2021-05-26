@@ -34,3 +34,8 @@ $ gcloud auth login
 Update preload_tower password
 $ vi ~/.bashrc
 # search for CHANGME under `preload_tower`
+
+Kicking off tower_state_check manually:
+# `crontab -e` should show this script being started on reboot. If you have just
+# provisioned your environment, you can kickf off the script manually:
+$ nohup /usr/bin/jim/notifications/tower_state_check > /var/mapped/tmp/tower_state_check.log &
