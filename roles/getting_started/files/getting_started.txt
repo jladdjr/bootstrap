@@ -27,3 +27,10 @@ $ gpg --edit-key <key_hash>
 Update creds for github, AWS
 $ vi ~/.bashrc
 # search for CHANGEME
+
+Log into gcloud:
+$ gcloud auth login
+
+Update preload_tower password
+$ vi ~/.bashrc
+# search for CHANGME under `preload_tower`

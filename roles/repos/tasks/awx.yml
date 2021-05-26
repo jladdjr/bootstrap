@@ -129,7 +129,7 @@
       preload_tower () {
           # admin user already exists on fresh deployment of dev environment
           #docker exec -ti tools_awx_1 bash -c 'awx-manage createsuperuser --username=admin --email=admin@localhost --no-input'
-          docker exec -ti tools_awx_1 bash -c 'awx-manage update_password --username=admin --password=password'
+          docker exec -ti tools_awx_1 bash -c 'awx-manage update_password --username=admin --password=CHANGEME'
           docker exec -ti tools_awx_1 bash -c 'awx-manage create_preload_data'
       }
 
