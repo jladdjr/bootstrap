@@ -48,6 +48,8 @@ Vagrant.configure(2) do |config|
 
   # https://www.vagrantup.com/docs/synced-folders/basic_usage.html
   # note: requires private network (defined here - see private_network)
+  #       also, guest additions must be in sync with kernel version
+  #       otherwise may see quirky issues with mapped folder permissions
   config.vm.synced_folder "../mapped", "/var/mapped", type: "nfs"
 
 end
