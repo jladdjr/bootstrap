@@ -129,7 +129,7 @@ instead of vagrant's.
 # How to install guest additions (to enable shared folders)
 
 Although generic/fedora33 comes with guest additions
-you will need to update it if you updaet the kernel
+you will need to update it if you update the kernel
 (e.g. w/ `dnf update`).
 
 
