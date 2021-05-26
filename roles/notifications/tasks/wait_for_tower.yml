@@ -25,8 +25,6 @@
     path: /usr/bin/jim/wait_for_tower
     state: directory
     mode: 0755
-    owner: root
-    group: root
   become: true
 
 - name: Add wait_for_tower folder to PATH
@@ -40,8 +38,6 @@
     src: "wait_for_tower/{{ item }}"
     dest: /usr/bin/jim/wait_for_tower
     mode: 0755
-    owner: root
-    group: root
   with_items:
     - inventory
     - wait_for_tower

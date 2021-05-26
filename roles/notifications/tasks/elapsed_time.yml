@@ -3,8 +3,6 @@
     path: /usr/bin/jim
     state: directory
     mode: 0755
-    owner: root
-    group: root
   become: true
 
 - name: Ensure /var/mapped/tmp folder exists
@@ -12,8 +10,6 @@
     path: /var/mapped/tmp
     state: directory
     mode: 0755
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_id }}"
 
 - name: Add /usr/bin/jim folder to PATH
   lineinfile:
@@ -26,6 +22,4 @@
     src: elapsed_time.sh
     dest: /usr/bin/jim
     mode: 0755
-    owner: root
-    group: root
   become: true

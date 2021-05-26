@@ -3,24 +3,18 @@
     path: /var/mapped/bin
     state: directory
     mode: 0755
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_id }}"
 
 - name: Copy open_link to mapped folder
   copy:
     src: open_links/open_link
     dest: /var/mapped/bin
     mode: 0755
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_id }}"
 
 - name: Ensure /usr/bin/jim/ folder exists
   file:
     path: /usr/bin/jim
     state: directory
     mode: 0755
-    owner: root
-    group: root
   become: true
 
 - name: Add /usr/bin/jim folder to PATH
@@ -34,6 +28,4 @@
     src: open_links/open_link_on_host
     dest: /usr/bin/jim
     mode: 0755
-    owner: root
-    group: root
   become: true

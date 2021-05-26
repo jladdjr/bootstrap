@@ -1,9 +1,9 @@
-- import_tasks: alerts.yml
-  tags: alerts
+#- import_tasks: alerts.yml
+#  tags: alerts
 
-- import_tasks: wait_for_tower.yml
+#- import_tasks: wait_for_tower.yml
 
-- import_tasks: open_links.yml
+#- import_tasks: open_links.yml
 
 - import_tasks: github_notification_check.yml
 

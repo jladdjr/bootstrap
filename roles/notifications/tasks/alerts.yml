@@ -3,24 +3,18 @@
     path: /var/mapped/bin
     state: directory
     mode: 0755
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_id }}"
 
 - name: Copy alert.sh to mapped folder
   copy:
     src: alerts/alert.sh
     dest: /var/mapped/bin
     mode: 0755
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_id }}"
 
 - name: Ensure /usr/bin/jim/notifications folder exists
   file:
     path: /usr/bin/jim/notifications
     state: directory
     mode: 0755
-    owner: root
-    group: root
   become: true
 
 - name: Add notifications folder to PATH
@@ -34,8 +28,6 @@
     src: "alerts/{{ item }}"
     dest: /usr/bin/jim/notifications
     mode: 0755
-    owner: root
-    group: root
   with_items:
     - run_and_notify
     - notify
