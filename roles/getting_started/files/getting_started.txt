@@ -19,5 +19,11 @@ Decrypting credentials.vault
 $ cd ~/git/tower-qa-$BRANCH/config
 $ ansible-vault decrypt credentials.vault --output=credentials.yml --ask-vault-pass
 
-Update AWS creds
+Add gpg key for pass:
+$ gpg --import <key_hash>.asc
+$ gpg --edit-key <key_hash>
+# enter 'trust', then set trust level to 5, confirm
+
+Update creds for github, AWS
 $ vi ~/.bashrc
+# search for CHANGEME
