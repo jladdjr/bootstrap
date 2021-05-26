@@ -1,11 +1,11 @@
-- name: Ensure mapped folder exists
-  file:
+- name: Get information on mapped folder
+  stat:
     path: /var/mapped
-    state: directory
-    mode: 0700
-    owner: vagrant
-    group: vagrant
-  become: true
+  register: mapped_folder
+
+- name: Ensure mapped folder exists
+  assert:
+    that: mapped_folder.stat.exists
 
 - name: Add bash configuration
   blockinfile:
