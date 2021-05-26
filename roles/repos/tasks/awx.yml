@@ -54,7 +54,7 @@
 
 - block:
   - name: Create awx virtualenv
-    shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3.8 awx
+    shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3.8 --system-site-packages awx
     args:
       executable: /bin/bash
     environment:
@@ -63,6 +63,23 @@
 
   - name: Install venv requirements
     shell: . /usr/local/bin/virtualenvwrapper.sh && workon awx && pip install -U -r requirements/requirements_dev.txt
+    args:
+      executable: /bin/bash
+      chdir: ~/git/awx
+    environment:
+      VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.8
+    tags: awx
+
+  # TLDR: Running `make docker-compose` fails when using rpm-based ansible instead of pip-installed ansible.
+  # The "Render Docker-Compose" task ends up failing with:
+  #
+  # > Aborting, target uses selinux but python bindings (libselinux-python) aren't installed!
+  #
+  # An rpm-based Ansible seems like it will use the system `python3`. In my case, this is python3.9
+  # Meanwhile, the venv created for awx will use the venv python3 and the site packages for that. For me, this is python3.8.
+  # This seems to result in a mismatch where some required libraries are not found.
+  - name: Install ansible in venv
+    shell: . /usr/local/bin/virtualenvwrapper.sh && workon awx && pip install -U ansible
     args:
       executable: /bin/bash
       chdir: ~/git/awx
