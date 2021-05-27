@@ -66,7 +66,13 @@
     VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.8
   tags: tower-qa
 
-# TODO: install awxkit from ~/git/awx/awxkit
+- name: Install awxkit from ~/git/awx/awxkit
+  shell: . /usr/local/bin/virtualenvwrapper.sh && workon tower-qa-{{ branch }} && pip install -e ~/git/awx/awxkit
+  args:
+    executable: /bin/bash
+  environment:
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.8
+  tags: tower-qa
 
 - name: Also install ipython
   shell: . /usr/local/bin/virtualenvwrapper.sh && workon tower-qa-{{ branch }} && pip install ipython
