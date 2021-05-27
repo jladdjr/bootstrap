@@ -121,4 +121,4 @@
       export GITHUB_TOKEN="CHANGEME"
 
       # restart local DNS service
-      alias r='sudo systemctl restart systemd-resolved.service'
+      alias reset_dns='sudo systemctl restart systemd-resolved.service'
