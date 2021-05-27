@@ -10,6 +10,12 @@
     dest: "{{ lookup('env', 'HOME') }}/.spacemacs"
     mode: 0644
 
+# https://www.spacemacs.org
+- name: Install spacemacs config in ~/.emacs.d
+  git:
+    repo: 'https://github.com/syl20bnr/spacemacs'
+    dest: ~/.emacs.d
+
 - name: Add aliases for emacs
   blockinfile:
     marker: "# {mark} emacs"
