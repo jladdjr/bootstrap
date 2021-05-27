@@ -101,8 +101,8 @@
   blockinfile:
     path: ~/.bashrc
     block: |
-      alias a="workon awx; cd ~/git/awx; python --version | head -1; git br | grep '*'"
-      alias ak="workon awx; cd ~/git/awx/awxkit; python --version | head -1; git br | grep '*'"
+      alias a="workon awx; cd ~/git/awx; python --version | head -1; ansible --version | head -1; git br | grep '*'"
+      alias ak="workon awx; cd ~/git/awx/awxkit; python --version | head -1; ansible --version | head -1; git br | grep '*'"
 
       # Thoroughly remove awx containers, images and ui build artifacts
       derez () {

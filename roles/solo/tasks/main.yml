@@ -47,7 +47,7 @@
 - name: create alias for loading solo venv
   lineinfile:
     path: ~/.bashrc
-    line: alias s="cd ~/git/solo/solo; workon solo; python --version | head -1; git br | grep '*'"
+    line: alias s="cd ~/git/solo/solo; workon solo; python --version | head -1; ansible --version | head -1; git br | grep '*'"
   tags: solo
 
 - name: ensure ~/git/solo dir exists
