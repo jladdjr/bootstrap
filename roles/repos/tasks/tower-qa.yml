@@ -98,6 +98,12 @@
     src: ipython/ipython_config.py
     dest: /var/mapped/.ipython/profile_default
 
+# In order for ansible-runner (the pytest plugin) to run against the local dev environment
+# need to have community.docker collection
+- name: Install community.docker collection
+  shell: ansible-galaxy collection install community.docker
+  tags: tower-qa
+
 - name: Create aliases for tower-qa
   blockinfile:
     path: ~/.bashrc
