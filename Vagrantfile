@@ -50,7 +50,13 @@ Vagrant.configure(2) do |config|
   # note: requires private network (defined here - see private_network)
   #       also, guest additions must be in sync with kernel version
   #       otherwise may see quirky issues with mapped folder permissions
-  config.vm.synced_folder "../mapped", "/var/mapped", type: "nfs"
+  # note: the nfs service's default configuration may block udp traffic.
+  #       here, we just default to not using udp (this was an issue with
+  #       fedora34
+  #       (https://www.vagrantup.com/docs/synced-folders/nfs)
+  config.vm.synced_folder "../mapped", "/var/mapped",
+    type: "nfs",
+    nfs_udp: false
 
 end
 
