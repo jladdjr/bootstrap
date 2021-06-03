@@ -95,6 +95,12 @@
     environment:
       VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.8
     tags: awx
+
+  - name: Create awxkit project file
+    copy:
+      src: dot_awxkit_projects
+      dest: ~/.awxkit_projects
+      mode: 0755
   when: "'awx' not in venv_list.stdout"
 
 - name: Create awx alias and derez / preload_tower / wipe_instance functions
@@ -103,6 +109,10 @@
     block: |
       alias a="workon awx; cd ~/git/awx; python --version | head -1; ansible --version | head -1; git br | grep '*'"
       alias ak="workon awx; cd ~/git/awx/awxkit; python --version | head -1; ansible --version | head -1; git br | grep '*'"
+
+      export AWXKIT_PROJECT_FILE="/home/jim/.awxkit_projects"
+      export AWXKIT_USER="admin"
+      export AWXKIT_USER_PASSWORD="CHANGEME"
 
       # Thoroughly remove awx containers, images and ui build artifacts
       derez () {
