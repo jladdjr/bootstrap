@@ -113,6 +113,7 @@
       export AWXKIT_PROJECT_FILE="/home/jim/.awxkit_projects"
       export AWXKIT_USER="admin"
       export AWXKIT_USER_PASSWORD="CHANGEME"
+      export AWXKIT_CREDENTIAL_FILE="/home/jim/git/tower-qa-devel/config/credentials.yml"
 
       # Thoroughly remove awx containers, images and ui build artifacts
       derez () {
