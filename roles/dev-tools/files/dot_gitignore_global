@@ -3,7 +3,9 @@
 nohup.out
 tmp
 
+# tower-qa
 pytestdebug.log
+playbooks/inventory
 
 # emacs files
 # https://github.com/github/gitignore/blob/master/Global/Emacs.gitignore
