@@ -1,0 +1,50 @@
+---
+
+# https://github.com/ansible/awx/blob/devel/docs/development/minikube.md
+# https://minikube.sigs.k8s.io/docs/start/
+
+# assumes docker install tasks have already run
+
+- name: Determine if minikube has been installed
+  shell: rpm -q minikube
+  register: minikube_rpm
+  ignore_errors: yes
+
+- block:
+  - name: Download minikube rpm
+    get_url:
+      url: https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm
+      dest: /tmp
+    become: true
+    tags: minikube
+  
+  - name: Install minikube
+    dnf:
+      name: /tmp/minikube-latest.x86_64.rpm
+      state: present
+      disable_gpg_check: yes
+    become: true 
+    tags: minikube
+  when: minikube_rpm.rc != 0
+
+  # yes, really
+  # https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+  # Click on Red Hat-based distributions tab
+- name: Disable selinux (for current session) for minikube
+  command: setenforce 0
+  become: true
+
+- name: Disable selinux (permanently) for minikube
+  command: sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+  become: true
+
+  # See https://v1-18.docs.kubernetes.io/docs/tasks/tools/install-minikube/
+  # for full description of minikube options
+  # --vm-driver=none => "Run the Kubernetes components on the host and not in a VM.
+  #                      Using this driver requires Docker and a Linux environment
+  #                      but not a hypervisor."
+  # https://github.com/kubernetes/minikube/issues/4770#issuecomment-517936983
+  # --extra-config=kubelet.cgroup-driver=systemd => basically, get everything to
+  #                                                 use systemd
+- name: Start minikube
+  shell: minikube start --vm-driver=none --extra-config=kubelet.cgroup-driver=systemd

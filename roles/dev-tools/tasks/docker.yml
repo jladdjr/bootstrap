@@ -33,6 +33,36 @@
     - name: Enable backwards compatibility for Cgroups (requires REBOOT to take effect!)
       command: grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"
 
+    - name: Ensure /etc/docker exists
+      file:
+        path: /etc/docker
+        state: directory
+      become: true
+
+    # Configuring Docker for minikube:
+    # https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker
+    #
+    # Note: if docker already exists and this configuration is added may need to:
+    # * sudo umount /var/lib/docker/btrfs
+    # * sudo rm -rf /var/lib/docker
+    # * sudo reboot
+    # .. in order to clear out old storage system and give docker a fresh start
+    - name: Configure docker to use systemd (for compatibility with minikube)
+      blockinfile:
+        marker: "# {mark} configure docker to use systemd (for compatibility with minikube)"
+        path: /etc/docker/daemon.json
+        create: yes
+        block: |
+          {
+            "exec-opts": ["native.cgroupdriver=systemd"],
+            "log-driver": "json-file",
+            "log-opts": {
+              "max-size": "100m"
+            },
+            "storage-driver": "overlay2"
+          }
+      become: true
+
     - name: Enable docker service
       systemd:
         name: docker

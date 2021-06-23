@@ -5,6 +5,7 @@
     - { role: system, tags: system }
     - { role: dev-tools, tags: dev-tools }
     - { role: repos, tags: repos }
+    - { role: minikube, tags: minikube }
     - { role: misc-repos, tags: misc-repos }
     - { role: notifications, tags: notifications }
     - { role: getting_started, tags: getting_started }
