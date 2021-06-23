@@ -1,0 +1,7 @@
+---
+
+# https://github.com/ansible/awx/blob/devel/docs/development/minikube.md
+# https://minikube.sigs.k8s.io/docs/start/
+
+- import_tasks: kvm.yml
+  tags: kvm

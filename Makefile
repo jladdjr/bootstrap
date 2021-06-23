@@ -58,6 +58,9 @@ hostname:
 iwilldo:
 	ansible-playbook -i $(INVENTORY) --tags iwilldo provision.yml
 
+kvm:
+	ansible-playbook -i $(INVENTORY) --tags kvm provision.yml
+
 networking:
 	ansible-playbook -i $(INVENTORY) --tags networking provision.yml
 
