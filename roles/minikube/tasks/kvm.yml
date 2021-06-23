@@ -3,3 +3,27 @@
 - name: Ensure virtualization supported
   shell: egrep '^flags.*(vmx|svm)' /proc/cpuinfo
   tags: minikube
+
+- name: Install Virtualization Tools
+  dnf:
+    name: '@virtualization'
+    state: present
+  become: true
+
+- name: Start libvirtd service
+  service:
+    name: libvirtd
+    state: started
+    enabled: yes  # start on boot
+  become: true
+
+- name: List KVM modules
+  shell: lsmod | grep kvm
+  register: shell
+
+- name: Ensure KVM modules have loaded
+  assert:
+    that: "'kvm_intel' in shell.stdout or 'kvm_amd' in shell.stdout"
+
+# TODO: Set up network bridge
+# https://wiki.libvirt.org/page/Networking
