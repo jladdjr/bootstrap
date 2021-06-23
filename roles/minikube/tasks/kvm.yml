@@ -1,3 +1,5 @@
 # https://docs.fedoraproject.org/en-US/quick-docs/getting-started-with-virtualization/
 
-
+- name: Ensure virtualization supported
+  shell: egrep '^flags.*(vmx|svm)' /proc/cpuinfo
+  tags: minikube
