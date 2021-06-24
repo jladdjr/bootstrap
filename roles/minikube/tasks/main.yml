@@ -38,6 +38,18 @@
   command: sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
   become: true
 
+- name: Install kubectl
+  dnf:
+    name: kubectl
+    state: present
+  become: true
+
+- name: Install socat (required by kubectl port-forward)
+  dnf:
+    name: socat
+    state: present
+  become: true
+
   # See https://v1-18.docs.kubernetes.io/docs/tasks/tools/install-minikube/
   # for full description of minikube options
   # --vm-driver=none => "Run the Kubernetes components on the host and not in a VM.
