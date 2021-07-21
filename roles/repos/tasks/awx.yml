@@ -122,6 +122,7 @@
           make docker-clean
           make clean
           make docker-clean-volumes
+          docker volume rm -f tools_awx_db
           docker ps --all
           docker images
       }
