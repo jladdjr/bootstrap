@@ -533,7 +533,11 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
                  (nnimap-address "localhost")
                  (nnimap-stream network)
                  (nnimap-server-port 143))
-  )))
+  ))
+
+  ;; https://evil.readthedocs.io/en/latest/settings.html#elispobj-evil-want-C-i-jump
+  (setq evil-want-C-i-jump t)
+)
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
