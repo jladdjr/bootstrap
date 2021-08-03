@@ -22,6 +22,12 @@
       fi
   tags: tmux
 
+- name: Create alias for tmux attach
+  lineinfile:
+    path: ~/.bashrc
+    line: "alias ta='tmux attach'"
+  tags: tmux
+
 - name: Create git plugin directory
   file:
     state: directory
