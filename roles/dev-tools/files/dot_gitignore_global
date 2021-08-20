@@ -18,3 +18,8 @@ tramp
 
 # my tmp files
 sandbox
+
+# latex
+*.aux
+*.log
+*.pdf
