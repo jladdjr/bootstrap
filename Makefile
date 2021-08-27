@@ -34,6 +34,9 @@ blog:
 bootstrap:
 	ansible-playbook -i $(INVENTORY) --tags bootstrap provision.yml
 
+commits:
+	ansible-playbook -i $(INVENTORY) --tags commits_to provision.yml
+
 docker:
 	ansible-playbook -i $(INVENTORY) --tags docker provision.yml
 
@@ -54,9 +57,6 @@ git:
 
 hostname:
 	ansible-playbook -i $(INVENTORY) --tags hostname provision.yml
-
-iwilldo:
-	ansible-playbook -i $(INVENTORY) --tags iwilldo provision.yml
 
 minikube:
 	ansible-playbook -i $(INVENTORY) --tags minikube provision.yml

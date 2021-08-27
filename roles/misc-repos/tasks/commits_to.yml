@@ -1,0 +1,26 @@
+- name: Add commits.to
+  git:
+    dest: ~/git/commits.to
+    repo: git@github.com:jladdjr/commits.to.git
+    accept_hostkey: yes
+  tags: commits_to
+
+- name: Create commits virtualenv
+  shell: . /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv --python /usr/bin/python3.8 --system-site-packages commits
+  args:
+    executable: /bin/bash
+  environment:
+    VIRTUALENVWRAPPER_PYTHON: /usr/bin/python3.8
+  tags: commits_to 
+
+- name: Add commits_to alias
+  lineinfile:
+    path: ~/.bashrc
+    line: alias c="cd ~/git/commits.to; workon commits; python --version | head -1; git br | grep '*'"
+
+- name: Ensure binary deps have been installed
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ lookup('file', '~/git/commits.to/requirements/bindeps').splitlines() }}"
+  become: true
