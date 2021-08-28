@@ -24,6 +24,24 @@
       export HISTTIMEFORMAT="%F %T: "
       export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"  # Append command to history after it completes (use `history -r` to reload history in other sessions)
 
+      autoload_venv () {
+          CURR_DIR=$(pwd)
+          # exit if not in git dir
+          if ! [[ $CURR_DIR == *"/home/jim/git"* ]]; then
+              return 0
+          fi
+          if [ -f .venv_does_not_exist ]; then
+              return 0
+          fi
+          repo=$(echo $CURR_DIR | grep -oP "git/\K[a-z]*")
+          workon $repo 2>/dev/null
+          if ! [[ $? -eq 0 ]]; then
+              echo "Couldn't load $repo venv"
+              touch .venv_does_not_exist
+          fi
+      }
+      export PROMPT_COMMAND="autoload_venv; $PROMPT_COMMAND"
+
       # In history file, note when new session is started
       # https://stackoverflow.com/questions/911168/how-to-detect-if-my-shell-script-is-running-through-a-pipe
       if [ -t 1 ]; then echo -e "#$(date +%s)\n#--- new session ---" >> $HISTFILE; fi
