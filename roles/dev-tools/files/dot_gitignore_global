@@ -23,6 +23,7 @@ sandbox
 *.aux
 *.log
 *.pdf
+*.toc
 
 # personal script will skip auto-loading venv if this exists
 .venv_does_not_exist
