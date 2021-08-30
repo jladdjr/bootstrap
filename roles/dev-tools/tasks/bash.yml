@@ -25,6 +25,10 @@
       export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"  # Append command to history after it completes (use `history -r` to reload history in other sessions)
 
       autoload_venv () {
+          if ! [ -z "$AUTOLOAD_VENV_COMPLETE" ]; then
+              return 0
+          fi
+          export AUTOLOAD_VENV_COMPLETE="true"
           CURR_DIR=$(pwd)
           # exit if not in git dir
           if ! [[ $CURR_DIR == *"/home/jim/git"* ]]; then
