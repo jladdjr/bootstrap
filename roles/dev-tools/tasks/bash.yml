@@ -37,7 +37,7 @@
           if [ -f .venv_does_not_exist ]; then
               return 0
           fi
-          repo=$(echo $CURR_DIR | grep -oP "git/\K[a-z]*")
+          repo=$(echo $CURR_DIR | grep -oP "git/\K[a-z\-]*")
           workon $repo 2>/dev/null
           if ! [[ $? -eq 0 ]]; then
               echo "Couldn't load $repo venv"
