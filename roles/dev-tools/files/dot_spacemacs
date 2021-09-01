@@ -56,7 +56,7 @@ This function should only modify configuration layer settings."
      ;; spell-checking
      syntax-checking
      ;; version-control
-     bm ; bookmark layer
+     bm ; bookmark layer (SPC a t b)
      treemacs)
 
 
