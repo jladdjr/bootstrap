@@ -1,0 +1,29 @@
+- name: Install latex
+  dnf:
+    name: texlive-latex
+  become: true
+  tags: latex
+
+- name: Create texmf/tex/latex
+  file:
+    state: directory
+    path: ~/texmf/tex/latex
+  tags: latex
+
+# https://github.com/kryzar/LoLaTeXcv
+- name: Install LoLaTeXcv
+  git:
+    repo: 'https://github.com/kryzar/LoLaTeXcv'
+    dest: ~/texmf/tex/latex
+  become: true
+  tags: latex
+
+- name: Install latex deps for LoLaTexcv
+  dnf:
+    name:
+      - texlive-environ
+      - texlive-eqparbox
+      - texlive-babel-*
+    state: present
+  become: true
+  tags: latex
