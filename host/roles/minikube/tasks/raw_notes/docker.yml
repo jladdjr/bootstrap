@@ -11,14 +11,6 @@
 # - installs /usr/bin/minikube
 #
 #
-# Before running minikube for the first time, disable selinux:
-#
-# Edit vi /etc/sysconfig/selinux,
-# set SELINUX=disabled (instead of enforcing)
-#
-# and run
-# sudo setenforce 0
-
 # Make docker the default driver
 # minikube config set driver docker  # <--- this creates ~/.minikube for the first time
 

@@ -12,3 +12,11 @@
   shell: setenforce 0
   become: true
 
+# Per this comment (https://github.com/ansible/awx-operator/issues/548#issuecomment-920972288)
+# it looks like Minikube v1.21.0 may be my best best (even though v1.23.0 is out)
+# - installs /usr/bin/minikube
+- name: Install Minikube v1.21.0
+  dnf:
+    name: 'https://github.com/kubernetes/minikube/releases/download/v1.21.0/minikube-1.21.0-0.x86_64.rpm'
+    state: present
+  become: true
