@@ -71,6 +71,6 @@
     mode: '0755'
   become: true
 
-#- name: Start minikube
-#  shell:
-#    cmd: /usr/local/bin/start_minikube
+- name: Start minikube
+  shell:
+    cmd: /usr/local/bin/start_minikube
