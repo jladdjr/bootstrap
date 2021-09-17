@@ -12,8 +12,9 @@
 # don't think dnf, yum_repository support this
 # https://github.com/ansible/ansible/issues/46963
 - name: Install docker repo
-  shell: dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
-  warn: false
+  shell:
+    cmd: dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+    warn: false
   become: true
 
 # # sudo dnf install docker-ce
