@@ -21,3 +21,33 @@
     state: present
     disable_gpg_check: true
   become: true
+
+# this creates ~/.minikube for the first time
+- name make docker the default driver for minikube
+  shell: minikube config set driver docker
+
+# Before starting docker for the first time, tell it to
+# always let systemd manage cgroups
+# https://lwn.net/Articles/676831/
+# https://github.com/kubernetes/kubeadm/issues/1394#issuecomment-461443286
+# https://docs.docker.com/engine/reference/commandline/dockerd/
+
+- name: Ensure /etc/docker existst
+  file:
+    path: /etc/docker
+    state: directory
+    mode: '0755'
+  become: true
+
+- name: Ensure docker lets systemd manage cgroups and uses overlay2 fs
+  copy:
+    dest: /etc/docker/daemon.json
+    content: |
+      {
+        "exec-opts": ["native.cgroupdriver=systemd"],
+        "log-driver": "json-file",
+        "log-opts": {
+          "max-size": "100m"
+        },
+        "storage-driver": "overlay2"
+      }

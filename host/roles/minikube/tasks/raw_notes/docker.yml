@@ -1,16 +1,5 @@
 ---
 
-# minikube releases (w/ release notes)
-# https://github.com/kubernetes/minikube/releases
-#
-# Per this comment (https://github.com/ansible/awx-operator/issues/548#issuecomment-920972288)
-# it looks like Minikube v1.21.0 may be my best best (even though v1.23.0 is out)
-#
-# wget https://github.com/kubernetes/minikube/releases/download/v1.21.0/minikube-1.21.0-0.x86_64.rpm
-# dnf install minikube-1.21.0-0.x86_64.rpm
-# - installs /usr/bin/minikube
-#
-#
 # Make docker the default driver
 # minikube config set driver docker  # <--- this creates ~/.minikube for the first time
 
