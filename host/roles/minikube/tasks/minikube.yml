@@ -1,0 +1,14 @@
+---
+
+# before running minikube for the first time, disable selinux
+- name: Disable selinux (permanent)
+  lineinfile:
+    path: /etc/sysconfig/selinux
+    regexp: '^SELINUX='
+    line: SELINUX=disabled
+  become: true
+
+- name: Disable selinux (for current session)
+  shell: setenforce 0
+  become: true
+

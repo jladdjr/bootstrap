@@ -1,47 +1,5 @@
 ---
 
-# As of 9/16/21, minikube requires Docker 18.09 or higher
-# https://minikube.sigs.k8s.io/docs/drivers/docker/
-
-# https://docs.docker.com/engine/install/rhel/#install-using-the-repository
-# I wasn't able to use docker's repositories. When I went to install docker-ce
-# it simply said that all repositories had been tried.
-
-# https://linuxconfig.org/how-to-install-docker-in-rhel-8
-#
-# Install docker-ce
-# sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
-# sudo dnf install docker-ce
-#
-# This installs:
-# - docker-ce 3:20.10.8-3.el8 (using docker-ce-stable)
-#       - tells systemctl to create docker.service
-#       - creates `docker` group
-# And installs the following requirements:
-# - containerd.io:  1.4.9-3.1.el8 (docker-ce-stable)
-#       - tells systemctl to create containerd.service
-# - container-selinux: 2:2.164.1.1 (rhel-8-for-x86_64-appstream-rpms)
-#       - sets se policy to 'targeted' for docker, container, gear
-# - docker-ce-cli 1:20.10.8-3.el8 (docker-ce-stable)
-# - docker-ce-rootless-extras 20.10.8-3.el8 (docker-ce-stable)
-# - docker-scan-plugin (rhel-8-baseos-rhui-rpms)
-# - fuse-common (rhel-8-appstream-rhui-rpms)
-# - fuse-overlayfs 1.6-1 (rhel-8-baseos-rhui-rpms)
-#       - modprobe fuse
-# - fuse3 3.2.1-12.el8 (rhel-8-baseos-rhui-rpms)
-# - fuse3-libs 3.2.1-12.el8 (rhel-8-baseos-rhui-rpms)
-# - iptables (rhel-8-baseos-rhui-rpms)
-#       - removes alternatives for iptables, ip6tables
-#         before doing install
-# - libcgroup 0.42-19.e08 (rhel-8-baseos-rhui-rpms)
-#       - creates `cgred` group
-# - libnetfilter_conntrack (rhel-8-baseos-rhui-rpms)
-#       - runs /sbin/ldconfig
-# - libnfnetlink (rhel-8-baseos-rhui-rpms)
-# - libnftnl (rhel-8-baseos-rhui-rpms)
-# - libslirp (rhel-8-appstream-rhui-rpms)
-# - slirp4netns (rhel-8-appstream-rhui-rpms)
-
 # minikube releases (w/ release notes)
 # https://github.com/kubernetes/minikube/releases
 #
