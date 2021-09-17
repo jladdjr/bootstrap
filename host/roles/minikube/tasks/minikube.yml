@@ -59,8 +59,30 @@
     enabled: yes
   become: true
 
+# will only take effect once new session is started
+# (or 'newgrp docker' is called)
 - name: Spare (current) user from having to use sudo with docker run
   user:
     name: "{{ ansible_user_id }}"
     groups: docker
   become: true
+
+- name: get docker info
+  shell: docker info
+  become: true
+  register: docker_info
+
+- name: Check docker's cgroup driver
+  fail:
+    msg: "Docker not using systemd to manage cgroups"
+  when: "'Cgroup Driver: systemd' not in docker_info.stdout"
+
+- name: Check docker's storage driver
+  fail:
+    msg: "Docker not using overlay2 for storage driver"
+  when: "'Storage Driver: overlay2' not in docker_info.stdout"
+
+- name: Check docker's backing filesystem
+  debug:
+    msg: "Docker not using xfs as backing filesystem"
+  when: "'Backing Filesystem: xfs' not in docker_info.stdout"
