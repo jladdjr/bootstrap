@@ -1,0 +1,5 @@
+# Provisions host for work
+
+- hosts: all
+  roles:
+    - { role: minikube, tags: minikube }

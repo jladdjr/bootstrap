@@ -1,6 +1,18 @@
-# host prerequisites
+# RHEL 8 Host Prerequisites
 
-# NFS troubleshooting
+## Ansible
+
+Per https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-rhel-centos-or-fedora
+
+```
+sudo subscription-manager repos --enable ansible-2.9-for-rhel-8-x86_64-rpms
+sudo dnf install -y ansible
+```
+
+
+## NFS troubleshooting
+
+(need to update for RHEL)
 
 On a Fedora 34 host, need to update the firewall rules to allow nfs shared folders
 https://42notes.wordpress.com/2015/04/30/notes-on-nfs-firewalld-selinux/
@@ -15,7 +27,7 @@ sudo firewall-cmd --zone FedoraWorkstation --permanent --add-port 2049/udp
 sudo firewall-cmd --reload
 ```
 
-# ssh-agent configuration
+## ssh-agent configuration
 
 In order to launch ssh-agent when opening a new session, add the following to ~/.bash_profile:
 

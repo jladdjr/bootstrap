@@ -58,9 +58,6 @@ git:
 hostname:
 	ansible-playbook -i $(INVENTORY) --tags hostname provision.yml
 
-minikube:
-	ansible-playbook -i $(INVENTORY) --tags minikube provision.yml
-
 networking:
 	ansible-playbook -i $(INVENTORY) --tags networking provision.yml
 

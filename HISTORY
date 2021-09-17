@@ -1,6 +1,11 @@
 History
 =======
 
+4.0.0
+- RHEL 8.4 host
+  Fedora 34 guest
+  .. in order to support running minikube on (non-bleeding-edge) host
+
 3.0.0
 - move to Fedora 33!
 - drop Vim
