@@ -9,11 +9,11 @@
 
 # https://linuxconfig.org/how-to-install-docker-in-rhel-8
 
-# not sure if there's a ansible plugin for this
+# don't think dnf, yum_repository support this
 # https://github.com/ansible/ansible/issues/46963
-# don't think yum_repository supports this
 - name: Install docker repo
   shell: dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+  warn: false
   become: true
 
 # # sudo dnf install docker-ce
