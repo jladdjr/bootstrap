@@ -67,8 +67,9 @@
                      --memory=8g \
                      --kubernetes-version=stable \
                      --mount \
-                     --mount-string="{{ ansible_env.HOME }}/awx:/awx_devel"
+                     --mount-string="{{ ansible_env.HOME }}/git/awx:/awx_devel"
     mode: '0755'
+  become: true
 
 #- name: Start minikube
 #  shell:
