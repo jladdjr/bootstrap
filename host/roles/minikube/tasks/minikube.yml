@@ -55,6 +55,7 @@
 # Info about CNIs (Container Network Interface):
 # https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/#pod-network
 
+# TODO: Omit '--listen-address=0.0.0.0' by default
 - name: Create script to start minikube
   copy:
     dest: /usr/local/bin/start_minikube
@@ -67,7 +68,8 @@
                      --memory=8g \
                      --kubernetes-version=stable \
                      --mount \
-                     --mount-string="{{ ansible_env.HOME }}/git/awx:/awx_devel"
+                     --mount-string="{{ ansible_env.HOME }}/git/awx:/awx_devel" \
+                     --listen-address=0.0.0.0
     mode: '0755'
   become: true
 
