@@ -23,7 +23,7 @@
   become: true
 
 # this creates ~/.minikube for the first time
-- name make docker the default driver for minikube
+- name: make docker the default driver for minikube
   shell: minikube config set driver docker
 
 # Before starting docker for the first time, tell it to
@@ -51,3 +51,4 @@
         },
         "storage-driver": "overlay2"
       }
+  become: true
