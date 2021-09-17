@@ -1,0 +1,16 @@
+---
+# build a custom image in the awx repo
+# export COMPOSE_TAG=jladd_minikube; export MINIKUBE_CONTAINER_GROUP=True; run_and_notify make awx-kube-dev-build
+
+---
+apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: awx-devel
+spec:
+  service_type: nodeport
+  ingress_type: none
+  hostname: awx-devel.example.com
+  image: awx/awx_devel # jladdjr/awx_kube_devel
+  image_version: devel # "20210916"
+  image_pull_policy: Always

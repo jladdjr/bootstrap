@@ -88,12 +88,12 @@
       tags: python
 
 - name: Update pip3.8
-  shell: pip3.8 install -U pip
+  shell: /usr/local/bin/pip install -U pip
   become: true
   tags: python
 
 - name: Install virtualenvwrapper
-  shell: pip3.8 install -U virtualenvwrapper
+  shell: /usr/local/bin/pip install -U virtualenvwrapper
   become: true
   tags: python
 
