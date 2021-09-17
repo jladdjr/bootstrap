@@ -51,4 +51,16 @@
         },
         "storage-driver": "overlay2"
       }
+
+- name: Enable/Start docker service
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
+  become: true
+
+- name: Spare (current) user from having to use sudo with docker run
+  user:
+    name: "{{ ansible_user_id }}"
+    groups: docker
   become: true
