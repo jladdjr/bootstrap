@@ -2,4 +2,4 @@
 
 - hosts: all
   roles:
-    - { role: minikube, tags: minikube }
+    - { role: awx_on_minikube }
