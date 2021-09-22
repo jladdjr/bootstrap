@@ -100,4 +100,4 @@
 - name: remove dummy file in awx folder
   file:
     path: "{{ ansible_env.HOME }}/git/awx/test"
-    state: abesent
+    state: absent
