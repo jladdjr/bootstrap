@@ -34,6 +34,12 @@
     state: directory
     mode: '0755'
 
+- name: create dummy file (to test mounting awx folder)
+  file:
+    path: "{{ ansible_env.HOME }}/git/awx/test"
+    state: touch
+    mode: '0755'
+
 - name: Ensure /usr/local/bin exists
   file:
     path: "/usr/local/bin"
@@ -76,3 +82,22 @@
 - name: Start minikube
   shell:
     cmd: /usr/local/bin/start_minikube
+
+- name: Create alias so that we will always use minikube's kubectl
+  lineinfile:
+    path: ~/.bashrc
+    line: 'alias kubectl="minikube kubectl --"'
+
+- name: Get contents of /awx_devel inside minikube
+  shell: minikube ssh 'ls -l /awx_devel'
+  register: minikube_ls
+
+- name: Ensure awx folder was mounted successfully
+  fail:
+    msg: "awx repo folder not mounted properly"
+  when: "'test' not in minikube_ls.stdout"
+
+- name: remove dummy file in awx folder
+  file:
+    path: "{{ ansible_env.HOME }}/git/awx/test"
+    state: abesent
