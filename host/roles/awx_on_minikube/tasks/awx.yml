@@ -1,0 +1,12 @@
+---
+
+- name: Git awx repo
+  git:
+    repo: https://github.com/ansible/awx.git
+    dest: "{{ ansible_env.HOME }}/git/awx"
+    version: devel
+
+- name: Create kubernetes images locally
+  shell: make awx-kube-dev-build
+  args:
+    chdir: "{{ ansible_env.HOME }}/git/awx"

@@ -81,10 +81,6 @@
 # - bringing up minikube did not change /etc/docker
 # - /etc/group now has cgred (also appears in /etc/gshadow)
 
-# create an alias so that we always use minikube's kubectl
-# alias kubectl="minikube kubectl --"
-#
-#
 # Debug tips:
 #
 # To see what's happening in the minikube container:
@@ -92,8 +88,3 @@
 # - docker exec -it minikube journalctl -f
 # - docker exec -it minikube docker ps
 # - docker info minikube
-
-# verify that the mount was successful
-#
-# minikube ssh
-# ls /awx_devel  # should show content

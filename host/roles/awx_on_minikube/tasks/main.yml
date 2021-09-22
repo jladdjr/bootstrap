@@ -5,3 +5,6 @@
 
 - import_tasks: minikube.yml
   tags: minikube
+
+- import_tasks: awx.yml
+  tags: awx
