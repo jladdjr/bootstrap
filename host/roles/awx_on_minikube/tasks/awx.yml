@@ -17,7 +17,11 @@
   register: docker_images
 
 - name: Create kubernetes images locally
-  shell: make awx-kube-dev-build
+  shell: export COMPOSE_TAG='{{ MINIKUBE_COMPOSE_TAG }}'; make awx-kube-dev-build
   args:
     chdir: "{{ ansible_env.HOME }}/git/awx"
   when: "'awx_kube_devel' not in docker_images.stdout"
+
+- name: Push awx_kube_devel to quay.io
+  shell: docker push quay.io/awx/awx_kube_devel:{{ MINIKUBE_COMPOSE_TAG }}
+
