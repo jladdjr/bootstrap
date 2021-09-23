@@ -1,2 +1,3 @@
 ---
 MINIKUBE_COMPOSE_TAG: "{{ ansible_user_id }}"
+MINIKUBE_DOCKER_REPO: "{{ ansible_user_id }}"

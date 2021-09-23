@@ -22,6 +22,19 @@
     chdir: "{{ ansible_env.HOME }}/git/awx"
   when: "'awx_kube_devel' not in docker_images.stdout"
 
-- name: Push awx_kube_devel to quay.io
-  shell: docker push quay.io/awx/awx_kube_devel:{{ MINIKUBE_COMPOSE_TAG }}
+- name: Get awx_kube_devel id
+  shell: docker images --format "{{ '{{.ID }}' }}" --filter=reference="quay.io/awx/awx_kube_devel"
+  register: docker_images_filter
+
+- name: Set awx_kube_devel id
+  set_fact:
+    awx_kube_devel_id: "{{ docker_images_filter.stdout }}"
+
+- name: Tag image for upload to dockerhub
+  shell: docker tag {{ awx_kube_devel_id }} {{ MINIKUBE_DOCKER_REPO }}/awx_kube_devel:{{ MINIKUBE_COMPOSE_TAG }}
+
+# do not have perms to push to quay.io
+# push to dockerhub instead
+- name: Push awx_kube_devel to dockerhub
+  shell: docker push {{ MINIKUBE_DOCKER_REPO }}/awx_kube_devel:{{ MINIKUBE_COMPOSE_TAG }}
 
