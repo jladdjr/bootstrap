@@ -8,3 +8,6 @@
 
 - import_tasks: minikube.yml
   tags: minikube
+
+- import_tasks: operator.yml
+  tags: operator

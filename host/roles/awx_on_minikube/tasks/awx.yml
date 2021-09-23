@@ -40,4 +40,3 @@
 # push to dockerhub instead
 - name: Push awx_kube_devel to dockerhub
   shell: docker push {{ MINIKUBE_DOCKER_REPO }}/awx_kube_devel:{{ MINIKUBE_COMPOSE_TAG }}
-

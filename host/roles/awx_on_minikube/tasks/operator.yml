@@ -1,0 +1,22 @@
+---
+
+- name: Determine if ~/git/awx-operator exists
+  stat:
+    path: "{{ ansible_env.HOME }}/git/awx-operator"
+  register: stat_awx_operator
+
+# note: pin awx-operator repo to known-good version (0.13.0)
+- name: Get awx-operator repo
+  git:
+    repo: https://github.com/ansible/awx-operator.git
+    dest: "{{ ansible_env.HOME }}/git/awx-operator"
+    version: 24b8545dc9a19bcd39770809ce524c395687e16f
+  when: not stat_awx_operator.stat.exists
+
+# note: namespace must be default
+# run the following if this has changed:
+# $ minikube kubectl config set-context --current --namespace=default
+- name: Deploy operator
+  shell: minikube kubectl apply -f deploy/awx-operator.yaml
+  args:
+    chdir: "{{ ansible_env.HOME }}/git/awx-operator"
