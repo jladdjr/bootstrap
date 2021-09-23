@@ -33,6 +33,9 @@
 - name: Tag image for upload to dockerhub
   shell: docker tag {{ awx_kube_devel_id }} {{ MINIKUBE_DOCKER_REPO }}/awx_kube_devel:{{ MINIKUBE_COMPOSE_TAG }}
 
+- name: Authenticate with dockerhub
+  shell: docker login -p {{ MINIKUBE_COMPOSE_TAG }} -p {{ MINIKUBE_DOCKERHUB_TOKEN }}
+
 # do not have perms to push to quay.io
 # push to dockerhub instead
 - name: Push awx_kube_devel to dockerhub
