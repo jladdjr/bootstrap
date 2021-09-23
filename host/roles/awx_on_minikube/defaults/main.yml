@@ -1,2 +1,2 @@
 ---
-MINIKUBE_COMPOSE_TAG: {{ ansible_user_id }}
+MINIKUBE_COMPOSE_TAG: "{{ ansible_user_id }}"
