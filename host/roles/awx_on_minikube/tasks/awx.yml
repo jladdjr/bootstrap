@@ -5,15 +5,19 @@
     path: "{{ ansible_env.HOME }}/git/awx"
   register: stat_awx
 
-- block:
-    - name: Git awx repo
-      git:
-        repo: https://github.com/ansible/awx.git
-        dest: "{{ ansible_env.HOME }}/git/awx"
-        version: devel
+- name: Get awx repo
+  git:
+    repo: https://github.com/ansible/awx.git
+    dest: "{{ ansible_env.HOME }}/git/awx"
+    version: devel
   when: not stat_awx.stat.exists
+
+- name: Determine if awx_kube_devel image has been created
+  shell: docker images --format "{{ '{{.Repository}}' }}"
+  register: docker_images
 
 - name: Create kubernetes images locally
   shell: make awx-kube-dev-build
   args:
     chdir: "{{ ansible_env.HOME }}/git/awx"
+  when: 'awx_kube_devel' not in docker_images.stdout
