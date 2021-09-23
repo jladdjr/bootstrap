@@ -11,12 +11,13 @@
     repo: https://github.com/ansible/awx-operator.git
     dest: "{{ ansible_env.HOME }}/git/awx-operator"
     version: 24b8545dc9a19bcd39770809ce524c395687e16f
+    refspec: 24b8545dc9a19bcd39770809ce524c395687e16f
   when: not stat_awx_operator.stat.exists
 
 # note: namespace must be default
 # run the following if this has changed:
 # $ minikube kubectl config set-context --current --namespace=default
 - name: Deploy operator
-  shell: minikube kubectl apply -f deploy/awx-operator.yaml
+  shell: minikube kubectl -- apply -f deploy/awx-operator.yaml
   args:
     chdir: "{{ ansible_env.HOME }}/git/awx-operator"
