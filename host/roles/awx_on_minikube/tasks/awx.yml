@@ -20,4 +20,4 @@
   shell: make awx-kube-dev-build
   args:
     chdir: "{{ ansible_env.HOME }}/git/awx"
-  when: 'awx_kube_devel' not in docker_images.stdout
+  when: "'awx_kube_devel' not in docker_images.stdout"
