@@ -1,10 +1,17 @@
 ---
 
-- name: Git awx repo
-  git:
-    repo: https://github.com/ansible/awx.git
-    dest: "{{ ansible_env.HOME }}/git/awx"
-    version: devel
+- name: Determine if ~/git/awx exists
+  stat:
+    path: "{{ ansible_env.HOME }}/git/awx"
+  register: stat_awx
+
+- block:
+    - name: Git awx repo
+      git:
+        repo: https://github.com/ansible/awx.git
+        dest: "{{ ansible_env.HOME }}/git/awx"
+        version: devel
+  when: not stat_awx.stat.exists
 
 - name: Create kubernetes images locally
   shell: make awx-kube-dev-build

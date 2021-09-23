@@ -1,4 +1,15 @@
 ---
+- name: Ensure ~/git/awx exists
+  file:
+    path: "{{ ansible_env.HOME }}/git/awx"
+    state: directory
+    mode: '0755'
+
+- name: create dummy file (to test mounting awx folder)
+  file:
+    path: "{{ ansible_env.HOME }}/git/awx/test"
+    state: touch
+    mode: '0755'
 
 # before running minikube for the first time, disable selinux
 - name: Disable selinux (permanent)
@@ -25,20 +36,6 @@
 # this creates ~/.minikube for the first time
 - name: make docker the default driver for minikube
   shell: minikube config set driver docker
-
-# awx repo doesn't have to be populated, but does need to exist
-# before starting minikube and asking it to mount the folder
-- name: Ensure ~/git/awx exists
-  file:
-    path: "{{ ansible_env.HOME }}/git/awx"
-    state: directory
-    mode: '0755'
-
-- name: create dummy file (to test mounting awx folder)
-  file:
-    path: "{{ ansible_env.HOME }}/git/awx/test"
-    state: touch
-    mode: '0755'
 
 - name: Ensure /usr/local/bin exists
   file:
