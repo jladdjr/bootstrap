@@ -78,6 +78,7 @@
         },
         "storage-driver": "overlay2"
       }
+  become: true
 
 - name: Enable/Start docker service
   systemd:
