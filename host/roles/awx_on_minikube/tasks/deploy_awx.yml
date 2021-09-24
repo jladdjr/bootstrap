@@ -50,8 +50,8 @@
 
       ssh ec2-user@ec2-3-88-212-173.compute-1.amazonaws.com -L 44937:localhost:44937
 
-      which will let you visit the dashboard locally at:
-      http://localhost:44937
+      To view the dashboard locally, you can use the dashboard address that was originally shown
+      (since it already references 127.0.0.1 / localhost).
 
 - name: How to access awx after successful deployment
   debug:
