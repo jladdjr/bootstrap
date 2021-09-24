@@ -1,5 +1,15 @@
 # Provisions host for work
 
-- hosts: all
+- name: Add target instance if passed in from previous workflow job
+  tasks:
+    - name: Add host to dev group
+      add_host:
+        name: "minikube_dev_env"
+        ansible_user: "{{ dev_env_user }}"
+        ansible_ssh_host: "{{ dev_env_host }}"
+        groups: dev
+  when: workflow_job|default(false)|bool
+
+- hosts: dev
   roles:
     - { role: awx_on_minikube }
