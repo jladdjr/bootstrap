@@ -13,4 +13,4 @@
 
 - hosts: dev
   roles:
-    - { role: awx_on_minikube }
+    - awx_on_minikube
