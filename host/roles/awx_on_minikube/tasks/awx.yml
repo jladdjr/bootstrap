@@ -16,6 +16,13 @@
   shell: docker images --format "{{ '{{.Repository}}' }}"
   register: docker_images
 
+# Note: Based on past experience, this needs to be done before starting minikube
+# for two reasons:
+# - not 100% sure, but believe containers won't come up without it
+# - furthermore, minikube will consume all memory, even if you delete it
+#   and you will see an 'JavaScript heap out of memory' error
+#   even if you try to get clever and assign it more memory : )
+#   Only a restart seems to help in this case
 - name: Install nodejs
   dnf:
     name: nodejs

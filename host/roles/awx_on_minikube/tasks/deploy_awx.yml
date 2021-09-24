@@ -1,7 +1,7 @@
 ---
 - name: Ensure python3 installed
   dnf:
-    name: python3
+    name: python38
     state: latest
   become: true
 
