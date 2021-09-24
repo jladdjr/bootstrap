@@ -7,6 +7,7 @@
 
 - name: Install kubernetes pip package
   shell: pip3 install kubernetes==11.0.0
+  become: true
 
 - name: Deploy awx
   shell: >
