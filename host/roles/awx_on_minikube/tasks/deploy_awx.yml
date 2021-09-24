@@ -1,10 +1,4 @@
 ---
-- name: Ensure python3 installed
-  dnf:
-    name: python38
-    state: latest
-  become: true
-
 - name: Install kubernetes pip package
   shell: pip3 install kubernetes==11.0.0
   become: true

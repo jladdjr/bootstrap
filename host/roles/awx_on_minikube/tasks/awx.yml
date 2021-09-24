@@ -22,6 +22,14 @@
     state: latest
   become: true
 
+# Note: python38 required by make ui-devel
+# (apart from being expected by awx codebase in general)
+- name: Ensure python38 installed
+  dnf:
+    name: python38
+    state: latest
+  become: true
+
 # Believe this is required in order for awx to start in minikube
 # Also, node seems to run out of memory unless you give it some more room
 - name: Build UI
