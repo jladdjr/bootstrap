@@ -1,6 +1,7 @@
 # Provisions host for work
 
 - name: Add target instance if passed in from previous workflow job
+  hosts: localhost
   tasks:
     - name: Add host to dev group
       add_host:
