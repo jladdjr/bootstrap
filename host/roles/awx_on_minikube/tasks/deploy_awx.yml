@@ -19,3 +19,22 @@
     -vvv
   args:
     chdir: "{{ ansible_env.HOME }}/git/awx-operator"
+
+- name: How to watch / access awx
+  debug:
+    msg: |
+      To watch the operators progress with deploying awx:
+      minikube kubectl -- logs -f deployments/awx-operator
+
+      To see the pods deployed by the operator so far:
+      minikube kubectl -- get pods -l "app.kubernetes.io/managed-by=awx-operator"
+
+      To see services deployed by the operator so far:
+      minikube kubectl -- get svc -l "app.kubernetes.io/managed-by=awx-operator"
+
+      To access awx:
+      $ minikube service awx-service --url
+
+      In general, if a pod is having issues, it can be helpful
+      to exec into it and run `journal -f` to see what is happening
+      on the system.
