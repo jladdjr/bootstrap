@@ -11,3 +11,6 @@
 
 - import_tasks: operator.yml
   tags: operator
+
+- import_tasks: deploy_awx.yml
+  tags: deploy_awl
