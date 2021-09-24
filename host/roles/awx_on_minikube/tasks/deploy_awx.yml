@@ -1,4 +1,10 @@
 ---
+- name: Ensure python3 installed
+  dnf:
+    name: python3
+    state: latest
+  become: true
+
 - name: Deploy awx
   shell: >
     ansible-playbook ansible/instantiate-awx-deployment.yml
