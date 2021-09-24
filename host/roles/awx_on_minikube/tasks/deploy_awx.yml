@@ -71,3 +71,8 @@
       On your local machine, you should now be able to access awx by visiting:
       http://localhost:31942
 
+- name: How to get awx admin password
+  debug:
+    msg: |
+      To get the awx admin password, run:
+      minikube kubectl -- get secret awx-admin-password -o jsonpath="{.data.password}" | base64 --decode
