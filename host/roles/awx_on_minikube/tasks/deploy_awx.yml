@@ -22,5 +22,6 @@
     -e image_pull_policy=Always
     -e service_type=nodeport
     -e namespace=default
+    -vvv
   args:
     chdir: "{{ ansible_env.HOME }}/git/awx-operator"

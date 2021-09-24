@@ -16,6 +16,17 @@
   shell: docker images --format "{{ '{{.Repository}}' }}"
   register: docker_images
 
+- name: Install nodejs
+  dnf:
+    name: nodejs
+    state: latest
+  become: true
+
+- name: Build UI
+  shell: make clean-ui && make ui-devel
+  args:
+    chdir: "{{ ansible_env.HOME }}/git/awx"
+
 - name: Create kubernetes images locally
   shell: export COMPOSE_TAG='{{ MINIKUBE_COMPOSE_TAG }}'; make awx-kube-dev-build
   args:
