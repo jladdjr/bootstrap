@@ -2,3 +2,6 @@
 MINIKUBE_COMPOSE_TAG: devel
 MINIKUBE_DOCKERHUB_REPO: "{{ ansible_user_id }}"
 MINIKUBE_DOCKERHUB_TOKEN: FIXME
+
+install_prereqs: true
+deploy_awx: true
