@@ -9,7 +9,7 @@
         ansible_user: "{{ dev_env_user }}"
         ansible_ssh_host: "{{ dev_env_host }}"
         groups: dev
-  when: workflow_job|default(false)|bool
+      when: workflow_job|default(false)|bool
 
 - hosts: dev
   roles:
