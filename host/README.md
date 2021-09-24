@@ -6,7 +6,7 @@ Playbooks were testing against RHEL 8.4.
 
 If running on ec2 instance, need:
 
-- t3.2xlarge (to ensure 8 processors, will fail if there are only 4)
+- t2.2xlarge (to ensure 8 processors, will fail if there are only 4)
 - also, make sure to increase memory (50 GB will probably work);
   the default (10 GB) is not enough
 
