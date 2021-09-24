@@ -31,12 +31,12 @@
     awx_kube_devel_id: "{{ docker_images_filter.stdout }}"
 
 - name: Tag image for upload to dockerhub
-  shell: docker tag {{ awx_kube_devel_id }} {{ MINIKUBE_DOCKER_REPO }}/awx_kube_devel:{{ MINIKUBE_COMPOSE_TAG }}
+  shell: docker tag {{ awx_kube_devel_id }} {{ MINIKUBE_DOCKERHUB_REPO }}/awx_kube_devel:{{ MINIKUBE_COMPOSE_TAG }}
 
 - name: Authenticate with dockerhub
-  shell: docker login -u {{ MINIKUBE_DOCKER_REPO }} -p {{ MINIKUBE_DOCKERHUB_TOKEN }}
+  shell: docker login -u {{ MINIKUBE_DOCKERHUB_REPO }} -p {{ MINIKUBE_DOCKERHUB_TOKEN }}
 
 # do not have perms to push to quay.io
 # push to dockerhub instead
 - name: Push awx_kube_devel to dockerhub
-  shell: docker push {{ MINIKUBE_DOCKER_REPO }}/awx_kube_devel:{{ MINIKUBE_COMPOSE_TAG }}
+  shell: docker push {{ MINIKUBE_DOCKERHUB_REPO }}/awx_kube_devel:{{ MINIKUBE_COMPOSE_TAG }}
