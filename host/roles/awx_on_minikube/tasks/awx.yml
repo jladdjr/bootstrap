@@ -16,21 +16,16 @@
   shell: docker images --format "{{ '{{.Repository}}' }}"
   register: docker_images
 
-# Note: Based on past experience, this needs to be done before starting minikube
-# for two reasons:
-# - not 100% sure, but believe containers won't come up without it
-# - furthermore, minikube will consume all memory, even if you delete it
-#   and you will see an 'JavaScript heap out of memory' error
-#   even if you try to get clever and assign it more memory : )
-#   Only a restart seems to help in this case
 - name: Install nodejs
   dnf:
     name: nodejs
     state: latest
   become: true
 
+# Believe this is required in order for awx to start in minikube
+# Also, node seems to run out of memory unless you give it some more room
 - name: Build UI
-  shell: make clean-ui && make ui-devel
+  shell: export NODE_OPTIONS="--max-old-space-size=10000"; make clean-ui && make ui-devel
   args:
     chdir: "{{ ansible_env.HOME }}/git/awx"
 
