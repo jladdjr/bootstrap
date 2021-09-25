@@ -19,6 +19,12 @@
     state: latest
   become: true
 
+- name: Install Ansible
+  dnf:
+    name: ansible
+    state: latest
+  become: true
+
 - name: Determine if ~/git/awx exists
   stat:
     path: "{{ ansible_env.HOME }}/git/awx"
