@@ -48,11 +48,9 @@
     # * sudo reboot
     # .. in order to clear out old storage system and give docker a fresh start
     - name: Configure docker to use systemd (for compatibility with minikube)
-      blockinfile:
-        marker: "# {mark} configure docker to use systemd (for compatibility with minikube)"
-        path: /etc/docker/daemon.json
-        create: yes
-        block: |
+      copy:
+        dest: /etc/docker/daemon.json
+        content: |
           {
             "exec-opts": ["native.cgroupdriver=systemd"],
             "log-driver": "json-file",
