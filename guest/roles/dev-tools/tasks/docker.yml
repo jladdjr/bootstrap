@@ -21,7 +21,7 @@
     # It may be worth noting that some users are bypassing this issue by using the F33 repo for docker
     # https://github.com/docker/for-linux/issues/1114#issuecomment-736660591
     - name: Enable docker-ce-test
-      command: dnf config-manager --set-enabled docker-ce-test
+      command: dnf config-manager --set-enabled docker-ce-stable
 
     - name: Install docker
       dnf:
