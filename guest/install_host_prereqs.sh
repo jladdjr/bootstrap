@@ -34,3 +34,8 @@ sudo firewall-cmd --zone public --permanent --add-service rpc-bind
 sudo firewall-cmd --zone public --permanent --add-service mountd
 sudo firewall-cmd --zone public --permanent --add-port 2049/udp
 sudo firewall-cmd --reload
+
+# open port for awx web server
+# (will allow visiting awx from host, or even another machine)
+sudo firewall-cmd --zone public --permanent --add-port 8043/tcp
+sudo firewall-cmd --reload
