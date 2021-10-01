@@ -156,6 +156,22 @@
 
       alias at="tmux split-window docker exec -it -u 0 tools_awx_1 bash --rcfile '/var/lib/awx/venv/awx/bin/activate'"
 
+      # container convenience aliases
+      alias a1='docker exec -it tools_awx_1 bash'
+      alias r1='docker exec -it tools_receptor_1 bash'
+
+      alias a1r='docker exec -it -u 0 tools_awx_1 bash'
+      alias r1r='docker exec -it -u 0 tools_receptor_1 bash'
+
+      alias a1del='docker exec tools_awx_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work list -q | xargs -I{} docker exec tools_awx_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work delete {}'
+      alias r1del='docker exec tools_receptor_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work list -q | xargs -I{} docker exec tools_receptor_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work delete {}'
+
+      alias a1rel='docker exec tools_awx_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work list -q | xargs -I{} docker exec tools_awx_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work release {}'
+      alias r1rel='docker exec tools_receptor_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work list -q | xargs -I{} docker exec tools_receptor_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work release {}'
+
+      alias a1stop='docker exec tools_awx_1 podman ps -q | xargs -I{} docker exec tools_awx_1 podman stop {}'
+      alias r1stop='docker exec tools_receptor_1 podman ps -q | xargs -I{} docker exec tools_receptor_1 podman stop {}'
+
       prep_containers () {
           SET_PS1_AWX1='/usr/bin/echo "export PS1=\"awx_1 > \"" >> /var/lib/awx/.bashrc'
           SET_PS1_RECEPTOR1='/usr/bin/echo "export PS1=\"receptor_1 > \"" >> /var/lib/awx/.bashrc'
@@ -167,9 +183,14 @@
 
           docker exec tools_awx_1 bash -c "$SET_RC_ALIAS"
           docker exec tools_receptor_1 bash -c "$SET_RC_ALIAS"
-
-
       }
+
+      alias a1w='watch -n 1 docker exec tools_awx_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work list'
+      alias r1w='watch -n 1 docker exec tools_receptor_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work list'
+
+      alias a1wp='watch -n 1 docker exec tools_awx_1 podman ps'
+      alias r1wp='watch -n 1 docker exec tools_receptor_1 podman ps'
+
 
     marker: "# {mark} ANSIBLE MANAGED BLOCK - awx"
   tags: awx
