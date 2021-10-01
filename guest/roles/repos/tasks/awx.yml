@@ -155,6 +155,15 @@
       alias update_settings='cp awx/settings/local_settings.py.docker_compose awx/settings/local_settings.py'
 
       alias at="tmux split-window docker exec -it -u 0 tools_awx_1 bash --rcfile '/var/lib/awx/venv/awx/bin/activate'"
+
+      prep_containers () {
+          SET_PS1_AWX1='/usr/bin/echo "export PS1=\"awx_1 > \"" >> /var/lib/awx/.bashrc'
+          SET_PS1_RECEPTOR1='/usr/bin/echo "export PS1=\"receptor_1 >> \"" > /var/lib/awx/.bashrc'
+
+          docker exec tools_awx_1 bash -c "$SET_PS1_AWX1"
+          docker exec tools_receptor_1 bash -c "$SET_PS1_RECEPTOR1"
+      }
+
     marker: "# {mark} ANSIBLE MANAGED BLOCK - awx"
   tags: awx
 
