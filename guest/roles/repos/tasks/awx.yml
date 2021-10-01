@@ -158,10 +158,17 @@
 
       prep_containers () {
           SET_PS1_AWX1='/usr/bin/echo "export PS1=\"awx_1 > \"" >> /var/lib/awx/.bashrc'
-          SET_PS1_RECEPTOR1='/usr/bin/echo "export PS1=\"receptor_1 >> \"" > /var/lib/awx/.bashrc'
+          SET_PS1_RECEPTOR1='/usr/bin/echo "export PS1=\"receptor_1 > \"" >> /var/lib/awx/.bashrc'
 
           docker exec tools_awx_1 bash -c "$SET_PS1_AWX1"
           docker exec tools_receptor_1 bash -c "$SET_PS1_RECEPTOR1"
+
+          SET_RC_ALIAS='/usr/bin/echo "alias rc=\"receptorctl --socket /var/run/awx-receptor/receptor.sock\"" >> /var/lib/awx/.bashrc'
+
+          docker exec tools_awx_1 bash -c "$SET_RC_ALIAS"
+          docker exec tools_receptor_1 bash -c "$SET_RC_ALIAS"
+
+
       }
 
     marker: "# {mark} ANSIBLE MANAGED BLOCK - awx"
