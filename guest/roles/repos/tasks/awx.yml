@@ -165,9 +165,9 @@
       alias r1r='docker exec -it -u 0 tools_receptor_1 bash'
       alias r2r='docker exec -it -u 0 tools_receptor_2 bash'
 
-      alias a1del='docker exec tools_awx_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work list -q | xargs -I{} docker exec tools_awx_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work delete {}'
-      alias r1del='docker exec tools_receptor_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work list -q | xargs -I{} docker exec tools_receptor_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work delete {}'
-      alias r2del='docker exec tools_receptor_2 receptorctl --socket /var/run/awx-receptor/receptor.sock work list -q | xargs -I{} docker exec tools_receptor_2 receptorctl --socket /var/run/awx-receptor/receptor.sock work delete {}'
+      alias a1cancel='docker exec tools_awx_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work list -q | xargs -I{} docker exec tools_awx_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work cancel {}'
+      alias r1cancel='docker exec tools_receptor_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work list -q | xargs -I{} docker exec tools_receptor_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work cancel {}'
+      alias r2cancel='docker exec tools_receptor_2 receptorctl --socket /var/run/awx-receptor/receptor.sock work list -q | xargs -I{} docker exec tools_receptor_2 receptorctl --socket /var/run/awx-receptor/receptor.sock work cancel {}'
 
       alias a1rel='docker exec tools_awx_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work list -q | xargs -I{} docker exec tools_awx_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work release {}'
       alias r1rel='docker exec tools_receptor_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work list -q | xargs -I{} docker exec tools_receptor_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work release {}'
