@@ -23,6 +23,7 @@
   shell: setenforce 0
   become: true
 
+# TODO: Install more recent version of minikube? Issue 548 has been resolved (as of 10/4/21)
 # Per this comment (https://github.com/ansible/awx-operator/issues/548#issuecomment-920972288)
 # it looks like Minikube v1.21.0 may be my best best (even though v1.23.0 is out)
 # - installs /usr/bin/minikube
