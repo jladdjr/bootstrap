@@ -24,6 +24,7 @@
       export HISTTIMEFORMAT="%F %T: "
       export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"  # Append command to history after it completes (use `history -r` to reload history in other sessions)
 
+      unset AUTOLOAD_VENV_COMPLETE
       autoload_venv () {
           if ! [ -z "$AUTOLOAD_VENV_COMPLETE" ]; then
               return 0
