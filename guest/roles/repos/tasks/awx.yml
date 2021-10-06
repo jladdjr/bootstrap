@@ -33,6 +33,18 @@
     tags: awx
   when: not repo_dir.stat.exists
 
+- name: Make .akit config directory
+  file:
+    dest: ~/.akit
+    state: directory
+    mode: 0755
+
+- name: Create projects (scm url) file
+  copy:
+    src: akit/projects.yml
+    dest: ~/.akit/projects.yml
+    mode: 0755
+
 - name: Clear existing awx virtualenv
   shell: . /usr/local/bin/virtualenvwrapper.sh && rmvirtualenv awx
   args:
@@ -110,6 +122,7 @@
       alias a="workon awx; cd ~/git/awx; python --version | head -1; ansible --version | head -1; git br | grep '*'"
       alias ak="workon awx; cd ~/git/awx/awxkit; python --version | head -1; ansible --version | head -1; git br | grep '*'"
 
+      export AWXKIT_BASE_URL='http://127.0.0.1:8013'
       export AWXKIT_PROJECT_FILE="/home/jim/.awxkit_projects"
       export AWXKIT_USER="admin"
       export AWXKIT_USER_PASSWORD="CHANGEME"
