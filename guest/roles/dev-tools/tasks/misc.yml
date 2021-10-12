@@ -1,5 +1,15 @@
 - name: Install misc dev tools
   dnf:
-    name: ['ack', 'jq', 'strace', 'telnet', 'nc', 'lsof', 'traceroute', 'sqlite', 'nethogs']
+    name:
+      - ack
+      - jq
+      - strace
+      - telnet
+      - nc
+      - lsof
+      - traceroute
+      - sqlite
+      - nethogs
+      - bind-utils  # dig, host, nslookup, and friends
     state: latest
   become: true
