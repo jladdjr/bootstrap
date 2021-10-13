@@ -34,6 +34,15 @@
     disable_gpg_check: true
   become: true
 
+# https://minikube.sigs.k8s.io/docs/handbook/kubectl/
+# awx-operator's makefile uses kubectl commands
+# so we need to provide a means of calling this directly.
+# Creating this link allows us to use minikube's kubectl
+# without installing kubectl separately
+- name: Create kubectl alias that points to minikube
+  shell: "ln -s $(which minikube) /usr/local/bin/kubectl"
+  become: true
+
 # this creates ~/.minikube for the first time
 - name: make docker the default driver for minikube
   shell: minikube config set driver docker

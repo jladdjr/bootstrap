@@ -75,4 +75,4 @@
   debug:
     msg: |
       To get the awx admin password, run:
-      minikube kubectl -- get secret awx-admin-password -o jsonpath="{.data.password}" | base64 --decode
+      minikube kubectl -- get secret awx-admin-password -o jsonpath="{.data.password}" | tr -d '"' | base64 --decode
