@@ -207,13 +207,13 @@
           docker exec tools_receptor_2 bash -c "$SET_RC_ALIAS"
       }
 
-      alias a1w='watch -n 1 docker exec tools_awx_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work list'
-      alias r1w='watch -n 1 docker exec tools_receptor_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work list'
-      alias r2w='watch -n 1 docker exec tools_receptor_2 receptorctl --socket /var/run/awx-receptor/receptor.sock work list'
+      alias a1w='watch -n 3 docker exec tools_awx_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work list'
+      alias r1w='watch -n 3 docker exec tools_receptor_1 receptorctl --socket /var/run/awx-receptor/receptor.sock work list'
+      alias r2w='watch -n 3 docker exec tools_receptor_2 receptorctl --socket /var/run/awx-receptor/receptor.sock work list'
 
-      alias a1wp='watch -n 1 docker exec tools_awx_1 podman ps'
-      alias r1wp='watch -n 1 docker exec tools_receptor_1 podman ps'
-      alias r2wp='watch -n 1 docker exec tools_receptor_2 podman ps'
+      alias a1wp='watch -n 5 docker exec tools_awx_1 podman ps'
+      alias r1wp='watch -n 5 docker exec tools_receptor_1 podman ps'
+      alias r2wp='watch -n 5 docker exec tools_receptor_2 podman ps'
 
     marker: "# {mark} ANSIBLE MANAGED BLOCK - awx"
   tags: awx
