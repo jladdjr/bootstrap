@@ -145,3 +145,5 @@
 
       # restart local DNS service
       alias reset_dns='sudo systemctl restart systemd-resolved.service'
+
+      f () { find . -iname "*$1*"; }
