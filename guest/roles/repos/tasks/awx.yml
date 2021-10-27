@@ -131,6 +131,7 @@
       # Thoroughly remove awx containers, images and ui build artifacts
       derez () {
           # sudo chown -R jim:jim *
+          docker rmi quay.io/ansible/receptor:devel
           docker ps --all -q | xargs docker stop
           docker ps --all -q | xargs docker rm
           make docker-clean
