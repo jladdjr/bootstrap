@@ -11,5 +11,6 @@
       - sqlite
       - nethogs
       - bind-utils  # dig, host, nslookup, and friends
+      - asciinema
     state: latest
   become: true
