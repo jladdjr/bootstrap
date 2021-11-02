@@ -140,7 +140,7 @@
           docker volume rm -f tools_awx_db
           docker ps --all
           docker images
-          docker system prune --volumes
+          docker system prune --volumes -f
       }
 
       rmdb () {
