@@ -1,6 +1,6 @@
 - name: Install latest git
-  dnf:
-    name: git-all
+  apt:
+    name: git
     state: latest
   become: true
 
