@@ -1,3 +1,5 @@
+# TODO: Need to remove existing HIST* entries in .bashrc
+#       Otherwise, history gets truncated
 - name: Add bash configuration
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK - .bashrc"
