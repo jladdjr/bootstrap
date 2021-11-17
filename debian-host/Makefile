@@ -3,6 +3,10 @@ all:
 
 bash:
 	ansible-playbook -i inventory --tags bash provision.yml
+
+emacs:
+	ansible-playbook -i inventory --tags emacs provision.yml
+
 git:
 	ansible-playbook -i inventory --tags git provision.yml
 

@@ -6,3 +6,6 @@
 
 - import_tasks: bash.yml
   tags: bash
+
+- import_tasks: emacs.yml
+  tags: emacs
