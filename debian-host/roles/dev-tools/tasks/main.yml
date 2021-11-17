@@ -3,3 +3,6 @@
 
 - import_tasks: tmux.yml
   tags: tmux
+
+- import_tasks: bash.yml
+  tags: bash
