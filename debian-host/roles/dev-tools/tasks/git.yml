@@ -1,0 +1,22 @@
+- name: Install latest git
+  dnf:
+    name: git-all
+    state: latest
+  become: true
+
+- name: Copy .gitconfig
+  copy:
+    src: .gitconfig
+    dest: "{{ lookup('env', 'HOME') }}"
+    mode: 0755
+
+- name: Create .gitignore_global
+  copy:
+    src: dot_gitignore_global
+    dest: ~/.gitignore_global
+    mode: 0600
+
+- name: Configure git to use global .gitignore file
+  shell: git config --global core.excludesfile ~/.gitignore_global
+  args:
+    executable: /bin/bash

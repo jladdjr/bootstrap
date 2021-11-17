@@ -1,0 +1,64 @@
+- name: Install latest tmux
+  apt:
+    name: tmux
+    state: latest
+  become: true
+  tags: tmux
+
+- name: Copy .tmux.conf
+  copy:
+    src: tmux.conf
+    dest: ~/.tmux.conf
+    mode: 0755
+  tags: tmux
+
+- name: Run tmux in new shells
+  blockinfile:
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - tmux"
+    path: ~/.bashrc
+    block: |
+      if [ -z "$TMUX" ]; then
+          tmux
+      fi
+  tags: tmux
+
+- name: Create alias for tmux attach
+  lineinfile:
+    path: ~/.bashrc
+    line: "alias ta='tmux attach'"
+  tags: tmux
+
+- name: Create git plugin directory
+  file:
+    state: directory
+    path: ~/.tmux/plugins
+    mode: 0755
+  tags: tmux
+
+- name: Install tmux-resurrect
+  git:
+    dest: ~/.tmux/plugins
+    repo: http://github.com/tmux-plugins/tmux-resurrect.git
+    accept_hostkey: yes
+  tags: tmux
+
+- name: Source resurrect.tmux
+  lineinfile:
+    path: ~/.tmux.conf
+    line: run-shell ~/.tmux/plugins/resurrect.tmux
+  tags: tmux
+
+- name: When opening new shell, auto-join existing tmux sessions (or create new one)
+  blockinfile:
+    path: ~/.bashrc
+    block: |
+      tmux list-sessions > /dev/null 2>&1
+      if [ $? -eq 0 ]; then
+          if [ -z "$TMUX" ]; then
+              tmux attach
+          fi
+      else
+          tmux
+      fi
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - tmux"
+  tags: tmux
