@@ -2,3 +2,4 @@
 - hosts: localhost
   roles:
     - { role: dev-tools, tags: dev-tools }
+    - { role: system, tags: system }
