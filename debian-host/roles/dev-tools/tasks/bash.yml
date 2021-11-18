@@ -136,3 +136,5 @@
       alias reset_dns='sudo systemctl restart systemd-resolved.service'
 
       f () { find . -iname "*$1*"; }
+
+      export EDITOR=vi
