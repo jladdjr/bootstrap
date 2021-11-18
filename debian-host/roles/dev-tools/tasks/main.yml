@@ -9,3 +9,9 @@
 
 - import_tasks: emacs.yml
   tags: emacs
+
+- import_tasks: ag.yml
+  tags: ag
+
+- import_tasks: fzf.yml
+  tags: fzf
