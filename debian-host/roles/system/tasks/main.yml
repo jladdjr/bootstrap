@@ -15,3 +15,6 @@
 #
 - import_tasks: pass.yml
   tags: pass
+
+- import_tasks: system-repos.yml
+  tags: system_repos

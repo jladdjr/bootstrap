@@ -20,5 +20,8 @@ git:
 pass:
 	ansible-playbook -i inventory --tags pass provision.yml
 
+system-repos:
+	ansible-playbook -i inventory --tags system_repos provision.yml
+
 tmux:
 	ansible-playbook -i inventory --tags tmux provision.yml
