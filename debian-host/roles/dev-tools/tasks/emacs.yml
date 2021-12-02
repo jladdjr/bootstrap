@@ -3,3 +3,15 @@
     name: emacs
     state: latest
   become: true
+
+- name: Ensure ~/.emacs.d folder is present
+  file:
+    dest: ~/.emacs.d
+    state: directory
+    mode: 0700
+
+- name: Install ~/.emacs.d/init.el
+  copy:
+    src: emacs/init.el
+    dest: ~/.emacs.d/init.el
+    mode: 0644
