@@ -3,3 +3,4 @@
   roles:
     - { role: system, tags: system }
     - { role: dev-tools, tags: dev-tools }
+    - { role: creature_comforts, tags: creature_comforts }

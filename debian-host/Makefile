@@ -8,6 +8,9 @@ ag:
 bash:
 	ansible-playbook -i inventory --tags bash provision.yml
 
+creature_comforts:
+	ansible-playbook -i inventory --tags creature_comforts provision.yml
+
 emacs:
 	ansible-playbook -i inventory --tags emacs provision.yml
 
@@ -16,6 +19,9 @@ fzf:
 
 git:
 	ansible-playbook -i inventory --tags git provision.yml
+
+i3:
+	ansible-playbook -i inventory --tags i3 provision.yml
 
 pass:
 	ansible-playbook -i inventory --tags pass provision.yml

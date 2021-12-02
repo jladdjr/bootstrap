@@ -1,0 +1,6 @@
+- name: Install i3
+  apt:
+    name: i3
+    state: latest
+  become: true
+  tags: i3
