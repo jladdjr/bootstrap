@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: all
   roles:
     - { role: system, tags: system }
     - { role: dev-tools, tags: dev-tools }
