@@ -47,18 +47,3 @@
     path: ~/.tmux.conf
     line: run-shell ~/.tmux/plugins/resurrect.tmux
   tags: tmux
-
-- name: When opening new shell, auto-join existing tmux sessions (or create new one)
-  blockinfile:
-    path: ~/.bashrc
-    block: |
-      tmux list-sessions > /dev/null 2>&1
-      if [ $? -eq 0 ]; then
-          if [ -z "$TMUX" ]; then
-              tmux attach
-          fi
-      else
-          tmux
-      fi
-    marker: "# {mark} ANSIBLE MANAGED BLOCK - tmux"
-  tags: tmux
