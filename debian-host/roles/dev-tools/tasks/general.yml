@@ -1,0 +1,7 @@
+- name: Install general dev tools
+  apt:
+    name:
+      - texlive
+    state: latest
+  become: true
+  tags: general_dev_tools

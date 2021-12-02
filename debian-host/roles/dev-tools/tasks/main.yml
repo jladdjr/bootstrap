@@ -1,3 +1,6 @@
+- import_tasks: general.yml
+  tags: general_dev_tools
+
 - import_tasks: git.yml
   tags: git
 
