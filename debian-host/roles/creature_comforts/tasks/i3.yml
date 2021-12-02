@@ -4,3 +4,22 @@
     state: latest
   become: true
   tags: i3
+
+- name: Ensure .config dir present
+  file:
+    state: directory
+    path: ~/.config
+    mode: 0700
+
+- name: Ensure .config/i3 dir present
+  file:
+    state: directory
+    path: ~/.config/i3
+    mode: 0755
+
+- name: Install i3 config
+  copy:
+    src: i3/config
+    dest: ~/.config/i3
+    mode: 0644
+    backup: yes
