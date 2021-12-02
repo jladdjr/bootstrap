@@ -1,2 +1,5 @@
 - import_tasks: i3.yml
   tags: i3
+
+- import_tasks: xmodmap.yml
+  tags: xmodmap
