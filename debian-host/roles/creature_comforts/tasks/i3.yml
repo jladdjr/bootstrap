@@ -10,12 +10,14 @@
     state: directory
     path: ~/.config
     mode: 0700
+  tags: i3
 
 - name: Ensure .config/i3 dir present
   file:
     state: directory
     path: ~/.config/i3
     mode: 0755
+  tags: i3
 
 - name: Install i3 config
   copy:
@@ -23,3 +25,4 @@
     dest: ~/.config/i3
     mode: 0644
     backup: yes
+  tags: i3
