@@ -15,3 +15,4 @@
     src: emacs/init.el
     dest: ~/.emacs.d/init.el
     mode: 0644
+    backup: yes
