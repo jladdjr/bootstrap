@@ -5,3 +5,36 @@
     mode: 0644
     backup: yes
   tags: xmodmap
+
+# If the gnome tweak tool was used to swap keys,
+# these settings will prevent xcape from working
+#
+# Note that xcape is called using .config/i3/config
+# (as is xmodmap)
+#
+# ~/.local/share/xorg/Xorg.0.log shows XKBOPTIONS
+# that take effect as a result of gnome tweaks /
+# /etc/default/keyboard
+- name: Ensure no XBOPTIONS set in /etc/default/keyboard
+  lineinfile:
+    path: /etc/default/keyboard
+    regexp: '^XKBOPTIONS='
+    line: XKBOPTIONS=""
+  become: true
+
+# While XKBOPTIONS should be empty, the
+# default keyboard should be set
+- name: Ensure keyboard set to 'us'
+  lineinfile:
+    path: /etc/default/keyboard
+    regexp: '^XKBLAYOUT='
+    line: XKBLAYOUT="us"
+  become: true
+
+# The variant should also be set
+- name: Ensure keyboard variant set to 'dvorak'
+  lineinfile:
+    path: /etc/default/keyboard
+    regexp: '^XKBVARIANT='
+    line: XKBVARIANT="dvorak"
+  become: true
