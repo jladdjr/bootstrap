@@ -10,6 +10,13 @@
     state: directory
     mode: 0700
 
+- name: Install emacs packages
+  apt:
+    name:
+      - elpa-evil
+    state: latest
+  become: true
+
 - name: Install ~/.emacs.d/init.el
   copy:
     src: emacs/init.el
