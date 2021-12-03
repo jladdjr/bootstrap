@@ -49,6 +49,9 @@ bindsym $mod+Return exec i3-sensible-terminal
 # start firefox
 bindsym $mod+b exec firefox-esr
 
+# start emacs
+bindsym $mod+m exec emacs
+
 # kill focused window
 bindsym $mod+Shift+quotedbl kill
 
