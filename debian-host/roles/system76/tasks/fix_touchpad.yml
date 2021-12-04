@@ -1,0 +1,3 @@
+# https://major.io/2021/07/18/tray-icons-in-i3/
+- name: Enable tapping
+  shell: xinput set-prop "PNP0C50:00 04F3:311D Touchpad" "libinput Tapping Enabled" 1

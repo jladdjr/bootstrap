@@ -1,0 +1,2 @@
+- import_tasks: fix_touchpad.yml
+  tags: fix_touchpad, system76

@@ -1,3 +1,7 @@
+[local]
+localhost ansible_connection=local
+
+[home]
 monolith ansible_user=jim
 think ansible_user=jim
 revolution ansible_user=jim

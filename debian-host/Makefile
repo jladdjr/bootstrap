@@ -32,6 +32,9 @@ pass:
 system-repos:
 	ansible-playbook -i inventory --tags system_repos provision.yml
 
+system76:
+	ansible-playbook -i inventory --tags system76 provision.yml
+
 tmux:
 	ansible-playbook -i inventory --tags tmux provision.yml
 
