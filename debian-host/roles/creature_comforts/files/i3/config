@@ -49,6 +49,9 @@ bindsym $mod+Return exec i3-sensible-terminal
 # start firefox
 bindsym $mod+b exec firefox-esr
 
+# get things done with todoist
+bindsym $mod+g exec firefox-esr todoist.com
+
 # start emacs
 bindsym $mod+space exec emacs
 
