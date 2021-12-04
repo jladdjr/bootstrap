@@ -190,3 +190,5 @@ bindsym $mod+p mode "resize"
 bar {
         status_command i3status
 }
+
+bindsym $mod+z exec --no-startup-id exec i3zen
