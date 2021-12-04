@@ -1,3 +1,3 @@
 sudo apt install -y ansible
 
-echo "stdout_callback = yaml" >> ~/.ansible.cfg
+echo -e "[defaults]\nstdout_callback = yaml" > ~/.ansible.cfg
