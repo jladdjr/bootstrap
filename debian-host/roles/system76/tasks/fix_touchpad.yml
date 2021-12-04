@@ -5,7 +5,7 @@
 - name: Persist tapping config change
   lineinfile:
     path: ~/.config/i3/config
-    line: xinput set-prop "PNP0C50:00 04F3:311D Touchpad" "libinput Tapping Enabled" 1
+    line: exec xinput set-prop "PNP0C50:00 04F3:311D Touchpad" "libinput Tapping Enabled" 1
 
 - name: Enable natural scrolling
   shell: xinput set-prop "PNP0C50:00 04F3:311D Touchpad" "libinput Natural Scrolling Enabled" 1
@@ -13,7 +13,7 @@
 - name: Persist natural scrolling
   lineinfile:
     path: ~/.config/i3/config
-    line: xinput set-prop "PNP0C50:00 04F3:311D Touchpad" "libinput Natural Scrolling Enabled" 1
+    line: exec xinput set-prop "PNP0C50:00 04F3:311D Touchpad" "libinput Natural Scrolling Enabled" 1
 
 - name: Accelerate mouse motion
   shell: xinput set-prop "PNP0C50:00 04F3:311D Touchpad" "libinput Accel Speed" 0.2
@@ -21,4 +21,4 @@
 - name: Persist accelerated mouse motion
   lineinfile:
     path: ~/.config/i3/config
-    line: xinput set-prop "PNP0C50:00 04F3:311D Touchpad" "libinput Accel Speed" 0.2
+    line: exec xinput set-prop "PNP0C50:00 04F3:311D Touchpad" "libinput Accel Speed" 0.2
