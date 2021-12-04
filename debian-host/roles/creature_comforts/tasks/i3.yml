@@ -26,3 +26,47 @@
     mode: 0644
     backup: yes
   tags: i3
+
+- name: install i3ass
+  block:
+    - name: Ensure /tmp/i3ass is absent
+      file:
+        path: /tmp/i3ass
+        state: absent
+
+    - name: Create /tmp/i3ass
+      file:
+        path: /tmp/i3ass
+        state: directory
+
+    - name: Get i3ass source
+      git:
+        repo: 'https://github.com/budlabs/i3ass.git'
+        dest: /tmp/i3ass
+        version: 2021.11.25.1
+
+    - name: Install i3 build requirements
+      apt:
+        name:
+          - make
+          - gawk
+          - lowdown
+        state: latest
+      become: true
+
+    - name: make i3ass
+      shell: /usr/bin/make
+      args:
+        chdir: /tmp/i3ass
+
+    - name: install i3ass
+      shell: /usr/bin/make install
+      args:
+        chdir: /tmp/i3ass
+      become: true
+
+    - name: Ensure /tmp/i3ass is absent
+      file:
+        path: /tmp/i3ass
+        state: absent
+  tags: i3
