@@ -39,6 +39,7 @@
         path: /tmp/i3ass
         state: directory
 
+    # Install latest version as of 12/3/2021
     - name: Get i3ass source
       git:
         repo: 'https://github.com/budlabs/i3ass.git'
