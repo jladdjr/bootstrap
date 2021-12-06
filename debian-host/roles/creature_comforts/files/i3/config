@@ -195,3 +195,4 @@ bar {
 }
 
 bindsym $mod+z exec --no-startup-id exec i3zen
+exec --no-startup-id exec xset r rate 200 40
