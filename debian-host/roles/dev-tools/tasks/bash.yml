@@ -1,5 +1,18 @@
-# TODO: Need to remove existing HIST* entries in .bashrc
-#       Otherwise, history gets truncated
+# Need to remove existing HIST* entries in .bashrc
+# Otherwise, history gets truncated
+- name: Remove existing history configuration
+  lineinfile:
+    path: ~/.bashrc
+    regexp: "{{item}}"
+    state: absent
+  with_items:
+    - HISTFILE
+    - HISTCONTROL
+    - HISTSIZE
+    - HISTFILESIZE
+    - HISTTIMEFORMAT
+    - PROMPT_COMMAND
+
 - name: Add bash configuration
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK - .bashrc"
