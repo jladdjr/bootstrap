@@ -16,3 +16,13 @@
   args:
     chdir: ~/.password-store
   when: "'jeeves' not in git_remote.stdout"
+
+- name: Set pass git username
+  shell: git config --local user.name "Jim"
+  args:
+    chdir: ~/.password-store
+
+- name: Set pass git email address to reflect hostname
+  shell: git config --local user.email "jim@{{inventory_hostname}}"
+  args:
+    chdir: ~/.password-store
