@@ -1,0 +1,18 @@
+- name: Create host alias for jeeves
+  lineinfile:
+    path: /etc/hosts
+    line: '192.168.1.203   jeeves'
+    state: present
+  become: true
+
+- name: Check if jeeves exists as a remote
+  shell: git remote
+  args:
+    chdir: ~/.password-store
+  register: git_remote
+
+- name: Add jeeves as remote
+  shell: git remote add jeeves ssh://jim@jeeves/~/git/pass.git
+  args:
+    chdir: ~/.password-store
+  when: "'jeeves' not in git_remote.stdout"
