@@ -1,7 +1,10 @@
 [local]
 localhost ansible_connection=local
 
-[home]
+[steph]
+komputerchen ansible_user=stephanieladd
+
+[jim]
 monolith ansible_user=jim
 think ansible_user=jim
 revolution ansible_user=jim
