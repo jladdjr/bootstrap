@@ -1,0 +1,4 @@
+---
+- hosts: finitestate
+  roles:
+    - { role: system, tags: system }

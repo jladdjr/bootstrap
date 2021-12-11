@@ -1,0 +1,59 @@
+- name: Create host alias for jeeves
+  lineinfile:
+    path: /etc/hosts
+    line: '192.168.1.203   jeeves'
+    state: present
+  become: true
+
+- name: Check if .password-store exists
+  stat:
+    path: ~/.password-store
+  register: password_store_stat
+
+- block:
+  - name: Check if jeeves exists as a remote
+    shell: git remote
+    args:
+      chdir: ~/.password-store
+    register: git_remote
+
+  - name: Add jeeves as remote
+    shell: git remote add jeeves ssh://jim@jeeves/~/git/pass.git
+    args:
+      chdir: ~/.password-store
+    when: "'jeeves' not in git_remote.stdout"
+
+  - name: Set pass git username
+    shell: git config --local user.name "{{ansible_user_id}}"
+    args:
+      chdir: ~/.password-store
+
+  - name: Set pass git email address to reflect hostname
+    shell: git config --local user.email "{{ansible_user_id}}@{{inventory_hostname}}"
+    args:
+      chdir: ~/.password-store
+
+  - name: Ensure .password-store/.extensions exists
+    file:
+      state: directory
+      path: ~/.password-store/.extensions
+      mode: '0755'
+
+  - name: Add pass-sync extension
+    copy:
+      src: pass_extensions/sync.bash
+      dest: ~/.password-store/.extensions
+      mode: '0755'
+
+  - name: Enable pass extensions
+    lineinfile:
+      path: ~/.bashrc
+      line: 'export PASSWORD_STORE_ENABLE_EXTENSIONS="true"'
+      state: present
+
+  - name: Add post-commit hook to push password changes to jeeves
+    template:
+      src: pass_git_hooks/post-commit.jinja
+      dest: ~/.password-store/.git/hooks/post-commit
+      mode: '0755'
+  when: password_store_stat.stat.exists

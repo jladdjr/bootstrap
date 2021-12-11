@@ -1,0 +1,8 @@
+[local]
+localhost ansible_connection=local
+
+[steph]
+komputerchen ansible_user=stephanieladd
+
+[finitestate]
+silver ansible_user=jim
