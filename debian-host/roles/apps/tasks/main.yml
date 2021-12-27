@@ -1,0 +1,2 @@
+- import_tasks: joplin.yml
+  tags: joplin

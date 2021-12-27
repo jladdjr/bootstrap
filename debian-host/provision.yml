@@ -4,6 +4,7 @@
     - { role: system, tags: system }
     - { role: dev-tools, tags: dev-tools }
     - { role: creature_comforts, tags: creature_comforts }
+    - { role: apps, tags: apps }
 
 # machine-dependent tasks
 - hosts: local

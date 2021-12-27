@@ -1,0 +1,13 @@
+- name: Download Joplin appimage
+  get_url:
+    # Latest as of 12/27/2021
+    url: https://github.com/laurent22/joplin/releases/download/v2.6.10/Joplin-2.6.10.AppImage
+    checksum: sha512:05cecb22db1addf36ec54b08f8891998b59c5c15d62fec73067b371cad298c7916954175f85941b195b6e4a19cdb7e197682ae9e8653e58cb362a0af8e50d872
+    dest: /usr/local/bin/joplin
+    owner: jim
+    group: jim
+    mode: 0755
+  become: true
+
+# TODO: Install terminal Joplin app
+# https://joplinapp.org/terminal/

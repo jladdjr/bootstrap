@@ -26,6 +26,9 @@ git:
 i3:
 	ansible-playbook -i inventory --tags i3,system76 provision.yml
 
+joplin:
+	ansible-playbook -i inventory --tags joplin provision.yml
+
 pass:
 	ansible-playbook -i inventory --tags pass provision.yml
 
