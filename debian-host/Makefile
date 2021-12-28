@@ -27,7 +27,7 @@ git:
 	ansible-playbook -i inventory --tags git provision.yml
 
 i3:
-	ansible-playbook -i inventory --tags i3,system76 provision.yml
+	ansible-playbook -i inventory --tags redshift,i3,system76 provision.yml
 
 joplin:
 	ansible-playbook -i inventory --tags joplin provision.yml
@@ -37,6 +37,9 @@ pass:
 
 pass_sync:
 	ansible-playbook -i inventory --tags pass_sync provision.yml
+
+redshift:
+	ansible-playbook -i inventory --tags redshift provision.yml
 
 system-repos:
 	ansible-playbook -i inventory --tags system_repos provision.yml

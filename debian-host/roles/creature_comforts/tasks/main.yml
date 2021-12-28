@@ -1,3 +1,6 @@
+- import_tasks: redshift.yml
+  tags: redshift
+
 - import_tasks: i3.yml
   tags: i3
 
