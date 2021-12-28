@@ -46,8 +46,8 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
-# start firefox
-bindsym $mod+b exec firefox-esr
+# start brave
+bindsym $mod+b exec brave-browser
 
 # get things done with todoist
 bindsym $mod+g exec firefox-esr todoist.com

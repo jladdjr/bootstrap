@@ -1,2 +1,5 @@
+- import_tasks: brave.yml
+  tags: brave
+
 - import_tasks: joplin.yml
   tags: joplin

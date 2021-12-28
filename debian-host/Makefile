@@ -8,6 +8,9 @@ ag:
 bash:
 	ansible-playbook -i inventory --tags bash provision.yml
 
+brave:
+	ansible-playbook -i inventory --tags brave provision.yml
+
 creature_comforts:
 	ansible-playbook -i inventory --tags creature_comforts provision.yml
 
