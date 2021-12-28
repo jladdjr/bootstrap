@@ -1,3 +1,6 @@
+# A helpful resource on the X server
+# https://tldp.org/HOWTO/XWindow-User-HOWTO
+# https://www.x.org/wiki/UserDocumentation/
 - name: Install i3
   apt:
     name: i3
