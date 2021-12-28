@@ -38,6 +38,9 @@ pass:
 pass_sync:
 	ansible-playbook -i inventory --tags pass_sync provision.yml
 
+plover:
+	ansible-playbook -i inventory --tags plover provision.yml
+
 redshift:
 	ansible-playbook -i inventory --tags redshift provision.yml
 

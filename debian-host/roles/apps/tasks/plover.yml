@@ -1,0 +1,21 @@
+- name: Install plover
+  apt:
+    name: plover
+    state: latest
+  become: true
+
+- name: Download dictionaries
+  git:
+    repo: 'git@github.com:jladdjr/steno-reboot.git'
+    dest: ~/steno-reboot
+    update: no
+
+# https://plover.readthedocs.io/en/latest/api/oslayer_config.html#plover.oslayer.config.CONFIG_DIR
+- name: Install plover.cfg
+  copy:
+    src: ~/steno-reboot/plover.cfg
+    dest: ~/.config/plover/
+
+- name: Add jim to dialout group
+  shell: usermod -a -G dialout jim
+  become: true
