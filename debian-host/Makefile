@@ -20,6 +20,9 @@ emacs:
 fzf:
 	ansible-playbook -i inventory --tags fzf provision.yml
 
+general_creature_comforts:
+	ansible-playbook -i inventory --tags general_creature_comforts provision.yml
+
 general_dev_tools:
 	ansible-playbook -i inventory --tags general_dev_tools provision.yml
 

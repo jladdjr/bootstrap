@@ -6,3 +6,6 @@
 
 - import_tasks: xmodmap.yml
   tags: xmodmap
+
+- import_tasks: general.yml
+  tags: general_creature_comforts

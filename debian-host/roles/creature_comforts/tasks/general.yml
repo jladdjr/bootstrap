@@ -1,0 +1,7 @@
+- name: Install misc helpful packages
+  apt:
+    name:
+      - locate
+      - bc
+    state: latest
+  become: true
