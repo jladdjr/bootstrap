@@ -1,7 +1,12 @@
+# apt package is down-level, so install appimage from github (12/28/2021)
 - name: Install plover
-  apt:
-    name: plover
-    state: latest
+  get_url:
+    # stable as of 12/28/2021
+    url: https://github.com/openstenoproject/plover/releases/download/continuous/plover-4.0.0.dev10+120.g4394ef1-x86_64.AppImage
+    dest: /usr/local/bin/plover
+    owner: jim
+    group: jim
+    mode: 0755
   become: true
 
 - name: Download dictionaries
@@ -14,8 +19,12 @@
 - name: Install plover.cfg
   copy:
     src: ~/steno-reboot/plover.cfg
-    dest: ~/.config/plover/
+    dest: ~/.local/share/plover/plover.cfg
 
 - name: Add jim to dialout group
   shell: usermod -a -G dialout jim
   become: true
+
+# https://plover.readthedocs.io/en/4.0.0-dev8/cli_reference.html#plugin-installer
+- name: Add support for python dictionaries
+  shell: /usr/local/bin/plover -s plover_plugins install plover-python-dictionary
