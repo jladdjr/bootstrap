@@ -35,6 +35,9 @@ i3:
 joplin:
 	ansible-playbook -i inventory --tags joplin provision.yml
 
+latex:
+	ansible-playbook -i inventory --tags latex provision.yml
+
 pass:
 	ansible-playbook -i inventory --tags pass provision.yml
 

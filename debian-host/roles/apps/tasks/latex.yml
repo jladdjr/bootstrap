@@ -1,0 +1,5 @@
+- name: Install latex
+  apt:
+    name: texlive
+    state: latest
+  become: true
