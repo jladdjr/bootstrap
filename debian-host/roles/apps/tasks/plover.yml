@@ -15,6 +15,12 @@
     dest: ~/steno-reboot
     update: no
 
+- name: Ensure ~/.local/share/plover exists
+  file:
+    state: directory
+    path: ~/.local/share/plover
+    mode: 0755
+
 # https://plover.readthedocs.io/en/latest/api/oslayer_config.html#plover.oslayer.config.CONFIG_DIR
 - name: Install plover.cfg
   copy:
