@@ -4,5 +4,6 @@
       - info
       - locate
       - bc
+      - screen
     state: latest
   become: true
