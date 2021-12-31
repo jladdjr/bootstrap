@@ -1,8 +1,9 @@
-all:
-	ansible-playbook -i inventory provision.yml
-
-all_with_secrets:
+all: secrets
 	ansible-playbook -i inventory -e @secrets.yml provision.yml
+	rm secrets.yml
+
+secrets:
+	pass show playbooks/bootstrap/debian-host > secrets.yml
 
 # see also fzf (which enables ctrl-t hotkey for searching for files)
 ag:
@@ -35,8 +36,9 @@ git:
 i3:
 	ansible-playbook -i inventory --tags redshift,i3,system76 provision.yml
 
-irssi:
+irssi: secrets
 	ansible-playbook -i inventory --tags irssi -e @secrets.yml provision.yml
+	rm secrets.yml
 
 joplin:
 	ansible-playbook -i inventory --tags joplin provision.yml
