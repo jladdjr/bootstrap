@@ -1,6 +1,9 @@
 all:
 	ansible-playbook -i inventory provision.yml
 
+all_with_secrets:
+	ansible-playbook -i inventory -e @secrets.yml provision.yml
+
 # see also fzf (which enables ctrl-t hotkey for searching for files)
 ag:
 	ansible-playbook -i inventory --tags ag provision.yml
@@ -33,7 +36,7 @@ i3:
 	ansible-playbook -i inventory --tags redshift,i3,system76 provision.yml
 
 irssi:
-	ansible-playbook -i inventory --tags irssi provision.yml
+	ansible-playbook -i inventory --tags irssi -e @secrets.yml provision.yml
 
 joplin:
 	ansible-playbook -i inventory --tags joplin provision.yml
