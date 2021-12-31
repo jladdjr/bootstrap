@@ -9,3 +9,6 @@
 
 - import_tasks: latex.yml
   tags: latex
+
+- import_tasks: irssi.yml
+  tags: irssi

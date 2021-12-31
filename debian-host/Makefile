@@ -32,6 +32,9 @@ git:
 i3:
 	ansible-playbook -i inventory --tags redshift,i3,system76 provision.yml
 
+irssi:
+	ansible-playbook -i inventory --tags irssi provision.yml
+
 joplin:
 	ansible-playbook -i inventory --tags joplin provision.yml
 
