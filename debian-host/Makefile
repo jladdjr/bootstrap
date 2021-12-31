@@ -49,8 +49,8 @@ latex:
 pass:
 	ansible-playbook -i inventory --tags pass provision.yml
 
-pass_sync:
-	ansible-playbook -i inventory --tags pass_sync provision.yml
+pass_extensions:
+	ansible-playbook -i inventory --tags pass_extensions provision.yml
 
 plover:
 	ansible-playbook -i inventory --tags plover provision.yml
