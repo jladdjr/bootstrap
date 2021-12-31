@@ -1,6 +1,7 @@
 - name: Install misc helpful packages
   apt:
     name:
+      - info
       - locate
       - bc
     state: latest
