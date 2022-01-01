@@ -16,8 +16,11 @@
     dest: ~/.irssi/config
     mode: 0640
 
-- name: Copy over irssi default theme
+- name: Copy over irssi themes
   copy:
-    src: irssi/default.theme
+    src: "irssi/{{ item }}"
     dest: ~/.irssi
     mode: 0640
+  with_items:
+    - default.theme
+    - old-default.theme
