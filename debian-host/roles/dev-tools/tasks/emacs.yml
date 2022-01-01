@@ -17,6 +17,7 @@
       - elpa-projectile
       - projectile-doc
       - elpa-magit
+      - elpa-avy
     state: latest
   become: true
 

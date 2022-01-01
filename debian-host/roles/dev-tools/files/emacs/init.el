@@ -11,3 +11,7 @@
 ;; Magit
 ;; https://magit.vc/manual/magit/
 (require 'magit)
+
+;; Avy
+(require 'avy)
+(global-set-key (kbd "C-l") 'avy-goto-char)
