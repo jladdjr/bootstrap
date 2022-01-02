@@ -8,13 +8,12 @@
       become: true
 
     # TODO: Copy over config files
-
     - name: Enable inspircd
       service:
-        - name: inspircd
-          enabled: yes
+        name: inspircd
+        enabled: yes
 
     - name: Start inspircd
       service:
-        - name: inspircd
-          state: started
+        name: inspircd
+        state: started
