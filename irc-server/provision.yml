@@ -1,7 +1,20 @@
 - hosts: all
   tasks:
+    # https://docs.inspircd.org/3/installation/debian/
     - name: Install inspircd
       apt:
         name: inspircd
         state: latest
       become: true
+
+    # TODO: Copy over config files
+
+    - name: Enable inspircd
+      service:
+        - name: inspircd
+          enabled: yes
+
+    - name: Start inspircd
+      service:
+        - name: inspircd
+          state: started
