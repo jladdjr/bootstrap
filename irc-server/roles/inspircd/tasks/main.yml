@@ -1,0 +1,54 @@
+# https://docs.inspircd.org/3/installation/debian/
+- block:
+  - name: Determine if inspircd already installed
+    shell: which inspircd
+    register: which_inspircd
+
+  - name: Stop inspircd (if already installed)
+    service:
+      name: inspircd
+      state: stopped
+    when: which_inspircd.rc == 0
+
+  - name: Install inspircd
+    apt:
+      name: inspircd
+      state: latest
+
+  - name: Ensure inspircd config directory exists
+    file:
+      state: directory
+      path: /etc/inspircd
+      owner: irc
+      group: irc
+      mode: 0770
+
+  - name: Copy over config files
+    copy:
+      src: "{{ item }}"
+      dest: /etc/inspircd
+      owner: irc
+      group: irc
+      mode: 0644
+    with_items:
+      - inspircd.motd
+      - inspircd.rules
+   
+  - name: Copy over templated config files
+    template:
+      src: inspircd.conf.j2
+      dest: /etc/inspircd/inspircd.conf
+      owner: irc
+      group: irc
+      mode: 0644
+
+  - name: Enable inspircd
+    service:
+      name: inspircd
+      enabled: yes
+
+  - name: Start inspircd
+    service:
+      name: inspircd
+      state: started
+  become: true
