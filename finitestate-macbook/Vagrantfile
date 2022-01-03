@@ -190,3 +190,5 @@ http://jarrettmeyer.com/2016/02/12/vagrant-tip-virtualbox-guest-additions
 Installs vagrant-vbguest which seems to automatically install the latest
 version of guest additions when you run `vagrant up`.
 
+# scp-ing files between host and vagrant guest
+# vagrant plugin install vagrant-scp
