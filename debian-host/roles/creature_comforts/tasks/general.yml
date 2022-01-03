@@ -1,6 +1,7 @@
 - name: Install misc helpful packages
   apt:
     name:
+      - vim
       - info
       - locate
       - bc
