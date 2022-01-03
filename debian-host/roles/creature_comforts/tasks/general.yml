@@ -6,5 +6,7 @@
       - locate
       - bc
       - screen
+      - htop
+      - strace
     state: latest
   become: true
