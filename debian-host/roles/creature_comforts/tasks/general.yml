@@ -9,5 +9,6 @@
       - htop
       - strace
       - apt-file
+      - e2fsprogs
     state: latest
   become: true
