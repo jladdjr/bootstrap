@@ -12,4 +12,5 @@
     - "192.168.1.203   jeeves"
     - "192.168.1.71    blackbox"
     - "192.168.1.72    zero"
+    - "192.168.1.73    wormstation"
   become: true
