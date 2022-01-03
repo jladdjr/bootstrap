@@ -8,5 +8,6 @@
       - screen
       - htop
       - strace
+      - apt-file
     state: latest
   become: true
