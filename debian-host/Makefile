@@ -33,6 +33,9 @@ general_dev_tools:
 git:
 	ansible-playbook -i inventory --tags git provision.yml
 
+hostnames:
+	ansible-playbook -i inventory --tags hostnames provision.yml
+
 i3:
 	ansible-playbook -i inventory --tags redshift,i3,system76 provision.yml
 

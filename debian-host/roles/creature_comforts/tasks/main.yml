@@ -9,3 +9,6 @@
 
 - import_tasks: general.yml
   tags: general_creature_comforts
+
+- import_tasks: hostnames.yml
+  tags: hostnames
