@@ -67,6 +67,17 @@ vagrant plugin install vagrant-disksize
 Add the following in the `Vagrant.configure(2) ..` block:
    config.disksize.size = '45GB'
 
+# On Debian VM
+# 1/3/22
+
+0. (optional) mount | grep ' / '    # should confirm filesystem is ext2 (instead of lvm)
+0. (optional) sudo cfdisk /dev/sda  # should confirm _disk_ has been resized (file system still needs to be resized, though)
+1. sudo apt install -y e2fsprogs
+2. sudo resize2fs /dev/sda1
+3. sudo df -h /                     # should verify new size
+
+# On Fedora Vm
+
 1. Log into vm
 2. `sudo cfdisk /dev/sda` <--------- I found this step unneccesary
     * Select Resize
