@@ -21,3 +21,6 @@
 
 - import_tasks: system-repos.yml
   tags: system_repos
+
+- import_tasks: timezone.yml
+  tags: timezone

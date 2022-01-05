@@ -67,6 +67,9 @@ system-repos:
 system76:
 	ansible-playbook -i inventory --tags system76 provision.yml
 
+timezone:
+	ansible-playbook -i inventory --tags timezone provision.yml
+
 tmux:
 	ansible-playbook -i inventory --tags tmux provision.yml
 
