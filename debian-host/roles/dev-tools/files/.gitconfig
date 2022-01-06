@@ -11,6 +11,7 @@
         sbr = branch --sort=-committerdate -a
         last = log -1 HEAD
         llog = log --pretty='%<(11)%h %<(18)%an %s'
+        head = log -1 --format=format:%H
 [color]
         diff = auto
         status = auto
