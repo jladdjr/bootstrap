@@ -49,8 +49,8 @@ bindsym $mod+Return exec i3-sensible-terminal
 # start brave
 bindsym $mod+b exec brave-browser
 
-# get things done with todoist
-bindsym $mod+g exec firefox-esr todoist.com
+# get things done with trello kanban board for daily items
+bindsym $mod+g exec brave-browser --new-window https://trello.com/b/o2gjAkSJ/daily-planning
 
 # start emacs
 bindsym $mod+space exec emacs
