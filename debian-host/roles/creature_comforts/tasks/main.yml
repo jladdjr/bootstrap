@@ -12,3 +12,6 @@
 
 - import_tasks: hostnames.yml
   tags: hostnames
+
+- import_tasks: screenshots.yml
+  tags: screenshots

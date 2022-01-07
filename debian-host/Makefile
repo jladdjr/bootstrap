@@ -37,7 +37,7 @@ hostnames:
 	ansible-playbook -i inventory --tags hostnames provision.yml
 
 i3:
-	ansible-playbook -i inventory --tags redshift,i3,system76 provision.yml
+	ansible-playbook -i inventory --tags screenshots,redshift,i3,system76 provision.yml
 
 irssi: secrets
 	ansible-playbook -i inventory --tags irssi -e @secrets.yml provision.yml
@@ -60,6 +60,9 @@ plover:
 
 redshift:
 	ansible-playbook -i inventory --tags redshift provision.yml
+
+screenshots:
+	ansible-playbook -i inventory --tags screenshots provision.yml
 
 system-repos:
 	ansible-playbook -i inventory --tags system_repos provision.yml

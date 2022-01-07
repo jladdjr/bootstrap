@@ -199,3 +199,16 @@ exec --no-startup-id exec xset r rate 200 40
 
 # start redshift (manually setting location to Oregon)
 exec --no-startup-id redshift -l 45.4:-122.7 -l manual -m randr
+
+################################################
+# date: 2/22/2017                              #
+# author: ddnomad                              #
+# url: https://unix.stackexchange.com/a/346800 #
+# retrieved: 1/6/2022                          #
+################################################
+
+# take a screenshot of a screen region and copy it to a clipboard
+bindsym --release Shift+Print exec "screenshot -s /home/jim/Pictures/"
+
+# take a screenshot of a whole window and copy it to a clipboard
+bindsym --release Print exec "screenshot /home/jim/Pictures/"
