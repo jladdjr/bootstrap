@@ -121,15 +121,6 @@ See URL `https://www.emacswiki.org/emacs/LoadingLispFiles'"
 (if (file-exists-p "~/.emacs.d/lisp/")
     (xc/load-directory "~/.emacs.d/lisp/"))
 
-;; load customizations which aren't versioned here
-(cond ((eq system-type 'windows-nt)
-       (add-hook 'after-init-hook (lambda () (load "~/secret-lisp.el"))))
-      ((eq system-type 'gnu/linux)
-       (progn
-         (add-hook 'after-init-hook (lambda () (load "/home/ahab/.emacs.d/mine/my-lisp.el")))
-         (with-eval-after-load "yasnippet"
-           (add-to-list 'yas-snippet-dirs "/home/ahab/.emacs.d/mine/" t)))))
-
 ;; (setq yas-snippet-dirs (list yas-snippet-dirs))
 
 ;; InnoSetup .iss files are basically ini files
