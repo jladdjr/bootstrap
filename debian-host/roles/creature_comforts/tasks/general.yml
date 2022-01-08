@@ -10,5 +10,6 @@
       - strace
       - apt-file
       - e2fsprogs
+      - strace
     state: latest
   become: true
