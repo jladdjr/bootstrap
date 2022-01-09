@@ -1,0 +1,26 @@
+# ansible's apt plugin wants to install python-apt
+# .. which the raspberry pi can't find
+- name: Install irssi
+  shell: apt install -y irssi
+  become: true
+
+- name: Ensure irssi config directory exists
+  file:
+    state: directory
+    path: ~/.irssi
+    mode: 0700
+
+- name: Copy over irssi config
+  template:
+    src: irssi/config.j2
+    dest: ~/.irssi/config
+    mode: 0640
+
+- name: Copy over irssi themes
+  copy:
+    src: "irssi/{{ item }}"
+    dest: ~/.irssi
+    mode: 0640
+  with_items:
+    - default.theme
+    - old-default.theme
