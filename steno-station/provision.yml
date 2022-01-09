@@ -1,4 +1,3 @@
 - hosts: steno-station
-  tasks:
-    - debug:
-        msg: "Test!"
+  roles:
+    - { role: apps, tags: apps}
