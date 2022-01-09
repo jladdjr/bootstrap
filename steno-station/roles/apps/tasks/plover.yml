@@ -1,7 +1,18 @@
+# Installs python
+# .. but only the console version works
+# .. and plugins have to be installed manually using pip
+
+# stanographer has a script that may help with getting the Plover GUI working on the pi
+# https://github.com/stanographer/plover-pi/blob/master/plover_raspbian.sh
+#
+# https://github.com/Anodynous/stenogotchi looks like an amazing project
+# that could get a steno board to work over bluetooth
+
+# Installing by wheel seems to be the easiest way to get the latest version
+# that can be installed on ARM architecture
 - name: Download plover wheel
   get_url:
     # stable as of 12/28/2021
-    #url: https://github.com/openstenoproject/plover/releases/download/continuous/plover-4.0.0.dev10+120.g4394ef1-py3-none-any.whl
     url: https://github.com/openstenoproject/plover/releases/download/v4.0.0.dev10/plover-4.0.0.dev10-py3-none-any.whl
     dest: /tmp
     owner: pi
@@ -37,14 +48,9 @@
   shell: usermod -a -G dialout pi
   become: true
 
-# Installing plover_plugins_manager fails while installing PyQt5
-# https://stackoverflow.com/a/67606704 suggests upgrading pip to >= 21.1.1
-- name: Upgrade pip due to PyQt5 bug
-  shell: /home/pi/.local/bin/pip install -U -y pip
-
-# https://plover.readthedocs.io/en/4.0.0-dev8/cli_reference.html#plugin-installer
-# plover on raspberry pi is complaining that it cannot find plover_plugins
-# Do I need to pip install this?
-#     https://github.com/benoit-pierre/plover_plugins_manager.git
-- name: Add support for python dictionaries
-  shell: ~/.local/bin/plover -s plover_plugins install plover-python-dictionary
+# As of 1/9/2022, getting:
+# $ plover -s plover_plugins install plover-python-dictionary
+#   2022-01-09 00:23:27,078 [MainThread] ERROR: no such script: plover_plugins
+# As a workaround, pip install the plugin's PyPI package directly
+- name: Install plover_python_dictionary (out-of-band)
+  shell: pip install git+https://github.com/benoit-pierre/plover_python_dictionary.git
