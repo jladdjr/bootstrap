@@ -8,8 +8,12 @@ pass show digital/$1 | base64 --decode > $tmp_file
 echo "decrypted file to $tmp_file"
 read -p "Press Enter when finished.."
 
-# update encrypted file
-pass stash $tmp_file
+# update encrypted file if changed
+echo "Has the file changed?"
+read changed
+if [[ "$changed" = y* ]]; then
+	pass stash $tmp_file
+fi
 
 rm $tmp_file
 
