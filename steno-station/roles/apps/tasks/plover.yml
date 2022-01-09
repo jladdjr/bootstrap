@@ -1,13 +1,19 @@
-# apt package is down-level, so install appimage from github (12/28/2021)
-- name: Install plover
+- name: Download plover wheel
   get_url:
     # stable as of 12/28/2021
-    url: https://github.com/openstenoproject/plover/releases/download/continuous/plover-4.0.0.dev10+120.g4394ef1-x86_64.AppImage
-    dest: /usr/local/bin/plover
+    #url: https://github.com/openstenoproject/plover/releases/download/continuous/plover-4.0.0.dev10+120.g4394ef1-py3-none-any.whl
+    url: https://github.com/openstenoproject/plover/releases/download/v4.0.0.dev10/plover-4.0.0.dev10-py3-none-any.whl
+    dest: /tmp
     owner: pi
     group: pi
     mode: 0755
   become: true
+
+# Installs plover binaries to ~/.local/bin
+- name: Install plover from wheel
+  shell: /usr/bin/pip install ./plover-4.0.0.dev10+120.g4394ef1-py3-none-any.whl
+  args:
+    chdir: /tmp
 
 - name: Download dictionaries
   git:
@@ -32,5 +38,8 @@
   become: true
 
 # https://plover.readthedocs.io/en/4.0.0-dev8/cli_reference.html#plugin-installer
+# plover on raspberry pi is complaining that it cannot find plover_plugins
+# Do I need to pip install this?
+#     https://github.com/benoit-pierre/plover_plugins_manager.git
 - name: Add support for python dictionaries
-  shell: /usr/local/bin/plover -s plover_plugins install plover-python-dictionary
+  shell: ~/.local/bin/plover -s plover_plugins install plover-python-dictionary
