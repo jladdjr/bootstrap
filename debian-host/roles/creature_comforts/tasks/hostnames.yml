@@ -10,7 +10,7 @@
     - "192.168.1.6     komputerchen"
     - "192.168.1.9     scrappy"
     - "192.168.1.203   jeeves"
-    - "192.168.1.71    blackbox"
+    - "192.168.1.71    steno-station"
     - "192.168.1.72    zero"
     - "192.168.1.73    wormstation"
   become: true
