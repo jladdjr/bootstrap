@@ -37,6 +37,11 @@
   shell: usermod -a -G dialout pi
   become: true
 
+# Installing plover_plugins_manager fails while installing PyQt5
+# https://stackoverflow.com/a/67606704 suggests upgrading pip to >= 21.1.1
+- name: Upgrade pip due to PyQt5 bug
+  shell: /home/pi/.local/bin/pip install -U -y pip
+
 # https://plover.readthedocs.io/en/4.0.0-dev8/cli_reference.html#plugin-installer
 # plover on raspberry pi is complaining that it cannot find plover_plugins
 # Do I need to pip install this?
