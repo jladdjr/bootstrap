@@ -1,0 +1,2 @@
+- import_tasks: plover.yml
+  tags: plover
