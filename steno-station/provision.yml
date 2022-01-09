@@ -1,0 +1,4 @@
+- hosts: steno-station
+  tasks:
+    - debug:
+        msg: "Test!"
