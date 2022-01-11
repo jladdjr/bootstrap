@@ -48,6 +48,15 @@
   shell: usermod -a -G dialout pi
   become: true
 
+- name: Create udev rules to give steno boards stable /dev paths (note: requires restart to take effect)
+  copy:
+    src: plover/49-custom.rules
+    dest: /etc/udev/rules.d/49-custom.rules
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+
 # As of 1/9/2022, getting:
 # $ plover -s plover_plugins install plover-python-dictionary
 #   2022-01-09 00:23:27,078 [MainThread] ERROR: no such script: plover_plugins
