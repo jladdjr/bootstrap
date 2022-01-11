@@ -3,3 +3,12 @@
     name: taskwarrior
     state: latest
   become: true
+
+- name: Install .taskrc
+  copy:
+    src: taskwarrior/dot_taskrc
+    dest: ~/.taskrc
+    mode: 0644
+    owner: jim
+    group: jim
+    backup: yes
