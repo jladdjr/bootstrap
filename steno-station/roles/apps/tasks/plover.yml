@@ -64,3 +64,11 @@
 # As a workaround, pip install the plugin's PyPI package directly
 - name: Install plover_python_dictionary (out-of-band)
   shell: pip install git+https://github.com/benoit-pierre/plover_python_dictionary.git
+
+- name: Create convenience script for running plover (switches keyboard layout automatically)
+  copy:
+    src: plover/run_plover.sh
+    dest: ~/run_plover.sh
+    mode: 0755
+    owner: jim
+    group: jim
