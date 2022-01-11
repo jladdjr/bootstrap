@@ -72,3 +72,10 @@
     mode: 0755
     owner: jim
     group: jim
+
+- name: Create aliases for switching keyboard layouts
+  blockinfile:
+    path: ~/.bashrc
+    block: |
+      alias d='setxkbmap dvorak'
+      alias u='setxkbmap us'
