@@ -1,0 +1,5 @@
+- name: Install taskwarrior
+  apt:
+    name: taskwarrior
+    state: latest
+  become: true

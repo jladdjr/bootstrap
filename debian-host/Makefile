@@ -70,6 +70,9 @@ system-repos:
 system76:
 	ansible-playbook -i inventory --tags system76 provision.yml
 
+taskwarrior:
+	ansible-playbook -i inventory --tags taskwarrior provision.yml
+
 timezone:
 	ansible-playbook -i inventory --tags timezone provision.yml
 

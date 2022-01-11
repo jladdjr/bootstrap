@@ -12,3 +12,6 @@
 
 - import_tasks: irssi.yml
   tags: irssi
+
+- import_tasks: taskwarrior.yml
+  tags: taskwarrior
