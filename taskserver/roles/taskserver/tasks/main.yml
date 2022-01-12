@@ -165,7 +165,7 @@
   become: true
 
 - name: Open port for taskd
-  shell: firewall-cmd --permanent --add-port=53589
+  shell: firewall-cmd --permanent --add-port=53589/tcp
   become: true
 
 - name: Reload firewalld rules
