@@ -8,10 +8,13 @@
     name:
     - git
     - libgnutls30
+    - libgnutls28-dev
     - libuuid1
+    - uuid-dev
     - cmake
     - make
     - gcc
+    - build-essential  # otherwise, cmake complains about CMAKE_CXX_COMPILER being undefined
     state: latest
   become: true
 
@@ -20,3 +23,38 @@
     repo: https://github.com/GothenburgBitFactory/taskserver.git
     dest: /tmp/taskserver
     version: master
+
+- name: Configure build for taskserver
+  shell: 'cmake -DCMAKE_BUILD_TYPE=release .'
+  args:
+    chdir: /tmp/taskserver
+
+- name: Build taskserver
+  shell: make
+  args:
+    chdir: /tmp/taskserver
+
+- name: Build tests
+  shell: make
+  args:
+    chdir: /tmp/taskserver/test
+
+# Per https://taskwarrior.org/docs/taskserver/git.html
+# a few test failures may happen evenn if the build was successful
+#
+# Ran tests on 1/11/2022 and the only test that failed was
+# 'Copyright is current'
+- name: Test taskserver build
+  shell: ./run_all --verbose > test_results
+  args:
+    chdir: /tmp/taskserver/test
+  ignore_errors: true
+
+- name: Install taskserver
+  shell: make install
+  args:
+    chdir: /tmp/taskserver
+  become: true
+
+- name: Verify taskserver is installed
+  shell: taskd
