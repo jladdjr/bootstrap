@@ -151,6 +151,27 @@
   environment:
     TASKDDATA: /var/taskd
 
+######################
+# Configure firewall #
+######################
+
+# While firewalld is mostly used on RHEL instances,
+# Debian can use it, too
+# https://computingforgeeks.com/how-to-install-and-configure-firewalld-on-debian/
+- name: Install firewalld
+  apt:
+    name: firewalld
+    state: latest
+  become: true
+
+- name: Open port for taskd
+  shell: firewall-cmd --permanent --add-port=53589
+  become: true
+
+- name: Reload firewalld rules
+  shell: firewall-cmd --reload
+  become: true
+
 #####################
 # Start the server! #
 #####################
@@ -204,7 +225,7 @@
 #
 # And, finally, provide your user credentials:
 #
-# $ task config taskd.credentials -- Public/Jim Ladd/<KEY SAVED TO /var/taskd/jim.key>
+# $ task config taskd.credentials -- Portladds/Jim Ladd/<KEY SAVED TO /var/taskd/jim.key>
 #
 # Your taskwarrior client is now ready to sync!
 #
