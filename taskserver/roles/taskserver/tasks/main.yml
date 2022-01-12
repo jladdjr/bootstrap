@@ -1,4 +1,8 @@
-# https://taskwarrior.org/docs/taskserver/git.html
+####################################################
+# taskserver installation (from source)            #
+# https://taskwarrior.org/docs/taskserver/git.html #
+####################################################
+
 - name: Update apt
   shell: apt update
   become: true
@@ -15,6 +19,8 @@
     - make
     - gcc
     - build-essential  # otherwise, cmake complains about CMAKE_CXX_COMPILER being undefined
+    - gnutls-bin  # provides certtool
+    - net-tools  # provides ifconfig
     state: latest
   become: true
 
@@ -58,3 +64,82 @@
 
 - name: Verify taskserver is installed
   shell: taskd
+
+##########################################################
+# taskserver configuration                               #
+# https://taskwarrior.org/docs/taskserver/configure.html #
+##########################################################
+
+- name: Create taskd data dir
+  file:
+    path: /var/taskd
+    state: directory
+    mode: '0755'
+    group: jim
+    owner: jim
+  become: true
+
+- name: Define TASKDDATA
+  lineinfile:
+    path: ~/.bashrc
+    line: 'export TASKDDATA=/var/taskd'
+    regexp: '^export TASKDDATA.*'
+
+- name: Initialize server
+  shell: taskd init
+  environment:
+    TASKDDATA: /var/taskd 
+
+- name: Copy over PKI certificate config
+  copy:
+    src: vars
+    dest: /tmp/taskserver/pki/vars
+    owner: jim
+    group: jim
+    mode: '0644'
+    force: yes
+    backup: yes
+
+# Add /usr/sbin to path so that ifconfig can be found
+- name: Generate certificates
+  shell: "export PATH=/usr/sbin:$PATH; ./generate"
+  args:
+    chdir: /tmp/taskserver/pki
+  environment:
+    TASKDDATA: /var/taskd 
+
+- name: Copy over script to install certs
+  copy:
+    src: install_certs.sh
+    dest: /tmp/taskserver/pki/install_certs.sh
+    owner: jim
+    group: jim
+    mode: '0755'
+
+- name: Install certs
+  shell: './install_certs.sh'
+  args:
+    chdir: /tmp/taskserver/pki
+  environment:
+    TASKDDATA: /var/taskd 
+
+- name: Configure logging
+  shell: "taskd config --force log /var/taskd/taskd.log"
+  args:
+    chdir: /tmp/taskserver
+  environment:
+    TASKDDATA: /var/taskd 
+
+- name: Configure pid file
+  shell: "taskd config --force pid.file /var/taskd/taskd.pid"
+  args:
+    chdir: /tmp/taskserver
+  environment:
+    TASKDDATA: /var/taskd 
+
+- name: Configure server address
+  shell: "taskd config --force server think:53589"
+  args:
+    chdir: /tmp/taskserver
+  environment:
+    TASKDDATA: /var/taskd 
