@@ -1,0 +1,22 @@
+# https://taskwarrior.org/docs/taskserver/git.html
+- name: Update apt
+  shell: apt update
+  become: true
+
+- name: Install taskwarrior dependencies
+  apt:
+    name:
+    - git
+    - libgnutls30
+    - libuuid1
+    - cmake
+    - make
+    - gcc
+    state: latest
+  become: true
+
+- name: Git tasksserver repo
+  git:
+    repo: https://github.com/GothenburgBitFactory/taskserver.git
+    dest: /tmp/taskserver
+    version: master
