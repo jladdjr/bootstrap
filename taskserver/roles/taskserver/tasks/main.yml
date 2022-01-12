@@ -164,8 +164,16 @@
     state: latest
   become: true
 
+# To confirm that a firewall rule has taken effect, run:
+# $ sudo firewall-cmd --list-all
+#
+# To verify that a service is listening on a given port, run:
+# $ lsof -i | grep -i listen
+#
+# To verify you can connect to the taskd server from a remote host, run:
+# telnet think 53589
 - name: Open port for taskd
-  shell: firewall-cmd --permanent --add-port=53589/tcp
+  shell: firewall-cmd --permanent --add-port=53589/tcp --zone=public
   become: true
 
 - name: Reload firewalld rules
