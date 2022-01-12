@@ -1,7 +1,11 @@
-####################################################
-# taskserver installation (from source)            #
-# https://taskwarrior.org/docs/taskserver/git.html #
-####################################################
+############################################################
+# taskserver installation (from source)                    #
+# https://taskwarrior.org/docs/taskserver/git.html         #
+# https://gothenburgbitfactory.github.io/taskserver-setup/ #
+############################################################
+
+# TODO: Perform install / config as a new taskd user
+# TODO: Copy _entire_ contents of /tmp/taskserver/pki to /var/taskd
 
 - name: Update apt
   shell: apt update
@@ -24,7 +28,7 @@
     state: latest
   become: true
 
-- name: Git tasksserver repo
+- name: Get taskserver repo
   git:
     repo: https://github.com/GothenburgBitFactory/taskserver.git
     dest: /tmp/taskserver
@@ -88,7 +92,7 @@
 - name: Initialize server
   shell: taskd init
   environment:
-    TASKDDATA: /var/taskd 
+    TASKDDATA: /var/taskd
 
 - name: Copy over PKI certificate config
   copy:
@@ -106,7 +110,7 @@
   args:
     chdir: /tmp/taskserver/pki
   environment:
-    TASKDDATA: /var/taskd 
+    TASKDDATA: /var/taskd
 
 - name: Copy over script to install certs
   copy:
@@ -121,25 +125,36 @@
   args:
     chdir: /tmp/taskserver/pki
   environment:
-    TASKDDATA: /var/taskd 
+    TASKDDATA: /var/taskd
 
 - name: Configure logging
   shell: "taskd config --force log /var/taskd/taskd.log"
   args:
     chdir: /tmp/taskserver
   environment:
-    TASKDDATA: /var/taskd 
+    TASKDDATA: /var/taskd
 
 - name: Configure pid file
   shell: "taskd config --force pid.file /var/taskd/taskd.pid"
   args:
     chdir: /tmp/taskserver
   environment:
-    TASKDDATA: /var/taskd 
+    TASKDDATA: /var/taskd
 
 - name: Configure server address
   shell: "taskd config --force server think:53589"
   args:
     chdir: /tmp/taskserver
   environment:
-    TASKDDATA: /var/taskd 
+    TASKDDATA: /var/taskd
+
+#####################
+# Start the server! #
+#####################
+
+# To verify that server started, run 'ps -leaf | grep taskd'
+# Can also check server status with 'taskdctl status'
+- name: Start taskserver
+  shell: taskdctl start
+  environment:
+    TASKDDATA: /var/taskd
