@@ -251,6 +251,17 @@
 # After the inital sync, you can do a general sync with:
 # $ task sync
 
+#############################################
+# Configuring the Foreground App on Android #
+#############################################
+#
+# When asked for the server address, you can provide the
+# task server's local IP address.
+#
+# I suppose that if I wanted to sync my todo list
+# while away from home I could use a VPN.
+
+
 ###################
 # Troubleshooting #
 ###################
