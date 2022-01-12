@@ -144,8 +144,16 @@
   environment:
     TASKDDATA: /var/taskd
 
+# Use the _IP ADDRESS_ for the server (not the server name!!)
+# otherwise taskd will not accept connections from outside itself
+# (https://speakerdeck.com/ddeimeke/taskwarrior-and-taskserver?slide=25)
+#
+# Based on this post, you can also use 0.0.0.0
+# https://superuser.com/questions/1314916/when-listening-to-a-port-taskserver-should-the-local-address-be-localhost-or
+# .. so I'll go with that option in case I change the
+# local address I'm using for think.
 - name: Configure server address
-  shell: "taskd config --force server think:53589"
+  shell: "taskd config --force server 0.0.0.0:53589"
   args:
     chdir: /tmp/taskserver
   environment:
