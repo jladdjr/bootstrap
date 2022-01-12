@@ -6,6 +6,9 @@
 
 # TODO: Perform install / config as a new taskd user
 # TODO: Copy _entire_ contents of /tmp/taskserver/pki to /var/taskd
+# TODO: Create taskd systemd service
+#       (See TASKD.SERVICE slide on
+#        https://gothenburgbitfactory.github.io/taskserver-setup/)
 
 - name: Update apt
   shell: apt update
@@ -158,3 +161,62 @@
   shell: taskdctl start
   environment:
     TASKDDATA: /var/taskd
+
+#################################
+# Post deployment configuration #
+#################################
+
+- name: Create organization
+  shell: "taskd add org 'Portladds'"
+  environment:
+    TASKDDATA: /var/taskd
+
+- name: Create user for Jim (and save key)
+  shell: "taskd add user 'Public' 'Jim Ladd' > /var/taskd/jim.key"
+  environment:
+    TASKDDATA: /var/taskd
+
+- name: Create client cert
+  shell: "./generate.client portladd_client"
+  args:
+    chdir: /tmp/taskserver/pki
+  environment:
+    TASKDDATA: /var/taskd
+
+####################################
+# Configuring a taskwarrior client #
+####################################
+#
+# Will need to copy the following to local ~/.task directory
+# - portladd_client.cert.pem
+# - portladd_client.key.pem
+# - ca.cert.pem
+#
+# Will then need to configure taskwarrior client to use
+# these certs:
+#
+# $ task config taskd.certificate -- ~/.task/portladd_client.cert.pem
+# $ task config taskd.key -- ~/.task/portladd_client.key.pem
+# $ task config taskd.ca -- ~/.task/ca.cert.pem
+#
+# Then tell the client the server's address:
+# $ task config taskd.server -- think:53589
+#
+# And, finally, provide your user credentials:
+#
+# $ task config taskd.credentials -- Public/Jim Ladd/<KEY SAVED TO /var/taskd/jim.key>
+#
+# Your taskwarrior client is now ready to sync!
+#
+# To sync, run the following (only once! and only on one device!)
+# $ task sync init
+#
+# After the inital sync, you can do a general sync with:
+# $ task sync
+
+###################
+# Troubleshooting #
+###################
+#
+# Troubleshooting help is available here:
+# https://gothenburgbitfactory.github.io/taskserver-troubleshooting/
