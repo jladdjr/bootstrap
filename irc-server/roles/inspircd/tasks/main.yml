@@ -42,6 +42,33 @@
       group: irc
       mode: 0644
 
+  # While firewalld is mostly used on RHEL instances,
+  # Debian can use it, too
+  # https://computingforgeeks.com/how-to-install-and-configure-firewalld-on-debian/
+  - name: Install firewalld
+    apt:
+      name: firewalld
+      state: latest
+
+  # To confirm that a firewall rule has taken effect, run:
+  # $ sudo firewall-cmd --list-all
+  #
+  # To verify that a service is listening on a given port, run:
+  # $ lsof -i | grep -i listen
+  #
+  # To verify you can connect to the taskd server from a remote host, run:
+  # telnet think 53589
+
+  # TODO: Do I need the irc service, or can I just use ircs?
+  - name: Add irc service to firewall
+    shell: firewall-cmd --permanent --add-service=irc --zone=public
+
+  - name: Add ircs service to firewall
+    shell: firewall-cmd --permanent --add-service=irc --zone=public
+
+  - name: Reload firewalld rules
+    shell: firewall-cmd --reload
+
   - name: Enable inspircd
     service:
       name: inspircd
