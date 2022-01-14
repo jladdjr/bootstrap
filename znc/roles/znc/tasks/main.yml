@@ -10,9 +10,11 @@
 
 # To connect client
 # - connect to 192.168.1.3
-# - nick: jladd
-# - server password set to $(pass show playbooks/bootstrap/znc-server)
-# - join rooms: #emacs
+# - port: 50202
+# - SSL: yes
+# - nick: (ZNC username)
+# - server password: (ZNC password)
+# - join rooms: (any rooms configured in ZNC for user)
 
 # To connect to webadmin
 # * Tunnel to think w/:
