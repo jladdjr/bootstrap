@@ -197,8 +197,8 @@ bar {
 bindsym $mod+z exec --no-startup-id exec i3zen
 exec --no-startup-id exec xset r rate 200 40
 
-# start redshift (manually setting location to Oregon)
-exec --no-startup-id redshift -l 45.4:-122.7 -l manual -m randr
+# start redshift (manually setting location to Chicago)
+exec --no-startup-id redshift -l 41.9:-87.62 -l manual -m randr
 
 ################################################
 # date: 2/22/2017                              #
