@@ -1,0 +1,5 @@
+- name: Disable splash screen on startup
+  lineinfile:
+    path: /boot/config.txt
+    line: disable_splash=1
+  become: true

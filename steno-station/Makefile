@@ -10,3 +10,6 @@ irssi: secrets
 
 plover:
 	ansible-playbook -i inventory --tags plover provision.yml
+
+plymouth:
+	ansible-playbook -i inventory --tags plymouth provision.yml
