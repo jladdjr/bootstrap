@@ -1,0 +1,4 @@
+---
+- hosts: jim
+  roles:
+    - { role: coming_soon, tags: coming_soon}
