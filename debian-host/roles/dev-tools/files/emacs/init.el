@@ -1582,6 +1582,16 @@ Run whitespace-cleanup on save unless
 
   (if xc/debug (message "magit")))
 
+;; Jim: I'm not 100% sure I got this right (esp, wrt init and config)
+
+(use-package avy
+  :after (:all evil org)
+  :init
+  :config
+)
+(global-set-key (kbd "C-l") 'avy-goto-char)
+
+
 
 (use-package markdown-toc
   :after (:all markdown-mode org)
