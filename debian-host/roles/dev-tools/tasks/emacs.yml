@@ -1,6 +1,10 @@
 - name: Install latest emacs
   apt:
-    name: emacs
+    name:
+      - emacs
+      # holy smokes:
+      # https://emacs.stackexchange.com/questions/7238/info-file-emacs-does-not-exist
+      - emacs-common-non-dfsg
     state: latest
   become: true
 
