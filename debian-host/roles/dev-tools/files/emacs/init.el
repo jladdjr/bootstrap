@@ -2934,3 +2934,6 @@ chicken and egg problem."
     (set-process-query-on-exit-flag proc nil))
   ;; assume qgis loads in X seconds
   (run-at-time "3 sec" nil #'(lambda () (progn (shell-command "taskkill /f /fi \"WINDOWTITLE eq \\qgis\\ \"")))))
+
+(keyboard-translate ?\C-t ?\C-x)
+(keyboard-translate ?\C-x ?\C-t)
