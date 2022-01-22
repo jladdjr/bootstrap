@@ -22,3 +22,13 @@
   lineinfile:
     path: ~/.config/i3/config
     line: exec xinput set-prop "PNP0C50:00 04F3:311D Touchpad" "libinput Accel Speed" 0.2
+
+- name: Create keybinding to toggle touchpad on
+  lineinfile:
+    path: ~/.config/i3/config
+    line: bindsym $mod+m exec "xinput set-prop 'PNP0C50:00 04F3:311D Touchpad' 'Device Enabled' 1"
+
+- name: Create keybinding to toggle touchpad off
+  lineinfile:
+    path: ~/.config/i3/config
+    line: bindsym $mod+Shift+m exec "xinput set-prop 'PNP0C50:00 04F3:311D Touchpad' 'Device Enabled' 0"
