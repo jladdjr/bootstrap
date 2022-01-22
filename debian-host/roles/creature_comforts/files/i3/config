@@ -49,6 +49,9 @@ bindsym $mod+Return exec i3-sensible-terminal
 # start brave
 bindsym $mod+b exec brave-browser
 
+# start plover
+bindsym $mod+l exec plover
+
 # get things done with trello kanban board for daily items
 bindsym $mod+g exec brave-browser --new-window https://trello.com/b/o2gjAkSJ/daily-planning
 
