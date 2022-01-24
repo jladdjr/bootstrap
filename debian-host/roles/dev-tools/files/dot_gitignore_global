@@ -29,3 +29,8 @@ sandbox
 
 # playbook secrets
 secrets.yml
+
+# finite-state
+processing/firmware/firmware_analysis/tests/data/*.gzf
+processing/firmware/firmware_analysis/tests/dummy.c
+processing/firmware/firmware_analysis/tests/dummy.gzf
