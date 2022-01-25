@@ -5,4 +5,4 @@ localhost ansible_connection=local
 komputerchen ansible_user=stephanieladd
 
 [finitestate]
-silver ansible_user=jim
+silver ansible_user=jim ansible_python_interpreter=/usr/bin/python

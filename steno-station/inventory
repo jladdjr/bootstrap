@@ -1,1 +1,1 @@
-steno-station ansible_user=pi
+steno-station ansible_user=pi ansible_python_interpreter=/usr/bin/python

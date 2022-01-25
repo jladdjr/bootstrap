@@ -5,9 +5,13 @@ localhost ansible_connection=local
 komputerchen ansible_user=stephanieladd
 
 [jim]
+silver ansible_user=jim ansible_python_interpreter=/usr/bin/python
 monolith ansible_user=jim
 think ansible_user=jim
 revolution ansible_user=jim
+steno-station ansible_user=pi ansible_python_interpreter=/usr/bin/python
 
-[pi]
-steno-station ansible_user=pi
+# how to connect to vera? (vagrant debian guest on mac)
+# vagrant ssh-config shows that I can use the following to connect on the macbook pro:
+# ssh -i /Users/jim/vagrant/debian/.vagrant/machines/default/virtualbox/private_key -p 2222 jim@127.0.0.1
+# maybe I could use the macbook as a jump host
