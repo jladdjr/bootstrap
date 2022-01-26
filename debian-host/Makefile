@@ -18,9 +18,6 @@ brave:
 creature_comforts:
 	ansible-playbook -i inventory --tags creature_comforts provision.yml
 
-emacs:
-	ansible-playbook -i inventory --tags emacs provision.yml
-
 fzf:
 	ansible-playbook -i inventory --tags fzf provision.yml
 

@@ -1,0 +1,30 @@
+# apt ansible module doesn't work on raspberry pi
+# so use shell command directly instead
+# (for simplicity sake, do this on all machine types)
+#
+# For now, only actually doing install on bare-metal
+# debian machines
+# - raspberry pi hanging.. not sure why
+# - vagrant vm hanging.. not sure why
+- name: Install latest emacs
+  shell: "apt install -y {{ item }}"
+  with_items:
+    - emacs
+    # holy smokes:
+    # https://emacs.stackexchange.com/questions/7238/info-file-emacs-does-not-exist
+    - emacs-common-non-dfsg
+  become: true
+  when: hostvars[inventory_hostname].ansible_distribution == 'Debian' and hostvars[inventory_hostname].ansible_virtualization_type != 'virtualbox' and hostvars[inventory_hostname].ansible_architecture.find('arm') == -1
+
+- name: Ensure ~/.emacs.d folder is present
+  file:
+    dest: ~/.emacs.d
+    state: directory
+    mode: 0700
+
+- name: Install ~/.emacs.d/init.el
+  copy:
+    src: emacs/init.el
+    dest: ~/.emacs.d/init.el
+    mode: 0644
+    backup: yes

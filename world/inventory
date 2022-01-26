@@ -2,7 +2,7 @@
 localhost ansible_connection=local
 
 [mac]
-komputerchen ansible_user=stephanieladd
+#komputerchen ansible_user=stephanieladd
 silver ansible_user=jim ansible_python_interpreter=/usr/bin/python
 
 [debian]
@@ -12,8 +12,8 @@ think ansible_user=jim
 
 [pi]
 steno-station ansible_user=pi ansible_python_interpreter=/usr/bin/python
-zero ansible_user=pi ansible_python_interpreter=/usr/bin/python
-wormstation ansible_user=pi ansible_python_interpreter=/usr/bin/python
+#zero ansible_user=pi ansible_python_interpreter=/usr/bin/python
+#wormstation ansible_user=pi ansible_python_interpreter=/usr/bin/python
 
 # TODO: jeeves?
 

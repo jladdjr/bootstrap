@@ -1,4 +1,4 @@
 ---
-- hosts: jim
+- hosts: mac:debian:pi:vagrant_boxes
   roles:
-    - { role: coming_soon, tags: coming_soon}
+    - { role: dev-tools, tags: dev-tools}

@@ -10,9 +10,6 @@
 - import_tasks: bash.yml
   tags: bash
 
-- import_tasks: emacs.yml
-  tags: emacs
-
 - import_tasks: ag.yml
   tags: ag
 
