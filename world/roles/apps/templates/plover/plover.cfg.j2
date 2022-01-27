@@ -1,0 +1,82 @@
+[Config Frame]
+width = 486
+height = 304
+x = 513
+y = 711
+
+[Main Frame]
+x = 24
+y = 666
+
+[Stroke Display]
+style = Paper
+x = 22
+y = 99
+show = True
+on_top = False
+
+[Suggestions Display]
+x = 254
+y = 99
+show = True
+on_top = False
+
+[Keyboard Config Frame]
+x = 605
+y = 193
+
+[System: English Stenotype]
+keymap[keyboard] = [["#", ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "="]], ["*", ["t", "y", "g", "h"]], ["-B", ["k"]], ["-D", ["["]], ["-E", ["n"]], ["-F", ["u"]], ["-G", ["l"]], ["-L", ["o"]], ["-P", ["i"]], ["-R", ["j"]], ["-S", [";"]], ["-T", ["p"]], ["-U", ["m"]], ["-Z", ["'"]], ["A-", ["c"]], ["H-", ["r"]], ["K-", ["s"]], ["O-", ["v"]], ["P-", ["e"]], ["R-", ["f"]], ["S-", ["q", "a"]], ["T-", ["w"]], ["W-", ["d"]], ["arpeggiate", ["space"]], ["no-op", ["\\", "]", "z", "x", "b", ",", ".", "/"]]]
+dictionaries = [{"enabled": true, "path": "~/steno-reboot/emily-symbols.py"}, {"enabled": true, "path": "~/steno-reboot/modifiers-single-stroke.json"}, {"enabled": true, "path": "~/steno-reboot/plover-emacs.json"}, {"enabled": true, "path": "~/steno-reboot/main.json"}, {"enabled": true, "path": "~/steno-reboot/commands.json"}, {"enabled": true, "path": "~/steno-reboot/user.json"}]
+
+[Machine Configuration]
+{% if inventory_hostname == 'steno-station' %}
+machine_type = Gemini PR
+{% else %}
+machine_type = TX Bolt
+{% endif %}
+auto_start = True
+
+[Keyboard]
+arpeggiate = False
+
+[Logging Configuration]
+log_file = ~/strokes.log
+enable_stroke_logging = False
+enable_translation_logging = False
+
+[Startup]
+start minimized = False
+
+[Translation Frame]
+opacity = 100
+
+[Output Configuration]
+space_placement = Before Output
+start_attached = True
+start_capitalized = True
+undo_levels = 100
+
+[Gemini PR]
+baudrate = 9600
+bytesize = 8
+parity = N
+port = /dev/ttyGRG
+stopbits = 1
+timeout = 2.0
+
+[Dictionary Editor Frame]
+x = 540
+y = 303
+
+[Lookup Frame]
+x = 264
+y = 377
+
+[TX Bolt]
+baudrate = 9600
+bytesize = 8
+parity = N
+port = /dev/cu.usbmodemHIDPC1
+stopbits = 1
+timeout = 2.0

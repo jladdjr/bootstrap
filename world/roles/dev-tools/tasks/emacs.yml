@@ -6,7 +6,7 @@
 # debian machines
 # - raspberry pi hanging.. not sure why
 # - vagrant vm hanging.. not sure why
-- name: Install latest emacs
+- name: Install emacs on bare-metal Debian machines
   shell: "apt install -y {{ item }}"
   with_items:
     - emacs
