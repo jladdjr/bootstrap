@@ -14,11 +14,12 @@
 
   # TODO: Install plover on mac and raspberry pi's
 
-  - name: Download dictionaries
+  - name: "Download dictionaries (beware: overwrites local changes!)"
     git:
       repo: 'git@github.com:jladdjr/steno-reboot.git'
       dest: ~/steno-reboot
-      update: no
+      update: yes
+      force: yes
 
   - name: Ensure ~/.local/share/plover exists
     file:
