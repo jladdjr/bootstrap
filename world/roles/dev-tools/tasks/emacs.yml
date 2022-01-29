@@ -5,7 +5,6 @@
 # For now, only actually doing install on bare-metal
 # debian machines
 # - raspberry pi hanging.. not sure why
-# - vagrant vm hanging.. not sure why
 - name: Install emacs on bare-metal Debian machines
   shell: "apt install -y {{ item }}"
   with_items:
@@ -14,7 +13,7 @@
     # https://emacs.stackexchange.com/questions/7238/info-file-emacs-does-not-exist
     - emacs-common-non-dfsg
   become: true
-  when: hostvars[inventory_hostname].ansible_distribution == 'Debian' and hostvars[inventory_hostname].ansible_virtualization_type != 'virtualbox' and hostvars[inventory_hostname].ansible_architecture.find('arm') == -1
+  when: hostvars[inventory_hostname].ansible_distribution == 'Debian' and hostvars[inventory_hostname].ansible_architecture.find('arm') == -1
 
 - name: Ensure ~/.emacs.d folder is present
   file:
