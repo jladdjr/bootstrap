@@ -6,6 +6,8 @@
 
 - name: Install latex info files
   apt:
-    name: texlive-lang-english
+    name:
+      - info
+      - texlive-lang-english
     state: latest
   become: true
