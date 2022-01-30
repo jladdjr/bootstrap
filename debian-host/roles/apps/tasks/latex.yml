@@ -3,3 +3,9 @@
     name: texlive
     state: latest
   become: true
+
+- name: Install latex info files
+  apt:
+    name: texlive-lang-english
+    state: latest
+  become: true
