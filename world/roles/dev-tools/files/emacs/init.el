@@ -2937,3 +2937,4 @@ chicken and egg problem."
 
 (keyboard-translate ?\C-t ?\C-x)
 (keyboard-translate ?\C-x ?\C-t)
+(keyboard-translate ?\C-m ?\M-x)
