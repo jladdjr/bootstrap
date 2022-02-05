@@ -2938,3 +2938,8 @@ chicken and egg problem."
 (keyboard-translate ?\C-t ?\C-x)
 (keyboard-translate ?\C-x ?\C-t)
 (keyboard-translate ?\C-m ?\M-x)
+
+;; comint should us up/down arrows to search through history of commands
+
+(define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
+(define-key comint-mode-map (kbd "<down>") 'comint-next-input)
