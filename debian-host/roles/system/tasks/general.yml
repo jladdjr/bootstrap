@@ -1,0 +1,6 @@
+- name: Install info pages for bash
+  apt:
+    name: bash-doc
+    state: latest
+  become: true
+  tags: general_system_tools
