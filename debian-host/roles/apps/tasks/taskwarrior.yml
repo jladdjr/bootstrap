@@ -13,11 +13,16 @@
     group: jim
     backup: yes
 
-# GTD for TaskWarrior
-# https://cs-syd.eu/posts/2015-06-21-gtd-with-taskwarrior-part-2-collection
-- name: Create GTD aliases for taskwarrior
+- name: Create taskwarrior bash config
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK - taskwarrior"
     path: ~/.bashrc
     block: |
-      alias in='task add +in'
+      portladd_tasks () {
+        export TASKRC=~/.taskrc.portladds
+        export TASKDATA=~/.task.portladds
+      }
+      jim_tasks () {
+        unset TASKRC
+        unset TASKDATA
+      }

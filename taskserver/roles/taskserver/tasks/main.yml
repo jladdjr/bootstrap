@@ -209,7 +209,7 @@
     TASKDDATA: /var/taskd
 
 - name: Create user for Jim (and save key)
-  shell: "taskd add user 'Public' 'Jim Ladd' > /var/taskd/jim.key"
+  shell: "taskd add user 'Portladds' 'Jim Ladd' > /var/taskd/jim.key"
   environment:
     TASKDDATA: /var/taskd
 
