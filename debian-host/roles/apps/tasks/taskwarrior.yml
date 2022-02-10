@@ -20,7 +20,6 @@
     block: |
       portladd_tasks () {
         export TASKRC=~/.taskrc.portladds
-        export TASKDATA=~/.task.portladds
       }
       jim_tasks () {
         unset TASKRC
