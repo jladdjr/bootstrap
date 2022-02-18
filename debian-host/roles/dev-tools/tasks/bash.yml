@@ -151,3 +151,5 @@
       f () { find . -iname "*$1*"; }
 
       export EDITOR=vi
+
+      alias copy='xclip -i -selection clipboard'
