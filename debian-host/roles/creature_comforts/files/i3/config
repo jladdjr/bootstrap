@@ -46,14 +46,11 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
-# start brave
-bindsym $mod+b exec brave-browser
+# start firefox
+bindsym $mod+f exec firefox
 
 # start plover
 bindsym $mod+l exec plover
-
-# get things done with trello kanban board for daily items
-bindsym $mod+g exec brave-browser --new-window https://trello.com/b/o2gjAkSJ/daily-planning
 
 # start emacs
 bindsym $mod+space exec emacs
@@ -98,9 +95,6 @@ bindsym $mod+r split h
 
 # split in vertical orientation
 bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+Shift+G layout stacking
