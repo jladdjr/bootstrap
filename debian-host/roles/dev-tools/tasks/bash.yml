@@ -154,6 +154,6 @@
 
       alias copy='xclip -i -selection clipboard'
 
-    alias big_spends='ledger -f ladds.ledger register -S amount Liabilities:Chase --real'
+    alias big_spends="ledger -f ladds.ledger register -S amount Liabilities:Chase --real --head 15; echo ''; ledger -f ladds.ledger register -S amount Assets:NCSECU:Checking --real --head 15; echo ''; ledger -f ladds.ledger register -S amount Assets:OnPoint --real --head 15"
     alias bal='ledger -f ladds.ledger balance'
     alias bal_real='ledger -f ladds.ledger balance --real'
