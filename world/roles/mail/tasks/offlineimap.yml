@@ -1,0 +1,5 @@
+- name: Install offlineimap3
+  apt:
+    name: offlineimap3
+    state: latest
+  become: true
