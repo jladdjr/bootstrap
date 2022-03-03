@@ -2943,3 +2943,8 @@ chicken and egg problem."
 
 (define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
 (define-key comint-mode-map (kbd "<down>") 'comint-next-input)
+
+; precheck ledger changes
+(defun precheck ()
+  (interactive)
+  (shell-command "cd ~/ledger; ./pre-check"))
