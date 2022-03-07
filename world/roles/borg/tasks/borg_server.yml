@@ -1,3 +1,6 @@
+# https://synocommunity.com/#easy-install
+# https://docs.borgbase.com/setup/synology/
+# https://borgbackup.readthedocs.io/en/stable/
 - name: do something
   debug:
     msg: 'test'

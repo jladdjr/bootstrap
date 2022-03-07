@@ -1,3 +1,7 @@
-- name: do something
-  debug:
-    msg: 'test'
+- name: Install borg client and docs
+  apt:
+    name:
+      - borgbackup
+      - borgbackup-doc
+  become: true
+  when: inventory_hostname == 'revolution'
