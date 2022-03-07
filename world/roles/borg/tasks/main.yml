@@ -1,0 +1,5 @@
+- import_tasks: borg_server.yml
+  tags: borg_server
+
+- import_tasks: borg_client.yml
+  tags: borg_client

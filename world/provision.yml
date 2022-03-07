@@ -3,3 +3,4 @@
   roles:
     - { role: dev-tools, tags: dev-tools}
     - { role: apps, tags: apps}
+    - { role: borg, tags: borg}
