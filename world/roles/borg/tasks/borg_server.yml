@@ -1,6 +1,50 @@
-# https://synocommunity.com/#easy-install
-# https://docs.borgbase.com/setup/synology/
 # https://borgbackup.readthedocs.io/en/stable/
+
+# manual steps
+# https://docs.borgbase.com/setup/synology/
+#
+# Create Shared Folder
+# - name: BorgBackup
+#   - created on only volume currently defined (which uses Btrfs)
+# - disable emptying Recycle Bin
+# - enable both hide options
+#   - hide from "My Network Places"
+#   - hide from users without permission to folder
+#
+# - did not enable self-healing
+#   (TODO: would this be helpful? does this take advantage of RAID?)
+# - did not enable compression (borg should handle this)
+# - set quota to 500 GB (TODO: right size this)
+#
+# - did *not* share this with the admin account
+#   (TODO: is this required by the borg server?)
+#
+# Add borg user in Synology
+# - by default, borg has default user settings
+#   with no special access
+# - *except* that it has access to the BorgBackup folder
+#
+#   borg password can be seen with:
+#   pass show -c home/synology/borg_dsm
+#
+# Create keypair for borg user.
+# - In /var/services/homes/borg, create .ssh folder
+#   - I created this key with:
+#     ssh-keygen -a 20 -f id_rsa -C "borg@jeeves"
+#
+# - Add keys to jim/keys/borg in pass
+#
+# - Create authorized_keys (mode 600) (set owner / group to borg)
+#   and place public key in file
+#
+# - Weird bug! Have to make sure to change perms
+#   on user's home directory in synology
+#   otherwise ssh using public key won't work!
+#
+#   ssh jim@jeeves
+#   sudo su -
+#   chmod 755 /var/services/homes/borg
+#
 - name: do something
   debug:
     msg: 'test'
