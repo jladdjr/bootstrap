@@ -16,7 +16,7 @@ if pidof -x borg >/dev/null; then
 fi
 
 # Setting this, so you won't be asked for your repository passphrase:
-export BORG_PASSPHRASE='{BORG_PASSPHRASE}'
+export BORG_PASSPHRASE='{{BORG_PASSPHRASE}}'
 # or this to ask an external program to supply the passphrase:
 # export BORG_PASSCOMMAND='pass show backup'
 
