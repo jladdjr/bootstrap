@@ -1,0 +1,39 @@
+#!/bin/sh
+
+# Copied from
+# https://opensource.com/article/17/10/backing-your-machines-borg
+# by Christopher Aedo
+#
+# who originally copied it from the Borg quick start docs at
+# https://borgbackup.readthedocs.io/en/stable/quickstart.html
+
+REPOSITORY=borg@jeeves:/mnt/backup/repo1
+
+#Bail if borg is already running, maybe previous run didn't finish
+if pidof -x borg >/dev/null; then
+    echo "Backup already running"
+    exit
+fi
+
+# Setting this, so you won't be asked for your repository passphrase:
+export BORG_PASSPHRASE='{BORG_PASSPHRASE}'
+# or this to ask an external program to supply the passphrase:
+# export BORG_PASSCOMMAND='pass show backup'
+
+# Backup all of /home and /var/www except a few
+# excluded directories
+borg create -v --stats                          \
+    $REPOSITORY::'{hostname}-{now:%Y-%m-%d}'    \
+    /home/doc                                   \
+    --exclude '/home/doc/.cache'                \
+    --exclude '/home/doc/.minikube'             \
+    --exclude '/home/doc/Downloads'             \
+    --exclude '/home/doc/Videos'                \
+    --exclude '/home/doc/Music'                 \
+
+# Use the `prune` subcommand to maintain 7 daily, 4 weekly and 6 monthly
+# archives of THIS machine. The '{hostname}-' prefix is very important to
+# limit prune's operation to this machine's archives and not apply to
+# other machine's archives also.
+borg prune -v --list $REPOSITORY --prefix '{hostname}-' \
+    --keep-daily=7 --keep-weekly=4 --keep-monthly=6

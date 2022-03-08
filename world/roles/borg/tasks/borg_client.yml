@@ -1,7 +1,17 @@
-- name: Install borg client and docs
-  apt:
-    name:
-      - borgbackup
-      - borgbackup-doc
-  become: true
+- block:
+  - name: Install borg client and docs
+    apt:
+      name:
+        - borgbackup
+        - borgbackup-doc
+    become: true
+
+  - name: Install backup.sh
+    template:
+      src: backup.sh.j2
+      dest: '~/backup.sh'
+      mode: '0700'
+
+  # TODO: Create cron job to run backup.sh
+
   when: inventory_hostname == 'revolution'
