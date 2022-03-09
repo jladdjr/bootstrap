@@ -1,3 +1,5 @@
+# https://synocommunity.com/#easy-install
+# https://docs.borgbase.com/setup/synology/
 # https://borgbackup.readthedocs.io/en/stable/
 
 # manual steps
@@ -44,6 +46,8 @@
 #   sudo su -
 #   chmod 755 /var/services/homes/borg
 #
+# Initialize a new borg repo with:
+#   borg init --encryption=repokey /var/services/homes/borg/repo
 - name: do something
   debug:
     msg: 'test'

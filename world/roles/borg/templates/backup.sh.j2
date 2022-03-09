@@ -7,7 +7,7 @@
 # who originally copied it from the Borg quick start docs at
 # https://borgbackup.readthedocs.io/en/stable/quickstart.html
 
-REPOSITORY=borg@jeeves:/mnt/backup/repo1
+REPOSITORY=borg@jeeves:/var/services/homes/borg/repo
 
 #Bail if borg is already running, maybe previous run didn't finish
 if pidof -x borg >/dev/null; then
@@ -24,12 +24,9 @@ export BORG_PASSPHRASE='{{BORG_PASSPHRASE}}'
 # excluded directories
 borg create -v --stats                          \
     $REPOSITORY::'{hostname}-{now:%Y-%m-%d}'    \
-    /home/doc                                   \
-    --exclude '/home/doc/.cache'                \
-    --exclude '/home/doc/.minikube'             \
-    --exclude '/home/doc/Downloads'             \
-    --exclude '/home/doc/Videos'                \
-    --exclude '/home/doc/Music'                 \
+    /home/jim/org                               \
+    /home/jim/latex                             \
+    /home/jim/ledger                            \
 
 # Use the `prune` subcommand to maintain 7 daily, 4 weekly and 6 monthly
 # archives of THIS machine. The '{hostname}-' prefix is very important to
