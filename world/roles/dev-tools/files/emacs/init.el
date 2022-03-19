@@ -1589,7 +1589,7 @@ Run whitespace-cleanup on save unless
   :init
   :config
 )
-(global-set-key (kbd "C-l") 'avy-goto-char)
+(global-set-key (kbd "C-l") 'avy-goto-char-timer)
 
 
 
