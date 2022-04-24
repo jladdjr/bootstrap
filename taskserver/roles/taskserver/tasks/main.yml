@@ -199,6 +199,8 @@
   environment:
     TASKDDATA: /var/taskd
 
+# TODO: Make it so that task server automatically restarts
+
 #################################
 # Post deployment configuration #
 #################################
