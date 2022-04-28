@@ -2948,3 +2948,10 @@ chicken and egg problem."
 (defun precheck ()
   (interactive)
   (shell-command "cd ~/ledger; ./pre-check"))
+
+;; enable eyebrowse mode on startup
+(eyebrowse-mode t)
+
+;; enable company mode on startup
+;; https://company-mode.github.io/
+(add-hook 'after-init-hook 'global-company-mode)
