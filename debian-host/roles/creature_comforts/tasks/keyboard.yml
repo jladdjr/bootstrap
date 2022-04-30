@@ -9,7 +9,7 @@
 
 - name: Install xmodmap config
   copy:
-    src: xmodmap/dot_Xmodmap
+    src: keyboard/dot_Xmodmap
     dest: ~/.Xmodmap
     mode: 0644
     backup: yes
