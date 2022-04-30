@@ -4,8 +4,8 @@
 - import_tasks: i3.yml
   tags: i3
 
-- import_tasks: xmodmap.yml
-  tags: xmodmap
+- import_tasks: keyboard.yml
+  tags: keyboard
 
 - import_tasks: general.yml
   tags: general_creature_comforts

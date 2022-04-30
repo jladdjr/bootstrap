@@ -1,10 +1,19 @@
+- name: Install custom Dvorak / German keyboard layout
+  copy:
+    src: keyboard/jim_xkb_layout
+    dest: /usr/share/X11/xkb/symbols/jim
+    mode: 0644
+    backup: yes
+  tags: keyboard
+  become: true
+
 - name: Install xmodmap config
   copy:
     src: xmodmap/dot_Xmodmap
     dest: ~/.Xmodmap
     mode: 0644
     backup: yes
-  tags: xmodmap
+  tags: keyboard
 
 # If the gnome tweak tool was used to swap keys,
 # these settings will prevent xcape from working
@@ -28,13 +37,18 @@
   lineinfile:
     path: /etc/default/keyboard
     regexp: '^XKBLAYOUT='
-    line: XKBLAYOUT="us"
+    line: XKBLAYOUT="jim"
   become: true
 
 # The variant should also be set
-- name: Ensure keyboard variant set to 'dvorak'
+# to the custom variant I created
+# where alt can be used with vowels
+# to add an umlaut and
+# alt can be used with S to create
+# the Eszett
+- name: Ensure keyboard variant set to 'dvorak-alt-intl'
   lineinfile:
     path: /etc/default/keyboard
     regexp: '^XKBVARIANT='
-    line: XKBVARIANT="dvorak"
+    line: XKBVARIANT="dvorak-alt-intl"
   become: true

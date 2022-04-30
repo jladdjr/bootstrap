@@ -79,5 +79,5 @@ timezone:
 tmux:
 	ansible-playbook -i inventory --tags tmux provision.yml
 
-xmodmap:
-	ansible-playbook -i inventory --tags xmodmap provision.yml
+keyboard:
+	ansible-playbook -i inventory --tags keyboard provision.yml
