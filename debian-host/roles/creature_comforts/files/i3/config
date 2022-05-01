@@ -46,6 +46,9 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
+# lock screen
+bindsym $mod+Shift+l exec i3lock
+
 # start firefox
 bindsym $mod+f exec firefox
 
