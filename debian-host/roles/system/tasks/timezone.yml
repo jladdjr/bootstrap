@@ -1,3 +1,11 @@
+# To see available timezones, run:
+# timedatectl list-timezones
+#
+# Common time zones:
+# - America/Los_Angeles (Pacific)
+# - America/Denver      (Mountain)
+# - America/Chicago     (Central)
+# - America/New_York    (Eastern)
 - name: Set timezone
-  shell: timedatectl set-timezone America/Chicago
+  shell: timedatectl set-timezone America/New_York
   become: true
