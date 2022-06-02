@@ -2955,3 +2955,9 @@ chicken and egg problem."
 ;; enable company mode on startup
 ;; https://company-mode.github.io/
 (add-hook 'after-init-hook 'global-company-mode)
+
+;; https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
+(with-eval-after-load 'evil
+    (defalias #'forward-evil-word #'forward-evil-symbol)
+    ;; make evil-search-word look for symbol rather than word boundaries
+    (setq-default evil-symbol-word-search t))
