@@ -1,3 +1,5 @@
+# TODO: rename this to mail.yml?
+
 # http://www.offlineimap.org/documentation.html
 # https://github.com/OfflineIMAP/offlineimap/blob/master/offlineimap.conf
 - block:
@@ -14,4 +16,21 @@
         dest: ~/.offlineimaprc
         mode: 0700
       tags: mail
+
+    # TODO: Run offlineimap as service
+    # https://github.com/OfflineIMAP/offlineimap/blob/master/offlineimap.conf
+
+    - name: Install mu4e
+      apt:
+        name: mu4e
+        state: latest
+      become: true
+      tags: mail
+
+    # TODO: Change email address to jim.ladd@mailbox.org
+    - name: Initialize mu
+      shell: mu init --maildir=/home/jim/mail --my-address=skwreupl@mailbox.org
+
+    - name: Run mu index for first time
+      shell: mu index
   when: hostvars[inventory_hostname].ansible_hostname == 'revolution'

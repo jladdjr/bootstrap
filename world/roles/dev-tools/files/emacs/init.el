@@ -2964,3 +2964,41 @@ chicken and egg problem."
 
 ;; use swiper for default isearch
 (global-set-key "\C-s" 'swiper)
+
+;; since mu4e was installed using apt
+;; we need to tell emacs where to find
+;; the source for the package
+;;
+;;https://www.emacswiki.org/emacs/LoadPath
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+
+;; https://www.djcbsoftware.nl/code/mu/mu4e/Minimal-configuration.html
+;; make sure mu4e is in your load-path
+(require 'mu4e)
+
+;; use mu4e for e-mail in emacs
+(setq mail-user-agent 'mu4e-user-agent)
+
+;; these must start with a "/", and must exist
+;; (i.e.. /home/user/Maildir/sent must exist)
+;; you use e.g. 'mu mkdir' to make the Maildirs if they don't
+;; already exist
+
+;; below are the defaults; if they do not exist yet, mu4e offers to
+;; create them. they can also functions; see their docstrings.
+(setq mu4e-sent-folder   "/Sent")
+(setq mu4e-drafts-folder "/Drafts")
+(setq mu4e-trash-folder  "/Trash")
+
+;; smtp mail setting; these are the same that `gnus' uses.
+;;
+;; this might help?
+;; https://kb.mailbox.org/en/private/faq-article/setup-other-e-mail-clients-manually
+(setq
+   message-send-mail-function   'smtpmail-send-it
+   smtpmail-default-smtp-server "smtp.mailbox.org"
+   smtpmail-smtp-server         "smtp.mailbox.org"
+   smtpmail-local-domain        "example.com")
+
+;; TODO: Consider adding more advanced configuration
+;; https://www.djcbsoftware.nl/code/mu/mu4e/Longer-configuration.html
