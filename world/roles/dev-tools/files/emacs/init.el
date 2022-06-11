@@ -3050,3 +3050,6 @@ chicken and egg problem."
         account-vars)
       (error "No email account found"))))
 (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
+
+;; global shortcut for mu4e
+(global-set-key (kbd "C-q") 'mu4e)
