@@ -3019,7 +3019,7 @@ chicken and egg problem."
 (defvar my-mu4e-account-alist
   '(("mailbox_dot_org"
      (mu4e-sent-folder "/Sent") ;; not sure if this is right
-     (user-mail-address "skwreupl@mailbox.org")
+     (user-mail-address "jim.ladd@mailbox.org")
      (smtpmail-smtp-user "skwreupl@mailbox.org")
      (smtpmail-local-domain "mailbox.org")
      (smtpmail-default-smtp-server "smtp.mailbox.org")
