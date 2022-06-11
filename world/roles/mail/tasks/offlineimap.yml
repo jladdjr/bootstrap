@@ -1,4 +1,5 @@
 # http://www.offlineimap.org/documentation.html
+# https://github.com/OfflineIMAP/offlineimap/blob/master/offlineimap.conf
 - block:
     - name: Install offlineimap3
       apt:
