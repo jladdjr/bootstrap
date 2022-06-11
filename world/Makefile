@@ -15,3 +15,6 @@ emacs:
 plover:
 	ansible-playbook -i inventory --tags plover provision.yml
 
+mail: secrets
+	ansible-playbook -i inventory --tags mail -e @secrets.yml provision.yml
+	rm secrets.yml

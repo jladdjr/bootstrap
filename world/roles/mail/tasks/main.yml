@@ -1,2 +1,2 @@
-- import_tasks: offlineimap
-  tags: offlineimap
+- import_tasks: offlineimap.yml
+  tags: mail

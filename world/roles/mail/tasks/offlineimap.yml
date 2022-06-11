@@ -1,6 +1,15 @@
-# http://www.offlineimap.org/
-- name: Install offlineimap3
-  apt:
-    name: offlineimap3
-    state: latest
-  become: true
+# http://www.offlineimap.org/documentation.html
+- block:
+    - name: Install offlineimap3
+      apt:
+        name: offlineimap3
+        state: latest
+      become: true
+      tags: mail
+
+    - name: Create .offlineimaprc
+      template:
+        src: offlineimaprc.j2
+        dest: ~/.offlineimaprc
+      tags: mail
+  when: hostvars[inventory_hostname].ansible_hostname == 'revolution'

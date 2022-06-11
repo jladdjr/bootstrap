@@ -1,0 +1,24 @@
+[general]
+accounts = MailboxDotOrg
+
+[Account MailboxDotOrg]
+localrepository = Local
+remoterepository = MailboxDotOrg
+
+[Repository Local]
+type = Maildir
+localfolders = ~/mail
+
+[Repository MailboxDotOrg]
+type = IMAP
+remotehost = imap.mailbox.org
+remoteuser = skwreupl@mailbox.org
+remotepass =  {{ JLADD_MAILBOX_DOT_ORG_PASS }}
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+ssl_version = tls1_2
+tls_level = tls_secure
+maxconnections = 2
+singlethreadperfolder = yes
+readonly = true
+readdelete = no
