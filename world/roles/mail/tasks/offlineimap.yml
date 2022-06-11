@@ -12,5 +12,6 @@
       template:
         src: offlineimaprc.j2
         dest: ~/.offlineimaprc
+        mode: 0700
       tags: mail
   when: hostvars[inventory_hostname].ansible_hostname == 'revolution'
