@@ -27,10 +27,17 @@
       become: true
       tags: mail
 
+    # TODO: Only run mu init, mu index if mu was installed for first time
     # TODO: Change email address to jim.ladd@mailbox.org
     - name: Initialize mu
       shell: mu init --maildir=/home/jim/mail --my-address=skwreupl@mailbox.org
 
     - name: Run mu index for first time
       shell: mu index
+
+    - name: Run offlineimap every 30 minutes
+      cron:
+        name: run offlineimap periodically
+        job: "/usr/bin/offlineimap -u quiet"
+        minute: "*/30"
   when: hostvars[inventory_hostname].ansible_hostname == 'revolution'
