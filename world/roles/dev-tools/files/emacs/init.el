@@ -3010,7 +3010,7 @@ chicken and egg problem."
 (setq mu4e-sent-folder "/Sent"
       ;; mu4e-sent-messages-behavior 'delete ;; Unsure how this should be configured
       mu4e-drafts-folder "/Drafts"
-      user-mail-address "skwreupl@mailbox.org"
+      user-mail-address "jim.ladd@mailbox.org"
       smtpmail-default-smtp-server "smtp.mailbox.org"
       smtpmail-smtp-server "smtp.mailbox.org"
       smtpmail-smtp-service 587)
