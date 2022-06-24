@@ -164,4 +164,7 @@
         pkill xcape
         xmodmap ~/.Xmodmap
         xcape -e 'Control_L=Escape'
+
+        # reset repeat rate
+        xset r rate 200 40
       }
