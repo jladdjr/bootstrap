@@ -158,3 +158,10 @@
       alias bal='ledger -f ladds.ledger balance'
       alias bal_real='ledger -f ladds.ledger balance --real'
       alias food='ledger -f ladds.ledger register -S date Expenses:Restaurants'
+
+      mod_keys () {
+        # remap keys (e.g. after plugging Keychron K7 USB keyboard back in)
+        pkill xcape
+        xmodmap ~/.Xmodmap
+        xcape -e 'Control_L=Escape'
+      }
