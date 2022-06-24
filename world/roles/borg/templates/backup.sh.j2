@@ -24,6 +24,7 @@ export BORG_PASSPHRASE='{{BORG_PASSPHRASE}}'
 # excluded directories
 borg create -v --stats                          \
     $REPOSITORY::'{hostname}-{now:%Y-%m-%d}'    \
+    /home/jim/.bash_history                     \
     /home/jim/org                               \
     /home/jim/latex                             \
     /home/jim/ledger                            \
