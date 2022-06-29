@@ -30,6 +30,13 @@
     backup: yes
   tags: i3
 
+- name: Create .i3MoveNext
+  copy:
+    src: i3/dot_i3MoveNext.sh
+    dest: ~/.i3MoveNext.sh
+    mode: 0755
+  tags: i3
+
 - name: install i3ass
   block:
     - name: Ensure /tmp/i3ass is absent

@@ -212,3 +212,8 @@ bindsym --release Shift+Print exec "screenshot -s /home/jim/Pictures/"
 
 # take a screenshot of a whole window and copy it to a clipboard
 bindsym --release Print exec "screenshot /home/jim/Pictures/"
+
+# shift container left / right
+# based on example provided at https://stackoverflow.com/a/55313834
+bindsym shift+control+$mod+Left exec ~/.i3MoveNext.sh -1
+bindsym shift+control+$mod+Right exec ~/.i3MoveNext.sh 1
