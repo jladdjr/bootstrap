@@ -2964,6 +2964,7 @@ chicken and egg problem."
 
 ;; use swiper for default isearch
 (global-set-key "\C-s" 'swiper)
+(global-set-key "\M-s" 'swiper-all)
 
 ;; since mu4e was installed using apt
 ;; we need to tell emacs where to find
@@ -3030,4 +3031,4 @@ chicken and egg problem."
     ))
 
 ;; global shortcut for mu4e
-(global-set-key (kbd "C-q") 'mu4e)
+(global-set-key (kbd "M-m") 'mu4e)
