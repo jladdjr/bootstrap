@@ -30,6 +30,17 @@
     backup: yes
   tags: i3
 
+- name: Install i3 wallpapers
+  copy:
+    src: "i3/{{ item }}"
+    dest: ~/.config/i3
+    mode: 0755
+    backup: yes
+  with_items:
+    - debian_wallpaper.png
+    - universe.png
+  tags: i3
+
 - name: Create .i3MoveNext
   copy:
     src: i3/dot_i3MoveNext.sh
