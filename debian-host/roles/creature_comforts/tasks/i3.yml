@@ -38,6 +38,10 @@
     backup: yes
   with_items:
     - debian_wallpaper.png
+    # iceberg by Carey Pietsch
+    # License: Personal Use
+    # https://www.wallpapertip.com/wpic/xRwJww_minimalist-desktop-wallpaper-hd
+    - iceberg.png
     - universe.png
   tags: i3
 

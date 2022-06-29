@@ -13,6 +13,12 @@
     - HISTTIMEFORMAT
     - PROMPT_COMMAND
 
+- name: Install libnotify-bin (provides notify-send cmd used by gimme bash func
+  apt:
+    name: libnotify-bin
+    state: latest
+  become: true
+
 - name: Add bash configuration
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK - .bashrc"
@@ -167,4 +173,15 @@
 
         # reset repeat rate
         xset r rate 200 40
+      }
+
+      gimme () {
+              total_mins=$1
+              notify-send "You will have ${total_mins} mins"
+              sleep "$(( ($1 - 2) * 60 ))"
+
+              notify-send "2 minutes left"
+              sleep 120
+
+              i3lock -i ~/.config/i3/iceberg.png
       }
