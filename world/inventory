@@ -2,8 +2,7 @@
 localhost ansible_connection=local
 
 [mac]
-#komputerchen ansible_user=stephanieladd
-silver ansible_user=jim ansible_python_interpreter=/usr/bin/python
+komputerchen ansible_user=stephanieladd
 
 [debian]
 revolution ansible_user=jim
