@@ -22,7 +22,7 @@ export BORG_PASSPHRASE='{{BORG_PASSPHRASE}}'
 
 # Backup all of /home and /var/www except a few
 # excluded directories
-borg create -v --stats                          \
+borg create -p -v --stats                       \
     $REPOSITORY::'{hostname}-{now:%Y-%m-%d}'    \
     /home/jim/.bash_history                     \
     /home/jim/org                               \
