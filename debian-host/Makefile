@@ -73,6 +73,9 @@ system76:
 taskwarrior:
 	ansible-playbook -i inventory --tags taskwarrior provision.yml
 
+tech_writing:
+	ansible-playbook -i inventory --tags tech_writing provision.yml
+
 timezone:
 	ansible-playbook -i inventory --tags timezone provision.yml
 
