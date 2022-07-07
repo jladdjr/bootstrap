@@ -47,4 +47,9 @@
         name: run offlineimap periodically
         job: "/usr/bin/offlineimap -u quiet"
         minute: "*/15"
+
+    # ** This would make sending email work out of the box! **
+    # TODO: Create ~/.authinfo file (mode '0600') with the following content:
+    #
+    # machine smpt.mailbox.org login skwreupl@mailbox.org port 587 pass <password from pass>
   when: hostvars[inventory_hostname].ansible_hostname == 'revolution'
