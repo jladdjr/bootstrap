@@ -38,15 +38,15 @@
     become: true
     when: hostvars[inventory_hostname].ansible_distribution == 'Debian'
 
-# https://gist.github.com/edro15/1c6cd63894836ed982a7d88bef26e4af
-- name: Create udev rules to give steno boards stable /dev paths, requires restart to take effect
-  copy:
-    src: plover/49-custom.rules
-    dest: /etc/udev/rules.d/49-custom.rules
-    owner: root
-    group: root
-    mode: 0644
-  become: true
+  # https://gist.github.com/edro15/1c6cd63894836ed982a7d88bef26e4af
+  - name: Create udev rules to give steno boards stable /dev paths, requires restart to take effect
+    copy:
+      src: plover/49-custom.rules
+      dest: /etc/udev/rules.d/49-custom.rules
+      owner: root
+      group: root
+      mode: 0644
+    become: true
 
 
   # https://plover.readthedocs.io/en/4.0.0-dev8/cli_reference.html#plugin-installer
