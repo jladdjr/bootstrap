@@ -1,5 +1,5 @@
 ---
-- hosts: mac:debian:pi:vagrant_boxes
+- hosts: mac:debian:pi
   roles:
     - { role: dev-tools, tags: dev-tools}
     - { role: apps, tags: apps}

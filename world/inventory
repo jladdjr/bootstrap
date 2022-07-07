@@ -29,5 +29,5 @@ steno-station ansible_user=pi ansible_python_interpreter=/usr/bin/python
 #   the vagrant box was configured to use a private network via something like:
 #   config.vm.network "private_network", ip: "192.168.56.42"
 
-[vagrant_boxes]
-vera ansible_user=jim ansible_python_interpreter=/usr/bin/python3.9
+#[vagrant_boxes]
+#vera ansible_user=jim ansible_python_interpreter=/usr/bin/python3.9
