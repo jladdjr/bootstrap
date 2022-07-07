@@ -609,6 +609,14 @@ Run whitespace-cleanup on save unless
   (if xc/debug (message "dumb-jump")))
 
 
+(use-package eyebrowse
+  :after (:all org)
+  :straight (:fork "jladdjr/eyebrowse")
+  :config
+
+  (if xc/debug (message "eyebrowse")))
+
+
 (use-package gemini-mode
   :after (:all org)
   :straight (:repo "http://git.carcosa.net/jmcbray/gemini.el.git"))
