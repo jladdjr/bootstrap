@@ -27,6 +27,13 @@
       become: true
       tags: mail
 
+    - name: Create ~/mail directory
+      file:
+        path: /home/jim/mail
+        state: directory
+        mode: '0755'
+      tags: mail
+
     # TODO: Only run mu init, mu index if mu was installed for first time
     # TODO: Change email address to jim.ladd@mailbox.org
     - name: Initialize mu
