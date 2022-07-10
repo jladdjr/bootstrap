@@ -12,6 +12,9 @@
       dest: '~/backup.sh'
       mode: '0700'
 
+  # TODO: Install borg keys (jim/keys/borg) needed to
+  #       connect to borg repo on jeeves
+
   # TODO: Create cron job to run backup.sh
 
   when: inventory_hostname == 'revolution'
