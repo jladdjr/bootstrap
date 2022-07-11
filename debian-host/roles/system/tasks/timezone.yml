@@ -7,5 +7,5 @@
 # - America/Chicago     (Central)
 # - America/New_York    (Eastern)
 - name: Set timezone
-  shell: timedatectl set-timezone America/New_York
+  shell: timedatectl set-timezone America/Chicago
   become: true
