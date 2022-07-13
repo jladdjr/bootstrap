@@ -12,7 +12,6 @@
       - e2fsprogs
       - strace
       - fd-find
-      - okular
-      - okular-extra-backends
+      - calibre
     state: latest
   become: true
