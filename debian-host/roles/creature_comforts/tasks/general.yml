@@ -12,5 +12,7 @@
       - e2fsprogs
       - strace
       - fd-find
+      - okular
+      - okular-extra-backends
     state: latest
   become: true
