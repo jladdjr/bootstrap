@@ -8,6 +8,15 @@
 # Install firewalld
 # open port 50202
 
+# Configure znc with:
+# $ znc --makeconf
+#
+# The resulting conf file is stored at:
+# /home/jim/.znc/configs/znc.conf
+#
+# TODO: store this file in pass as a secret (?)
+# and add task to create this file
+
 # To connect client
 # - connect to 192.168.1.3
 # - port: 50202
