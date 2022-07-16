@@ -17,6 +17,14 @@
 # TODO: store this file in pass as a secret (?)
 # and add task to create this file
 
+# To run znc:
+#
+# (logged in as user jim)\
+# $ znc
+#
+# No need to do anything to make this run in the background;
+# it will handle this automatically
+
 # To connect client
 # - connect to 192.168.1.3
 # - port: 50202
