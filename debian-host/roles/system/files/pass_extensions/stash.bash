@@ -8,7 +8,7 @@ encoded_file=$1.b64
 password_path=digital/$(/usr/bin/basename $original_file | tr . _)
 
 # `-m` allows us to pipe in value to be stashed
-pass insert -m $password_path < ${encoded_file} &> /dev/null
+pass insert -f -m $password_path < ${encoded_file} &> /dev/null
 
 rm $encoded_file
 
