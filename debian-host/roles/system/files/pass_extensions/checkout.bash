@@ -1,7 +1,7 @@
 #!/bin/bash
 
 password_path=$1
-tmp_file=$(basename $1 | sed 's/\(.*\)_/\1\./')
+tmp_file=$(basename $1)
 
 # decrypt file
 pass show digital/$1 | base64 --decode > $tmp_file
@@ -13,6 +13,7 @@ echo "Has the file changed?"
 read changed
 if [[ "$changed" = y* ]]; then
 	pass stash $tmp_file
+	echo "Stashed changed file"
 fi
 
 rm $tmp_file
