@@ -3041,3 +3041,8 @@ chicken and egg problem."
 
 ;; global shortcut for mu4e
 (global-set-key (kbd "M-m") 'mu4e)
+
+;; Build org-agenda from files in ~/org and ~/org/projects
+;; - The org agenda builder does not seem to search their
+;;   directories listed here recursively
+(setq org-agenda-files '("/home/jim/org", "/home/jim/org/projects"))
