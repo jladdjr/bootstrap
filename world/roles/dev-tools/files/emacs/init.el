@@ -3045,4 +3045,4 @@ chicken and egg problem."
 ;; Build org-agenda from files in ~/org and ~/org/projects
 ;; - The org agenda builder does not seem to search their
 ;;   directories listed here recursively
-(setq org-agenda-files '("/home/jim/org", "/home/jim/org/projects"))
+(setq org-agenda-files '("/home/jim/org" "/home/jim/org/projects"))
