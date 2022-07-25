@@ -22,11 +22,12 @@ export BORG_PASSPHRASE='{{BORG_PASSPHRASE}}'
 
 # Backup all of /home and /var/www except a few
 # excluded directories
-borg create -p -v --stats                                  \
-    $REPOSITORY::'{hostname}-{now:%Y-%m-%d}'               \
-    /var/services/homes/jim/arq_migration                  \
-    /var/services/homes/jim/arq_migration/mercury          \
-    /var/services/homes/jim/arq_migration/JamessMacBookPro \
+borg create -p -v --stats                                    \
+    $REPOSITORY::'{hostname}-{now:%Y-%m-%d}'                 \
+    /var/services/homes/jim/arq_migration                    \
+    /var/services/homes/jim/arq_migration/mercury            \
+    /var/services/homes/jim/arq_migration/JamessMacBookPro   \
+    /var/services/homes/jim/arq_migration/JimLaddsMacBookPro \
 
 # Use the `prune` subcommand to maintain 7 daily, 4 weekly and 6 monthly
 # archives of THIS machine. The '{hostname}-' prefix is very important to
