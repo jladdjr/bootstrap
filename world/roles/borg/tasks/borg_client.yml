@@ -17,4 +17,8 @@
 
   # TODO: Create cron job to run backup.sh
 
+  # Manual Step: On borg server itself, run
+  # backup.sh using Synology recurring task:
+  # https://knasmueller.net/configuring-cron-jobs-on-a-synology-nas
+
   when: inventory_hostname == 'revolution'
