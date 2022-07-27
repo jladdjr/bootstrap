@@ -61,3 +61,22 @@
 - name: Server setup
   debug:
     msg: 'see manual steps listed in borg_server.yml'
+
+# configure rclone / wasabi
+#
+# (on Jeeves)
+# /var/services/homes/jim/.config/rclone/rclone.conf
+#
+# [wasabi]
+# type = s3
+# provider = Wasabi
+# access_key_id = <access key, see pass info strode for wasabi)
+# secret_access_key = <ditto ^>
+# region = us-west-1
+# endpoint = s3.us-west-1.wasabisys.com
+# location_constraint =
+# acl = private
+#
+# I *think* the location_contstraint is right; it's supposed to be
+# blank based on info provided here:
+# https://rclone.org/s3/#wasabi
