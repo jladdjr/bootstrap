@@ -62,6 +62,10 @@
   debug:
     msg: 'see manual steps listed in borg_server.yml'
 
+# install rclone on jeeves
+# https://rclone.org/install/#linux-installation-from-precompiled-binary
+# note: use `7z x <path/to/file.zip` instead of unzip
+
 # configure rclone / wasabi
 #
 # (on Jeeves)
@@ -80,3 +84,6 @@
 # I *think* the location_contstraint is right; it's supposed to be
 # blank based on info provided here:
 # https://rclone.org/s3/#wasabi
+
+# rclone script example:
+# https://opensource.com/article/17/10/backing-your-machines-borg
