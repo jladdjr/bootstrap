@@ -1,0 +1,2 @@
+backup:
+	bash backup.sh
