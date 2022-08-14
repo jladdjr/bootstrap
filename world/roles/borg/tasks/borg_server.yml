@@ -54,7 +54,11 @@
 #   cd /usr/bin (since this is on the default path)
 #   ln -s /usr/local/bin/borg borg
 # - This will put borg on the default path used
-# - Could alternatively update borg's path to include /usr/local/bin
+# - Wasn't able to update borg's path to include /usr/local/bin
+#   because I can't get any rc file to be read
+#   when borg runs the ssh command non-interactively
+# - NOTE!: The /usr/bin/borg link may get removed
+#   after a DSM update! (This happened with DSM7)
 #
 # Initialize a new borg repo with:
 #   borg init --encryption=repokey /var/services/homes/borg/repo
