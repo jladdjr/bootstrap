@@ -91,3 +91,16 @@
 
 # rclone script example:
 # https://opensource.com/article/17/10/backing-your-machines-borg
+
+
+# DSM Post-update Script
+# 2022-08-14
+#
+# #!/bin/bash
+# sudo ln -s /usr/local/bin/borg /usr/bin/borg
+# sudo chown root:root /usr/bin/borg
+# sudo chmod 755 /usr/bin/borg
+#
+# sudo cp ~/bin/rclone /usr/bin/rclone
+# sudo chown root:root /usr/bin/rclone
+# sudo chmod 755 /usr/bin/rclone
