@@ -243,8 +243,8 @@ Run whitespace-cleanup on save unless
 
 ;; Automatically switch to *Occur* buffer
 (add-hook 'occur-hook
-          '(lambda ()
-             (switch-to-buffer-other-window "*Occur*")))
+          (lambda ()
+            (switch-to-buffer-other-window "*Occur*")))
 
 (defun xc/-append-newline-after-comma (x)
   (replace-regexp-in-string "," ",\n" x))
