@@ -14,3 +14,7 @@ git pull
 # pass
 cd ${USB_DIR}/.password-store
 git pull ${HOME_DIR}/.password-store
+
+# bah
+cd ${USB_DIR}/.bah/.password-store
+git pull ${HOME_DIR}/.bah/.password-store

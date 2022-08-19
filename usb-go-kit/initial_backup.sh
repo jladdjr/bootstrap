@@ -12,3 +12,6 @@ rsync -avz ${HOME_DIR}/git/bootstrap ${USB_DIR}
 
 # pass
 rsync -avz ${HOME_DIR}/.password-store ${USB_DIR}
+
+# bah
+rsync -avz ${HOME_DIR}/.bah ${USB_DIR}
