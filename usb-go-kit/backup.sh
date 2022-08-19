@@ -9,7 +9,7 @@ rsync -avz --delete ${HOME_DIR}/.ssh ${USB_DIR}
 
 # bootstrap
 cd ${USB_DIR}/bootstrap
-git pull ${HOME_DIR}/git/bootstrap
+git pull
 
 # pass
 cd ${USB_DIR}/.password-store
