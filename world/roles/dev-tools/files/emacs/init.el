@@ -3046,3 +3046,15 @@ chicken and egg problem."
 ;; - The org agenda builder does not seem to search their
 ;;   directories listed here recursively
 (setq org-agenda-files '("/home/jim/org" "/home/jim/org/projects"))
+
+; Define custom ledger reports
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ledger-reports
+   '(("bal" "ledger [[ledger-mode-flags]] -f /home/jim/ledger/ladds.ledger bal --current")
+     ("reg" "%(binary) -f %(ledger-file) reg")
+     ("payee" "%(binary) -f %(ledger-file) reg @%(payee)")
+     ("account" "%(binary) -f %(ledger-file) reg %(account)"))))
