@@ -2,6 +2,7 @@
   apt:
     name:
       - texlive
+      - dos2unix
     state: latest
   become: true
   tags: general_dev_tools
