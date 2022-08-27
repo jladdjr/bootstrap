@@ -1645,23 +1645,19 @@ Run whitespace-cleanup on save unless
         '((sequence
            ;; open items
            "TODO"                 ; todo, not active
-           "CURRENT"              ; todo, active item
-           "PENDING"              ; requires more information (timely)
+           "DOING"                ; todo, active item
            "|"  ; entries after pipe are considered completed in [%] and [/]
            ;; closed items
            "DONE"        ; completed successfully
-           "ON-HOLD"     ; requires more information (indefinite time)
-           "CANCELED"    ; no longer relevant, not completed
+           "BLOCKED"     ; requires more information (indefinite time)
            )))
 
   (setq org-todo-keyword-faces
         '(
           ("TODO" . "light pink")
-          ("CURRENT" . "yellow")
+          ("DOING" . "yellow")
           ("DONE" . "light green")
-          ("PENDING" . "light blue")
-          ("ON-HOLD" . "plum")
-          ("CANCELED" . "gray")
+          ("BLOCKED" . "red")
           ))
 
   (org-babel-do-load-languages
@@ -3058,3 +3054,30 @@ chicken and egg problem."
      ("reg" "%(binary) -f %(ledger-file) reg")
      ("payee" "%(binary) -f %(ledger-file) reg @%(payee)")
      ("account" "%(binary) -f %(ledger-file) reg %(account)"))))
+
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+
+; TODO: use straight for org-kanban install?
+
+;; custom keymappings
+
+; .. for org-kanban
+(define-key org-mode-map "\C-c\C-s" 'org-kanban/shift)
+
+; .. for eyebrowse
+; make eyebrowse functions easier to call and globally available
+(global-set-key "\C-c'" 'eyebrowse-last-window-config)
+(global-set-key "\C-cc" 'eyebrowse-create-window-config)
+(global-set-key "\C-c<" 'eyebrowse-prev-window-config)
+(global-set-key "\C-c>" 'eyebrowse-next-window-config)
+(global-set-key "\C-c0" 'eyebrowse-switch-to-window-config-0)
+(global-set-key "\C-c1" 'eyebrowse-switch-to-window-config-1)
+(global-set-key "\C-c2" 'eyebrowse-switch-to-window-config-2)
+(global-set-key "\C-c3" 'eyebrowse-switch-to-window-config-3)
+(global-set-key "\C-c4" 'eyebrowse-switch-to-window-config-4)
+(global-set-key "\C-c5" 'eyebrowse-switch-to-window-config-5)
+(global-set-key "\C-c6" 'eyebrowse-switch-to-window-config-6)
+(global-set-key "\C-c7" 'eyebrowse-switch-to-window-config-7)
+(global-set-key "\C-c8" 'eyebrowse-switch-to-window-config-8)
+(global-set-key "\C-c9" 'eyebrowse-switch-to-window-config-9)
