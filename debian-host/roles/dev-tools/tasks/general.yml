@@ -3,6 +3,7 @@
     name:
       - texlive
       - dos2unix
+      - poppler-utils # for pdftoppm
     state: latest
   become: true
   tags: general_dev_tools
