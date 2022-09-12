@@ -221,3 +221,7 @@ bindsym --release Print exec "screenshot /home/jim/Pictures/"
 # based on example provided at https://stackoverflow.com/a/55313834
 bindsym control+$mod+shift+H exec ~/.i3MoveNext.sh -1
 bindsym control+$mod+shift+S exec ~/.i3MoveNext.sh 1
+
+# On monolith, enable dual monitor mode with tiny external monitor
+# This script was generated using the arandr GUI utility
+# xrandr --output DP-1 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output DP-2 --mode 640x480 --pos 1009x1440 --rotate normal --output HDMI-1 --off
