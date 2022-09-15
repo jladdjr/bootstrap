@@ -61,4 +61,16 @@
       src: pass_git_hooks/post-commit.jinja
       dest: ~/.password-store/.git/hooks/post-commit
       mode: '0755'
+
+  # TODO
+  # On mac, create crontab entries to sync every hour
+  # * * * * * cd /Users/stephanieladd/.password-store && /usr/local/bin/git pull jeeves main
+  # * * * * * cd /Users/stephanieladd/.password-store && /usr/local/bin/git push jeeves
+  #
+  # TODO
+  # Do the same thing - in that case you can do:
+  # PASSWORD_STORE_ENABLE_EXTENSIONS="true"
+  # 0 * * * * /usr/bin/pass sync &>/dev/null
+  #
+  # Is there a way to do the thing I'm doing on Linux systems on Macs?
   when: password_store_stat.stat.exists
