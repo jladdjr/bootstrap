@@ -64,8 +64,8 @@
 
   # TODO
   # On mac, create crontab entries to sync every hour
-  # * * * * * cd /Users/stephanieladd/.password-store && /usr/local/bin/git pull jeeves main > /dev/null
-  # * * * * * cd /Users/stephanieladd/.password-store && /usr/local/bin/git push jeeves > /dev/null
+  # * * * * * cd /Users/stephanieladd/.password-store && /usr/local/bin/git pull jeeves main &> /dev/null
+  # * * * * * cd /Users/stephanieladd/.password-store && /usr/local/bin/git push jeeves &> /dev/null
   #
   # TODO
   # Do the same thing - in that case you can do:
