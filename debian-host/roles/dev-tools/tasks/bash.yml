@@ -158,6 +158,10 @@
 
       export EDITOR=vi
 
+      if [ -z ${INSIDE_EMACS+x} ]; then
+          # when emacs runs shell mode this section will not get executed
+      fi
+
       alias copy='xclip -i -selection clipboard'
 
       alias big_spends="ledger -f ladds.ledger register -S amount Liabilities:Chase --real --head 15; echo ''; ledger -f ladds.ledger register -S amount Assets:NCSECU:Checking --real --head 15; echo ''; ledger -f ladds.ledger register -S amount Assets:OnPoint --real --head 15"
