@@ -2971,6 +2971,19 @@ chicken and egg problem."
 (global-set-key "\C-s" 'swiper)
 (global-set-key "\M-s" 'swiper-all)
 
+; my key bindings : )
+(global-set-key (kbd "C-c t") 'shell)
+(global-set-key (kbd "C-c l") 'avy-goto-char-timer)
+(global-set-key (kbd "C-c C-c") 'ace-swap-window)
+
+;; helm replacements
+;; replace selected commands with corresponding helm commands
+(define-key (current-global-map) [remap list-buffers] 'helm-buffers-list)
+(define-key (current-global-map) [remap bookmark-jump] 'helm-filtered-bookmarks)
+
+; don't ask if I really want to kill this buffer
+(define-key (current-global-map) [remap kill-buffer] 'kill-this-buffer)
+
 ;; since mu4e was installed using apt
 ;; we need to tell emacs where to find
 ;; the source for the package
