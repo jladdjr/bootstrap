@@ -12,6 +12,9 @@ borg: secrets
 emacs:
 	ansible-playbook -i inventory --tags emacs provision.yml
 
+general_system_config:
+	ansible-playbook -i inventory --tags general_system_config provision.yml
+
 plover:
 	ansible-playbook -i inventory --tags plover provision.yml
 
