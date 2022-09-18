@@ -73,9 +73,6 @@ An on-demand window is one which you wish to return to within the
 current Emacs session but whose importance doesn't warrant a
 permanent binding.")
 
-(defvar jl/atlassian ""
-  "Atlassian url.")
-
 (defvar jl/pyside-modules
   '("QtCore" "Qt3DAnimation" "QtGui" "QtHelp" "QtNetwork" "QtOpenGL" "QtPrintSupport" "QtQml"
     "QtCharts" "QtQuick" "QtDataVisualization" "QtQuickWidgets" "QtTextToSpeech" "QtSql"
@@ -740,11 +737,6 @@ Run whitespace-cleanup on save unless
 ;;      "C-x s" 'save-buffer
 ;;      "<f5>" '(lambda () (interactive) (progn (funcall 'jl/send-line-or-region)))
 ;;      "<f8>" 'jl/switch-to-last-window
-;;      "C-<f8>" '(lambda () (interactive) (peut-gerer-switch-to 'main t 0))
-;;      "S-<f8>" '(lambda () (interactive) (peut-gerer-switch-to 'shell t 0))
-;;      "M-<f8>" '(lambda () (interactive) (call-interactively 'peut-gerer-select-project))
-;;      "C-S-<f8>" '(lambda () (interactive) (call-interactively 'peut-gerer-create-shell))
-;;      "C-M-<f8>" '(lambda () (interactive) (call-interactively 'peut-gerer-activate-project))
 ;;      "M-c" 'jl/copy-symbol-at-point
 ;;      ;; "M-j" 'jl/helm-imenu ; navigate the file's structure (functions or otherwise)
 ;;      "M-j" 'helm-semantic-or-imenu ; navigate the file's structure (functions or otherwise)
@@ -761,17 +753,11 @@ Run whitespace-cleanup on save unless
 ;;                 (save-some-buffers t nil)
 ;;                 (if jl/kill-python-p
 ;;                     (jl/kill-python))  ; kills aws cli commands
-;;                 ;; (quit-process (get-buffer-process peut-gerer-shell))
-;;                 (peut-gerer-send-command peut-gerer-command))
-;;      "C-<f7>" '(lambda () (interactive) (call-interactively 'peut-gerer-send-command))
 ;;      ;; can use to create new *shell* after load
 ;;      "<f10>" '(lambda() (interactive)
 ;;                 (save-some-buffers t nil)
 ;;                 (if jl/kill-python-p
 ;;                     (jl/kill-python))  ; kills aws cli commands
-;;                 ;; (quit-process (get-buffer-process peut-gerer-shell))
-;;                 (peut-gerer-send-command peut-gerer-command))
-;;      "C-<f10>" '(lambda () (interactive) (call-interactively 'peut-gerer-send-command))
 ;;      "C-c +" 'evil-numbers/inc-at-pt
 ;;      "C-c -" 'evil-numbers/dec-at-pt
 ;;      "C-h j" 'describe-face  ; introspect colors
@@ -873,7 +859,6 @@ Run whitespace-cleanup on save unless
 ;;             (save-some-buffers t nil)
 ;;             (if jl/kill-python-p
 ;;                 (jl/kill-python))  ; kills aws cli commands
-;;             (peut-gerer-send-command peut-gerer-command))
 ;;       "s" 'save-buffer
 ;;       "t" 'jl/open-terminal
 ;;       "x" 'eval-expression
@@ -888,10 +873,6 @@ Run whitespace-cleanup on save unless
 ;;    (general-def :keymaps 'anaconda-mode-map
 ;;      "<apps>" 'jl/kill-python
 ;;      "<f6>" 'jl/insert-breakpoint
-;;      "<C-S-f10>" 'peut-gerer-set-command-to-current-file
-;;      "<S-f10>" 'peut-gerer-buffer-file-to-shell
-;;      "<C-S-f7>" 'peut-gerer-set-command-to-current-file
-;;      "<S-f7>" 'peut-gerer-buffer-file-to-shell
 ;;      )
 ;;
 ;;    ;;(general-define-key :keymaps 'comint-mode-map
@@ -1059,11 +1040,6 @@ Run whitespace-cleanup on save unless
 ;;      "<apps>" 'jl/kill-python
 ;;      "<f6>" 'jl/insert-breakpoint
 ;;      "S-<f6>" '(lambda () (interactive) (jl/insert-breakpoint "breakpoint()")) ; pdb
-;;      "<C-S-f10>" 'peut-gerer-set-command-to-current-file
-;;      "<S-f10>" '(lambda () (interactive) (quit-process (get-buffer-process peut-gerer-shell)) (peut-gerer-buffer-file-to-shell))
-;;      "<C-S-f7>" 'peut-gerer-set-command-to-current-file
-;;      "<S-f7>" '(lambda () (interactive) (quit-process (get-buffer-process peut-gerer-shell)) (peut-gerer-buffer-file-to-shell))
-;;      "<f3>" '(lambda () (interactive) (quit-process (get-buffer-process peut-gerer-shell)) (peut-gerer-buffer-file-to-shell))
 ;;      "<S-wheel-down>" 'python-nav-forward-block
 ;;      "<S-wheel-up>" 'python-nav-backward-block
 ;;      )
@@ -1692,91 +1668,6 @@ Run whitespace-cleanup on save unless
     (if jl/debug (message "org"))))
 
 
-(use-package peut-publier
-  :after (:all org)
-  ;; :straight (:repo "git@github.com:excalamus/peut-publier.git")
-  :straight (:repo "https://github.com/excalamus/peut-publier.git")
-  :config
-
-  (if jl/debug (message "peut-publier")))
-
-;; 
-(use-package peut-gerer
-  :after (:all right-click-context org)
-  :straight (:repo "https://github.com/excalamus/peut-gerer.git" :branch "main")
-  :config
-
-  ;; For privacy's sake, define `peut-gerer-project-alist' in secret-lisp.el:
-  ;;
-  ;;     (setq peut-gerer-project-alist
-  ;;           '(("project-x"
-  ;;              :root "/data/data/com.termux/files/home/projects/project-x/"
-  ;;              :main "main.py"
-  ;;              :venv  "/data/data/com.termux/files/home/projects/project-x/venv/"
-  ;;              :activate "/data/data/com.termux/files/home/projects/project-x/venv/bin/activate"
-  ;;              :commands ("pyinstaller build.spec")
-  ;;              )
-  ;;             ("project-a"
-  ;;              :root "C:\\projects\\project-umbrella\\apps\\project_a\\"
-  ;;              :main "project_a.py"
-  ;;              :venv "C:\\Users\\excalamus\\Anaconda3\\envs\\project_a\\"
-  ;;              :activate "C:\\Users\\excalamus\\Anaconda3\\condabin\\conda.bat activate"
-  ;;              )))
-
-  (if (eq jl/device 'gnu/linux)
-      (setq peut-gerer-command-prefix "python3"))
-
-  (setq peut-gerer-after-activate-functions '(pyvenv-activate))
-
-  (setq peut-gerer-after-select-functions
-        '((lambda (x) (funcall 'pyvenv-deactivate))
-          pyvenv-activate))
-
-  ;; ;; disable sending to shell while in shell because it would only be
-  ;; ;; useful for concatenating duplicates of a region; if you have
-  ;; ;; region selected and you send that region to the current buffer,
-  ;; ;; the region appears immediately after the region.
-  ;; (add-to-list 'right-click-context-global-menu-tree
-  ;;              '("Send to region to shell"
-  ;;                :call (peut-gerer-send-region)
-  ;;                :if
-  ;;                (and (use-region-p)
-  ;;                     ;; only disables to peut-gerer registered shells
-  ;;                     (not
-  ;;                      (member (string-trim (buffer-name) "*" "*")
-  ;;                              peut-gerer--active-projects-alist)))))
-
-  ;; quick hack; create an jl/on-demand-window (C-<f1>), then you can
-  ;; select a region anywhere and send that region to the odw.  For
-  ;; use in exploratory debugging.  Try stuff in the repl, then send
-  ;; that to the script.
-  (add-to-list 'right-click-context-global-menu-tree
-               '("Send region to on-demand-window"
-                 :call (jl/send-line-or-region nil nil t)))
-
-  (add-to-list 'right-click-context-global-menu-tree
-               '("Send to shell"
-                 :call (jl/send-line-or-region nil nil nil peut-gerer-shell)))
-
-  (add-to-list 'right-click-context-global-menu-tree
-               '("Search..."
-                 ("pyside" :call (jl/search-Qt))
-                 ("sdl-wiki" :call (jl/search-sdl-wiki))
-                 ;; ("QGIS" :call (jl/search-qgis))
-                 ("Open Jira ticket" :call (jl/search-jira))
-                 ("ddg" :call (jl/search-ddg))))
-
-  (if (eq jl/device 'gnu/linux)
-      (add-to-list 'right-click-context-global-menu-tree
-                   '("Search for in SDL" :call (jl/search-sdl)))
-    (add-to-list 'right-click-context-global-menu-tree
-                 '("Search for in PySide" :call (jl/search-Qt))))
-
-  ;; (pop right-click-context-global-menu-tree)
-
-  (if jl/debug (message "peut-gerer")))
-
-
 (use-package qml-mode
   :after (:all org)
   :straight (:fork "excalamus/qml-mode")
@@ -2142,55 +2033,6 @@ put url into the kill ring."
         (browse-url-default-browser url)
       (kill-new url))
     (message "%s" url)))
-
-
-(defun jl/search (&optional prefix engine beg end)
-  "Search the web for something.
-
-If a region is selected, lookup using region defined by BEG and
-END.  When no region or issue given, try using the thing at
-point.  If there is nothing at point, ask for the search query."
-  (interactive)
-  (let* ((engine-list `(("ddg" . "https://duckduckgo.com/?q=%s")
-                        ("Qt" . "https://doc-snapshots.qt.io/qtforpython-5.15/search.html?check_keywords=yes&area=default&q=%s")
-                        ;; ("qgis" . "https://qgis.org/pyqgis/master/search.html?check_keywords=yes&area=default&q=%s")
-                        ("sdl-wiki" . "https://wiki.libsdl.org/wiki/search/?q=%s")
-                        ("sdl" . "https://wiki.libsdl.org/%s")
-                        ("jira" . ,(concat jl/atlassian "%s"))))
-         (beg (or beg (if (use-region-p) (region-beginning)) nil))
-         (end (or end (if (use-region-p) (region-end)) nil))
-         (thing (thing-at-point 'symbol t))
-         (lookup-term (cond ((and beg end) (buffer-substring-no-properties beg end))
-                            (thing thing)
-                            (t (read-string "Search for: "))))
-         (engine (or engine (completing-read "Select search engine: " engine-list nil t (caar engine-list))))
-         (query (if prefix (format "%s %s" prefix lookup-term) lookup-term))
-         (search-string (url-encode-url (format (cdr (assoc engine engine-list)) query))))
-    (browse-url-default-browser search-string)))
-
-(defun jl/search-ddg (&optional beg end)
-  (interactive)
-  (jl/search nil "ddg" beg end))
-
-(defun jl/search-jira (&optional beg end)
-  (interactive)
-  (jl/search nil "jira" beg end))
-
-(defun jl/search-qgis (&optional beg end)
-  (interactive)
-  (jl/search nil "qgis" beg end))
-
-(defun jl/search-Qt (&optional beg end)
-  (interactive)
-  (jl/search nil "Qt" beg end))
-
-(defun jl/search-sdl (&optional beg end)
-  (interactive)
-  (jl/search nil "sdl" beg end))
-
-(defun jl/search-sdl-wiki (&optional beg end)
-  (interactive)
-  (jl/search nil "sdl-wiki" beg end))
 
 
 (defun minibuffer-inactive-mode-hook-setup ()
@@ -2726,18 +2568,6 @@ line if no region is provided."
         (if (> 0 rv) (message "Process could not be killed: %s" rv)
           ;; (message "Process killed")
           ))))
-
-;; 16000
-(defun jl/kill-python ()
-  "Kill Python.
-
-Note: This kills indiscriminantly on Windows systems.  It will
-kill any system process, like the AWS CLI, that runs on the
-Python interpetor."
-  (interactive)
-  (if (eq jl/device 'windows)
-      (shell-command "taskkill /f /fi \"IMAGENAME eq python.exe\" /fi \"MEMUSAGE gt 15000\"")
-    (jl/kill-proc-child peut-gerer-shell)))
 
 
 (defun jl/pyside-lookup (&optional arg)
