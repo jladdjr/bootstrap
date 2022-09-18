@@ -1,24 +1,13 @@
-;;; init.el -- Principium de Excalamus
+;;; init.el
 
-;; Author: Matt Trzcinski <matt@excalamus.com>
-;; URL: https://github.com/excalamus/.emacs.d.git
-;; Requires: ((emacs "27.1"))
-
-;; Maintain package consistency across multiple devices using
-;; straight.el with use-package.el.  Fork packages and point
-;; straight.el to personal repos.  The forks help with submitting pull
-;; requests and provides another point of consistency.
-
-  ; <-- insert linebreak with 'C-q C-l' (quoted-insert)
-    ;     navigate with 'C-x ]' (forward-page) and 'C-x [' (backward-page)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; debug
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defvar xc/debug t
+(defvar jl/debug t
   "Toggle debug mode.")
 
-(if xc/debug (toggle-debug-on-error))
+(if jl/debug (toggle-debug-on-error))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -66,7 +55,7 @@
 ;; customization
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defvar xc/device
+(defvar jl/device
   (cond ((file-directory-p "C:\\") 'windows)
         ((file-directory-p "/home/") 'gnu/linux)
         ((file-directory-p "/data/data/com.termux/") 'termux))
@@ -77,24 +66,24 @@ Either 'windows, 'gnu/linux, or 'termux.
 `system-type' doesn't differentiate X from terminal.
 `window-system' gets assigned after init loads.")
 
-(defvar xc/on-demand-window nil
+(defvar jl/on-demand-window nil
   "Target on-demand window.
 
 An on-demand window is one which you wish to return to within the
 current Emacs session but whose importance doesn't warrant a
 permanent binding.")
 
-(defvar xc/atlassian ""
+(defvar jl/atlassian ""
   "Atlassian url.")
 
-(defvar xc/pyside-modules
+(defvar jl/pyside-modules
   '("QtCore" "Qt3DAnimation" "QtGui" "QtHelp" "QtNetwork" "QtOpenGL" "QtPrintSupport" "QtQml"
     "QtCharts" "QtQuick" "QtDataVisualization" "QtQuickWidgets" "QtTextToSpeech" "QtSql"
     "QtMultimedia" "QtMultimediaWidgets" "QtMacExtras" "QtSvg" "QtUiTools" "QtTest" "QtConcurrent"
     "QtAxContainer" "QtWebEngineCore" "QtWebEngineWidgets" "QtWebChannel" "QtWebSockets" "QtWidgets"
     "QtWinExtras" "QtX11Extras" "QtXml" "QtXmlPatterns" "Qt3DCore" "Qt3DExtras" "Qt3DInput" "Qt3DLogic"
     "Qt3DRender" "QtPositioning" "QtLocation" "QtSensors" "QtScxml")
-  "List of Qt modules for use in `xc/pyside-lookup'.")
+  "List of Qt modules for use in `jl/pyside-lookup'.")
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -106,7 +95,7 @@ permanent binding.")
 (setq custom-file "~/.emacs.d/custom-set.el")
 
 ;; todo, make interactive
-(defun xc/load-directory (dir &optional ext)
+(defun jl/load-directory (dir &optional ext)
   "Load all files in DIR with extension EXT.
 
 Default EXT is \".el\".
@@ -119,7 +108,7 @@ See URL `https://www.emacswiki.org/emacs/LoadingLispFiles'"
     (mapc load-it (directory-files dir nil ext-reg))))
 
 (if (file-exists-p "~/.emacs.d/lisp/")
-    (xc/load-directory "~/.emacs.d/lisp/"))
+    (jl/load-directory "~/.emacs.d/lisp/"))
 
 ;; (setq yas-snippet-dirs (list yas-snippet-dirs))
 
@@ -128,10 +117,10 @@ See URL `https://www.emacswiki.org/emacs/LoadingLispFiles'"
 
 ;; configure autosave directory
 ;; https://stackoverflow.com/a/18330742/5065796
-(defvar xc/-backup-directory (concat user-emacs-directory "backups"))
-(if (not (file-exists-p xc/-backup-directory))
-    (make-directory xc/-backup-directory t))
-(setq backup-directory-alist `(("." . ,xc/-backup-directory))) ; put backups in current dir and in xc/-backup-directory
+(defvar jl/-backup-directory (concat user-emacs-directory "backups"))
+(if (not (file-exists-p jl/-backup-directory))
+    (make-directory jl/-backup-directory t))
+(setq backup-directory-alist `(("." . ,jl/-backup-directory))) ; put backups in current dir and in jl/-backup-directory
 (setq make-backup-files t               ; backup of a file the first time it is saved.
       backup-by-copying t               ; don't clobber symlinks
       version-control t                 ; version numbers for backup files
@@ -150,26 +139,26 @@ See URL `https://www.emacswiki.org/emacs/LoadingLispFiles'"
 (set-keyboard-coding-system 'utf-8)
 (set-language-environment "utf-8")
 
-;; tab insertion. See `xc/before-save-hook'.
+;; tab insertion. See `jl/before-save-hook'.
 (setq-default indent-tabs-mode nil)  ; don't ever insert tabs
 ;; (dtrt-indent-global-mode)  ; insert tabs based on file
 
-(defun xc/before-save-hook ()
+(defun jl/before-save-hook ()
   "Conditionally run whitespace-cleanup before save.
 
 Run whitespace-cleanup on save unless
-`xc/disable-whitespace-cleanup' is non-nil.  Set
-`xc/disable-whitespace-cleanup' using a directory local variable:
+`jl/disable-whitespace-cleanup' is non-nil.  Set
+`jl/disable-whitespace-cleanup' using a directory local variable:
 
   ;; .dir-locals-2.el
-  ((nil . ((xc/disable-whitespace-cleanup . t))))"
-  (unless (and (boundp 'xc/disable-whitespace-cleanup)
-               xc/disable-whitespace-cleanup)
+  ((nil . ((jl/disable-whitespace-cleanup . t))))"
+  (unless (and (boundp 'jl/disable-whitespace-cleanup)
+               jl/disable-whitespace-cleanup)
     (whitespace-cleanup)))
 
-(add-hook 'before-save-hook 'xc/before-save-hook)
+(add-hook 'before-save-hook 'jl/before-save-hook)
 
-;; (if (eq xc/device 'gnu/linux)
+;; (if (eq jl/device 'gnu/linux)
 ;;     (setq whitespace-style '(face tabs)))
 
 (setq-default abbrev-mode t)
@@ -211,18 +200,18 @@ Run whitespace-cleanup on save unless
 
 ;; restore window configuration on ediff close
 ;; https://emacs.stackexchange.com/a/17089
-(defvar xc/ediff-last-windows nil)
+(defvar jl/ediff-last-windows nil)
 
-(defun xc/store-pre-ediff-winconfig ()
-  (setq xc/ediff-last-windows (current-window-configuration)))
+(defun jl/store-pre-ediff-winconfig ()
+  (setq jl/ediff-last-windows (current-window-configuration)))
 
-(defun xc/restore-pre-ediff-winconfig ()
-  (set-window-configuration xc/ediff-last-windows))
+(defun jl/restore-pre-ediff-winconfig ()
+  (set-window-configuration jl/ediff-last-windows))
 
-(add-hook 'ediff-before-setup-hook #'xc/store-pre-ediff-winconfig)
-(add-hook 'ediff-quit-hook #'xc/restore-pre-ediff-winconfig)
+(add-hook 'ediff-before-setup-hook #'jl/store-pre-ediff-winconfig)
+(add-hook 'ediff-quit-hook #'jl/restore-pre-ediff-winconfig)
 
-(if (eq xc/device 'termux) (setq browse-url-browser-function 'eww-browse-url))
+(if (eq jl/device 'termux) (setq browse-url-browser-function 'eww-browse-url))
 
 ;; Make *Occur* window size to the contents
 (add-hook 'occur-hook
@@ -246,23 +235,23 @@ Run whitespace-cleanup on save unless
           (lambda ()
             (switch-to-buffer-other-window "*Occur*")))
 
-(defun xc/-append-newline-after-comma (x)
+(defun jl/-append-newline-after-comma (x)
   (replace-regexp-in-string "," ",\n" x))
 
-(defun xc/toggle-long-line-filter ()
+(defun jl/toggle-long-line-filter ()
   "Prevent long lines from bogging down the shell."
   (interactive)
-  (if (member 'xc/-append-newline-after-comma comint-preoutput-filter-functions)
+  (if (member 'jl/-append-newline-after-comma comint-preoutput-filter-functions)
       (progn
-        ;; (remove-hook 'comint-preoutput-filter-functions 'xc/-append-newline-after-comma t)
-        (remove-hook 'comint-preoutput-filter-functions 'xc/-append-newline-after-comma)
+        ;; (remove-hook 'comint-preoutput-filter-functions 'jl/-append-newline-after-comma t)
+        (remove-hook 'comint-preoutput-filter-functions 'jl/-append-newline-after-comma)
         (message "Removed local long line filter"))
     (progn
-      ;; (add-hook 'comint-preoutput-filter-functions 'xc/-append-newline-after-comma 90 t)
-      (add-hook 'comint-preoutput-filter-functions 'xc/-append-newline-after-comma 90)
+      ;; (add-hook 'comint-preoutput-filter-functions 'jl/-append-newline-after-comma 90 t)
+      (add-hook 'comint-preoutput-filter-functions 'jl/-append-newline-after-comma 90)
       (message "Added local long line filter"))))
 
-(remove-hook 'comint-preoutput-filter-functions 'xc/-append-newline-after-comma)
+(remove-hook 'comint-preoutput-filter-functions 'jl/-append-newline-after-comma)
 
 (setq c-default-style "gnu")
 
@@ -333,61 +322,61 @@ Run whitespace-cleanup on save unless
   :after (:all org)
   :straight (:fork "excalamus/zenburn-emacs"))
 
-(defun xc/disable-all-themes ()
+(defun jl/disable-all-themes ()
   "Disable all enabled themes."
   (interactive)
   (mapc #'disable-theme custom-enabled-themes))
 
-(defvar xc/theme-hooks nil
+(defvar jl/theme-hooks nil
   "((theme-id . function) ...)")
 
-(defun xc/add-theme-hook (theme-id hook-func)
-  (add-to-list 'xc/theme-hooks (cons theme-id hook-func)))
+(defun jl/add-theme-hook (theme-id hook-func)
+  (add-to-list 'jl/theme-hooks (cons theme-id hook-func)))
 
-(defun xc/load-theme-advice (f theme-id &optional no-confirm no-enable &rest args)
+(defun jl/load-theme-advice (f theme-id &optional no-confirm no-enable &rest args)
   "Enhances `load-theme' in two ways:
 1. Disables enabled themes for a clean slate.
-2. Calls functions registered using `xc/add-theme-hook'."
+2. Calls functions registered using `jl/add-theme-hook'."
   (unless no-enable
-    (xc/disable-all-themes))
+    (jl/disable-all-themes))
   (prog1
       (apply f theme-id no-confirm no-enable args)
     (unless no-enable
-      (pcase (assq theme-id xc/theme-hooks)
+      (pcase (assq theme-id jl/theme-hooks)
         (`(,_ . ,f) (funcall f))))))
 
 (advice-add 'load-theme
             :around
-            #'xc/load-theme-advice)
+            #'jl/load-theme-advice)
 
-(defvar xc/theme-dark nil
+(defvar jl/theme-dark nil
   "My dark theme.")
 
-(defvar xc/theme-light nil
+(defvar jl/theme-light nil
   "My light theme.")
 
-(if (eq xc/device 'windows)
-    (setq xc/theme-dark 'zenburn)
-  (setq xc/theme-dark 'base16-eighties))
+(if (eq jl/device 'windows)
+    (setq jl/theme-dark 'zenburn)
+  (setq jl/theme-dark 'base16-eighties))
 
-(setq xc/theme-light 'base16-tomorrow)
+(setq jl/theme-light 'base16-tomorrow)
 
 ;; Add to hook to reload these automatically
-(defun xc/dark-theme-hook ()
+(defun jl/dark-theme-hook ()
   "Run after loading dark theme."
   (cond
-   ((eq xc/theme-dark 'zenburn)
+   ((eq jl/theme-dark 'zenburn)
          (progn
-           (if (eq xc/device 'termux)
+           (if (eq jl/device 'termux)
                (set-face-attribute 'mode-line-inactive nil :background "color-236"))
            (set-face-attribute 'aw-leading-char-face nil :background 'unspecified :foreground "#CC9393" :height 3.0)
            (setq evil-insert-state-cursor '("gray" bar))
            (set-face-attribute 'hl-line nil :background "gray29" :foreground 'unspecified)
            (set-face-attribute 'mode-line nil :background "gray40")
            (set-face-attribute 'bm-face nil :background "RoyalBlue4" :foreground 'unspecified)
-           (set-face-attribute 'xc/hi-comint nil :background "dim gray")))
+           (set-face-attribute 'jl/hi-comint nil :background "dim gray")))
 
-   ((eq xc/theme-dark 'base16-eighties)
+   ((eq jl/theme-dark 'base16-eighties)
         (progn
           (set-face-attribute 'hl-line nil :background "gray20" :foreground 'unspecified)
 
@@ -420,7 +409,7 @@ Run whitespace-cleanup on save unless
 
           ))))
 
-(defun xc/light-theme-hook ()
+(defun jl/light-theme-hook ()
   "Run after loading light theme."
   ;; base16-tomorrow
   (set-face-attribute 'aw-leading-char-face nil :background 'unspecified :foreground "#CC9393" :height 3.0)
@@ -429,48 +418,48 @@ Run whitespace-cleanup on save unless
   (set-face-attribute 'mode-line-inactive nil :background "white smoke")
   (set-face-attribute 'org-mode-line-clock nil :background "white" :inherit nil)
   (set-face-attribute 'bm-face nil :background "light cyan" :overline 'unspecified :foreground 'unspecified)
-  (set-face-attribute 'xc/hi-comint nil :background "light gray"))
+  (set-face-attribute 'jl/hi-comint nil :background "light gray"))
 
 ;; ;; If using another theme, such as with a different Emacs instance
-;; ;; (`xc/emacs-standalone' with tango-dark, set custom with:
+;; ;; (`jl/emacs-standalone' with tango-dark, set custom with:
 
 ;; (set-face-attribute 'hl-line nil :background "gray36" :foreground 'unspecified)
 ;; (set-face-attribute 'highlight nil :background "orange red" :foreground 'unspecified)
 
-(xc/add-theme-hook xc/theme-dark #'xc/dark-theme-hook)
-(xc/add-theme-hook xc/theme-light #'xc/light-theme-hook)
+(jl/add-theme-hook jl/theme-dark #'jl/dark-theme-hook)
+(jl/add-theme-hook jl/theme-light #'jl/light-theme-hook)
 
-(defvar xc/theme-type nil
+(defvar jl/theme-type nil
   "Type of current theme.")
 
-(setq xc/theme-type 'dark)
+(setq jl/theme-type 'dark)
 
-(defun xc/theme-toggle (&optional type)
+(defun jl/theme-toggle (&optional type)
   "Toggle theme to TYPE."
   (interactive)
-  (unless type (setq type xc/theme-type))
+  (unless type (setq type jl/theme-type))
   (cond ((eq type 'dark)
-         (disable-theme xc/theme-light)
-         (load-theme xc/theme-dark t nil)
-         (setq xc/theme-type 'dark))
+         (disable-theme jl/theme-light)
+         (load-theme jl/theme-dark t nil)
+         (setq jl/theme-type 'dark))
         ((eq type 'light)
-         (disable-theme xc/theme-dark)
-         (load-theme xc/theme-light t nil)
-         (setq xc/theme-type 'light))))
+         (disable-theme jl/theme-dark)
+         (load-theme jl/theme-light t nil)
+         (setq jl/theme-type 'light))))
 
-(defun xc/theme-switch ()
+(defun jl/theme-switch ()
   "Switch from dark theme to light or vice versa."
   (interactive)
-  (cond ((eq xc/theme-type 'light)
-         (xc/theme-toggle 'dark))
-        ((eq xc/theme-type 'dark)
-         (xc/theme-toggle 'light))))
+  (cond ((eq jl/theme-type 'light)
+         (jl/theme-toggle 'dark))
+        ((eq jl/theme-type 'dark)
+         (jl/theme-toggle 'light))))
 
 ;; theme config depends on ace-window and bm
 (with-eval-after-load "ace-window"
   (with-eval-after-load "bm"
     (with-eval-after-load "hi-lock"
-      (xc/theme-toggle))))
+      (jl/theme-toggle))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -496,7 +485,7 @@ Run whitespace-cleanup on save unless
   ;; (define-key minibuffer-local-completion-map " " nil)
   ;; (define-key minibuffer-local-must-match-map " " nil)
 
-  (if xc/debug (message "markdown-mode")))
+  (if jl/debug (message "markdown-mode")))
 
 
 ;; ...and same with yasnippet
@@ -506,7 +495,7 @@ Run whitespace-cleanup on save unless
   :config
   (yas-global-mode)
 
-  (if xc/debug (message "yasnippet")))
+  (if jl/debug (message "yasnippet")))
 
 
 ;; ...and something similar with lsp-mode
@@ -538,7 +527,7 @@ Run whitespace-cleanup on save unless
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   (setq aw-background nil)
 
-  (if xc/debug (message "ace-window")))
+  (if jl/debug (message "ace-window")))
 
 
 (use-package bm
@@ -548,7 +537,7 @@ Run whitespace-cleanup on save unless
   :config
   (setq bm-cycle-all-buffers t)
 
-  (if xc/debug (message "bm")))
+  (if jl/debug (message "bm")))
 
 
 (use-package csv-mode
@@ -560,7 +549,7 @@ Run whitespace-cleanup on save unless
               (hl-line-mode)
               (face-remap-add-relative 'hl-line :box '(:color "gray" :line-width 1))))
 
-  (if xc/debug (message "csv-mode")))
+  (if jl/debug (message "csv-mode")))
 
 
 (use-package comment-dwim-2
@@ -568,7 +557,7 @@ Run whitespace-cleanup on save unless
   :straight (:fork "excalamus/comment-dwim-2")
   :config
 
-  (if xc/debug (message "comment-dwim-2")))
+  (if jl/debug (message "comment-dwim-2")))
 
 
 (use-package csound-mode
@@ -576,7 +565,7 @@ Run whitespace-cleanup on save unless
   :straight (:fork "excalamus/csound-mode")
   :config
 
-  (if xc/debug (message "csound-mode")))
+  (if jl/debug (message "csound-mode")))
 
 
 (use-package define-word
@@ -585,10 +574,10 @@ Run whitespace-cleanup on save unless
   :config
 
   ;; https://github.com/abo-abo/define-word/issues/31
-  (if (eq xc/device 'windows)
+  (if (eq jl/device 'windows)
       (setq url-user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0"))
 
-  (if xc/debug (message "define-word")))
+  (if jl/debug (message "define-word")))
 
 
 (use-package dtrt-indent
@@ -598,7 +587,7 @@ Run whitespace-cleanup on save unless
 
   ;; (dtrt-indent-global-mode)
 
-  (if xc/debug (message "dtrt-indent")))
+  (if jl/debug (message "dtrt-indent")))
 
 
 (use-package dumb-jump
@@ -606,7 +595,7 @@ Run whitespace-cleanup on save unless
   :straight (:fork "excalamus/dumb-jump")
   :config
 
-  (if xc/debug (message "dumb-jump")))
+  (if jl/debug (message "dumb-jump")))
 
 
 (use-package eyebrowse
@@ -614,7 +603,7 @@ Run whitespace-cleanup on save unless
   :straight (:repo "https://github.com/jladdjr/eyebrowse.git")
   :config
 
-  (if xc/debug (message "eyebrowse")))
+  (if jl/debug (message "eyebrowse")))
 
 
 (use-package gemini-mode
@@ -630,10 +619,10 @@ Run whitespace-cleanup on save unless
 ;;
 ;;  ;; https://web.archive.org/web/20210725155836/https://github.com/noctuid/general.el/issues/460
 ;;
-;;  (defvar xc/plover-enabled nil
+;;  (defvar jl/plover-enabled nil
 ;;    "State of whether Plover is active.")
 ;;
-;;  (defvar xc/steno-hook nil)
+;;  (defvar jl/steno-hook nil)
 ;;
 ;;  (defun general--split-on-positional-args (rest)
 ;;    "Remove all positional arguments from the list REST.
@@ -681,12 +670,12 @@ Run whitespace-cleanup on save unless
 ;;           (args (append (car split-maps) maps kargs)))
 ;;      `(general-def ,@args)))
 ;;
-;;  (defmacro xc/steno-define (&rest args)
+;;  (defmacro jl/steno-define (&rest args)
 ;;    `(progn
 ;;       (general-def ,@args :prefix "→")
-;;       (general-add-hook 'xc/steno-hook
+;;       (general-add-hook 'jl/steno-hook
 ;;                         (lambda ()
-;;                           (if xc/plover-enabled
+;;                           (if jl/plover-enabled
 ;;                               (progn
 ;;                                 (general-unbind ,@args :prefix "SPC" :full t)
 ;;                                 (message "Disabled keyboard leader"))
@@ -694,11 +683,11 @@ Run whitespace-cleanup on save unless
 ;;                               (general-def ,@args :prefix "SPC")
 ;;                               (message "Enabled keyboard leader")))))))
 ;;
-;;  (defun xc/toggle-general-keyboard-leader ()
+;;  (defun jl/toggle-general-keyboard-leader ()
 ;;    "Toggle global keyboard leader."
 ;;    (interactive)
-;;    (setq xc/plover-enabled (not xc/plover-enabled))
-;;    (run-hooks 'xc/steno-hook))
+;;    (setq jl/plover-enabled (not jl/plover-enabled))
+;;    (run-hooks 'jl/steno-hook))
 ;;
 ;;  (general-after-init
 ;;
@@ -722,7 +711,7 @@ Run whitespace-cleanup on save unless
 ;;    ;;  ;; "<prior>" "<escape>"
 ;;    ;;  )
 ;;
-;;    (if (eq xc/device 'windows)
+;;    (if (eq jl/device 'windows)
 ;;        (general-def :keymaps 'override
 ;;          :prefix "C-x i"
 ;;          "b" '(lambda () (interactive) (find-file "C:/Users/mtrzcinski/Documents/notes/brag.org"))
@@ -749,18 +738,18 @@ Run whitespace-cleanup on save unless
 ;;    (general-def :keymaps 'override
 ;;      "<vertical-line> <mouse-3>" 'balance-windows  ; right-click on vertical to balance-windows
 ;;      "C-x s" 'save-buffer
-;;      "<f5>" '(lambda () (interactive) (progn (funcall 'xc/send-line-or-region)))
-;;      "<f8>" 'xc/switch-to-last-window
+;;      "<f5>" '(lambda () (interactive) (progn (funcall 'jl/send-line-or-region)))
+;;      "<f8>" 'jl/switch-to-last-window
 ;;      "C-<f8>" '(lambda () (interactive) (peut-gerer-switch-to 'main t 0))
 ;;      "S-<f8>" '(lambda () (interactive) (peut-gerer-switch-to 'shell t 0))
 ;;      "M-<f8>" '(lambda () (interactive) (call-interactively 'peut-gerer-select-project))
 ;;      "C-S-<f8>" '(lambda () (interactive) (call-interactively 'peut-gerer-create-shell))
 ;;      "C-M-<f8>" '(lambda () (interactive) (call-interactively 'peut-gerer-activate-project))
-;;      "M-c" 'xc/copy-symbol-at-point
-;;      ;; "M-j" 'xc/helm-imenu ; navigate the file's structure (functions or otherwise)
+;;      "M-c" 'jl/copy-symbol-at-point
+;;      ;; "M-j" 'jl/helm-imenu ; navigate the file's structure (functions or otherwise)
 ;;      "M-j" 'helm-semantic-or-imenu ; navigate the file's structure (functions or otherwise)
-;;      ;; "M-j" 'xc/python-occur-definitions
-;;      "M-y" 'xc/yank-pop-forwards  ; todo but p is not yank... (use C-p for evil-paste-pop)
+;;      ;; "M-j" 'jl/python-occur-definitions
+;;      "M-y" 'jl/yank-pop-forwards  ; todo but p is not yank... (use C-p for evil-paste-pop)
 ;;      "C-M-y" 'helm-show-kill-ring
 ;;      "C-M-j" 'helm-swoop  ; swoop (S)pecific thing (at point)
 ;;      "C-j" 'helm-swoop-without-pre-input ; enter navigate-state
@@ -770,16 +759,16 @@ Run whitespace-cleanup on save unless
 ;;
 ;;      "<f7>" '(lambda() (interactive)
 ;;                 (save-some-buffers t nil)
-;;                 (if xc/kill-python-p
-;;                     (xc/kill-python))  ; kills aws cli commands
+;;                 (if jl/kill-python-p
+;;                     (jl/kill-python))  ; kills aws cli commands
 ;;                 ;; (quit-process (get-buffer-process peut-gerer-shell))
 ;;                 (peut-gerer-send-command peut-gerer-command))
 ;;      "C-<f7>" '(lambda () (interactive) (call-interactively 'peut-gerer-send-command))
 ;;      ;; can use to create new *shell* after load
 ;;      "<f10>" '(lambda() (interactive)
 ;;                 (save-some-buffers t nil)
-;;                 (if xc/kill-python-p
-;;                     (xc/kill-python))  ; kills aws cli commands
+;;                 (if jl/kill-python-p
+;;                     (jl/kill-python))  ; kills aws cli commands
 ;;                 ;; (quit-process (get-buffer-process peut-gerer-shell))
 ;;                 (peut-gerer-send-command peut-gerer-command))
 ;;      "C-<f10>" '(lambda () (interactive) (call-interactively 'peut-gerer-send-command))
@@ -789,45 +778,45 @@ Run whitespace-cleanup on save unless
 ;;      "C-h R" 'elisp-index-search ; C-h r is 'info-emacs-manual by default
 ;;      "C-h C-f" 'find-function
 ;;      "C-h C-w" 'define-word-at-point ; masks define-no-warranty
-;;      "C-x a d" 'xc/define-abbrev
+;;      "C-x a d" 'jl/define-abbrev
 ;;      "C-x b" 'helm-buffers-list
 ;;      "C-x g" 'magit-status
 ;;      "C-x R" 'magit-list-repositories ; C-x r clashes with rectangular edit
 ;;      "C-x o" 'ace-window
 ;;      "C-c C-w" 'other-window
-;;      "C-c C-p" 'xc/switch-to-last-window
+;;      "C-c C-p" 'jl/switch-to-last-window
 ;;      "M-o" 'other-frame
 ;;      "M-v" 'other-window
 ;;      "M-V" '(lambda () (interactive) (other-window -1))
-;;      "C-S-v" 'xc/switch-to-last-window
-;;      "C-x n D" 'xc/narrow-to-defun-indirect
+;;      "C-S-v" 'jl/switch-to-last-window
+;;      "C-x n D" 'jl/narrow-to-defun-indirect
 ;;      "<f1>" '(lambda ()
 ;;                (interactive)
-;;                (if xc/on-demand-window
-;;                    (call-interactively 'xc/on-demand-window-goto)
+;;                (if jl/on-demand-window
+;;                    (call-interactively 'jl/on-demand-window-goto)
 ;;                  (call-interactively 'ace-window)))
-;;      "S-<f1>" 'xc/on-demand-window-set
+;;      "S-<f1>" 'jl/on-demand-window-set
 ;;      "C-<f1>" 'ace-window
 ;;      "C-=" 'iedit-mode
-;;      "<pause>" 'xc/punch-timecard
-;;      "M-l" 'xc/recenter-window-top-bottom
+;;      "<pause>" 'jl/punch-timecard
+;;      "M-l" 'jl/recenter-window-top-bottom
 ;;      )
 ;;
 ;;    (general-def :keymaps 'override
 ;;      :states '(normal insert emacs)
-;;      (general-chord "jk") 'xc/newline-without-break-of-line
+;;      (general-chord "jk") 'jl/newline-without-break-of-line
 ;;      (general-chord "hh") 'evil-emacs-state
 ;;      (general-chord "HH") 'evil-insert-state
 ;;      "C-;" 'comment-dwim-2
 ;;      "<f9>" 'save-buffer
 ;;      "C-<f9>" 'write-file
-;;      "S-<f9>" 'xc/backup-region-or-buffer
-;;      "\M-Q" 'xc/unfill-paragraph
+;;      "S-<f9>" 'jl/backup-region-or-buffer
+;;      "\M-Q" 'jl/unfill-paragraph
 ;;      )
 ;;
 ;;    (general-def :keymaps 'global-map
-;;      "C-a" 'xc/smart-beginning-of-line
-;;      "<home>" 'xc/smart-beginning-of-line
+;;      "C-a" 'jl/smart-beginning-of-line
+;;      "<home>" 'jl/smart-beginning-of-line
 ;;      "C-M-S-t" 'transpose-regions
 ;;      )
 ;;
@@ -868,27 +857,27 @@ Run whitespace-cleanup on save unless
 ;;
 ;;    ;; (general-def :states '(normal visual)
 ;;      ;; :prefix "SPC"
-;;   (xc/steno-define '(normal visual)
+;;   (jl/steno-define '(normal visual)
 ;;       ";" 'comment-dwim-2
 ;;       "=" 'er/expand-region
 ;;       "+" 'er/contract-region
 ;;       "b" 'helm-buffers-list
 ;;       "f" 'find-file
 ;;       "F" 'ffap-other-window
-;;       "g" 'xc/open-file-browser
+;;       "g" 'jl/open-file-browser
 ;;       "h" 'info
 ;;       "i" '(lambda () (interactive) (find-file "~/.emacs.d/init.el"))
 ;;       "k" 'kill-buffer
 ;;       "o" 'ace-window
 ;;       "r" '(lambda() (interactive)
 ;;             (save-some-buffers t nil)
-;;             (if xc/kill-python-p
-;;                 (xc/kill-python))  ; kills aws cli commands
+;;             (if jl/kill-python-p
+;;                 (jl/kill-python))  ; kills aws cli commands
 ;;             (peut-gerer-send-command peut-gerer-command))
 ;;       "s" 'save-buffer
-;;       "t" 'xc/open-terminal
+;;       "t" 'jl/open-terminal
 ;;       "x" 'eval-expression
-;;       "p" 'xc/pop-buffer-into-frame
+;;       "p" 'jl/pop-buffer-into-frame
 ;;       )
 ;;
 ;;    (general-define-key :keymaps 'anaconda-mode-map
@@ -897,8 +886,8 @@ Run whitespace-cleanup on save unless
 ;;     "_" #'(lambda () (interactive) (insert "-"))
 ;;     )
 ;;    (general-def :keymaps 'anaconda-mode-map
-;;      "<apps>" 'xc/kill-python
-;;      "<f6>" 'xc/insert-breakpoint
+;;      "<apps>" 'jl/kill-python
+;;      "<f6>" 'jl/insert-breakpoint
 ;;      "<C-S-f10>" 'peut-gerer-set-command-to-current-file
 ;;      "<S-f10>" 'peut-gerer-buffer-file-to-shell
 ;;      "<C-S-f7>" 'peut-gerer-set-command-to-current-file
@@ -916,7 +905,7 @@ Run whitespace-cleanup on save unless
 ;;      "C-l" 'comint-clear-buffer
 ;;      "C-x C-l" 'recenter-top-bottom
 ;;      "C-r" 'comint-history-isearch-backward
-;;      "<apps>" 'xc/kill-python
+;;      "<apps>" 'jl/kill-python
 ;;      )
 ;;
 ;;    (general-def :keymaps 'dired-mode-map
@@ -950,7 +939,7 @@ Run whitespace-cleanup on save unless
 ;;    ;; (general-def :keymaps 'emacs-lisp-mode-map
 ;;      ;; :states 'normal
 ;;      ;; :prefix "SPC"
-;;    (xc/steno-define :keymaps 'emacs-lisp-mode-map
+;;    (jl/steno-define :keymaps 'emacs-lisp-mode-map
 ;;                     :states 'normal
 ;;      "e" 'eval-last-sexp
 ;;      )
@@ -979,9 +968,9 @@ Run whitespace-cleanup on save unless
 ;;    ;; https://stackoverflow.com/a/65100142/5065796
 ;;    (general-def :keymaps 'Info-mode-map
 ;;      "a" 'info-apropos
-;;      "G" '(lambda () (interactive) (xc/Info-current-node-to-url 4))
+;;      "G" '(lambda () (interactive) (jl/Info-current-node-to-url 4))
 ;;      "P" '(lambda () (interactive) (Info-goto-node "(python)"))
-;;      "U" 'xc/Info-current-node-to-url
+;;      "U" 'jl/Info-current-node-to-url
 ;;      "h" 'nil  ; hitting 'h' by accident kills all window arrangement
 ;;      )
 ;;
@@ -989,19 +978,19 @@ Run whitespace-cleanup on save unless
 ;;      ;;:states 'normal
 ;;      ;;:prefix "SPC"
 ;;
-;;    (xc/steno-define :keymaps 'ledger-mode-map
+;;    (jl/steno-define :keymaps 'ledger-mode-map
 ;;                     :states 'normal
 ;;      ;; "n" 'ledger-display-balance-at-point
 ;;      "d" '(lambda () (interactive) (scroll-other-window-down 1))
 ;;      "u" '(lambda () (interactive) (scroll-other-window 1))
-;;      "n" 'xc/balance-at-point
+;;      "n" 'jl/balance-at-point
 ;;      "r" 'ledger-report
 ;;      "a" 'ledger-post-align-dwim
 ;;      "t" 'ledger-add-transaction
 ;;      "c" 'ledger-fully-complete-xact
-;;      ";" 'xc/toggle-comment-contiguous-lines
-;;      "k" 'xc/ledger-kill-current-transaction
-;;      "y" 'xc/ledger-kill-ring-save-current-transaction
+;;      ";" 'jl/toggle-comment-contiguous-lines
+;;      "k" 'jl/ledger-kill-current-transaction
+;;      "y" 'jl/ledger-kill-ring-save-current-transaction
 ;;      "[" 'evil-numbers/dec-at-pt
 ;;      "]" 'evil-numbers/inc-at-pt
 ;;      "g" 'bm-common-next
@@ -1030,7 +1019,7 @@ Run whitespace-cleanup on save unless
 ;;
 ;;    ;; (general-def :keymaps 'occur-mode-map
 ;;    ;;   ;; "<escape>" 'quit-window
-;;    ;;   "<tab>" '(lambda () (interactive) (occur-mode-mouse-goto) (xc/switch-to-last-window))
+;;    ;;   "<tab>" '(lambda () (interactive) (occur-mode-mouse-goto) (jl/switch-to-last-window))
 ;;    ;;   "RET" '(lambda () (interactive) (occur-mode-goto-occurrence) (with-current-buffer "*Occur*" (quit-window)))
 ;;    ;;   )
 ;;
@@ -1044,7 +1033,7 @@ Run whitespace-cleanup on save unless
 ;;      ;;:states 'normal
 ;;      ;;:prefix "SPC"
 ;;
-;;    (xc/steno-define :keymaps 'org-mode-map
+;;    (jl/steno-define :keymaps 'org-mode-map
 ;;                     :states 'normal
 ;;
 ;;      "SPC" 'org-ctrl-c-ctrl-c
@@ -1061,15 +1050,15 @@ Run whitespace-cleanup on save unless
 ;;    ;; (general-def :keymaps 'python-mode-map
 ;;    ;;   :states 'normal
 ;;    ;;   :prefix "SPC"
-;;    ;;   "d" 'xc/python-occur-definitions
-;;    ;;   "c" 'xc/string-inflection-style-cycle
-;;    ;;   "u" 'xc/pyside-lookup
+;;    ;;   "d" 'jl/python-occur-definitions
+;;    ;;   "c" 'jl/string-inflection-style-cycle
+;;    ;;   "u" 'jl/pyside-lookup
 ;;    ;;   )
 ;;
 ;;    (general-def :keymaps 'python-mode-map
-;;      "<apps>" 'xc/kill-python
-;;      "<f6>" 'xc/insert-breakpoint
-;;      "S-<f6>" '(lambda () (interactive) (xc/insert-breakpoint "breakpoint()")) ; pdb
+;;      "<apps>" 'jl/kill-python
+;;      "<f6>" 'jl/insert-breakpoint
+;;      "S-<f6>" '(lambda () (interactive) (jl/insert-breakpoint "breakpoint()")) ; pdb
 ;;      "<C-S-f10>" 'peut-gerer-set-command-to-current-file
 ;;      "<S-f10>" '(lambda () (interactive) (quit-process (get-buffer-process peut-gerer-shell)) (peut-gerer-buffer-file-to-shell))
 ;;      "<C-S-f7>" 'peut-gerer-set-command-to-current-file
@@ -1111,7 +1100,7 @@ Run whitespace-cleanup on save unless
 ;;      )
 ;;    )
 ;;
-;;  (if xc/debug (message "general.el")))
+;;  (if jl/debug (message "general.el")))
 
 
 (use-package elpher
@@ -1154,7 +1143,7 @@ Run whitespace-cleanup on save unless
           python-shell-interpreter-args "--simple-prompt")
     (setq elpy-rpc-python-command "python"))
 
-  (if xc/debug (message "elpy")))
+  (if jl/debug (message "elpy")))
 
 
 (use-package erc
@@ -1171,7 +1160,7 @@ Run whitespace-cleanup on save unless
   :init (require 'ess-site)
   :config
 
-  (if xc/debug (message "ess")))
+  (if jl/debug (message "ess")))
 
 
 (use-package evil
@@ -1196,7 +1185,7 @@ Run whitespace-cleanup on save unless
   (setq evil-undo-system 'undo-redo)
 
   ;; Coordinate states with cursor color
-  (if (not (eq xc/device 'termux))
+  (if (not (eq jl/device 'termux))
       (progn
         (setq evil-emacs-state-cursor '("SkyBlue2" bar))
         (setq evil-normal-state-cursor '("DarkGoldenrod2" box))
@@ -1212,7 +1201,7 @@ Run whitespace-cleanup on save unless
 
   (add-hook 'python-mode-hook #'hs-minor-mode)
 
-  (if xc/debug (message "evil")))
+  (if jl/debug (message "evil")))
 
 
 (use-package evil-lion
@@ -1221,7 +1210,7 @@ Run whitespace-cleanup on save unless
   :config
   (evil-lion-mode 1)
 
-  (if xc/debug (message "evil-lion")))
+  (if jl/debug (message "evil-lion")))
 
 
 (use-package evil-numbers
@@ -1229,7 +1218,7 @@ Run whitespace-cleanup on save unless
   :straight (:fork "excalamus/evil-numbers")
   :config
 
-  (if xc/debug (message "evil-numbers")))
+  (if jl/debug (message "evil-numbers")))
 
 
 (use-package evil-surround
@@ -1238,7 +1227,7 @@ Run whitespace-cleanup on save unless
   :config
   (global-evil-surround-mode 1)
 
-  (if xc/debug (message "evil-surround")))
+  (if jl/debug (message "evil-surround")))
 
 
 (use-package expand-region
@@ -1246,7 +1235,7 @@ Run whitespace-cleanup on save unless
   :straight (:fork "excalamus/expand-region.el")
   :config
 
-  (if xc/debug (message "expand-region.el")))
+  (if jl/debug (message "expand-region.el")))
 
 
 (use-package flycheck
@@ -1254,7 +1243,7 @@ Run whitespace-cleanup on save unless
   :straight (:fork "excalamus/flycheck")
   :config
 
-  (if xc/debug (message "flycheck")))
+  (if jl/debug (message "flycheck")))
 
 
 (straight-use-package 'flymake)
@@ -1265,7 +1254,7 @@ Run whitespace-cleanup on save unless
   :straight (:fork "excalamus/free-keys")
   :config
 
-  (if xc/debug (message "free-keys")))
+  (if jl/debug (message "free-keys")))
 
 
 (use-package fold-this
@@ -1273,7 +1262,7 @@ Run whitespace-cleanup on save unless
   :straight (:fork "excalamus/fold-this.el")
   :config
 
-  (if xc/debug (message "fold-this.el")))
+  (if jl/debug (message "fold-this.el")))
 
 
 (use-package git-timemachine
@@ -1281,7 +1270,7 @@ Run whitespace-cleanup on save unless
   :straight (:host github :repo "excalamus/git-timemachine")
   :config
 
-  (if xc/debug (message "git-timemachine")))
+  (if jl/debug (message "git-timemachine")))
 
 
 (use-package helm
@@ -1315,21 +1304,21 @@ Run whitespace-cleanup on save unless
                                       (buffer-substring mrkr (line-end-position))))
                        (cons func-name mrkr))))))
 
-  (defvar xc/helm-imenu-source  (helm-make-source "Imenu" 'helm-imenu-source
+  (defvar jl/helm-imenu-source  (helm-make-source "Imenu" 'helm-imenu-source
                                   :candidate-transformer
                                   'xc--helm-imenu-transformer))
-  (defun xc/helm-imenu ()
+  (defun jl/helm-imenu ()
     (interactive)
     (let ((imenu-auto-rescan t)
           (imenu-sort-function #'imenu--sort-by-position)
           (str (thing-at-point 'symbol))
           (helm-execute-action-at-once-if-one
            helm-imenu-execute-action-at-once-if-one))
-      (helm :sources 'xc/helm-imenu-source
+      (helm :sources 'jl/helm-imenu-source
             :preselect str
             :buffer "*helm imenu*")))
 
-  (if xc/debug (message "helm")))
+  (if jl/debug (message "helm")))
 
 
 (use-package helm-swoop
@@ -1337,14 +1326,14 @@ Run whitespace-cleanup on save unless
   :straight (:fork "excalamus/helm-swoop")
   :config
 
-  (defun xc/-reset-linum-hack ()
+  (defun jl/-reset-linum-hack ()
     "Hack to reset line numbers by switching to next buffer and switching back."
     (progn
       (switch-to-buffer (other-buffer (current-buffer) 1))
       (switch-to-buffer (other-buffer (current-buffer) 1))))
 
-  (add-hook 'helm-after-action-hook 'xc/-reset-linum-hack)
-  (add-hook 'helm-quit-hook 'xc/-reset-linum-hack)
+  (add-hook 'helm-after-action-hook 'jl/-reset-linum-hack)
+  (add-hook 'helm-quit-hook 'jl/-reset-linum-hack)
 
   ;; toggle syntax coloring in suggestions
   (setq helm-swoop-speed-or-color t)
@@ -1364,14 +1353,14 @@ Run whitespace-cleanup on save unless
                       :inherit            'secondary-selection)
 
 
-  (if xc/debug (message "helm-swoop")))
+  (if jl/debug (message "helm-swoop")))
 
 
 ;; bundled with emacs
 (use-package hi-lock
   :after (:all org)
   :init
-  (defun xc/toggle-global-hl-line-sticky-flag ()
+  (defun jl/toggle-global-hl-line-sticky-flag ()
     "Toggle whether highlighted line persists when switching windows.
 
     This function does not currently behave as expected.  Resetting
@@ -1388,7 +1377,7 @@ Run whitespace-cleanup on save unless
     (global-hl-line-mode -1)
     (global-hl-line-mode 1))
 
-  (defface xc/hi-comint
+  (defface jl/hi-comint
     '((t (:background "dim gray")))
     "Face for comint mode."
     :group 'hi-lock-faces)
@@ -1402,7 +1391,7 @@ Run whitespace-cleanup on save unless
   (set-face-attribute 'hi-green  nil                       :foreground "gray30" :distant-foreground "light green" :box "dim gray")
   (set-face-attribute 'hi-blue   nil                       :foreground "gray30" :distant-foreground "light blue " :box "dim gray")
 
-  (if xc/debug (message "hi-lock")))
+  (if jl/debug (message "hi-lock")))
 
 
 (use-package hl-todo
@@ -1416,7 +1405,7 @@ Run whitespace-cleanup on save unless
           ("NOTE"   . "#95c76f")))
   (global-hl-todo-mode)
 
-  (if xc/debug (message "hl-todo")))
+  (if jl/debug (message "hl-todo")))
 
 
 (use-package htmlize
@@ -1424,7 +1413,7 @@ Run whitespace-cleanup on save unless
   :straight (:fork "excalamus/emacs-htmlize")
   :config
 
-  (if xc/debug (message "emacs-htmlize")))
+  (if jl/debug (message "emacs-htmlize")))
 
 
 (use-package iedit
@@ -1432,7 +1421,7 @@ Run whitespace-cleanup on save unless
   :straight (:fork "excalamus/iedit")
   :config
 
-  (if xc/debug (message "iedit")))
+  (if jl/debug (message "iedit")))
 
 ;; on windows, you need to install Hunspell
 ;; https://sourceforge.net/projects/ezwinports/files/
@@ -1455,7 +1444,7 @@ Run whitespace-cleanup on save unless
   (setq keycast-separator-width 30)
   (set-face-attribute 'keycast-key nil :background "gray29" :foreground "yellow3" :height 1.2)
   (set-face-attribute 'keycast-command nil :background "gray29" :foreground "yellow3" :height 1.2 :weight 'bold :box '(:line-width -3 :style released-button))
-  (if xc/debug (message "keycast")))
+  (if jl/debug (message "keycast")))
 
 
 (use-package language-detection
@@ -1509,7 +1498,7 @@ Run whitespace-cleanup on save unless
   (setq shr-external-rendering-functions
         '((pre . eww-tag-pre)))
 
-  (if xc/debug (message "language-detection.el")))
+  (if jl/debug (message "language-detection.el")))
 
 
 (use-package ledger-mode
@@ -1522,24 +1511,24 @@ Run whitespace-cleanup on save unless
   (setq ledger-highlight-xact-under-point nil)
   (setq ledger-report-resize-window nil)
 
-  (defvar xc/ledger-highlight-regexp "dummy"
+  (defvar jl/ledger-highlight-regexp "dummy"
     "Regexp for matching lines in Ledger Report buffer.")
 
-  (defun xc/set-ledger-highlight-regexp (reg)
-    "Set `xc/ledger-highlight-regexp' to REG."
+  (defun jl/set-ledger-highlight-regexp (reg)
+    "Set `jl/ledger-highlight-regexp' to REG."
     (interactive
      (list (read-string "Regexp: ")))
     (let ((quoted (regexp-quote reg)))
-      (setq xc/ledger-highlight-regexp quoted)
-      (message "Set `xc/ledger-highlight-regexp' to %s"
-               xc/ledger-highlight-regexp)))
+      (setq jl/ledger-highlight-regexp quoted)
+      (message "Set `jl/ledger-highlight-regexp' to %s"
+               jl/ledger-highlight-regexp)))
 
   (add-hook 'ledger-report-after-report-hook
             (lambda () (highlight-lines-matching-regexp
-                        xc/ledger-highlight-regexp
+                        jl/ledger-highlight-regexp
                         'hi-yellow)))
 
-  (if xc/debug (message "ledger-mode")))
+  (if jl/debug (message "ledger-mode")))
 
 
 (use-package lsp-jedi
@@ -1588,7 +1577,7 @@ Run whitespace-cleanup on save unless
           ("Path"    99 magit-repolist-column-path                   ())
           ))
 
-  (if xc/debug (message "magit")))
+  (if jl/debug (message "magit")))
 
 ;; Jim: I'm not 100% sure I got this right (esp, wrt init and config)
 
@@ -1607,7 +1596,7 @@ Run whitespace-cleanup on save unless
   :straight (:fork "excalamus/markdown-toc")
   :config
 
-  (if xc/debug (message "markdown-toc")))
+  (if jl/debug (message "markdown-toc")))
 
 
 (use-package nameless
@@ -1617,7 +1606,7 @@ Run whitespace-cleanup on save unless
   (add-hook 'emacs-lisp-mode-hook #'nameless-mode)
   :config
 
-  (if xc/debug (message "nameless")))
+  (if jl/debug (message "nameless")))
 
 
 (use-package nov
@@ -1625,14 +1614,14 @@ Run whitespace-cleanup on save unless
   :init
   :config
 
-  (if xc/debug (message "nov")))
+  (if jl/debug (message "nov")))
 
 
-(defun xc/-org-mode-config ()
+(defun jl/-org-mode-config ()
   ;; (require 'ox-texinfo)
   ;; (require 'ox-md)
 
-  (if (eq xc/device 'gnu/linux)
+  (if (eq jl/device 'gnu/linux)
       (setq org-babel-python-command "python3"))
   (setq org-adapt-indentation nil)
   (setq org-edit-src-content-indentation 0)
@@ -1672,7 +1661,7 @@ Run whitespace-cleanup on save unless
      (scheme . t)
      ))
 
-  (defun xc/new-clock-task ()
+  (defun jl/new-clock-task ()
     "Switch to new task by clocking in after clocking out."
     (interactive)
     (org-clock-out)
@@ -1684,23 +1673,23 @@ Run whitespace-cleanup on save unless
   (advice-add 'org-archive-subtree :after #'org-save-all-org-buffers))
 
 ;; https://github.com/raxod502/straight.el/issues/624
-(if (eq xc/device 'gnu/linux)
+(if (eq jl/device 'gnu/linux)
 
     ;; use latest org
     (use-package org
       :straight org
       :config
-      (xc/-org-mode-config)
+      (jl/-org-mode-config)
 
-      (if xc/debug (message "org")))
+      (if jl/debug (message "org")))
 
   ;; use built-in
   (use-package org
     :straight (:type built-in)
     :config
-    (xc/-org-mode-config)
+    (jl/-org-mode-config)
 
-    (if xc/debug (message "org"))))
+    (if jl/debug (message "org"))))
 
 
 (use-package peut-publier
@@ -1709,7 +1698,7 @@ Run whitespace-cleanup on save unless
   :straight (:repo "https://github.com/excalamus/peut-publier.git")
   :config
 
-  (if xc/debug (message "peut-publier")))
+  (if jl/debug (message "peut-publier")))
 
 ;; 
 (use-package peut-gerer
@@ -1734,7 +1723,7 @@ Run whitespace-cleanup on save unless
   ;;              :activate "C:\\Users\\excalamus\\Anaconda3\\condabin\\conda.bat activate"
   ;;              )))
 
-  (if (eq xc/device 'gnu/linux)
+  (if (eq jl/device 'gnu/linux)
       (setq peut-gerer-command-prefix "python3"))
 
   (setq peut-gerer-after-activate-functions '(pyvenv-activate))
@@ -1757,35 +1746,35 @@ Run whitespace-cleanup on save unless
   ;;                      (member (string-trim (buffer-name) "*" "*")
   ;;                              peut-gerer--active-projects-alist)))))
 
-  ;; quick hack; create an xc/on-demand-window (C-<f1>), then you can
+  ;; quick hack; create an jl/on-demand-window (C-<f1>), then you can
   ;; select a region anywhere and send that region to the odw.  For
   ;; use in exploratory debugging.  Try stuff in the repl, then send
   ;; that to the script.
   (add-to-list 'right-click-context-global-menu-tree
                '("Send region to on-demand-window"
-                 :call (xc/send-line-or-region nil nil t)))
+                 :call (jl/send-line-or-region nil nil t)))
 
   (add-to-list 'right-click-context-global-menu-tree
                '("Send to shell"
-                 :call (xc/send-line-or-region nil nil nil peut-gerer-shell)))
+                 :call (jl/send-line-or-region nil nil nil peut-gerer-shell)))
 
   (add-to-list 'right-click-context-global-menu-tree
                '("Search..."
-                 ("pyside" :call (xc/search-Qt))
-                 ("sdl-wiki" :call (xc/search-sdl-wiki))
-                 ;; ("QGIS" :call (xc/search-qgis))
-                 ("Open Jira ticket" :call (xc/search-jira))
-                 ("ddg" :call (xc/search-ddg))))
+                 ("pyside" :call (jl/search-Qt))
+                 ("sdl-wiki" :call (jl/search-sdl-wiki))
+                 ;; ("QGIS" :call (jl/search-qgis))
+                 ("Open Jira ticket" :call (jl/search-jira))
+                 ("ddg" :call (jl/search-ddg))))
 
-  (if (eq xc/device 'gnu/linux)
+  (if (eq jl/device 'gnu/linux)
       (add-to-list 'right-click-context-global-menu-tree
-                   '("Search for in SDL" :call (xc/search-sdl)))
+                   '("Search for in SDL" :call (jl/search-sdl)))
     (add-to-list 'right-click-context-global-menu-tree
-                 '("Search for in PySide" :call (xc/search-Qt))))
+                 '("Search for in PySide" :call (jl/search-Qt))))
 
   ;; (pop right-click-context-global-menu-tree)
 
-  (if xc/debug (message "peut-gerer")))
+  (if jl/debug (message "peut-gerer")))
 
 
 (use-package qml-mode
@@ -1794,7 +1783,7 @@ Run whitespace-cleanup on save unless
   :config
   (add-to-list 'auto-mode-alist '("\\.qml\\'" . qml-mode))
 
-  (if xc/debug (message "qml-mode")))
+  (if jl/debug (message "qml-mode")))
 
 
 (use-package right-click-context
@@ -1803,7 +1792,7 @@ Run whitespace-cleanup on save unless
   :config
   (right-click-context-mode 1)
 
-  (if xc/debug (message "right-click-context")))
+  (if jl/debug (message "right-click-context")))
 
 
 (use-package rg
@@ -1811,7 +1800,7 @@ Run whitespace-cleanup on save unless
   :straight (:fork "excalamus/rg.el")
   :config
 
-  (if xc/debug (message "rg.el")))
+  (if jl/debug (message "rg.el")))
 
 
 ;; skeeto fork
@@ -1820,7 +1809,7 @@ Run whitespace-cleanup on save unless
   :straight (:fork "excalamus/emacs-web-server")
   :config
 
-  (if xc/debug (message "emacs-web-server")))
+  (if jl/debug (message "emacs-web-server")))
 
 
 (use-package smartparens
@@ -1834,14 +1823,14 @@ Run whitespace-cleanup on save unless
   (sp-pair "\"" "\"" :unless '(sp-point-before-word-p sp-point-after-word-p))
   (smartparens-global-mode 1)
 
-  (if xc/debug (message "smartparens")))
+  (if jl/debug (message "smartparens")))
 
 
 (use-package string-inflection
   :after (:all org)
   :straight (:fork "excalamus/string-inflection")
   :config
-  (defun xc/-string-inflection-style-cycle-function (str)
+  (defun jl/-string-inflection-style-cycle-function (str)
     "foo-bar => foo_bar => FOO_BAR => fooBar => FooBar => foo-bar"
     (cond
      ;; foo-bar => foo_bar
@@ -1860,14 +1849,14 @@ Run whitespace-cleanup on save unless
      ((string-inflection-camelcase-p str)
       (string-inflection-kebab-case-function str))))
 
-  (defun xc/string-inflection-style-cycle ()
+  (defun jl/string-inflection-style-cycle ()
     "foo-bar => foo_bar => FOO_BAR => fooBar => FooBar => foo-bar"
     (interactive)
     (string-inflection-insert
-     (xc/-string-inflection-style-cycle-function
+     (jl/-string-inflection-style-cycle-function
       (string-inflection-get-current-word))))
 
-  (if xc/debug (message "string-inflection")))
+  (if jl/debug (message "string-inflection")))
 
 
 (use-package sql
@@ -1878,7 +1867,7 @@ Run whitespace-cleanup on save unless
   ;;     (load "~/sql-connections.el"))
   (setq sql-postgres-login-params nil)
 
-  (if xc/debug (message "sql")))
+  (if jl/debug (message "sql")))
 
 
 (use-package sql-indent
@@ -1886,7 +1875,7 @@ Run whitespace-cleanup on save unless
   :straight (:fork "excalamus/emacs-sql-indent")
   :config
 
-  (if xc/debug (message "emacs-sql-indent")))
+  (if jl/debug (message "emacs-sql-indent")))
 
 
 (use-package web-mode
@@ -1895,7 +1884,7 @@ Run whitespace-cleanup on save unless
   :config
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
-  (if xc/debug (message "web-mode")))
+  (if jl/debug (message "web-mode")))
 
 
 (use-package xref
@@ -1915,7 +1904,7 @@ Run whitespace-cleanup on save unless
   :config
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
-  (if xc/debug (message "yaml-mode")))
+  (if jl/debug (message "yaml-mode")))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1923,7 +1912,7 @@ Run whitespace-cleanup on save unless
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-(defun xc/backup-region-or-buffer (&optional buffer-or-name file beg end)
+(defun jl/backup-region-or-buffer (&optional buffer-or-name file beg end)
   "Write copy of BUFFER-OR-NAME between BEG and END to FILE.
 
 BUFFER-OR-NAME is either a buffer object or name. Uses current
@@ -1957,7 +1946,7 @@ See URL `https://stackoverflow.com/a/18780453/5065796'."
     new))
 
 
-(defun xc/define-abbrev (name expansion &optional fixed table interp)
+(defun jl/define-abbrev (name expansion &optional fixed table interp)
   "Define abbrev with NAME and EXPANSION for last word(s) before point in TABLE.
 
 FIXED sets case-fixed; default is nil.
@@ -2000,17 +1989,17 @@ Abbrevs are overwritten without prompt when called from Lisp.
         (define-abbrev table name expansion nil :case-fixed fixed))))
 
 
-(defun xc/comint-exec-hook ()
+(defun jl/comint-exec-hook ()
   (interactive)
-  (highlight-lines-matching-regexp "-->" 'xc/hi-comint)
+  (highlight-lines-matching-regexp "-->" 'jl/hi-comint)
   (setq comint-scroll-to-bottom-on-output t)
   (setq truncate-lines t)
   (set-window-scroll-bars (get-buffer-window (current-buffer)) nil nil 10 'bottom))
 
-(add-hook 'comint-exec-hook #'xc/comint-exec-hook)
+(add-hook 'comint-exec-hook #'jl/comint-exec-hook)
 
 
-(defun xc/copy-symbol-at-point ()
+(defun jl/copy-symbol-at-point ()
   "Place symbol at point in `kill-ring'."
   (interactive)
   (let* ((bounds (bounds-of-thing-at-point 'symbol))
@@ -2023,7 +2012,7 @@ Abbrevs are overwritten without prompt when called from Lisp.
 
 ;; todo, when universal, prompt for mode
 ;; https://stackoverflow.com/a/21058075/5065796
-(defun xc/create-scratch-buffer ()
+(defun jl/create-scratch-buffer ()
   "Create a new numbered scratch buffer."
   (interactive)
   (let ((n 0)
@@ -2042,19 +2031,19 @@ Abbrevs are overwritten without prompt when called from Lisp.
 ;; https://stackoverflow.com/a/1110487
 (eval-after-load "dired"
   '(progn
-     (defun xc/dired-find-file (&optional arg)
+     (defun jl/dired-find-file (&optional arg)
        "Open each of the marked files, or the file under the
 point, or when prefix arg, the next N files"
        (interactive "P")
        (mapc 'find-file (dired-get-marked-files nil arg)))
-     (define-key dired-mode-map "F" 'xc/dired-find-file)))
+     (define-key dired-mode-map "F" 'jl/dired-find-file)))
 
 ;; Auto-refresh dired on file change
 ;; https://superuser.com/a/566401/606203
 (add-hook 'dired-mode-hook 'auto-revert-mode)
 
 
-(defun xc/duplicate-buffer (&optional dup)
+(defun jl/duplicate-buffer (&optional dup)
   "Copy current buffer to new buffer named DUP.
 
 Default DUP name is `#<buffer-name>#'."
@@ -2070,7 +2059,7 @@ Default DUP name is `#<buffer-name>#'."
       (error "Duplicate buffer already exists"))))
 
 
-(defun xc/kill-all-buffers-in-frame ()
+(defun jl/kill-all-buffers-in-frame ()
   "Kill all buffers visible in selected frame."
   (interactive)
   (let ((buffer-save-without-query t))
@@ -2078,14 +2067,14 @@ Default DUP name is `#<buffer-name>#'."
                   nil (selected-frame))
     (delete-other-windows)))
 
-(defun xc/kill-frame-and-buffers ()
+(defun jl/kill-frame-and-buffers ()
   "Kill current frame along with its visible buffers."
   (interactive)
-  (xc/kill-all-buffers-in-frame)
+  (jl/kill-all-buffers-in-frame)
   (delete-frame nil t))
 
 
-(defun xc/emacs-standalone (&optional arg)
+(defun jl/emacs-standalone (&optional arg)
   "Start standalone instance of Emacs.
 
 Load Emacs without init file when called interactively.
@@ -2093,24 +2082,24 @@ Load Emacs without init file when called interactively.
 \(fn\)"
   (interactive "p")
   (cond ((eql arg 1)
-         (cond ((eq xc/device 'windows)
+         (cond ((eq jl/device 'windows)
                 (setq proc (start-process "cmd" nil "cmd.exe" "/C" "start" "C:/emacs-27.1-x86_64/bin/runemacs.exe")))
-               ((eq xc/device 'gnu/linux)
+               ((eq jl/device 'gnu/linux)
                 (setq proc (start-process "emacs" nil "/usr/bin/env" "emacs")))
-               ((eq xc/device 'termux)
+               ((eq jl/device 'termux)
                 (setq (start-process "emacs" nil "/data/data/com.termux/files/usr/bin/emacs")))))
         ((eql arg 4)
-         (cond ((eq xc/device 'windows)
+         (cond ((eq jl/device 'windows)
                 (setq proc (start-process "cmd" nil "cmd.exe" "/C" "start" "C:/emacs-27.1-x86_64/bin/runemacs.exe" "-q")))
-               ((eq xc/device 'gnu/linux)
+               ((eq jl/device 'gnu/linux)
                 (setq proc (start-process "emacs" nil "/usr/bin/env" "emacs" "--no-init-file")))
-               ((eq xc/device 'termux)
+               ((eq jl/device 'termux)
                 (setq (start-process "emacs" nil "/data/data/com.termux/files/usr/bin/emacs" "--no-init-file")))))
          (t (error "Invalid arg")))
         (set-process-query-on-exit-flag proc nil))
 
 
-(defun xc/get-file-name ()
+(defun jl/get-file-name ()
   "Put filename of current buffer on kill ring."
   (interactive)
   (let ((filename (buffer-file-name (current-buffer))))
@@ -2121,7 +2110,7 @@ Load Emacs without init file when called interactively.
       (message "Buffer not associated with a file"))))
 
 
-(defun xc/highlight-current-line ()
+(defun jl/highlight-current-line ()
   (interactive)
   (let ((regexp
          (regexp-quote
@@ -2130,7 +2119,7 @@ Load Emacs without init file when called interactively.
     (highlight-lines-matching-regexp regexp face)))
 
 
-(defun xc/Info-current-node-to-url (&optional arg)
+(defun jl/Info-current-node-to-url (&optional arg)
   "Put the url of the current Info node into the kill ring.
 
 The Info file name and current node are converted to a
@@ -2155,7 +2144,7 @@ put url into the kill ring."
     (message "%s" url)))
 
 
-(defun xc/search (&optional prefix engine beg end)
+(defun jl/search (&optional prefix engine beg end)
   "Search the web for something.
 
 If a region is selected, lookup using region defined by BEG and
@@ -2167,7 +2156,7 @@ point.  If there is nothing at point, ask for the search query."
                         ;; ("qgis" . "https://qgis.org/pyqgis/master/search.html?check_keywords=yes&area=default&q=%s")
                         ("sdl-wiki" . "https://wiki.libsdl.org/wiki/search/?q=%s")
                         ("sdl" . "https://wiki.libsdl.org/%s")
-                        ("jira" . ,(concat xc/atlassian "%s"))))
+                        ("jira" . ,(concat jl/atlassian "%s"))))
          (beg (or beg (if (use-region-p) (region-beginning)) nil))
          (end (or end (if (use-region-p) (region-end)) nil))
          (thing (thing-at-point 'symbol t))
@@ -2179,29 +2168,29 @@ point.  If there is nothing at point, ask for the search query."
          (search-string (url-encode-url (format (cdr (assoc engine engine-list)) query))))
     (browse-url-default-browser search-string)))
 
-(defun xc/search-ddg (&optional beg end)
+(defun jl/search-ddg (&optional beg end)
   (interactive)
-  (xc/search nil "ddg" beg end))
+  (jl/search nil "ddg" beg end))
 
-(defun xc/search-jira (&optional beg end)
+(defun jl/search-jira (&optional beg end)
   (interactive)
-  (xc/search nil "jira" beg end))
+  (jl/search nil "jira" beg end))
 
-(defun xc/search-qgis (&optional beg end)
+(defun jl/search-qgis (&optional beg end)
   (interactive)
-  (xc/search nil "qgis" beg end))
+  (jl/search nil "qgis" beg end))
 
-(defun xc/search-Qt (&optional beg end)
+(defun jl/search-Qt (&optional beg end)
   (interactive)
-  (xc/search nil "Qt" beg end))
+  (jl/search nil "Qt" beg end))
 
-(defun xc/search-sdl (&optional beg end)
+(defun jl/search-sdl (&optional beg end)
   (interactive)
-  (xc/search nil "sdl" beg end))
+  (jl/search nil "sdl" beg end))
 
-(defun xc/search-sdl-wiki (&optional beg end)
+(defun jl/search-sdl-wiki (&optional beg end)
   (interactive)
-  (xc/search nil "sdl-wiki" beg end))
+  (jl/search nil "sdl-wiki" beg end))
 
 
 (defun minibuffer-inactive-mode-hook-setup ()
@@ -2221,7 +2210,7 @@ Taken from URL
 (add-hook 'minibuffer-inactive-mode-hook 'minibuffer-inactive-mode-hook-setup)
 
 
-(defun xc/narrow-to-defun-indirect (&optional arg)
+(defun jl/narrow-to-defun-indirect (&optional arg)
   "Narrow to function or class with preceeding comments.
 
 Open in other window with prefix.  Enables
@@ -2240,7 +2229,7 @@ Open in other window with prefix.  Enables
     (funcall switch-fun buf)))
 
 
-(defun xc/newline-without-break-of-line ()
+(defun jl/newline-without-break-of-line ()
   "Create a new line without breaking the current line and move
 the cursor down."
   (interactive)
@@ -2249,7 +2238,7 @@ the cursor down."
     (newline-and-indent)))
 
 
-(defun xc/punch-timecard ()
+(defun jl/punch-timecard ()
   "Clock in or clock out.
 
 Assumes a 'timecard.org' file exists with format:
@@ -2276,7 +2265,7 @@ Assumes a 'timecard.org' file exists with format:
 
     * Local Variables
     # Local Variables:
-    # eval: (defun xc/-button-pressed (&optional button) (interactive) (org-clock-display))
+    # eval: (defun jl/-button-pressed (&optional button) (interactive) (org-clock-display))
     # eval: (define-button-type 'display-clock-button 'follow-link t 'action #'org-clock-display)
     # eval: (make-button 45 58 :type 'display-clock-button)
     # eval: (setq org-duration-format 'h:mm)
@@ -2321,31 +2310,31 @@ Assumes a 'timecard.org' file exists with format:
             (goto-char (point-min))
             (re-search-forward "* Timecard")
             (insert (format "\n** %s" todays-date))
-            (xc/punch-timecard)))))))
+            (jl/punch-timecard)))))))
 
 
-(defun xc/on-demand-window-set ()
+(defun jl/on-demand-window-set ()
   "Set the value of the on-demand window to current window."
   (interactive)
-  (setq xc/on-demand-window (selected-window))
-  ;; (setq xc/on-demand-buffer (current-buffer))
-  (message "Set on-demand window to: %s" xc/on-demand-window))
+  (setq jl/on-demand-window (selected-window))
+  ;; (setq jl/on-demand-buffer (current-buffer))
+  (message "Set on-demand window to: %s" jl/on-demand-window))
 
 
-(defun xc/on-demand-window-goto ()
-  "Goto `xc/on-demand-window' with `xc/on-demand-buffer'."
+(defun jl/on-demand-window-goto ()
+  "Goto `jl/on-demand-window' with `jl/on-demand-buffer'."
   (interactive)
-  (let ((win xc/on-demand-window))
-    (unless win (error "No on-demand window set! See `xc/on-demand-window-set'."))
-    (if (eq (selected-window) xc/on-demand-window)
-        (error "Already in `xc/on-demand-window'"))
+  (let ((win jl/on-demand-window))
+    (unless win (error "No on-demand window set! See `jl/on-demand-window-set'."))
+    (if (eq (selected-window) jl/on-demand-window)
+        (error "Already in `jl/on-demand-window'"))
     (let ((frame (window-frame win)))
       (raise-frame frame)
       (select-frame frame)
       (select-window win))))
 
 
-(defun xc/open-file-browser (&optional file)
+(defun jl/open-file-browser (&optional file)
   "Open file explorer to directory containing FILE.
 
 FILE may also be a directory."
@@ -2354,13 +2343,13 @@ FILE may also be a directory."
          (dir (expand-file-name (file-name-directory file))))
     (if dir
         (progn
-          (if (eq xc/device 'windows)
+          (if (eq jl/device 'windows)
               (browse-url-of-file dir)
             (start-process "thunar" nil "/run/current-system/profile/bin/thunar" file)))
       (error "No directory to open"))))
 
 
-(defun xc/open-terminal (&optional file)
+(defun jl/open-terminal (&optional file)
   "Open external terminal in directory containing FILE.
 
 FILE may also be a directory.
@@ -2369,7 +2358,7 @@ See URL `https://stackoverflow.com/a/13509208/5065796'"
   (interactive)
   (let* ((file (or (buffer-file-name (current-buffer)) default-directory))
          (dir (expand-file-name (file-name-directory file))))
-    (cond ((eq xc/device 'windows)
+    (cond ((eq jl/device 'windows)
            (let (;; create a cmd to create a cmd in desired directory
                  ;; /C Carries out the command specified by string and then stops.
                  ;; /K Carries out the command specified by string and continues.
@@ -2379,7 +2368,7 @@ See URL `https://stackoverflow.com/a/13509208/5065796'"
           (t (start-process "terminal" nil "/run/current-system/profile/bin/xfce4-terminal" (format "--working-directory=%s" dir))))))
 
 
-(defun xc/org-babel-goto-tangle-file ()
+(defun jl/org-babel-goto-tangle-file ()
   "Open tangle file associated with source block at point.
 
 Taken from URL `https://www.reddit.com/r/emacs/comments/jof1p3/visit_tangled_file_with_orgopenatpoint/'
@@ -2392,7 +2381,7 @@ Taken from URL `https://www.reddit.com/r/emacs/comments/jof1p3/visit_tangled_fil
         t)))
 
 
-(defun xc/pop-buffer-into-frame (&optional arg)
+(defun jl/pop-buffer-into-frame (&optional arg)
   "Pop current buffer into its own frame.
 
 With ARG (\\[universal-argument]) maximize frame."
@@ -2404,7 +2393,7 @@ With ARG (\\[universal-argument]) maximize frame."
           (toggle-frame-maximized) ))))
 
 
-(defun xc/rename-file-and-buffer (new-name)
+(defun jl/rename-file-and-buffer (new-name)
   "Renames both current buffer and file it's visiting to NEW-NAME.
 
 See URL `http://steve.yegge.googlepages.com/my-dot-emacs-file'"
@@ -2422,13 +2411,13 @@ See URL `http://steve.yegge.googlepages.com/my-dot-emacs-file'"
           (set-buffer-modified-p nil))))))
 
 
-(defun xc/send-line-or-region (&optional beg end advance buff)
+(defun jl/send-line-or-region (&optional beg end advance buff)
   "Send region defined by BEG and END to BUFF.
 
 Use current region if BEG and END not provided.  If no region
 provided, send entire line.  Create a new line when ADVANCE is
 non-nil.  Default BUFF is the buffer associated with
-`xc/on-demand-window'.  If BUFF has an associated process, send
+`jl/on-demand-window'.  If BUFF has an associated process, send
 region as input, otherwise just insert the region."
   (interactive (if (use-region-p)
                    (list (region-beginning) (region-end) nil nil)
@@ -2438,7 +2427,7 @@ region as input, otherwise just insert the region."
          (substr (string-trim
                   (or (and beg end (buffer-substring-no-properties beg end))
                       (buffer-substring-no-properties (line-beginning-position) (line-end-position)))))
-         (buff (or buff (window-buffer xc/on-demand-window)))
+         (buff (or buff (window-buffer jl/on-demand-window)))
          (proc (get-buffer-process buff)))
     (if substr
         (with-selected-window (get-buffer-window buff t)
@@ -2456,7 +2445,7 @@ region as input, otherwise just insert the region."
       (error "Invalid selection"))))
 
 
-(defun xc/smart-beginning-of-line ()
+(defun jl/smart-beginning-of-line ()
   "Move point to first non-whitespace character or to the beginning of the line.
 
 Move point to the first non-whitespace character on this line.
@@ -2471,7 +2460,7 @@ See URL `https://stackoverflow.com/a/145359'"
          (beginning-of-line))))
 
 
-(defun xc/switch-to-last-window ()
+(defun jl/switch-to-last-window ()
   "Switch to most recently used window.
 
 See URL `https://emacs.stackexchange.com/a/7411/15177'"
@@ -2484,7 +2473,7 @@ See URL `https://emacs.stackexchange.com/a/7411/15177'"
       (select-window win))))
 
 
-(defun xc/suicide ()
+(defun jl/suicide ()
   "Kill all Emacs processes."
   (interactive)
   (let ((cmd (if (eq system-type 'gnu/linux)
@@ -2493,19 +2482,19 @@ See URL `https://emacs.stackexchange.com/a/7411/15177'"
     (shell-command cmd)))
 
 
-(defun xc/toggle-plover ()
+(defun jl/toggle-plover ()
   "Toggle whether Plover is active."
   (interactive)
-  (if xc/plover-enabled
+  (if jl/plover-enabled
       (progn
-        (setq xc/plover-enabled nil)
+        (setq jl/plover-enabled nil)
         (message "Plover disabled"))
     (progn
-      (setq xc/plover-enabled t)
+      (setq jl/plover-enabled t)
       (message "Plover enabled"))))
 
 
-(defun xc/toggle-comment-contiguous-lines ()
+(defun jl/toggle-comment-contiguous-lines ()
   "(Un)comment contiguous lines around point."
   (interactive)
   (let ((pos (point)))
@@ -2515,7 +2504,7 @@ See URL `https://emacs.stackexchange.com/a/7411/15177'"
     (goto-char pos)))
 
 
-(defun xc/unfill-paragraph (&optional region)
+(defun jl/unfill-paragraph (&optional region)
   "Make multi-line paragraph into a single line of text.
 
 REGION unfills the region.  See URL
@@ -2527,7 +2516,7 @@ REGION unfills the region.  See URL
     (fill-paragraph nil region)))
 
 
-(defun xc/yank-pop-forwards (arg)
+(defun jl/yank-pop-forwards (arg)
   "Pop ARGth item off the kill ring.
 
 See URL `https://web.archive.org/web/20151230143154/http://www.emacswiki.org/emacs/KillingAndYanking'"
@@ -2535,7 +2524,7 @@ See URL `https://web.archive.org/web/20151230143154/http://www.emacswiki.org/ema
   (yank-pop (- arg)))
 
 
-(defun xc/minimize-window (&optional window)
+(defun jl/minimize-window (&optional window)
   (interactive)
   (when switch-to-buffer-preserve-window-point
     (window--before-delete-windows window))
@@ -2545,85 +2534,85 @@ See URL `https://web.archive.org/web/20151230143154/http://www.emacswiki.org/ema
    (- (window-min-delta window nil nil nil nil nil window-resize-pixelwise))
    nil nil window-resize-pixelwise))
 
-(defun xc/1/4-window (&optional window)
+(defun jl/1/4-window (&optional window)
   (interactive)
   (when switch-to-buffer-preserve-window-point
     (window--before-delete-windows window))
   (setq window (window-normalize-window window))
-  (xc/maximize-window)
+  (jl/maximize-window)
   (window-resize
    window
    (- (- (window-min-delta window nil nil nil nil nil window-resize-pixelwise))
     (/ (- (window-min-delta window nil nil nil nil nil window-resize-pixelwise)) 4))
     nil nil window-resize-pixelwise))
 
-(defun xc/center-window (&optional window)
+(defun jl/center-window (&optional window)
   (interactive)
   (when switch-to-buffer-preserve-window-point
     (window--before-delete-windows window))
   (setq window (window-normalize-window window))
-  (xc/maximize-window)
+  (jl/maximize-window)
   (window-resize
    window
     (/ (- (window-min-delta window nil nil nil nil nil window-resize-pixelwise)) 2)
     nil nil window-resize-pixelwise))
 
-(defun xc/3/4-window (&optional window)
+(defun jl/3/4-window (&optional window)
   (interactive)
   (when switch-to-buffer-preserve-window-point
     (window--before-delete-windows window))
   (setq window (window-normalize-window window))
-  (xc/maximize-window)
+  (jl/maximize-window)
   (window-resize
    window
     (/ (- (window-min-delta window nil nil nil nil nil window-resize-pixelwise)) 4)
     nil nil window-resize-pixelwise))
 
-(defun xc/maximize-window (&optional window)
+(defun jl/maximize-window (&optional window)
   (interactive)
   (setq window (window-normalize-window window))
   (window-resize
    window (window-max-delta window nil nil nil nil nil window-resize-pixelwise)
    nil nil window-resize-pixelwise))
 
-(setq xc/last-window-op 'center)
+(setq jl/last-window-op 'center)
 
-(defun xc/recenter-window-top-bottom (&optional arg)
+(defun jl/recenter-window-top-bottom (&optional arg)
   (interactive "P")
 
   ;; ;; center-max-3/4-1/4-min
-  ;; (cond ((eq xc/last-window-op 'center)
-  ;;        (xc/maximize-window)
-  ;;        (setq xc/last-window-op 'max))
-  ;;       ((eq xc/last-window-op 'max)
-  ;;        (xc/3/4-window)
-  ;;        (setq xc/last-window-op 'three-quarter))
-  ;;       ((eq xc/last-window-op 'three-quarter)
-  ;;        (xc/1/4-window)
-  ;;        (setq xc/last-window-op 'one-quarter))
-  ;;       ((eq xc/last-window-op 'one-quarter)
-  ;;        (xc/minimize-window)
-  ;;        (setq xc/last-window-op 'min))
-  ;;       ((eq xc/last-window-op 'min)
-  ;;        (xc/center-window)
-  ;;        (setq xc/last-window-op 'center))))
+  ;; (cond ((eq jl/last-window-op 'center)
+  ;;        (jl/maximize-window)
+  ;;        (setq jl/last-window-op 'max))
+  ;;       ((eq jl/last-window-op 'max)
+  ;;        (jl/3/4-window)
+  ;;        (setq jl/last-window-op 'three-quarter))
+  ;;       ((eq jl/last-window-op 'three-quarter)
+  ;;        (jl/1/4-window)
+  ;;        (setq jl/last-window-op 'one-quarter))
+  ;;       ((eq jl/last-window-op 'one-quarter)
+  ;;        (jl/minimize-window)
+  ;;        (setq jl/last-window-op 'min))
+  ;;       ((eq jl/last-window-op 'min)
+  ;;        (jl/center-window)
+  ;;        (setq jl/last-window-op 'center))))
 
   ;; min-1/4-center-3/4-max
-  (cond ((eq xc/last-window-op 'min)
-          (xc/1/4-window)
-          (setq xc/last-window-op 'one-quarter))
-         ((eq xc/last-window-op 'one-quarter)
-          (xc/center-window)
-          (setq xc/last-window-op 'center))
-         ((eq xc/last-window-op 'center)
-          (xc/3/4-window)
-          (setq xc/last-window-op 'three-quarter))
-         ((eq xc/last-window-op 'three-quarter)
-          (xc/maximize-window)
-          (setq xc/last-window-op 'max))
-         ((eq xc/last-window-op 'max)
-          (xc/minimize-window)
-          (setq xc/last-window-op 'min))))
+  (cond ((eq jl/last-window-op 'min)
+          (jl/1/4-window)
+          (setq jl/last-window-op 'one-quarter))
+         ((eq jl/last-window-op 'one-quarter)
+          (jl/center-window)
+          (setq jl/last-window-op 'center))
+         ((eq jl/last-window-op 'center)
+          (jl/3/4-window)
+          (setq jl/last-window-op 'three-quarter))
+         ((eq jl/last-window-op 'three-quarter)
+          (jl/maximize-window)
+          (setq jl/last-window-op 'max))
+         ((eq jl/last-window-op 'max)
+          (jl/minimize-window)
+          (setq jl/last-window-op 'min))))
 
 
 
@@ -2632,7 +2621,7 @@ See URL `https://web.archive.org/web/20151230143154/http://www.emacswiki.org/ema
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-(defun xc/ledger-kill-current-transaction (pos)
+(defun jl/ledger-kill-current-transaction (pos)
   "Kill transaction surrounding POS."
   (interactive "d")
   (let ((bounds (ledger-navigate-find-xact-extents pos)))
@@ -2640,7 +2629,7 @@ See URL `https://web.archive.org/web/20151230143154/http://www.emacswiki.org/ema
     (message "Killed current transaction")))
 
 
-(defun xc/ledger-kill-ring-save-current-transaction (pos)
+(defun jl/ledger-kill-ring-save-current-transaction (pos)
   "Save transaction surrounding POS to kill ring without
 killing."
   (interactive "d")
@@ -2648,7 +2637,7 @@ killing."
     (kill-ring-save (car bounds) (cadr bounds))
     (message "Placed on kill ring")))
 
-(defun xc/balance-at-point ()
+(defun jl/balance-at-point ()
   "Get balance of account at point"
   (interactive)
   (let* ((account (ledger-context-field-value (ledger-context-at-point) 'account))
@@ -2667,7 +2656,7 @@ killing."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-(defun xc/convert-slashes (&optional beg end)
+(defun jl/convert-slashes (&optional beg end)
   "Convert backslashes to forward slashes.
 
 Only convert within region defined by BEG and END.  Use current
@@ -2679,48 +2668,48 @@ line if no region is provided."
     (replace-string "//" "/" nil beg end)))
 
 
-(defvar xc/kill-python-p t
+(defvar jl/kill-python-p t
   "Will Python be killed?")
 
-(if (eq xc/device 'gnu/linux)
-    (setq xc/kill-python-p nil))
+(if (eq jl/device 'gnu/linux)
+    (setq jl/kill-python-p nil))
 
 
-(defun xc/toggle-kill-python ()
+(defun jl/toggle-kill-python ()
   (interactive)
-  (if xc/kill-python-p
+  (if jl/kill-python-p
       (progn
-        (setq xc/kill-python-p nil)
+        (setq jl/kill-python-p nil)
         (message "Python will be spared"))
     (progn
-      (setq xc/kill-python-p t)
+      (setq jl/kill-python-p t)
       (message "Python will be killed henceforth"))))
 
 
-(defun xc/conda-activate ()
+(defun jl/conda-activate ()
   "Activate conda venv."
   (interactive)
   (insert "C:\\Users\\mtrzcinski\\Anaconda3\\condabin\\conda.bat activate "))
 
 
-(defun xc/mamba-activate ()
+(defun jl/mamba-activate ()
   "Activate mamba venv."
   (interactive)
   (insert "C:\\python\\miniconda38\\condabin\\mamba.bat activate "))
 
 
-(setq xc/python-break-string "import ipdb; ipdb.set_trace(context=10)")
+(setq jl/python-break-string "import ipdb; ipdb.set_trace(context=10)")
 
-(defun xc/insert-breakpoint (&optional string)
+(defun jl/insert-breakpoint (&optional string)
   (interactive)
-  (let ((breakpoint (or string string xc/python-break-string)))
-    (xc/newline-without-break-of-line)
+  (let ((breakpoint (or string string jl/python-break-string)))
+    (jl/newline-without-break-of-line)
     (insert breakpoint)
     (bm-toggle)
     (save-buffer)))
 
 
-(defun xc/kill-proc-child (&optional buffer-name)
+(defun jl/kill-proc-child (&optional buffer-name)
   "Kill any child process associated with BUFFER-NAME."
   (interactive)
   (let* ((proc-buffer (or proc-buffer "*shell*"))
@@ -2739,19 +2728,19 @@ line if no region is provided."
           ))))
 
 ;; 16000
-(defun xc/kill-python ()
+(defun jl/kill-python ()
   "Kill Python.
 
 Note: This kills indiscriminantly on Windows systems.  It will
 kill any system process, like the AWS CLI, that runs on the
 Python interpetor."
   (interactive)
-  (if (eq xc/device 'windows)
+  (if (eq jl/device 'windows)
       (shell-command "taskkill /f /fi \"IMAGENAME eq python.exe\" /fi \"MEMUSAGE gt 15000\"")
-    (xc/kill-proc-child peut-gerer-shell)))
+    (jl/kill-proc-child peut-gerer-shell)))
 
 
-(defun xc/pyside-lookup (&optional arg)
+(defun jl/pyside-lookup (&optional arg)
   "Lookup symbol at point in PySide2 online documentation.
 
 Tries to lookup symbol in QWidget documentation.
@@ -2782,7 +2771,7 @@ documentation.
           ((eql arg 4)  ; "C-u", expand search to be "universal"
            (let* ((buff (get-buffer-window "*eww*"))
                   (completion-ignore-case t)
-                  (module (completing-read "Select module: " xc/pyside-modules nil 'confirm "Qt"))
+                  (module (completing-read "Select module: " jl/pyside-modules nil 'confirm "Qt"))
                   (direct-url (concat
                                "https://doc-snapshots.qt.io/qtforpython-5.15/PySide2/"
                                module "/"
@@ -2797,7 +2786,7 @@ documentation.
           (t (error "Invalid prefix")))))
 
 
-(defun xc/python-occur-definitions ()
+(defun jl/python-occur-definitions ()
   "Display an occur buffer of all definitions in the current buffer.
 Also, switch to that buffer.
 
@@ -2812,7 +2801,7 @@ See URL `https://github.com/jorgenschaefer/elpy/blob/c31cd91325595573c489b92ad58
       (switch-to-buffer "*Occur*"))))
 
 
-(defun xc/statement-to-function (&optional statement func beg end)
+(defun jl/statement-to-function (&optional statement func beg end)
   "Convert STATEMENT to FUNC.
 
 For use with statements in Python such as 'print'.  Converts
@@ -2876,33 +2865,33 @@ using BEG and END of the desired region."
         (replace-match replace nil t)))))
 
 
-(defun xc/spam-filter (string)
+(defun jl/spam-filter (string)
   "Filter stupid comint spam."
   (with-current-buffer (current-buffer)
     (mark-whole-buffer)
     (flush-lines "has no notify signal and is not constant")))
 
 
-(defun xc/toggle-spam-filter ()
+(defun jl/toggle-spam-filter ()
   "Toggle spam filter"
   (interactive)
-  (if (member 'xc/spam-filter comint-output-filter-functions)
+  (if (member 'jl/spam-filter comint-output-filter-functions)
       (progn
         (setq comint-output-filter-functions
-              (delete 'xc/spam-filter comint-output-filter-functions))
+              (delete 'jl/spam-filter comint-output-filter-functions))
         (message "Spam filter off"))
     (progn
-      (add-hook 'comint-output-filter-functions 'xc/spam-filter)
+      (add-hook 'comint-output-filter-functions 'jl/spam-filter)
       (message "Spam filter on"))))
 
 
-(defun xc/venv-activate ()
+(defun jl/venv-activate ()
   "Activate venv."
   (interactive)
   (insert "venv\\Scripts\\activate"))
 
 
-(defun xc/venv-create ()
+(defun jl/venv-create ()
   "Create Python venv.
 
 I don't keep Python on my path.  Unfortunately, the autocomplete
@@ -2911,29 +2900,29 @@ chicken and egg problem."
   (interactive)
   (insert "\"C:\\python\\python37\\python.exe\" -m venv venv"))
 
-(defun xc/qt-live-code ()
+(defun jl/qt-live-code ()
   "Call ipython interactively with live-code toggle."
   (interactive)
   (insert "ipython -i -- qt_live_code.py live"))
 
-(defun xc/run-python-with-qt-live-code ()
+(defun jl/run-python-with-qt-live-code ()
   (interactive)
   (let ((current-prefix-arg '(4))
        (python-shell-interpreter-args "-i -- qt_live_code.py live"))
     (call-interactively 'run-python )))
 
-(defun xc/toggle-build-debug ()
+(defun jl/toggle-build-debug ()
   (interactive)
   (insert "set BUILD_DEBUG="))
 
-(defun xc/kill-qgis ()
+(defun jl/kill-qgis ()
   (interactive)
   (shell-command "taskkill /f /fi \"IMAGENAME eq qgis-bin.exe\""))
 
-(defun xc/run-qgis ()
+(defun jl/run-qgis ()
   (interactive)
   (save-some-buffers t nil)
-  (xc/kill-qgis)
+  (jl/kill-qgis)
   (shell-command "taskkill /f /t /fi \"WINDOWTITLE eq \\qgis\\ \"")
   (let ((proc (start-process "cmd" nil "cmd.exe" "/C" "start" "\"qgis\"" "cmd.exe" "/K" "C:\\Program Files\\QGIS 3.20.3\\bin\\qgis.bat")))
     (set-process-query-on-exit-flag proc nil))
