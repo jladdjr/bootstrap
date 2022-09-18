@@ -27,8 +27,8 @@ general_creature_comforts:
 general_dev_tools:
 	ansible-playbook -i inventory --tags general_dev_tools provision.yml
 
-general_system_tools:
-	ansible-playbook -i inventory --tags general_system_tools provision.yml
+general_system_config:
+	ansible-playbook -i inventory --tags general_system_config provision.yml
 
 git:
 	ansible-playbook -i inventory --tags git provision.yml

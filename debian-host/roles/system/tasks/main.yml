@@ -14,7 +14,7 @@
 #  tags: python
 #
 - import_tasks: general.yml
-  tags: general_system_tools
+  tags: general_system_config
 
 - import_tasks: pass.yml
   tags: pass
