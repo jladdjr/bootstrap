@@ -2790,10 +2790,28 @@ chicken and egg problem."
 (global-set-key "\C-s" 'swiper)
 (global-set-key "\M-s" 'swiper-all)
 
-; my key bindings : )
+; custom key bindings
 (global-set-key (kbd "C-c t") 'shell)
 (global-set-key (kbd "C-c l") 'avy-goto-char-timer)
 (global-set-key (kbd "C-c C-c") 'ace-swap-window)
+
+; custom functions
+(defun jl/mud-workspace ()
+  "Open mud workspace"
+  (interactive)
+  (eyebrowse-create-window-config)
+  (find-file "~/git/mud/mud.py")
+  (split-window-right)
+  (shell)
+  (comint-send-string
+    (get-buffer-process "*shell*")
+    "psql mud mud\n")
+  (other-window 1)
+  (split-window-below)
+  (other-window 1)
+  (find-file "~/git/mud/tests/test_mud.py")
+  (other-window 2))
+(global-set-key (kbd "C-c m") 'jl/mud-workspace)
 
 ;; helm replacements
 ;; replace selected commands with corresponding helm commands
