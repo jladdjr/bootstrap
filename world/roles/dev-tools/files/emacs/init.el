@@ -2828,6 +2828,7 @@ chicken and egg problem."
   (magit-status)
   (delete-other-windows))
 (define-key (current-global-map) [remap magit-status] 'jl/magit-status)
+(define-key magit-mode-map (kbd "C-c C-c") 'eyebrowse-close-window-config)
 
 ;; custom window switching
 (defun jl/split-window-below ()
