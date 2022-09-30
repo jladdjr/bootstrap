@@ -2818,6 +2818,21 @@ chicken and egg problem."
 (define-key (current-global-map) [remap list-buffers] 'helm-buffers-list)
 (define-key (current-global-map) [remap bookmark-jump] 'helm-filtered-bookmarks)
 
+
+;; custom window switching
+(defun jl/split-window-below ()
+  "Split window below, move point to other window"
+  (interactive)
+  (split-window-below)
+  (other-window 1))
+(defun jl/split-window-right ()
+  "Split window right, move point to other window"
+  (interactive)
+  (split-window-right)
+  (other-window 1))
+(define-key (current-global-map) [remap split-window-below] 'jl/split-window-below)
+(define-key (current-global-map) [remap split-window-right] 'jl/split-window-right)
+
 ; don't ask if I really want to kill this buffer
 (define-key (current-global-map) [remap kill-buffer] 'kill-buffer-and-window)
 
