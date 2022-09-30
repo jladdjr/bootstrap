@@ -2767,6 +2767,7 @@ chicken and egg problem."
 
 (define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
 (define-key comint-mode-map (kbd "<down>") 'comint-next-input)
+(define-key comint-mode-map (kbd "C-c C-c") 'eyebrowse-close-window-config)
 
 ; precheck ledger changes
 (defun precheck ()
@@ -2793,7 +2794,7 @@ chicken and egg problem."
 ; custom key bindings
 (global-set-key (kbd "C-c t") 'shell)
 (global-set-key (kbd "C-c l") 'avy-goto-char-timer)
-(global-set-key (kbd "C-c C-c") 'ace-swap-window)
+(global-set-key (kbd "C-c C-c") 'eyebrowse-close-window-config)
 
 ; custom functions
 (defun jl/mud-workspace ()
@@ -2818,6 +2819,15 @@ chicken and egg problem."
 (define-key (current-global-map) [remap list-buffers] 'helm-buffers-list)
 (define-key (current-global-map) [remap bookmark-jump] 'helm-filtered-bookmarks)
 
+
+; customize magit
+(defun jl/magit-status ()
+  "Open magit-status window, by itself, in new eyebrowse window config"
+  (interactive)
+  (eyebrowse-create-window-config)
+  (magit-status)
+  (delete-other-windows))
+(define-key (current-global-map) [remap magit-status] 'jl/magit-status)
 
 ;; custom window switching
 (defun jl/split-window-below ()
@@ -2933,7 +2943,12 @@ chicken and egg problem."
 ; .. for eyebrowse
 ; make eyebrowse functions easier to call and globally available
 (global-set-key "\C-c'" 'eyebrowse-last-window-config)
-(global-set-key "\C-cc" 'eyebrowse-create-window-config)
+(defun jl/eyebrowse-create-window-config ()
+  "When creating new window config, only show current window"
+  (interactive)
+  (eyebrowse-create-window-config)
+  (delete-other-windows))
+(global-set-key "\C-cc" 'jl/eyebrowse-create-window-config)
 (global-set-key "\C-c<" 'eyebrowse-prev-window-config)
 (global-set-key "\C-c>" 'eyebrowse-next-window-config)
 (global-set-key "\C-c0" 'eyebrowse-switch-to-window-config-0)
