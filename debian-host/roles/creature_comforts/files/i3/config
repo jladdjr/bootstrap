@@ -128,10 +128,10 @@ set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6:IRC"
-set $ws7 "7:Finances"
-set $ws8 "8:Mail"
-set $ws9 "9:Planning"
-set $ws10 "10:Plover"
+set $ws7 "7:Friends"
+set $ws8 "8:Finance"
+set $ws9 "9:General"
+set $ws10 "10:Phone"
 
 
 # switch to workspace
