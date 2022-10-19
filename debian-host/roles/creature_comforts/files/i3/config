@@ -196,6 +196,10 @@ bindsym $mod+c mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
+	# https://i3wm.org/docs/userguide.html#fonts
+	font pango:DejaVu Sans Mono 11
+	tray_padding 1
+	workspace_min_width 23
 }
 
 bindsym $mod+z exec --no-startup-id exec i3zen
