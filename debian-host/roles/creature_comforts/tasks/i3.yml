@@ -8,6 +8,13 @@
   become: true
   tags: i3
 
+- name: Install i3lock-fancy
+  apt:
+    name: i3lock-fancy
+    state: latest
+  become: true
+  tags: i3
+
 - name: Ensure .config dir present
   file:
     state: directory

@@ -27,7 +27,7 @@ font pango:monospace 8
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock-fancy --nofork
 
 exec --no-startup-id /usr/bin/xmodmap /home/jim/.Xmodmap
 exec --no-startup-id /usr/bin/xcape -e 'Control_L=Escape'
@@ -50,7 +50,7 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 # lock screen
-bindsym $mod+Shift+l exec i3lock -i ~/.config/i3/debian_wallpaper.png
+bindsym $mod+Shift+l exec i3lock-fancy
 
 # start firefox
 bindsym $mod+f exec firefox
