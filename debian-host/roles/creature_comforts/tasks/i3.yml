@@ -76,7 +76,7 @@
       git:
         repo: 'https://github.com/budlabs/i3ass.git'
         dest: /tmp/i3ass
-        version: 2021.11.25.1
+        version: 2022.07.21.1
 
     - name: Install i3 build requirements
       apt:
