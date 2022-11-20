@@ -2962,3 +2962,22 @@ chicken and egg problem."
 (global-set-key "\C-c7" 'eyebrowse-switch-to-window-config-7)
 (global-set-key "\C-c8" 'eyebrowse-switch-to-window-config-8)
 (global-set-key "\C-c9" 'eyebrowse-switch-to-window-config-9)
+
+
+;; Convenience functions for ledger
+(defun jl/sold-art ()
+  "Insert transaction template for art sale"
+  (interactive)
+  (progn
+    (insert "\n")
+    (insert "2022/11/20 Buyer\n")
+    (insert "\t; Paid for __\n")
+    (insert "\t; :art_sales:\n")
+    (insert "\t; :venmo:\n")
+    (insert "\t; :paid:\n")
+    (insert "\tAs:NCSECU:Checking                                   $0\n")
+    (insert "\tIn:Steph:Art                                        $-0\n")
+    (insert "\t[As:Budget:Variable:Art Expenses]                    $0\n")
+    (insert "\t[As:Sink Funds:Self Employment Taxes]                $0\n")
+    (insert "\t[As:Sink Funds:Emergency Fund]                       $0\n")
+    (insert "\t[As:NCSECU:Checking]                                 $0\n\n")))
