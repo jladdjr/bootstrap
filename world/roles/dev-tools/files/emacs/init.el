@@ -2965,19 +2965,20 @@ chicken and egg problem."
 
 
 ;; Convenience functions for ledger
-(defun jl/sold-art ()
-  "Insert transaction template for art sale"
-  (interactive)
+(defun jl/sold-art (buyer sale-description sale-price shipping-cost)
+  (interactive "sBuyer? \nsSale description? \nnSale price? \nnShipping cost? ")
+  (setq jl-total-sale (number-to-string sale-price))
+  (setq jl-shipping-cost (number-to-string shipping-cost))
   (progn
     (insert "\n")
-    (insert "2022/11/20 Buyer\n")
-    (insert "\t; Paid for __\n")
+    (insert "2022/11/20 " buyer "\n")
+    (insert "\t; Paid for " sale-description "\n")
     (insert "\t; :art_sales:\n")
     (insert "\t; :venmo:\n")
     (insert "\t; :paid:\n")
-    (insert "\tAs:NCSECU:Checking                                   $0\n")
-    (insert "\tIn:Steph:Art                                        $-0\n")
-    (insert "\t[As:Budget:Variable:Art Expenses]                    $0\n")
+    (insert "\tAs:NCSECU:Checking                                   $" jl-total-sale "\n")
+    (insert "\tIn:Steph:Art                                         $-" jl-total-sale "\n")
+    (insert "\t[As:Budget:Variable:Art Expenses]                    $" jl-shipping-cost "\n")
     (insert "\t[As:Sink Funds:Self Employment Taxes]                $0\n")
     (insert "\t[As:Sink Funds:Emergency Fund]                       $0\n")
-    (insert "\t[As:NCSECU:Checking]                                 $0\n\n")))
+    (insert "\t[As:NCSECU:Checking]                                 $-" jl-total-sale "\n\n")))
