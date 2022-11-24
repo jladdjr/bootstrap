@@ -189,3 +189,6 @@
 
               i3lock -i ~/.config/i3/iceberg.png
       }
+
+      # last file
+      alias lf='ls -t1 | head -n 1'
