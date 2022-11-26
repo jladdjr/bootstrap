@@ -2987,3 +2987,13 @@ chicken and egg problem."
     (insert "\t[As:Sink Funds:Self Employment Taxes]                $" jl-self-employment-taxes "\n")
     (insert "\t[As:Sink Funds:Emergency Fund]                       $" jl-net-income "\n")
     (insert "\t[As:NCSECU:Checking]                                 $-" jl-total-sale "\n\n")))
+
+(defun jl/insert-budget ()
+    (interactive)
+    (setq jl-date (ledger-read-date "Date: "))
+    (insert-file-contents-literally "~/ledger/templates/budget.ledger")
+    (ledger-navigate-beginning-of-xact)
+    (let ((beg (point)))
+          (forward-word 3)
+          (delete-region beg (point)))
+    (insert jl-date))
