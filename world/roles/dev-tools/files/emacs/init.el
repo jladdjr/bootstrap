@@ -261,6 +261,7 @@ Run whitespace-cleanup on save unless
 ;; See https://emacs.stackexchange.com/a/10546/
 (set-face-attribute 'nobreak-space nil :underline 'unspecified :inherit 'unspecified)
 
+; Disable if running emacs from commandline
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -2761,6 +2762,7 @@ chicken and egg problem."
 
 (keyboard-translate ?\C-t ?\C-x)
 (keyboard-translate ?\C-x ?\C-t)
+; Disable if running emacs from commandline
 (keyboard-translate ?\C-m ?\M-x)
 
 ;; comint should us up/down arrows to search through history of commands
