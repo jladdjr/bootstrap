@@ -2999,3 +2999,9 @@ chicken and egg problem."
           (forward-word 3)
           (delete-region beg (point)))
     (insert jl-date))
+
+;; Make magit performance more tolerable on mac
+;; https://magit.vc/manual/magit/Performance.html <-- very helpful
+(setq magit-refresh-status-buffer nil)
+;; Enable to benchmark magit buffer refreshes
+;; (magit-toggle-verbose-refresh)
