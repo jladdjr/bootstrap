@@ -55,6 +55,9 @@ bindsym $mod+Shift+l exec i3lock-fancy
 # start firefox
 bindsym $mod+f exec firefox
 
+# start joplin
+bindsym $mod+j exec joplin
+
 # start plover
 bindsym $mod+l exec plover
 
