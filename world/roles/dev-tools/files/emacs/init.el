@@ -2969,6 +2969,7 @@ chicken and egg problem."
 ;; Convenience functions for ledger
 (defun jl/sold-art (buyer sale-description sale-price shipping-cost)
   (interactive "sBuyer? \nsSale description? \nnSale price? \nnShipping cost? ")
+  (setq jl-date (ledger-read-date "Date: "))
   (setq jl-total-sale (number-to-string sale-price))
   (setq jl-shipping-cost (number-to-string shipping-cost))
   (setq jl-income-after-shipping (- sale-price shipping-cost))
@@ -2978,7 +2979,7 @@ chicken and egg problem."
   (setq jl-net-income (number-to-string jl-net-income))
   (progn
     (insert "\n")
-    (insert "2022/11/20 " buyer "\n")
+    (insert jl-date " " buyer "\n")
     (insert "    ; Paid for " sale-description "\n")
     (insert "    ; :art_sales:\n")
     (insert "    ; :venmo:\n")
@@ -2989,6 +2990,20 @@ chicken and egg problem."
     (insert "    [As:Sink Funds:Self Employment Taxes]                $" jl-self-employment-taxes "\n")
     (insert "    [As:Sink Funds:Emergency Fund]                       $" jl-net-income "\n")
     (insert "    [As:NCSECU:Checking]                                 $-" jl-total-sale "\n\n")))
+
+(defun jl/pay-ashlynd (paid-to-ashlynd)
+  (interactive "nAmount? ")
+  (setq jl-date (ledger-read-date "Date: "))
+  (setq jl-paid-to-ashlynd-str (number-to-string paid-to-ashlynd))
+  (setq jl-self-employment-taxes (ftruncate (* 0.16 amt)))
+  (setq jl-self-employment-taxes-str (number-to-string jl-self-employment-taxes))
+  (progn
+    (insert "\n")
+    (insert jl-date " Ashlynd Perry\n")
+    (insert "    Ex:Household Help:OnPoint                        $" jl-paid-to-ashlynd-str "\n")
+    (insert "    Li:Chase                                         $-" jl-paid-to-ashlynd-str "\n")
+    (insert "    [As:Sink Funds:Ashlynd Self Employment Taxes]    $" jl-self-employment-taxes "\n")
+    (insert "    [As:Budget:Household Help]                       $-" jl-self-employment-taxes "\n\n")))
 
 (defun jl/insert-budget ()
     (interactive)
