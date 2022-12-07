@@ -2995,15 +2995,15 @@ chicken and egg problem."
   (interactive "nAmount? ")
   (setq jl-date (ledger-read-date "Date: "))
   (setq jl-paid-to-ashlynd-str (number-to-string paid-to-ashlynd))
-  (setq jl-self-employment-taxes (ftruncate (* 0.16 amt)))
+  (setq jl-self-employment-taxes (ftruncate (* 0.16 paid-to-ashlynd)))
   (setq jl-self-employment-taxes-str (number-to-string jl-self-employment-taxes))
   (progn
     (insert "\n")
     (insert jl-date " Ashlynd Perry\n")
     (insert "    Ex:Household Help:OnPoint                        $" jl-paid-to-ashlynd-str "\n")
     (insert "    Li:Chase                                         $-" jl-paid-to-ashlynd-str "\n")
-    (insert "    [As:Sink Funds:Ashlynd Self Employment Taxes]    $" jl-self-employment-taxes "\n")
-    (insert "    [As:Budget:Fixed:Household Help]                 $-" jl-self-employment-taxes "\n\n")))
+    (insert "    [As:Sink Funds:Ashlynd Self Employment Taxes]    $" jl-self-employment-taxes-str "\n")
+    (insert "    [As:Budget:Fixed:Household Help]                 $-" jl-self-employment-taxes-str "\n\n")))
 
 (defun jl/insert-budget ()
     (interactive)
