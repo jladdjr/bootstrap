@@ -3003,7 +3003,7 @@ chicken and egg problem."
     (insert "    Ex:Household Help:OnPoint                        $" jl-paid-to-ashlynd-str "\n")
     (insert "    Li:Chase                                         $-" jl-paid-to-ashlynd-str "\n")
     (insert "    [As:Sink Funds:Ashlynd Self Employment Taxes]    $" jl-self-employment-taxes "\n")
-    (insert "    [As:Budget:Household Help]                       $-" jl-self-employment-taxes "\n\n")))
+    (insert "    [As:Budget:Fixed:Household Help]                 $-" jl-self-employment-taxes "\n\n")))
 
 (defun jl/insert-budget ()
     (interactive)
