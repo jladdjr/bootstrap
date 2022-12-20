@@ -1,8 +1,20 @@
 #!/bin/bash
 
-set -x
+USB_DIR=/media/jim/GOKIT
+HOME_DIR=/home/jim
 
-rsync -avz --delete --info=progress2 /home/jim/.password-store /media/jim/ALPHA/
-rsync -avz --delete --info=progress2 /home/jim/git/bootstrap /media/jim/ALPHA
-rsync -avz --delete --info=progress2 /home/jim/.ssh /media/jim/ALPHA/
+# ssh
+# add --info=progress2 to see verbose output
+rsync -avz --delete ${HOME_DIR}/.ssh ${USB_DIR}
 
+# bootstrap
+cd ${USB_DIR}/bootstrap
+git pull
+
+# pass
+cd ${USB_DIR}/.password-store
+git pull ${HOME_DIR}/.password-store
+
+# bah
+cd ${USB_DIR}/.bah/.password-store
+git pull ${HOME_DIR}/.bah/.password-store
