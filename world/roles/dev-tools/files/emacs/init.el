@@ -2922,6 +2922,8 @@ chicken and egg problem."
 (setq org-agenda-files '("/home/jim/org" "/home/jim/org/projects"))
 
 ; Define custom ledger reports
+; TODO: Detect if on Steph's computer, in which case use:
+; /usr/local/bin/ledger ... -f /Users/stephanieladd/ledger/ladds.ledger ...
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
