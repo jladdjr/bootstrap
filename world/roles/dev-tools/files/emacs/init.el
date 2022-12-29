@@ -2982,8 +2982,6 @@ chicken and egg problem."
     (insert jl-date " " buyer "\n")
     (insert "    ; Paid for " sale-description "\n")
     (insert "    ; :art_sales:\n")
-    (insert "    ; :venmo:\n")
-    (insert "    ; :paid:\n")
     (insert "    As:NCSECU:Checking                                   $" jl-total-sale "\n")
     (insert "    In:Steph:Art                                         $-" jl-total-sale "\n")
     (insert "    [As:Budget:Variable:Art Expenses]                    $" jl-shipping-cost "\n")
