@@ -2846,9 +2846,6 @@ chicken and egg problem."
 (define-key (current-global-map) [remap split-window-below] 'jl/split-window-below)
 (define-key (current-global-map) [remap split-window-right] 'jl/split-window-right)
 
-; don't ask if I really want to kill this buffer
-(define-key (current-global-map) [remap kill-buffer] 'kill-buffer-and-window)
-
 ;; since mu4e was installed using apt
 ;; we need to tell emacs where to find
 ;; the source for the package
