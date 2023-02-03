@@ -11,3 +11,13 @@
       - texlive-lang-english
     state: latest
   become: true
+
+- name: Install helpful supplemental latex libraries
+  apt:
+    name:
+      - texlive-latex-base
+      - texlive-latex-extra
+      - texlive-latex-recommended
+    state: latest
+  become: true
+
