@@ -2998,7 +2998,7 @@ chicken and egg problem."
     (insert "\n")
     (insert jl-date " Ashlynd Perry\n")
     (insert "    Ex:Household Help:OnPoint                        $" jl-paid-to-ashlynd-str "\n")
-    (insert "    Li:Chase                                         $-" jl-paid-to-ashlynd-str "\n")
+    (insert "    As:OnPoint:Checking                              $-" jl-paid-to-ashlynd-str "\n")
     (insert "    [As:Sink Funds:Ashlynd Self Employment Taxes]    $" jl-self-employment-taxes-str "\n")
     (insert "    [As:Budget:Fixed:Household Help]                 $-" jl-self-employment-taxes-str "\n\n")))
 
