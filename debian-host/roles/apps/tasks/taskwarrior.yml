@@ -25,3 +25,5 @@
         unset TASKRC
         unset TASKDATA
       }
+
+      alias t='task sync; clear; task'
