@@ -2927,7 +2927,7 @@ chicken and egg problem."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ledger-reports
-   '(("bal" "ledger [[ledger-mode-flags]] -f /home/jim/ledger/ladds.ledger bal --current")
+   '(("bal" "ledger [[ledger-mode-flags]] -f schema.ledger -f initial_balances.ledger -f rules.ledger -f 2023.ledger --strict bal --current")
      ("reg" "%(binary) -f %(ledger-file) reg")
      ("payee" "%(binary) -f %(ledger-file) reg @%(payee)")
      ("account" "%(binary) -f %(ledger-file) reg %(account)"))))
