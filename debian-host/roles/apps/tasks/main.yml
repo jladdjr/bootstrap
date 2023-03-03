@@ -15,3 +15,6 @@
 
 - import_tasks: taskwarrior.yml
   tags: taskwarrior
+
+- import_tasks: general.yml
+  tags: general_apps

@@ -1,0 +1,6 @@
+- name: Install kaffeine movie viewer
+  apt:
+    name:
+      - kaffeine
+    state: latest
+  become: true
