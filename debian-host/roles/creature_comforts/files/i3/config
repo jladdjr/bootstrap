@@ -232,3 +232,5 @@ bindsym control+$mod+shift+S exec ~/.i3MoveNext.sh 1
 # On monolith, enable dual monitor mode with tiny external monitor
 # This script was generated using the arandr GUI utility
 # exec --no-startup-id xrandr --output DP-1 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output DP-2 --mode 720x400 --pos 920x1440 --rotate normal --output HDMI-1 --off
+
+bindsym $mod+g exec "export EDITOR=emacs; pass edit org/goals.org"
