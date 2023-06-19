@@ -29,8 +29,9 @@
 
 ### Level 3: Creature comforts
 
-| Item           | Description                                           |
-|----------------|-------------------------------------------------------|
-| pass           | pass extensions installed, pass sync cron job defined |
-| Window Manager |                                                       |
-| Keys remapped  |                                                       |
+| Item                    | Description                                           |
+|-------------------------|-------------------------------------------------------|
+| pass                    | pass extensions installed, pass sync cron job defined |
+| Window Manager          |                                                       |
+| Keys remapped           |                                                       |
+| Repeat delay configured | Both initial delay and repeat speed configured        |
