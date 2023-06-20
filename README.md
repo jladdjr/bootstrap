@@ -34,3 +34,9 @@
 | Keys remapped           |                                                       |
 | Repeat delay configured | Both initial delay and repeat speed configured        |
 | "Gimme" script          | For setting limit on current session time             |
+
+### Level 4: Optional Apps
+
+| Item       | Description                     |
+|------------|---------------------------------|
+| Signal App | Installed and linked with phone |
