@@ -9,8 +9,6 @@
 | bash | Bash set as default shell, convenience aliases defined in .bashrc   |
 | pass | pass installed, GPG key installed and trust level set appropriately |
 | tmux | tmux and tmux configuration installed                               |
-|      |                                                                     |
-
 
 ### Level 1: Basic development environment
 
@@ -35,3 +33,4 @@
 | Window Manager          |                                                       |
 | Keys remapped           |                                                       |
 | Repeat delay configured | Both initial delay and repeat speed configured        |
+| "Gimme" script          | For setting limit on current session time             |
