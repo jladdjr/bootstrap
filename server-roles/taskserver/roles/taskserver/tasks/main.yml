@@ -200,6 +200,11 @@
     TASKDDATA: /var/taskd
 
 # TODO: Make it so that task server automatically restarts
+#
+# I think this should work:
+# $ crontab -e
+# TASKDATA="/var/taskd"
+# @reboot /usr/local/bin/taskdctl start
 
 #################################
 # Post deployment configuration #
