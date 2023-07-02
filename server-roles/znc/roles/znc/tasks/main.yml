@@ -7,12 +7,47 @@
 
 # Install firewalld
 # open port 50202
+#
+# - sudo apt install -y firewalld
+# - sudo firewall-cmd --permanent --add-port=50202/tcp --zone=public
+#   - should echo back 'success'
+# - sudo firewall-cmd --reload
+#   - should echo back 'success'
+# - sudo firewall-cmd --list-all
+#   - should list 'ports: 50202/tcp'
+#   - (list may include other ports as well)
 
 # Configure znc with:
 # $ znc --makeconf
+# - results in interactive prompts
+# - listen on port: 50202
+# - listen using SSL? yes
+# - listen using both IPv4 and IPv6? yes (default)
+# - creates Pem file (/home/pi/.znc/znc.pem)
+# - username: pipsqueak
+# - password (stored in playbooks/bootstrap/pipsqueak/znc-server)
+# - set up a network? (yes)
+#   - name: pipsqueak
+#   - host: localhost
+#   - use SSL? no (default)
+#   - port? 6667 (default)
+#   - password? (empty) (default)
+#   - Initial channels: #home
+# - Next, provides this hint:
 #
-# The resulting conf file is stored at:
-# /home/jim/.znc/configs/znc.conf
+#   > To connect to this ZNC you need to connect to it as your IRC server
+#   > using the port that you supplied.  You have to supply your login info
+#   > as the IRC server password like this: user/network:pass.
+#   >
+#   > Try something like this in your IRC client...
+#   > /server <znc_server_ip> +50202 pipsqueak:<pass>
+#   >
+#   > To manage settings, users and networks, point your web browser to
+#   > https://<znc_server_ip>:50202/
+#
+# - Launch znc now? yes
+# - Launched ZNC 1.8.2+deb2 (https://znc.in)
+
 #
 # TODO: store this file in pass as a secret (?)
 # and add task to create this file
