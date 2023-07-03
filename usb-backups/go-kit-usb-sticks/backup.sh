@@ -9,12 +9,12 @@ rsync -avz --delete ${HOME_DIR}/.ssh ${USB_DIR}
 
 # bootstrap
 cd ${USB_DIR}/bootstrap
-git pull
+git pull -f
 
 # pass
 cd ${USB_DIR}/.password-store
-git pull ${HOME_DIR}/.password-store
+git pull -f ${HOME_DIR}/.password-store
 
 # bah
-cd ${USB_DIR}/.bah/.password-store
-git pull ${HOME_DIR}/.bah/.password-store
+cd ${USB_DIR}/bah/.password-store
+git pull -f ${HOME_DIR}/.bah/.password-store
