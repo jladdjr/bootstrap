@@ -1,6 +1,6 @@
 #!/bin/bash
 
-USB_DIR=/media/jim/GOKIT
+USB_DIR=/media/jim/ALPHA
 HOME_DIR=/home/jim
 
 # ssh
@@ -9,12 +9,12 @@ rsync -avz --delete ${HOME_DIR}/.ssh ${USB_DIR}
 
 # bootstrap
 cd ${USB_DIR}/bootstrap
-git pull -f
+git pull
 
 # pass
 cd ${USB_DIR}/.password-store
-git pull -f ${HOME_DIR}/.password-store
+git pull ${HOME_DIR}/.password-store
 
 # bah
-cd ${USB_DIR}/bah/.password-store
-git pull -f ${HOME_DIR}/.bah/.password-store
+cd ${USB_DIR}/.bah/.password-store
+git pull ${HOME_DIR}/.bah/.password-store
