@@ -1,6 +1,6 @@
 #!/bin/bash
 
-USB_DIR=/media/jim/ALPHA
+USB_DIR=/media/jim/GOKIT
 HOME_DIR=/home/jim
 
 # ssh
