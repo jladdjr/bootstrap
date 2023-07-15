@@ -1,4 +1,24 @@
 - hosts: all
   tasks:
-    - debug:
-        msg: 'test'
+    - name: Install essential packages
+      apt:
+        name:
+          - vim
+          - info
+          - locate
+          - bc
+          - screen
+          - htop
+          - strace
+          - apt-file
+          - e2fsprogs
+          - strace
+          - fd-find
+          - calibre
+          - rsync
+        state: latest
+      become: true
+
+- hosts: all
+  roles:
+    - { role: bash, tags: bash }

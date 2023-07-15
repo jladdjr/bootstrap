@@ -1,0 +1,40 @@
+# Need to remove existing HIST* entries in .bashrc
+# Otherwise, history gets truncated
+- name: Remove existing history configuration
+  lineinfile:
+    path: ~/.bashrc
+    regexp: "{{item}}"
+    state: absent
+  with_items:
+    - HISTFILE
+    - HISTCONTROL
+    - HISTSIZE
+    - HISTFILESIZE
+    - HISTTIMEFORMAT
+    - PROMPT_COMMAND
+
+- name: Add bash configuration
+  blockinfile:
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - Level 0"
+    path: ~/.bashrc
+    block: |
+      # History
+      # https://www.gnu.org/software/bash/manual/html_node/Bash-History-Builtins.html
+      shopt -s histappend   # append to history, don't overwrite it
+      export HISTFILE="/home/jim/.bash_history"
+      export HISTCONTROL=   # allow duplicate entries
+      export HISTSIZE=      # unlimited history
+      export HISTFILESIZE=  # unlimited history
+      export HISTTIMEFORMAT="%F %T: "
+      export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"  # Append command to history after it completes (use `history -r` to reload history in other sessions)
+
+      # In history file, note when new session is started
+      # https://stackoverflow.com/questions/911168/how-to-detect-if-my-shell-script-is-running-through-a-pipe
+      if [ -t 1 ]; then echo -e "#$(date +%s)\n#--- new session ---" >> $HISTFILE; fi
+
+      export EDITOR=vim
+
+      xset r rate 200 40
+
+      # last file
+      alias lf='ls -t1 | head -n 1'
