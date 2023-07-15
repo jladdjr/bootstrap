@@ -12,7 +12,16 @@ This document focuses on configuring [Weechat](https://weechat.org/), a terminal
 ## Weechat on Debian
 
 1. Install Weechat
-2. Configure local IRC Server (TODO)
+2. Give each server its own buffer
+   `/set irc.look.server_buffer independent`
+3. Hide join/part messages
+
+   This is one of the main reasons why I picked Weechat (over, say, Hexchat).
+   ```
+   /set irc.look.smart_filter on
+   /filter add irc_smart * irc_smart_filter *
+   ```
+4. Configure local IRC Server
    Keep in mind that we are connecting to the _ZNC_ server.
    All of the configuration here -- username, password, certificate verification --
    reflect how we connect to ZNC.
@@ -22,10 +31,10 @@ This document focuses on configuring [Weechat](https://weechat.org/), a terminal
    /server irc.server.libera.ssl_verify off
    /connect libera
    ```
-   
+
    Note how the username follows the format "<znc username>/<znc user's server profile name>".
-   
-3. Configure libera
+
+5. Configure libera
    As noted in the previous step, we are connecting to _ZNC_.
    The actual information for connecting to the libera IRC server is held in ZNC itself.
    ```
@@ -38,4 +47,6 @@ This document focuses on configuring [Weechat](https://weechat.org/), a terminal
 
 ## Reference
 
-- https://wiki.znc.in/Weechat
+- [Weechat Quickstart Guide](https://weechat.org/files/doc/stable/weechat_quickstart.en.html)
+- [Connecting Weechat to ZNC](https://wiki.znc.in/Weechat)
+- [Blog entry on hiding join/part messages](https://blog.weechat.org/post/2008/10/25/Smart-IRC-join-part-quit-message-filter)
