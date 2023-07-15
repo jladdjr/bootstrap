@@ -63,8 +63,11 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # Use Dvorak layout
 
 input type:keyboard {
-       xkb_layout "us"
-       xkb_variant "dvorak"
+   xkb_layout "us"
+   xkb_variant "dvorak"
+
+   repeat_delay 300
+   repeat_rate 35
 }
 
 input type:touchpad {
