@@ -1,8 +1,6 @@
-# Manual Steps for (Bare-metal) Debian
+## Zoom Setup Instructions
 
-## Zoom
-
-* Download Zoom deb package from [Zoom Download Page](https://zoom.us/download)
-* Install with:
+1. Download Zoom deb package from [Zoom Download Page](https://zoom.us/download)
+2. Install with:
   `sudo apt install ./zoom_amd64.deb`
-* Should be able to open zoom using dmenu with 'zoom'
+3. Should be able to open zoom using dmenu with 'zoom'
