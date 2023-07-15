@@ -60,5 +60,6 @@
 | Item   | Description | Status |
 |--------|-------------|--------|
 | Latex  |             | x      |
+| Ledger |             | x      |
 | Plover |             | x      |
-| Ledger |             |        |
+| Zoom   |             | x      |
