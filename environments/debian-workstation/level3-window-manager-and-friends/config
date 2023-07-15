@@ -206,6 +206,8 @@ bar {
 }
 
 bindsym $mod+z exec --no-startup-id exec i3zen
+
+# 200 ms before repeat starts, 40 repeats per second
 exec --no-startup-id exec xset r rate 200 40
 
 # start redshift (manually setting location to Chicago)

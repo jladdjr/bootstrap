@@ -4,7 +4,7 @@
 
 | Item    | Description | Status |
 |---------|-------------|--------|
-| Ansible |             | x      |
+| Ansible |             | ✓      |
 
 ## Level 0: Functional Environment
 
@@ -62,4 +62,4 @@
 | Latex  |             | x      |
 | Ledger |             | x      |
 | Plover |             | x      |
-| Zoom   |             | x      |
+| Zoom   |             | ✓      |
