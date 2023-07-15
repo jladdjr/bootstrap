@@ -30,3 +30,10 @@
 | pass           | pass extensions installed, pass sync cron job defined | x      |
 | Window Manager |                                                       | x      |
 | Keys remapped  |                                                       | x      |
+
+## Level 4: Comms
+
+| Item   | Description | Status |
+|--------|-------------|--------|
+| irc    |             | x      |
+| signal |             | x      |
