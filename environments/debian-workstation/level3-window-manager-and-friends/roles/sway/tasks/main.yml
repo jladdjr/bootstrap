@@ -19,6 +19,6 @@
 - name: Install sway config
   copy:
     src: sway_config
-    dest: ~/.config/sway
+    dest: ~/.config/sway/config
     mode: 0644
     backup: yes
