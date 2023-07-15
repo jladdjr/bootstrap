@@ -1,12 +1,20 @@
 # Debian Workstation 
 
+## Bootstrap: Items required to use this repo
+
+| Item    | Description | Status |
+|---------|-------------|--------|
+| Ansible |             | x      |
+
 ## Level 0: Functional Environment
 
-| Item | Description                                                         | Status |
-|------|---------------------------------------------------------------------|--------|
-| Bash | Bash set as default shell, convenience aliases defined in .bashrc   | ✓      |
-| Pass | pass installed, GPG key installed and trust level set appropriately | x      |
-| tmux | tmux and tmux configuration installed                               | x      |
+| Item      | Description                                                         | Status |
+|-----------|---------------------------------------------------------------------|--------|
+| Bash      | Bash set as default shell, convenience aliases defined in .bashrc   | ✓      |
+| Git       |                                                                     | x      |
+| Man Pages |                                                                     | x      |
+| Pass      | pass installed, GPG key installed and trust level set appropriately | x      |
+| tmux      | tmux and tmux configuration installed                               | x      |
 
 ## Level 1: Essential Tools
 
@@ -19,10 +27,11 @@
 
 ## Level 2: Specialized Development Environment
 
-| Item   | Description                         | Status |
-|--------|-------------------------------------|--------|
-| Docker | docker and docker-compose installed | x      |
-| Python | Python installed with venv support  | x      |
+| Item                          | Description                         | Status |
+|-------------------------------|-------------------------------------|--------|
+| Docker                        | docker and docker-compose installed | x      |
+| Python                        | Python installed with venv support  | x      |
+| Fuzzy Search for Command Line | (fzf?)                              |        |
                                                                              
 ## Level 3: Window Manager, Advanced Keymapping
 
@@ -30,6 +39,7 @@
 |--------------------------------------------------------|-------------|--------|
 | Window Manager ([Sway](https://swaywm.org/))           |             | x      |
 | Keys remapped ([keyd](https://github.com/rvaiya/keyd)) |             | x      |
+| Screenshot Tool(s)                                     |             | x      |
 
 ## Level 4: Comms
 
@@ -37,3 +47,18 @@
 |---------------------------------------|-------------|--------|
 | IRC ([Weechat](https://weechat.org/)) |             | x      |
 | Signal                                |             | x      |
+| Tutanota Desktop App                  |             | x      |
+
+## Level 5: Productivity Tools
+
+| Item                | Description | Status |
+|---------------------|-------------|--------|
+| Task Warrior Client |             | x      |
+
+## Level 6: Specialized / Personal Tools
+
+| Item   | Description | Status |
+|--------|-------------|--------|
+| Latex  |             | x      |
+| Plover |             | x      |
+| Ledger |             |        |
