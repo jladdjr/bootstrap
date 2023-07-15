@@ -37,7 +37,7 @@
 
 | Item                                                   | Description | Status |
 |--------------------------------------------------------|-------------|--------|
-| Window Manager ([Sway](https://swaywm.org/))           |             | x      |
+| Window Manager ([Sway](https://swaywm.org/))           |             | ✓      |
 | Keys remapped ([keyd](https://github.com/rvaiya/keyd)) |             | x      |
 | Screenshot Tool(s)                                     |             | x      |
 
