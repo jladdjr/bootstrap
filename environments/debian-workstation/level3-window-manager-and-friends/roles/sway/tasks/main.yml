@@ -4,21 +4,15 @@
     state: latest
   become: true
 
-- name: Ensure .config dir present
+- name: Ensure .sway dir present
   file:
     state: directory
-    path: ~/.config
-    mode: 0700
-
-- name: Ensure .config/sway dir present
-  file:
-    state: directory
-    path: ~/.config/sway
+    path: ~/.sway
     mode: 0755
 
 - name: Install sway config
   copy:
     src: sway_config
-    dest: ~/.config/sway/config
-    mode: 0644
+    dest: ~/.sway/config
+    mode: 0755
     backup: yes
