@@ -67,6 +67,11 @@ input type:keyboard {
        xkb_variant "dvorak"
 }
 
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+}
+
 ### Key bindings
 #
 # Basics:
