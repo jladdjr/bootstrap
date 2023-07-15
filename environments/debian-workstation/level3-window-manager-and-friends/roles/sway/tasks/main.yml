@@ -1,105 +1,24 @@
-# A helpful resource on the X server
-# https://tldp.org/HOWTO/XWindow-User-HOWTO
-# https://www.x.org/wiki/UserDocumentation/
-- name: Install i3
+- name: Install sway
   apt:
-    name: i3
+    name: sway
     state: latest
   become: true
-  tags: i3
-
-- name: Install i3lock-fancy
-  apt:
-    name: i3lock-fancy
-    state: latest
-  become: true
-  tags: i3
 
 - name: Ensure .config dir present
   file:
     state: directory
     path: ~/.config
     mode: 0700
-  tags: i3
 
-- name: Ensure .config/i3 dir present
+- name: Ensure .config/sway dir present
   file:
     state: directory
-    path: ~/.config/i3
+    path: ~/.config/sway
     mode: 0755
-  tags: i3
 
-- name: Install i3 config
+- name: Install sway config
   copy:
-    src: i3/config
-    dest: ~/.config/i3
+    src: sway_config
+    dest: ~/.config/sway
     mode: 0644
     backup: yes
-  tags: i3
-
-- name: Install i3 wallpapers
-  copy:
-    src: "i3/{{ item }}"
-    dest: ~/.config/i3
-    mode: 0755
-    backup: yes
-  with_items:
-    - debian_wallpaper.png
-    # iceberg by Carey Pietsch
-    # License: Personal Use
-    # https://www.wallpapertip.com/wpic/xRwJww_minimalist-desktop-wallpaper-hd
-    - iceberg.png
-    - universe.png
-  tags: i3
-
-- name: Create .i3MoveNext
-  copy:
-    src: i3/dot_i3MoveNext.sh
-    dest: ~/.i3MoveNext.sh
-    mode: 0755
-  tags: i3
-
-- name: install i3ass
-  block:
-    - name: Ensure /tmp/i3ass is absent
-      file:
-        path: /tmp/i3ass
-        state: absent
-
-    - name: Create /tmp/i3ass
-      file:
-        path: /tmp/i3ass
-        state: directory
-
-    # Install latest version as of 12/3/2021
-    - name: Get i3ass source
-      git:
-        repo: 'https://github.com/budlabs/i3ass.git'
-        dest: /tmp/i3ass
-        version: 2022.07.21.1
-
-    - name: Install i3 build requirements
-      apt:
-        name:
-          - make
-          - gawk
-          - lowdown
-        state: latest
-      become: true
-
-    - name: make i3ass
-      shell: /usr/bin/make
-      args:
-        chdir: /tmp/i3ass
-
-    - name: install i3ass
-      shell: /usr/bin/make install
-      args:
-        chdir: /tmp/i3ass
-      become: true
-
-    - name: Ensure /tmp/i3ass is absent
-      file:
-        path: /tmp/i3ass
-        state: absent
-  tags: i3
