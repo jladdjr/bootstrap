@@ -1,6 +1,9 @@
-- name: Install sway
+- name: Install sway and friends
   apt:
-    name: sway
+    name:
+      - sway
+      - swaylock
+      - swayidle
     state: latest
   become: true
 
