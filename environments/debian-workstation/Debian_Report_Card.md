@@ -57,9 +57,10 @@
 
 ## Level 6: Specialized / Personal Tools
 
-| Item   | Description | Status |
-|--------|-------------|--------|
-| Latex  |             | x      |
-| Ledger |             | x      |
-| Plover |             | x      |
-| Zoom   |             | ✓      |
+| Item    | Description | Status |
+|---------|-------------|--------|
+| Latex   |             | x      |
+| Ledger  |             | x      |
+| Plover  |             | x      |
+| Texinfo |             | ✓      |
+| Zoom    |             | ✓      |

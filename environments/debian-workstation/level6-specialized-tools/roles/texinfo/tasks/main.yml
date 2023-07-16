@@ -1,0 +1,6 @@
+- name: Install Texinfo and friends
+  apt:
+    name:
+      - texinfo
+    state: latest
+  become: true
