@@ -4,6 +4,7 @@
       - sway
       - swaylock
       - swayidle
+      - i3status
     state: latest
   become: true
 
@@ -17,5 +18,13 @@
   copy:
     src: sway_config
     dest: ~/.sway/config
+    mode: 0755
+    backup: yes
+
+# https://i3wm.org/docs/i3status.html
+- name: Install i3status config
+  copy:
+    src: dot_i3status.conf
+    dest: ~/.i3status.conf
     mode: 0755
     backup: yes
