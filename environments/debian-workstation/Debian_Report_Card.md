@@ -20,6 +20,7 @@
 
 | Item   | Description                                                      | Status |
 |--------|------------------------------------------------------------------|--------|
+| Borg   | Backup script created, cron job scheduled for user               | x      |
 | Emacs  | Emacs installed, emacs.d repo cloned and configuration installed | x      |
 | Joplin | Joplin installed with sync configuration applied                 | x      |
 | Pass   | pass extensions installed, pass sync cron job defined            | x      |
