@@ -32,7 +32,7 @@
 |-------------------------------|-------------------------------------|--------|
 | Docker                        | docker and docker-compose installed | x      |
 | Python                        | Python installed with venv support  | x      |
-| Fuzzy Search for Command Line | (fzf?)                              |        |
+| Fuzzy Search for Command Line | (fzf?)                              | x      |
                                                                              
 ## Level 3: Window Manager, Advanced Keymapping
 
