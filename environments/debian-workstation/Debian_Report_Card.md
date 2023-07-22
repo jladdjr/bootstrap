@@ -20,10 +20,10 @@
 
 | Item   | Description                                                      | Status |
 |--------|------------------------------------------------------------------|--------|
-| Borg   | Backup script created, cron job scheduled for user               | x      |
-| Emacs  | Emacs installed, emacs.d repo cloned and configuration installed | x      |
+| Borg   | Backup script created, cron job scheduled for user               | #next  |
+| Emacs  | Emacs installed, emacs.d repo cloned and configuration installed | #next  |
 | Joplin | Joplin installed with sync configuration applied                 | x      |
-| Pass   | pass extensions installed, pass sync cron job defined            | x      |
+| Pass+  | pass extensions installed, pass sync cron job defined            | #next  |
 | Vim    | vim configured to be default (over vi)                           | x      |
 
 ## Level 2: Specialized Development Environment
@@ -36,11 +36,11 @@
                                                                              
 ## Level 3: Window Manager, Advanced Keymapping
 
-| Item                                                   | Description | Status |
-|--------------------------------------------------------|-------------|--------|
-| Window Manager ([Sway](https://swaywm.org/))           |             | ✓      |
-| Keys remapped ([keyd](https://github.com/rvaiya/keyd)) |             | x      |
-| Screenshot Tool(s)                                     |             | x      |
+| Item                                                   | Description | Status  |
+|--------------------------------------------------------|-------------|---------|
+| Window Manager ([Sway](https://swaywm.org/))           |             | ✓       |
+| Keys remapped ([keyd](https://github.com/rvaiya/keyd)) |             | #next++ |
+| Screenshot Tool(s)                                     |             | x       |
 
 ## Level 4: Comms
 
@@ -62,6 +62,7 @@
 |---------|-------------|--------|
 | Latex   |             | x      |
 | Ledger  |             | x      |
+| Mud     |             | #next  |
 | Plover  |             | x      |
 | Texinfo |             | ✓      |
 | Zoom    |             | ✓      |
