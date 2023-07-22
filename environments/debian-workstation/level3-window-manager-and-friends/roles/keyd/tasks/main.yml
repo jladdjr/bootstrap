@@ -1,0 +1,32 @@
+- name: Clone keyd repo
+  git:
+    repo: https://github.com/rvaiya/keyd
+    dest: "{{ lookup('env', 'HOME') }}/git/keyd"
+    version: master
+
+- name: Run make
+  shell: 'make'
+  args:
+    chdir: "{{ lookup('env', 'HOME') }}/git/keyd"
+    executable: /bin/bash
+
+- name: Run make install
+  shell: 'make install'
+  args:
+    chdir: "{{ lookup('env', 'HOME') }}/git/keyd"
+    executable: /bin/bash
+  become: true
+
+- name: Enable keyd service
+  service:
+    name: keyd
+    state: started
+    enabled: true
+
+- name: Copy keyd config file (default.conf)
+  copy:
+    src: default.conf
+    dest: /etc/keyd/default.conf
+    mode: 0755
+    backup: yes
+  become: true

@@ -36,11 +36,11 @@
                                                                              
 ## Level 3: Window Manager, Advanced Keymapping
 
-| Item                                                   | Description | Status  |
-|--------------------------------------------------------|-------------|---------|
-| Window Manager ([Sway](https://swaywm.org/))           |             | ✓       |
-| Keys remapped ([keyd](https://github.com/rvaiya/keyd)) |             | #next++ |
-| Screenshot Tool(s)                                     |             | x       |
+| Item                                                   | Description | Status |
+|--------------------------------------------------------|-------------|--------|
+| Window Manager ([Sway](https://swaywm.org/))           |             | ✓      |
+| Keys remapped ([keyd](https://github.com/rvaiya/keyd)) |             | ✓      |
+| Screenshot Tool(s)                                     |             | x      |
 
 ## Level 4: Comms
 
