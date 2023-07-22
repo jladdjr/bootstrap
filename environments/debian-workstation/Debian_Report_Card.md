@@ -10,8 +10,8 @@
 
 | Item      | Description                                                         | Status |
 |-----------|---------------------------------------------------------------------|--------|
-| Bash      | Bash set as default shell, convenience aliases defined in .bashrc   | ✓      |
-| Git       | Define aliases, configure username / email                          | x      |
+| Bash      | Bash set as default shell, convenience aliases defined in .bashrc   | x      |
+| Git       | Define aliases, configure username / email                          | ✓      |
 | Man Pages |                                                                     | x      |
 | Pass      | pass installed, GPG key installed and trust level set appropriately | x      |
 | tmux      | tmux and tmux configuration installed                               | x      |

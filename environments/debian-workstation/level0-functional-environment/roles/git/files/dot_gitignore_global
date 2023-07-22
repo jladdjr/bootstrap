@@ -1,0 +1,31 @@
+.ignore
+*.swp
+nohup.out
+tmp
+
+pytestdebug.log
+playbooks/inventory
+
+# emacs files
+# https://github.com/github/gitignore/blob/master/Global/Emacs.gitignore
+*~
+\#*\#
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# my tmp files
+sandbox
+
+# latex
+*.aux
+*.log
+*.pdf
+*.toc
+
+# personal script will skip auto-loading venv if this exists
+.venv_does_not_exist
+
+# playbook secrets
+secrets.yml

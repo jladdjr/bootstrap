@@ -21,4 +21,4 @@
 
 - hosts: all
   roles:
-    - { role: bash, tags: bash }
+    - { role: git, tags: git}
