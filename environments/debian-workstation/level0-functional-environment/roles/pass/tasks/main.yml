@@ -1,0 +1,13 @@
+- name: Install Pass
+  apt:
+    name:
+      - pass
+    state: latest
+  become: true
+
+- name: Copy .password-store from backup
+  copy:
+    src: "{{ pass_backup_dir }}"
+    dest: "{{ lookup('env', 'HOME') }}/.password-store"
+    mode: 0755
+    backup: yes
