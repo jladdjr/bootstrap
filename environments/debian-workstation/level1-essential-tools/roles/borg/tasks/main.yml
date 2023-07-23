@@ -1,0 +1,13 @@
+- name: Install borgbackup
+  apt:
+    name:
+      - borgbackup
+    state: latest
+  become: true
+
+- name: Copy Borg backup script
+  copy:
+    src: backup_{{ todo_get_hostname }}.sh
+    dest: "{{ todo_get_home_dir }}/scripts/backup.sh"
+    mode: 0755
+    backup: yes
