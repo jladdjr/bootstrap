@@ -58,15 +58,17 @@
 
 ## Level 6: Specialized / Personal Tools
 
-| Item    | Description                         | Status |
-|---------|-------------------------------------|--------|
-| Emacs+  | Install private Emacs configuration | x      |
-| Latex   |                                     | x      |
-| Ledger  |                                     | x      |
-| Mud     |                                     | #next  |
-| Plover  |                                     | x      |
-| Texinfo |                                     | ✓      |
-| Zoom    |                                     | ✓      |
+| Item     | Description                         | Status |
+|----------|-------------------------------------|--------|
+| Audacity |                                     | x      |
+| Chomp    |                                     | x      |
+| Emacs+   | Install private Emacs configuration | x      |
+| Latex    |                                     | x      |
+| Ledger   |                                     | x      |
+| Mud      |                                     | #next  |
+| Plover   |                                     | x      |
+| Texinfo  |                                     | ✓      |
+| Zoom     |                                     | ✓      |
 
 ## Level 7: info pages for manual steps
 
