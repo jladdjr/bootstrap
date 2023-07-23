@@ -1,0 +1,19 @@
+- name: Install Emacs
+  apt:
+    name:
+      - Emacs
+    state: latest
+  become: true
+
+- name: Clone emacs.d repo
+  git:
+    repo: git@github.com:jladdjr/emacs.d.git
+    dest: "{{ lookup('env', 'HOME') }}/git/emacs.d"
+    version: main
+
+- name: Install Emacs configuration
+  shell: '/usr/bin/bash make install'
+  args:
+    chdir: "{{ lookup('env', 'HOME') }}/git/emacs.d"
+    executable: /bin/bash
+
