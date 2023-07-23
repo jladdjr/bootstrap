@@ -67,3 +67,10 @@
 | Plover  |                                     | x      |
 | Texinfo |                                     | ✓      |
 | Zoom    |                                     | ✓      |
+
+## Level 7: info pages for manual steps
+
+| Item                     | Description | Status |
+|--------------------------|-------------|--------|
+| IRC Setup Instructions   |             | x      |
+| Joplin Sync Instructions |             | x      |

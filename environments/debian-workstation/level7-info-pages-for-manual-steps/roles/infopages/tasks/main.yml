@@ -1,0 +1,18 @@
+- name: Ensure tmp directory exists in home folder
+  file:
+    path: "{{ lookup('env', 'HOME') }}/tmp"
+    state: directory
+    mode: '0755'
+
+- name: Copy texi files to tmp directory
+  copy:
+    src: sample.texi
+    dest: "{{ lookup('env', 'HOME') }}/tmp"
+    mode: 0755
+    backup: yes
+
+- name: Build info page
+  shell: 'makeinfo sample.texi'
+  args:
+    chdir: "{{ lookup('env', 'HOME') }}/tmp"
+    executable: /bin/bash
