@@ -1,4 +1,8 @@
 - hosts: all
   tasks:
-    - debug:
-        msg: 'test'
+    - name: Install weechat
+      apt:
+        name:
+          - weechat
+        state: latest
+      become: true

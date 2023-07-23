@@ -46,7 +46,7 @@
 
 | Item                                  | Description | Status |
 |---------------------------------------|-------------|--------|
-| IRC ([Weechat](https://weechat.org/)) |             | x      |
+| IRC ([Weechat](https://weechat.org/)) |             | ✓      |
 | Signal                                |             | x      |
 | Tutanota Desktop App                  |             | x      |
 
