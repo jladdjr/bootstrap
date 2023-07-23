@@ -1,4 +1,5 @@
 - hosts: all
   roles:
     - { role: docker, tags: docker }
-    - { role: python, tags: python}
+    - { role: python, tags: python }
+    - { role: fzf, tags: fzf }
