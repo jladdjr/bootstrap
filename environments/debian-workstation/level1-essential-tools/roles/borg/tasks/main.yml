@@ -13,3 +13,10 @@
     dest: "{{ lookup('env', 'HOME') }}/scripts/backup.sh"
     mode: 0755
     backup: yes
+
+- name: Create cron job for backups
+  cron:
+    name: "borg backup"
+    hour: "4"
+    minute: "0"
+    job: "/usr/bin/bash {{ lookup('env', 'HOME') }}/scripts/backup.sh > /dev/null"
