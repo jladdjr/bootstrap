@@ -7,7 +7,9 @@
 
 - name: Copy Borg backup script
   copy:
-    src: backup_{{ todo_get_hostname }}.sh
-    dest: "{{ todo_get_home_dir }}/scripts/backup.sh"
+    # look up script using the hostname discovered by ansible
+    # https://stackoverflow.com/questions/45908067/whats-the-difference-between-inventory-hostname-and-ansible-hostname
+    src: "backup_{{ ansible_hostname }}.sh"
+    dest: "{{ lookup('env', 'HOME') }}/scripts/backup.sh"
     mode: 0755
     backup: yes
