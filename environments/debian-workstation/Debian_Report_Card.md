@@ -47,7 +47,7 @@
 | Item                                  | Description | Status |
 |---------------------------------------|-------------|--------|
 | IRC ([Weechat](https://weechat.org/)) |             | ✓      |
-| Signal                                |             | x      |
+| Signal                                |             | ✓      |
 | Tutanota Desktop App                  |             | x      |
 
 ## Level 5: Productivity Tools

@@ -6,3 +6,8 @@
           - weechat
         state: latest
       become: true
+
+- hosts: all
+  roles:
+    - { role: signal, tags: signal }
+
