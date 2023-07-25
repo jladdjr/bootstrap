@@ -31,4 +31,5 @@
     - { role: bash, tags: bash }
     - { role: git, tags: git }
     - { role: pass, tags: pass }
+    - { role: tmux, tags: tmux}
 
