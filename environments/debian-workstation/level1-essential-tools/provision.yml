@@ -1,3 +1,4 @@
 - hosts: all
   roles:
     - { role: borg, tags: borg }
+    - { role: emacs, tags: emacs }
