@@ -76,3 +76,10 @@
 |--------------------------|-------------|--------|
 | IRC Setup Instructions   |             | x      |
 | Joplin Sync Instructions |             | x      |
+
+## Optional Configuration 1: Non-free Software
+
+| Item                          | Description | Status |
+|-------------------------------|-------------|--------|
+| Enable non-free repos         |             | ✓      |
+| Install Emacs documentation   |             | ✓      |

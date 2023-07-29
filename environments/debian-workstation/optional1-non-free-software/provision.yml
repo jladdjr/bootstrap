@@ -1,0 +1,18 @@
+- hosts: all
+  tasks:
+    - name: Enable non-free repository
+      lineinfile:
+        path: /etc/apt/sources.list
+        line: "deb http://deb.debian.org/debian/ bookworm main non-free"
+        regexp: "^deb http://deb.debian.org/debian/ bookworm main$"
+        state: present
+      become: true
+
+    - name: Update apt cache
+      shell: "apt update"
+      become: true
+
+    - name: Install Emacs documentation (to support "C-h i")
+      apt:
+        name: emacs-common-non-dfsg
+      become: true
