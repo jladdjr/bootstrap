@@ -12,6 +12,8 @@
       shell: "apt update"
       become: true
 
+    # https://www.emacswiki.org/emacs/EmacsForDebian
+    # https://emacs.stackexchange.com/questions/7238/info-file-emacs-does-not-exist
     - name: Install Emacs documentation (to support "C-h i")
       apt:
         name: emacs-common-non-dfsg
