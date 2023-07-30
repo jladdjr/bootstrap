@@ -1,7 +1,7 @@
 - name: Install Emacs
   apt:
     name:
-      - Emacs
+      - emacs
     state: latest
   become: true
 
@@ -12,7 +12,7 @@
     version: main
 
 - name: Install Emacs configuration
-  shell: '/usr/bin/bash make install'
+  shell: 'make install'
   args:
     chdir: "{{ lookup('env', 'HOME') }}/git/emacs.d"
     executable: /bin/bash
