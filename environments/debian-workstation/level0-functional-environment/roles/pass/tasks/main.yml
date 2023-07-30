@@ -5,9 +5,10 @@
     state: latest
   become: true
 
+# TODO: Retrieve .password-store location from vars file
 - name: Copy .password-store from backup
   copy:
-    src: "{{ pass_backup_dir }}"
+    src: "/media/jim/GOKIT/.password-store"
     dest: "{{ lookup('env', 'HOME') }}/.password-store"
     mode: 0755
     backup: yes

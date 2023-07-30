@@ -1,10 +1,3 @@
-# Use interactive prompt to locate backup files
-- hosts: all
-  vars_prompt:
-    - name: pass_backup_dir
-      prompt: Location of pass backup dir?
-      default: "/media/jim/GOKIT/.password-store"
-
 - hosts: all
   tasks:
     - name: Install essential packages
