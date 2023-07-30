@@ -13,6 +13,7 @@
 | Bash     | Bash set as default shell, convenience aliases defined in .bashrc   | ✓      |
 | Git      | Define aliases, configure username / email                          | ✓      |
 | Pass     | pass installed, GPG key installed and trust level set appropriately | ✓      |
+| rsync    |                                                                     | ✓      |
 | ssh keys |                                                                     | x      |
 | tmux     | tmux and tmux configuration installed                               | ✓      |
 
