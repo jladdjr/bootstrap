@@ -120,9 +120,5 @@
 
       export EDITOR=vi
 
-      if [ -z ${INSIDE_EMACS+x} ]; then
-          # when emacs runs shell mode this section will not get executed
-      fi
-
       # last file
       alias lf='ls -t1 | head -n 1'
