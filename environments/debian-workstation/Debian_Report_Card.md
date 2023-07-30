@@ -8,14 +8,15 @@
 
 ## Level 0: Functional Environment
 
-| Item     | Description                                                         | Status |
-|----------|---------------------------------------------------------------------|--------|
-| Bash     | Bash set as default shell, convenience aliases defined in .bashrc   | ✓      |
-| Git      | Define aliases, configure username / email                          | ✓      |
-| Pass     | pass installed, GPG key installed and trust level set appropriately | ✓      |
-| rsync    |                                                                     | ✓      |
-| ssh keys |                                                                     | x      |
-| tmux     | tmux and tmux configuration installed                               | ✓      |
+| Item           | Description                                                         | Status |
+|----------------|---------------------------------------------------------------------|--------|
+| Bash           | Bash set as default shell, convenience aliases defined in .bashrc   | ✓      |
+| Git            | Define aliases, configure username / email                          | ✓      |
+| openssh-server | Required to support ssh access from other machines                  | ✓      |
+| Pass           | pass installed, GPG key installed and trust level set appropriately | ✓      |
+| rsync          |                                                                     | ✓      |
+| ssh keys       |                                                                     | x      |
+| tmux           | tmux and tmux configuration installed                               | ✓      |
 
 ## Level 1: Essential Tools
 

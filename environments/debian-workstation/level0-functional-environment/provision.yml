@@ -3,6 +3,7 @@
     - name: Install essential packages
       apt:
         name:
+          - openssh-server
           - vim
           - info
           - locate
