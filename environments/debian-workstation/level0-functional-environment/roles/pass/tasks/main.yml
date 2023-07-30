@@ -9,6 +9,6 @@
 - name: Copy .password-store from backup
   copy:
     src: "/media/jim/GOKIT/.password-store"
-    dest: "{{ lookup('env', 'HOME') }}/.password-store"
+    dest: "{{ lookup('env', 'HOME') }}"
     mode: 0755
     backup: yes
