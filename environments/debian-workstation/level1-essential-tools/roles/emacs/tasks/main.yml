@@ -12,10 +12,11 @@
     version: main
 
 # Install requirements for vterm
-- name: Install libvterm-dev
+- name: Install vterm requirements
   apt:
     name:
       - libvterm-dev
+      - cmake
     state: latest
   become: true
 
