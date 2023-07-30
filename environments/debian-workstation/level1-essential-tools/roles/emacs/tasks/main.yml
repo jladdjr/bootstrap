@@ -11,6 +11,14 @@
     dest: "{{ lookup('env', 'HOME') }}/git/emacs.d"
     version: main
 
+# Install requirements for vterm
+- name: Install libvterm-dev
+  apt:
+    name:
+      - libvterm-dev
+    state: latest
+  become: true
+
 - name: Install Emacs configuration
   shell: 'make install'
   args:
