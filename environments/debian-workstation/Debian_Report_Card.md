@@ -87,3 +87,9 @@
 |-------------------------------|-------------|--------|
 | Enable non-free repos         |             | ✓      |
 | Install Emacs documentation   |             | ✓      |
+
+## Optional Configuration 2: Printer Server
+
+| Item                              | Description | Status |
+|-----------------------------------|-------------|--------|
+| Install, configure printer server |             | x      |
