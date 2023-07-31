@@ -61,18 +61,18 @@
 
 ## Level 6: Specialized / Personal Tools
 
-| Item               | Description                                            | Status |
-|--------------------|--------------------------------------------------------|--------|
-| Audacity           |                                                        | x      |
-| Chomp              | Create venv, build chomp, install chomp, create .chomp | x      |
-| Emacs+             | Install private Emacs configuration                    | x      |
-| hledger-web        | Install hledger-web and firewallcmd, open port 5000    | x      |
-| Latex              |                                                        | x      |
-| Ledger and friends | ledger, hledger, hledger-web                           | x      |
-| Mud                |                                                        | #next  |
-| Plover             |                                                        | x      |
-| Texinfo            |                                                        | ✓      |
-| Zoom               |                                                        | ✓      |
+| Item               | Description                                                                                | Status |
+|--------------------|--------------------------------------------------------------------------------------------|--------|
+| Audacity           |                                                                                            | x      |
+| Chomp              | Create venv, build chomp, install chomp, create .chomp                                     | x      |
+| Emacs+             | Install private Emacs configuration                                                        | x      |
+| hledger-web        | Install hledger-web and firewallcmd, open port 5000, cronjob for keeping ledger up-to-date | x      |
+| Latex              |                                                                                            | x      |
+| Ledger and friends | ledger, hledger, hledger-web                                                               | x      |
+| Mud                |                                                                                            | #next  |
+| Plover             |                                                                                            | x      |
+| Texinfo            |                                                                                            | ✓      |
+| Zoom               |                                                                                            | ✓      |
 
 ## Level 7: info pages for manual steps
 
