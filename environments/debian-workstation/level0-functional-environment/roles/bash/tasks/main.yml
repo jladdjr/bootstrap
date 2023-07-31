@@ -18,6 +18,7 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK - level0"
     path: ~/.bashrc
     block: |
+      alias ll='ls -l'
       alias h='cd $(pwd | cut -d '/' -f 1-5); pwd'  # Move to head (top) folder of git projects (bit hacky)
 
       # History
