@@ -66,6 +66,7 @@
 | Audacity           |                                                        | x      |
 | Chomp              | Create venv, build chomp, install chomp, create .chomp | x      |
 | Emacs+             | Install private Emacs configuration                    | x      |
+| hledger-web        | Install hledger-web and firewallcmd, open port 5000    | x      |
 | Latex              |                                                        | x      |
 | Ledger and friends | ledger, hledger, hledger-web                           | x      |
 | Mud                |                                                        | #next  |
