@@ -93,3 +93,19 @@
 | Item                              | Description | Status |
 |-----------------------------------|-------------|--------|
 | Install, configure printer server |             | x      |
+
+## Optional Configuration 3: Ultra-Wide Monitor Tweaks
+
+| Item                    | Description | Status |
+|-------------------------|-------------|--------|
+| Update Sway background  |             | x      |
+| Increase Foot font size |             | x      |
+
+## Optional Configuration 4: Add Crash Debug Tools
+
+TODO: Review article, determine if this is the right approach:
+https://www.cyberciti.biz/faq/how-to-on-enable-kernel-crash-dump-on-debian-linux/
+
+| Item | Description | Status |
+|------|-------------|--------|
+| TBD  |             | x      |
