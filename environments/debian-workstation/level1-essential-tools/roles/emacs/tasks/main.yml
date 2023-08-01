@@ -5,11 +5,12 @@
     state: latest
   become: true
 
-- name: Clone emacs.d repo
-  git:
-    repo: git@github.com:jladdjr/emacs.d.git
-    dest: "{{ lookup('env', 'HOME') }}/git/emacs.d"
-    version: main
+- name: Install general tools used by Emacs
+  apt:
+    name:
+      - silversearcher-ag
+    state: latest
+  become: true
 
 # Install requirements for vterm
 - name: Install vterm requirements
@@ -19,6 +20,12 @@
       - cmake
     state: latest
   become: true
+
+- name: Clone emacs.d repo
+  git:
+    repo: git@github.com:jladdjr/emacs.d.git
+    dest: "{{ lookup('env', 'HOME') }}/git/emacs.d"
+    version: main
 
 - name: Install Emacs configuration
   shell: 'make install'
