@@ -1,0 +1,9 @@
+- hosts: all
+  tasks:
+    - name: Use higher resolution background
+      lineinfile:
+        path: "{{ lookup('env', 'HOME') }}/.sway/config"
+        line: "output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_2048x1536.png fill"
+        regexp: '^output \* bg '
+        state: present
+      become: true

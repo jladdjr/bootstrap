@@ -98,7 +98,7 @@
 
 | Item                    | Description | Status |
 |-------------------------|-------------|--------|
-| Update Sway background  |             | x      |
+| Update Sway background  |             | ✓      |
 | Increase Foot font size |             | x      |
 
 ## Optional Configuration 4: Add Crash Debug Tools
