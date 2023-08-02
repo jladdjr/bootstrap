@@ -94,7 +94,13 @@
 |-----------------------------------|-------------|--------|
 | Install, configure printer server |             | x      |
 
-## Optional Configuration 3: Ultra-Wide Monitor Tweaks
+## Optional Configuration 3: Printer Client
+
+| Item                              | Description | Status |
+|-----------------------------------|-------------|--------|
+| Install, configure printer server |             | x      |
+
+## Optional Configuration 4: Ultra-Wide Monitor Tweaks
 
 | Item                    | Description | Status |
 |-------------------------|-------------|--------|
