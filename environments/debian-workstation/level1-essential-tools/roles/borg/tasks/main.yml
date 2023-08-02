@@ -5,6 +5,12 @@
     state: latest
   become: true
 
+- name: Ensure scripts directory exists in home folder
+  file:
+    path: "{{ lookup('env', 'HOME') }}/scripts"
+    state: directory
+    mode: '0755'
+
 - name: Copy Borg backup script
   copy:
     # look up script using the hostname discovered by ansible

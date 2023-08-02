@@ -12,3 +12,11 @@
     dest: "{{ lookup('env', 'HOME') }}"
     mode: 0755
     backup: yes
+
+- name: Set PASSWORD_STORE_DIR in .bashrc
+  blockinfile:
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - level0 - PASS"
+    path: "{{ lookup('env', 'HOME') }}/.bashrc"
+    block: |
+      export PASSWORD_STORE_DIR="/home/jim/.password-store"
+      source /usr/share/bash-completion/completions/pass

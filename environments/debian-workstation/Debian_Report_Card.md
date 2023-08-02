@@ -26,7 +26,7 @@
 | Borg   | Backup script created, cron job scheduled for user               | ✓      |
 | Emacs  | Emacs installed, emacs.d repo cloned and configuration installed | ✓      |
 | Joplin | Joplin installed with sync configuration applied                 | x      |
-| Pass+  | pass extensions installed, pass sync cron job defined            | #next  |
+| Pass+  | pass extensions installed, pass sync cron job defined            | ✓      |
 | Vim    | vim configured to be default (over vi)                           | x      |
 
 ## Level 2: Specialized Development Environment

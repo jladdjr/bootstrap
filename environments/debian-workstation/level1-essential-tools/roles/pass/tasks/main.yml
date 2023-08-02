@@ -1,0 +1,29 @@
+- name: Ensure .extensions directory exists in .password-store directory
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.password-store/.extensions"
+    state: directory
+    mode: '0755'
+
+- name: Copy scripts into .extensions
+  copy:
+    src: "{{ item }}"
+    dest: "{{ lookup('env', 'HOME') }}/.password-store/.extensions"
+    mode: 0755
+  with_items:
+    - checkout.bash
+    - stash.bash
+    - status.bash
+    - sync.bash
+
+- name: Templatize / copy over rebase script to .extensions
+  template:
+    src: rebase.bash.j2
+    dest: "{{ lookup('env', 'HOME') }}/.password-store/.extensions/rebase.bash"
+    mode: 0755
+
+- name: Enable pass extensions
+  lineinfile:
+    path: "{{ lookup('env', 'HOME') }}/.bashrc"
+    line: 'export PASSWORD_STORE_ENABLE_EXTENSIONS="true"'
+    state: present
+  become: true
