@@ -5,6 +5,8 @@
     state: latest
   become: true
 
+# TODO: Only copy over .password_store if it doesn't exist
+
 # TODO: Retrieve .password-store location from vars file
 - name: Copy .password-store from backup
   copy:
@@ -20,3 +22,9 @@
     block: |
       export PASSWORD_STORE_DIR="/home/jim/.password-store"
       source /usr/share/bash-completion/completions/pass
+
+- name: Create cron job for updating pass
+  cron:
+    name: "pass sync"
+    minute: "*/15"
+    job: "/usr/bin/pass sync &>/dev/null"

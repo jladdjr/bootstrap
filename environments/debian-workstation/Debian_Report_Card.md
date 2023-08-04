@@ -18,6 +18,8 @@
 | ssh keys       |                                                                     | x      |
 | tmux           | tmux and tmux configuration installed                               | ✓      |
 
+<!-- TODO: Add cron job for updating pass -->
+
 ## Level 1: Essential Tools
 
 | Item   | Description                                                      | Status |
@@ -26,7 +28,7 @@
 | Borg   | Backup script created, cron job scheduled for user               | ✓      |
 | Emacs  | Emacs installed, emacs.d repo cloned and configuration installed | ✓      |
 | Joplin | Joplin installed with sync configuration applied                 | x      |
-| Pass+  | pass extensions installed, pass sync cron job defined            | ✓      |
+| Pass+  | pass extensions installed                                        | ✓      |
 | Vim    | vim configured to be default (over vi)                           | x      |
 
 ## Level 2: Specialized Development Environment
