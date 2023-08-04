@@ -49,11 +49,11 @@
 
 ## Level 4: Comms
 
-| Item                                  | Description | Status |
-|---------------------------------------|-------------|--------|
-| IRC ([Weechat](https://weechat.org/)) |             | ✓      |
-| Signal                                |             | ✓      |
-| Tutanota Desktop App                  |             | x      |
+| Item                                  | Description | Status      |
+|---------------------------------------|-------------|-------------|
+| IRC ([Weechat](https://weechat.org/)) |             | ✓           |
+| Signal                                |             | need_to_fix |
+| Tutanota Desktop App                  |             | next        |
 
 ## Level 5: Productivity Tools
 
@@ -71,7 +71,7 @@
 | hledger-web        | Install hledger-web and firewallcmd, open port 5000, cronjob for keeping ledger up-to-date | x      |
 | Latex              |                                                                                            | x      |
 | Ledger and friends | ledger, hledger, hledger-web                                                               | x      |
-| Mud                |                                                                                            | #next  |
+| Mud                |                                                                                            | next   |
 | Plover             |                                                                                            | x      |
 | Texinfo            |                                                                                            | ✓      |
 | Zoom               |                                                                                            | ✓      |
@@ -80,8 +80,8 @@
 
 | Item                     | Description | Status |
 |--------------------------|-------------|--------|
-| IRC Setup Instructions   |             | x      |
-| Joplin Sync Instructions |             | x      |
+| IRC Setup Instructions   |             | next   |
+| Joplin Sync Instructions |             | next   |
 
 ## Optional Configuration 1: Non-free Software
 
@@ -94,13 +94,13 @@
 
 | Item                              | Description | Status |
 |-----------------------------------|-------------|--------|
-| Install, configure printer server |             | x      |
+| Install, configure printer server |             | next   |
 
 ## Optional Configuration 3: Printer Client
 
 | Item                              | Description | Status |
 |-----------------------------------|-------------|--------|
-| Install, configure printer server |             | x      |
+| Install, configure printer server |             | next   |
 
 ## Optional Configuration 4: Ultra-Wide Monitor Tweaks
 
