@@ -112,6 +112,9 @@
 TODO: Review article, determine if this is the right approach:
 https://www.cyberciti.biz/faq/how-to-on-enable-kernel-crash-dump-on-debian-linux/
 
+Or maybe use systemd-coredump instead?
+https://groups.google.com/g/linux.debian.bugs.dist/c/ln1Mw4gFmUM?pli=1
+
 | Item | Description | Status |
 |------|-------------|--------|
 | TBD  |             | x      |
