@@ -11,6 +11,11 @@
 
 # Brother driver available at:
 # https://support.brother.com/g/b/downloadtop.aspx?c=us&lang=en&prod=hll2300d_us_eu_as
+#
+# If this becomes unavailable in the future, a copy of the *.deb file is stored in pass:
+# pass show digital/drivers/Brother-HL-L2300D-linux-brprinter-installer-2.2.3-1.gz
+#
+# Start the driver installer with 'bash <installer>.sh', then..
 # - select Linux (DEB)
 # - Click on Driver Install Tool at top
 # - Accept EULA
