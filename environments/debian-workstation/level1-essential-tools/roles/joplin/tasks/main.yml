@@ -1,0 +1,26 @@
+# Installing Joplin
+
+# AppImage file is at:
+# https://github.com/laurent22/joplin/releases/latest
+
+- name: Install wget
+  apt:
+    name:
+      - wget
+    state: latest
+  become: true
+
+- name: Install Joplin
+  shell: 'wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash'
+  args:
+    executable: /bin/bash
+
+- name: Create link to Joplin AppImage
+  shell: "ln -s {{ lookup('env', 'HOME') }}/.joplin/AppImage /usr/local/bin/joplin"
+  args:
+    executable: /bin/bash
+  become: true
+
+# TODO: provide steps for configuring synchronization
+# (instructions currently live in 'pass show products/joplin'
+#  and make use of password in 'pass show -c home/synology/jim_dsm'

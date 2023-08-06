@@ -1,5 +1,6 @@
 - hosts: all
   roles:
-    #- { role: borg, tags: borg }
-    #- { role: emacs, tags: emacs }
+    - { role: borg, tags: borg }
+    - { role: emacs, tags: emacs }
     - { role: pass, tags: pass }
+    - { role: joplin, tags: joplin }
