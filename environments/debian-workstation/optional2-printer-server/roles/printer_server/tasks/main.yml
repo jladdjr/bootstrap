@@ -1,0 +1,58 @@
+- name: Install cups and lpr
+  apt:
+    name:
+      - cups
+      - lpr  # used to (test) print files
+    state: latest
+  become: true
+
+# Note: cups admin page is at http://localhost:631
+# Note: Main user appears to be assigned to lpadmin group by default
+
+# Brother driver available at:
+# https://support.brother.com/g/b/downloadtop.aspx?c=us&lang=en&prod=hll2300d_us_eu_as
+# - select Linux (DEB)
+# - Click on Driver Install Tool at top
+# - Accept EULA
+# - Click Start
+# - gunzip downloaded file
+# - As root, run script
+
+# In script, provide this input:
+# - Model name:             HL-L2300D
+# - Specify Device URI?     n
+# - Test print?             y  (make sure printer is on :)
+
+# After running the script, you should be able to return to the
+# local cups homepage and open the printers tab (http://localhost:631/printers/)
+# and confirm that the brother printer has been added.
+#
+# In my case, I see two printers:
+# HL-L2300D-series associated with location 'monolith' and listed as Idle (appears to be actual printer used)
+# HLL2300D printer not associated with any location and listed as idle
+
+# To get a list of printers, run:
+# sudo lpinfo -v
+#
+# This shows me:
+# 'direct usb://Brother/HL-L2300D%20series?serial=U63878M4N650317'
+
+# To see files installed with printer driver, run:
+# dpkg -L hll2300dlpr
+# dpkg -L hll2300dcupswrapper
+
+# To test print a file outside of the driver script, run:
+# lp /usr/share/cups/data/testprint
+
+- name: Install firewalld
+  apt:
+    name:
+      - firewalld
+    state: latest
+  become: true
+
+- name: Open port 631 for printer
+  shell: 'firewall-cmd --permanent --add-port=631/tcp && firewall-cmd --reload'
+  args:
+    executable: /bin/bash
+  become: true

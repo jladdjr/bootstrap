@@ -94,7 +94,7 @@
 
 | Item                              | Description | Status |
 |-----------------------------------|-------------|--------|
-| Install, configure printer server |             | next   |
+| Install, configure printer server |             | ✓      |
 
 ## Optional Configuration 3: Printer Client
 
