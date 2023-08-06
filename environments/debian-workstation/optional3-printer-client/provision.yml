@@ -1,0 +1,17 @@
+- hosts: all
+  tasks:
+    - name: Configure remote printer (via ipp protocol)
+      shell: 'lpadmin -p HL-L2300D-series -E -v ipp://192.168.1.2/printers/HL-L2300D-series -m everywhere'
+      args:
+        executable: /bin/bash
+
+    - name: Set Brother printer as default
+      shell: 'lpoptions -d HL-L2300D-series'
+      args:
+        executable: /bin/bash
+
+    - name: Test print page
+      shell: 'lp /usr/share/cups/data/testprint'
+      args:
+        executable: /bin/bash
+

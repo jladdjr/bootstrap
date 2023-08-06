@@ -44,6 +44,27 @@
 # To test print a file outside of the driver script, run:
 # lp /usr/share/cups/data/testprint
 
+# To see how the printer is configured using the command line, run:
+# sudo lpoptions -p HL-L2300D-series
+#
+# You can use this to confirm whether the printer is shared.
+# It appears to be shared by default.
+
+# Even though an individual printer may be shared,
+# you have to tell the cups service as a whole to begin sharing,
+# otherwise the printers will be inaccessible.
+#
+# To enable sharing at the cups-level, run:
+# sudo cupsctl --share-printers
+#
+# You can confirm that sharing has been enabled with:
+# sudo cupsctl | grep -i _share_printers
+#
+# To share a printer outside of the current network, run:
+# sudo cupsctl --remote-any
+#
+# See https://www.cups.org/doc/sharing.html for more information
+
 - name: Install firewalld
   apt:
     name:
