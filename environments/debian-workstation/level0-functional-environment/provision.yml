@@ -3,20 +3,21 @@
     - name: Install essential packages
       apt:
         name:
-          - openssh-server
-          - vim
+          - apt-file
+          - bc
+          - calibre
+          - e2fsprogs
+          - fd-find
+          - htop
           - info
           - locate
-          - bc
-          - screen
-          - htop
-          - strace
-          - apt-file
-          - e2fsprogs
-          - strace
-          - fd-find
-          - calibre
+          - openssh-server
           - rsync
+          - screen
+          - strace
+          - strace
+          - vim
+          - wget
         state: latest
       become: true
 
