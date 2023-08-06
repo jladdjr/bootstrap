@@ -98,9 +98,9 @@
 
 ## Optional Configuration 3: Printer Client
 
-| Item                              | Description | Status |
-|-----------------------------------|-------------|--------|
-| Install, configure printer server |             | ✓      |
+| Item                     | Description | Status |
+|--------------------------|-------------|--------|
+| Configure printer client |             | ✓      |
 
 ## Optional Configuration 4: Ultra-Wide Monitor Tweaks
 
