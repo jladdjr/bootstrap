@@ -1,0 +1,33 @@
+- name: Install hledger
+  apt:
+    name:
+      - hledger
+      - ledger  # still required for ledger-mode in Emacs
+    state: latest
+  become: true
+
+- name: Add ledger wrapper command
+  blockinfile:
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - level6 - ledger"
+    path: "{{ lookup('env', 'HOME') }}/.bashrc"
+    block: |
+      ledger () {
+          cd ~/ledger
+          git pull
+          /usr/bin/emacs 2023.ledger
+          git add -u
+          git commit -m 'Jim update' && git push
+          ssh jim@monolith 'cd ~/ledger; git pull'
+      }
+
+- name: Clone ledger repo from Jeeves
+  git:
+    repo: ssh://jim@jeeves/~/git/ledger.git
+    dest: "{{ lookup('env', 'HOME') }}/ledger"
+    version: revolution
+
+- name: Install ledger pre-commit hook
+  shell: 'make hooks'
+  args:
+    chdir: "{{ lookup('env', 'HOME') }}/ledger"
+    executable: /bin/bash
