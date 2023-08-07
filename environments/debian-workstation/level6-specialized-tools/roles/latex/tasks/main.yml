@@ -2,5 +2,9 @@
   apt:
     name:
       - texlive  # provides pdflatex (used by `C-c C-e l p` in org-mode)
+      - texlive-latex-base-doc
+      - texlive-latex-extra
+      - texlive-latex-extra-doc
+      - texlive-latex-recommended-doc
     state: latest
   become: true
