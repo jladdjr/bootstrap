@@ -2,3 +2,4 @@
   roles:
     - { role: texinfo, tags: texinfo }
     - { role: ledger, tags: ledger }
+    - { role: latex, tags: latex }

@@ -1,0 +1,6 @@
+- name: Install texlive
+  apt:
+    name:
+      - texlive  # provides pdflatex (used by `C-c C-e l p` in org-mode)
+    state: latest
+  become: true

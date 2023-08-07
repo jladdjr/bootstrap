@@ -68,7 +68,7 @@
 | Audacity |                                                        | x      |
 | Chomp    | Create venv, build chomp, install chomp, create .chomp | x      |
 | Emacs+   | Install private Emacs configuration                    | x      |
-| Latex    |                                                        | x      |
+| Latex    |                                                        | ✓      |
 | hledger  |                                                        | ✓      |
 | Mud      |                                                        | next   |
 | Plover   |                                                        | x      |
