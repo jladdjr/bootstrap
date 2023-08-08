@@ -6,6 +6,15 @@
 
 # TODO: Convert gimp instructions to info file
 
+# Step 0: Open Gimp, connect GAOMON tablet
+#
+# On 12/26/2022, I purchased this (used) tablet on Amazon:
+# GAOMON M10K 10 x 6.25 Inches
+#
+# 1. Connect the tablet. Be sure to place stylus on the drawing surface
+#    otherwise it may not be enabled when you open Gimp!!
+# 2. Open Gimp and pick a canvas size / resolution to start with.
+
 # Step 1: Enable tablet
 # 1. Go to Edit -> Input Devices
 # 2. Click on xwayland-tablet-pad. Beside Mode select Screen.
