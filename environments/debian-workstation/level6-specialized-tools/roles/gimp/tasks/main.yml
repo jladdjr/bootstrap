@@ -16,13 +16,14 @@
 # 2. Open Gimp and pick a canvas size / resolution to start with.
 
 # Step 1: Enable tablet
+#
 # 1. Go to Edit -> Input Devices
 # 2. Click on xwayland-tablet-pad. Beside Mode select Screen.
 # 3. Click on xwayland-tablet-stylus. Beside Mode select Screen.
 # 4. The only other device that should be enabled is Core Pointer.
 #
-# Step 2: Assign buttons 
-# 
+# Step 2: Assign buttons
+#
 # 1. Click Edit -> Preferences
 # 2. Scroll down to Input Devices. Expand the node and click on Input Controllers.
 # 3. Under Available Conttrollers click on Mouse Buttons.
