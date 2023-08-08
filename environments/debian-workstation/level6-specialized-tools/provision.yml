@@ -1,13 +1,6 @@
 - hosts: all
-  tasks:
-    - name: Install Gimp
-      apt:
-        name: gimp
-        state: present
-      become: true
-
-- hosts: all
   roles:
-    - { role: texinfo, tags: texinfo }
-    - { role: ledger, tags: ledger }
+    - { role: gimp, tags: gimp }
     - { role: latex, tags: latex }
+    - { role: ledger, tags: ledger }
+    - { role: texinfo, tags: texinfo }

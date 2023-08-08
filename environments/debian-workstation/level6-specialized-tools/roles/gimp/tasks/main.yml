@@ -1,0 +1,69 @@
+- name: Install Gimp
+  apt:
+    name: gimp
+    state: present
+  become: true
+
+# TODO: Convert gimp instructions to info file
+
+# Step 1: Enable tablet
+# 1. Go to Edit -> Input Devices
+# 2. Click on xwayland-tablet-pad. Beside Mode select Screen.
+# 3. Click on xwayland-tablet-stylus. Beside Mode select Screen.
+# 4. The only other device that should be enabled is Core Pointer.
+#
+# Step 2: Assign buttons 
+# 
+# 1. Click Edit -> Preferences
+# 2. Scroll down to Input Devices. Expand the node and click on Input Controllers.
+# 3. Under Available Conttrollers click on Mouse Buttons.
+#    Click on the right arrow to move the selection to Active Controllers.
+# 4. Click on Mouse Buttons. Click on the Paper and Wrench icon.
+# 5. Use the layout below to assign buttons. Suggested functions are listed.
+#    Note that only buttons 8 through 12 appear to be associated with the mouse.
+#    While the Linux Input controller has more buttons, it reports
+#    "Device not available: Permission" regardless of which device is selected.
+#    (would this be resolved with the digimend driver?)
+#
+# Buttons
+#     +-----+
+#     |  1  |
+#     +-----+
+#     |  2  |
+#     +-----+
+#     |  3  |
+#     +-----+
+#     |  8  |       view-zoom-in
+#     +-----+
+#     |  9  |       view-zoom-out
+#     +-----+
+# +---+-----+---+
+# |             |
+# |   +-----+   |
+# |   | 10  |   |   view-zoom-fit-in
+# |   |     |   |
+# |   +-----+   |
+# |             |
+# +---+-----+---+
+#     +-----+
+#     | 11  |       edit-strong-undo
+#     +-----+
+#     | 12  |       tools-paintbrush
+#     +-----+
+#     | 13  |
+#     +-----+
+#     | 14  |
+#     +-----+
+#     | 15  |
+#     +-----+
+#
+# Diagram credit:
+# Retrieved from https://www.davidrevoy.com/article870/review-gaomon-m10k-2018-graphic-tablet-on-linux-for-digital-painting
+# on 2023-08-07
+#
+# Additional Notes:
+# The GAOMON site does not list a Linux driver at this time (though they say that you can request a driver)
+# https://blog.gaomon.net/faq/save-express-keys-setting/
+#
+# Several pages mention having success using the digimend driver. I have not experimented with this yet.
+# https://digimend.github.io/support/howto/apps/gimp/
