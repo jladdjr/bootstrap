@@ -69,6 +69,7 @@
 | Chomp    | Create venv, build chomp, install chomp, create .chomp | x      |
 | Emacs+   | Install private Emacs configuration                    | x      |
 | Gimp     |                                                        | ✓      |
+| Krita    |                                                        | ✓      |
 | Latex    |                                                        | ✓      |
 | hledger  |                                                        | ✓      |
 | Mud      |                                                        | next   |

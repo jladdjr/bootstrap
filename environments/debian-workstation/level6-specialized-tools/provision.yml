@@ -4,3 +4,12 @@
     - { role: latex, tags: latex }
     - { role: ledger, tags: ledger }
     - { role: texinfo, tags: texinfo }
+
+- hosts: all
+  tasks:
+    - name: Install krita
+      apt:
+        name:
+          - krita
+        state: latest
+      become: true
