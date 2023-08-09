@@ -57,9 +57,13 @@
 
 ## Level 5: Productivity Tools
 
-| Item                | Description | Status |
-|---------------------|-------------|--------|
-| Task Warrior Client |             | x      |
+| Item                       | Description                            | Status |
+|----------------------------|----------------------------------------|--------|
+| Task Warrior Client        |                                        | x      |
+| watson                     | Install watson, source bash completion | x      |
+| tmux modeline              | Update modeline to show watson status  | x      |
+| emacs modeline             | Update modeline to show watson status  | x      |
+| taskwarrior mode for Emacs |                                        | x      |
 
 ## Level 6: Specialized / Personal Tools
 
@@ -127,9 +131,3 @@ https://groups.google.com/g/linux.debian.bugs.dist/c/ln1Mw4gFmUM?pli=1
 | Item               | Description                                                                                | Status |
 |--------------------|--------------------------------------------------------------------------------------------|--------|
 | hledger-web        | Install hledger-web and firewallcmd, open port 5000, cronjob for keeping ledger up-to-date | x      |
-
-## Optional Configuration 7: Time Tracking
-
-| Item   | Description                            | Status |
-|--------|----------------------------------------|--------|
-| watson | Install watson, source bash completion | x      |
