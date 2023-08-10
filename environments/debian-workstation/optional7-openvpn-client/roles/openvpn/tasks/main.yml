@@ -1,1 +1,18 @@
+- name: Install openvpn
+  apt:
+    name:
+      - openvpn
+    state: latest
+  become: true
 
+# TODO: automate steps:
+# 1. prompt for openvpn.zip
+# 2. unzip openvpn.zip
+# 3. sudo cp VPNconfig.ovpn /etc/openvpn/
+# 4. sudo cp ca* /etc/openvpn/
+# 5. sudo service openvpn restart
+#
+# Testing config:
+# 1. Connect to network that is not connected to VPN network
+# 2. sudo openvpn --config /etc/openvpn/VPNconfig.ovpn
+# 3. Authenticate with dsm user
