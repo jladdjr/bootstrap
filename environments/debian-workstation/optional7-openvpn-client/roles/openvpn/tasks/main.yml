@@ -9,8 +9,7 @@
 # 1. prompt for openvpn.zip
 # 2. unzip openvpn.zip
 # 3. sudo cp VPNconfig.ovpn /etc/openvpn/
-# 4. sudo cp ca* /etc/openvpn/
-# 5. sudo service openvpn restart
+# 4. sudo service openvpn restart
 #
 # Testing config:
 # 1. Connect to network that is not connected to VPN network
