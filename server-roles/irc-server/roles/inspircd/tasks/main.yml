@@ -14,6 +14,7 @@
     apt:
       name: inspircd
       state: latest
+      update_cache: true
 
   - name: Ensure inspircd config directory exists
     file:

@@ -19,6 +19,7 @@
           - vim
           - wget
         state: latest
+        update_cache: true
       become: true
 
 - hosts: all

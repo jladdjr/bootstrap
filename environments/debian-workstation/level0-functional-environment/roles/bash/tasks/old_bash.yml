@@ -2,6 +2,7 @@
   apt:
     name: libnotify-bin
     state: latest
+    update_cache: true
   become: true
 
 - name: Add bash configuration

@@ -7,4 +7,5 @@
       - texlive-latex-extra-doc
       - texlive-latex-recommended-doc
     state: latest
+    update_cache: true
   become: true

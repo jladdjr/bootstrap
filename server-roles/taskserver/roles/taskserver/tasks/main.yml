@@ -29,6 +29,7 @@
     - gnutls-bin  # provides certtool
     - net-tools  # provides ifconfig
     state: latest
+    update_cache: true
   become: true
 
 - name: Get taskserver repo

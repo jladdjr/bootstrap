@@ -17,4 +17,5 @@
     - name: Install Emacs documentation (to support "C-h i")
       apt:
         name: emacs-common-non-dfsg
+      update_cache: true
       become: true

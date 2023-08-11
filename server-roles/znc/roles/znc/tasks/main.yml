@@ -3,6 +3,7 @@
   apt:
     name: znc
     state: latest
+    update_cache: true
   become: true
 
 # Install firewalld

@@ -2,6 +2,7 @@
   apt:
     name: gimp
     state: present
+    update_cache: true
   become: true
 
 # TODO: Convert gimp instructions to info file

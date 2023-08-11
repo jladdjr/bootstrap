@@ -3,6 +3,7 @@
     name:
       - openvpn
     state: latest
+    update_cache: true
   become: true
 
 # TODO: automate steps:

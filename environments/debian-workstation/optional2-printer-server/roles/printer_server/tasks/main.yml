@@ -4,6 +4,7 @@
       - cups
       - lpr  # used to (test) print files
     state: latest
+    update_cache: true
   become: true
 
 # Note: cups admin page is at http://localhost:631

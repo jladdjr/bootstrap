@@ -3,6 +3,7 @@
     name:
       - emacs
     state: latest
+    update_cache: true
   become: true
 
 - name: Install general tools used by Emacs

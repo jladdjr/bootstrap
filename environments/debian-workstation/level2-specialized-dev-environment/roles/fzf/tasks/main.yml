@@ -3,6 +3,7 @@
     name:
       - fzf
     state: latest
+    update_cache: true
   become: true
 
 - name: Source bash completion for fzf

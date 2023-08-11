@@ -4,6 +4,7 @@
       - hledger
       - ledger  # still required for ledger-mode in Emacs
     state: latest
+    update_cache: true
   become: true
 
 - name: Add ledger wrapper command

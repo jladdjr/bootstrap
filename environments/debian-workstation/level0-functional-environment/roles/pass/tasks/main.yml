@@ -3,6 +3,7 @@
     name:
       - pass
     state: latest
+    update_cache: true
   become: true
 
 # TODO: Only copy over .password_store if it doesn't exist

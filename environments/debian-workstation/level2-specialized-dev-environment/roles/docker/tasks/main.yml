@@ -4,6 +4,7 @@
       - docker
       - docker-compose
     state: latest
+    update_cache: true
   become: true
 
 # TODO: Is this still required?

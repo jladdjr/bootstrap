@@ -3,6 +3,7 @@
     name:
       - borgbackup
     state: latest
+    update_cache: true
   become: true
 
 - name: Ensure scripts directory exists in home folder
