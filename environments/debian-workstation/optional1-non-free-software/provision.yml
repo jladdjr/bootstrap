@@ -3,7 +3,7 @@
     - name: Enable contrib and non-free repositories
       lineinfile:
         path: /etc/apt/sources.list
-        line: 'deb http://deb.debian.org/debian/ bookworm main contrib non-free'
+        line: 'deb http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmware'
         regexp: '^deb .* bookworm .*$'
         state: present
       become: true
@@ -11,7 +11,7 @@
     - name: Enable contrib and non-free source repositories
       lineinfile:
         path: /etc/apt/sources.list
-        line: 'deb-src http://deb.debian.org/debian/ bookworm main contrib non-free'
+        line: 'deb-src http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmware'
         regexp: '^deb-src .* bookworm .*$'
         state: present
       become: true
@@ -19,7 +19,7 @@
     - name: Enable contrib and non-free security repositories
       lineinfile:
         path: /etc/apt/sources.list
-        line: 'deb http://deb.debian.org/debian-security/ bookworm-security main contrib non-free'
+        line: 'deb http://deb.debian.org/debian-security/ bookworm-security main contrib non-free non-free-firmware'
         regexp: '^deb .* bookworm-security .*$'
         state: present
       become: true
@@ -27,7 +27,7 @@
     - name: Enable contrib and non-free source security repositories
       lineinfile:
         path: /etc/apt/sources.list
-        line: 'deb-src http://deb.debian.org/debian-security/ bookworm-security main contrib non-free'
+        line: 'deb-src http://deb.debian.org/debian-security/ bookworm-security main contrib non-free non-free-firmware'
         regexp: '^deb-src .* bookworm-security .*$'
         state: present
       become: true
@@ -35,7 +35,7 @@
     - name: Enable contrib and non-free updates repositories
       lineinfile:
         path: /etc/apt/sources.list
-        line: 'deb http://deb.debian.org/debian/ bookworm-updates main contrib non-free'
+        line: 'deb http://deb.debian.org/debian/ bookworm-updates main contrib non-free non-free-firmware'
         regexp: '^deb .* bookworm-updates .*$'
         state: present
       become: true
@@ -43,7 +43,7 @@
     - name: Enable contrib and non-free source updates repositories
       lineinfile:
         path: /etc/apt/sources.list
-        line: 'deb-src http://deb.debian.org/debian/ bookworm-updates main contrib non-free'
+        line: 'deb-src http://deb.debian.org/debian/ bookworm-updates main contrib non-free non-free-firmware'
         regexp: '^deb-src .* bookworm-updates .*$'
         state: present
       become: true
