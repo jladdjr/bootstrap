@@ -1,17 +1,63 @@
 - hosts: all
   tasks:
-    - name: Enable non-free repository
+    - name: Enable contrib and non-free repositories
       lineinfile:
         path: /etc/apt/sources.list
-        line: "deb http://deb.debian.org/debian/ bookworm main non-free"
-        regexp: "^deb http://deb.debian.org/debian/ bookworm main$"
+        line: 'deb http://deb.debian.org/debian/ bookworm main contrib non-free'
+        regexp: '^deb .* bookworm .*$'
         state: present
       become: true
 
+    - name: Enable contrib and non-free source repositories
+      lineinfile:
+        path: /etc/apt/sources.list
+        line: 'deb-src http://deb.debian.org/debian/ bookworm main contrib non-free'
+        regexp: '^deb-src .* bookworm .*$'
+        state: present
+      become: true
+
+    - name: Enable contrib and non-free security repositories
+      lineinfile:
+        path: /etc/apt/sources.list
+        line: 'deb http://deb.debian.org/debian/ bookworm-security main contrib non-free'
+        regexp: '^deb .* bookworm-security .*$'
+        state: present
+      become: true
+
+    - name: Enable contrib and non-free source security repositories
+      lineinfile:
+        path: /etc/apt/sources.list
+        line: 'deb-src http://deb.debian.org/debian/ bookworm-security main contrib non-free'
+        regexp: '^deb-src .* bookworm-security .*$'
+        state: present
+      become: true
+
+    - name: Enable contrib and non-free updates repositories
+      lineinfile:
+        path: /etc/apt/sources.list
+        line: 'deb http://deb.debian.org/debian/ bookworm-updates main contrib non-free'
+        regexp: '^deb .* bookworm-updates .*$'
+        state: present
+      become: true
+
+    - name: Enable contrib and non-free source updates repositories
+      lineinfile:
+        path: /etc/apt/sources.list
+        line: 'deb-src http://deb.debian.org/debian/ bookworm-updates main contrib non-free'
+        regexp: '^deb-src .* bookworm-updates .*$'
+        state: present
+      become: true
+      
     # https://www.emacswiki.org/emacs/EmacsForDebian
     # https://emacs.stackexchange.com/questions/7238/info-file-emacs-does-not-exist
-    - name: Install Emacs documentation (to support "C-h i")
+    - name: Install Emacs documentation (to support 'C-h i')
       apt:
         name: emacs-common-non-dfsg
         update_cache: true
       become: true
+
+    - name: Install kaffeine
+      apt:
+        name: kaffeine
+      become: true
+
