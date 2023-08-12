@@ -56,8 +56,10 @@
         update_cache: true
       become: true
 
-    - name: Install kaffeine
+    - name: Install kaffeine and software to run DVDs protected with CSS (Content Scrambling System)
       apt:
-        name: kaffeine
+        name:
+          - kaffeine
+          - libdvd-pkg  # https://wiki.debian.org/CDDVD#Watching_Video_DVDs
       become: true
 
