@@ -16,22 +16,6 @@
         state: present
       become: true
 
-    - name: Enable contrib and non-free security repositories
-      lineinfile:
-        path: /etc/apt/sources.list
-        line: 'deb http://deb.debian.org/debian/ bookworm-security main contrib non-free'
-        regexp: '^deb .* bookworm-security .*$'
-        state: present
-      become: true
-
-    - name: Enable contrib and non-free source security repositories
-      lineinfile:
-        path: /etc/apt/sources.list
-        line: 'deb-src http://deb.debian.org/debian/ bookworm-security main contrib non-free'
-        regexp: '^deb-src .* bookworm-security .*$'
-        state: present
-      become: true
-
     - name: Enable contrib and non-free updates repositories
       lineinfile:
         path: /etc/apt/sources.list
