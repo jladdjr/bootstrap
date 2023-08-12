@@ -8,10 +8,6 @@
         state: present
       become: true
 
-    - name: Update apt cache
-      shell: "apt update"
-      become: true
-
     # https://www.emacswiki.org/emacs/EmacsForDebian
     # https://emacs.stackexchange.com/questions/7238/info-file-emacs-does-not-exist
     - name: Install Emacs documentation (to support "C-h i")
