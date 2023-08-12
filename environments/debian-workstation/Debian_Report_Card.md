@@ -137,3 +137,14 @@ https://groups.google.com/g/linux.debian.bugs.dist/c/ln1Mw4gFmUM?pli=1
 | Item    | Description                                | Status |
 |---------|--------------------------------------------|--------|
 | OpenVPN | Installed and configured to connect to VPN | x      |
+
+## Dealing with issues that affected my system out of the box (or shortly after I started working with the system)
+
+### Debian Live USB Installer has Raspberry Pi cruft left over
+
+(need to find good link for the fix I used)
+
+### Upgrading to newer kernel results in /boot running out of space
+
+How to free up space:
+https://tuxtweaks.com/2009/12/remove-old-kernels-in-ubuntu/ (2023-08-12)
