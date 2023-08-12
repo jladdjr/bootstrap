@@ -56,10 +56,22 @@
         update_cache: true
       become: true
 
-    - name: Install kaffeine and software to run DVDs protected with CSS (Content Scrambling System)
+    - name: Install kaffeine
       apt:
         name:
           - kaffeine
-          - libdvd-pkg  # https://wiki.debian.org/CDDVD#Watching_Video_DVDs
       become: true
 
+    # Install software to run DVDs protected with CSS (Content Scrambling System)
+    # TODO: Find way of installing with prompts being automatically accepted
+    # 1. Install libdvd-pkg  # https://wiki.debian.org/CDDVD#Watching_Video_DVDs
+    #    and accept prompts to automatically download / install libdvdcss2
+    # 2. sudo dpkg-reconfigure libdvd-pkg if you need to re-run the above configuration step
+    # 3. sudo apt-get install regionset
+    # 4. sudo install libavcodec-extra
+    # 5. Try running kaffeine with a DVD known to work with this process
+    #    (e.g. Everything, Everywhere, All at Once)
+
+    # Helpful articles:
+    # https://wiki.debian.org/CDDVD#Watching_Video_DVDs (2023-08-12)
+    # https://unix.stackexchange.com/questions/19202/how-do-i-get-dvds-to-play-in-debian (2023-08-12)
