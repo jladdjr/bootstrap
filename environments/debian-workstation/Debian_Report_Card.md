@@ -59,7 +59,7 @@
 
 | Item                       | Description                            | Status |
 |----------------------------|----------------------------------------|--------|
-| Task Warrior Client        |                                        | x      |
+| Task Warrior Client        |                                        | next   |
 | watson                     | Install watson, source bash completion | x      |
 | tmux modeline              | Update modeline to show watson status  | x      |
 | emacs modeline             | Update modeline to show watson status  | x      |
