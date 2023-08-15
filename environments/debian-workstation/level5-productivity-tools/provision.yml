@@ -7,7 +7,12 @@
 #
 # watson_stars.sh
 #
-# N=$(watson report -c -d -j | qj '.time / 3600 | floor')
+# N=$(watson report -c -d -j | jq '.time / 3600 | floor')
+#
+# if [[ "$N" == 8 ]]; then
+#   printf "done!"
+#   exit
+# fi
 #
 # M=$((N + 1))
 #
