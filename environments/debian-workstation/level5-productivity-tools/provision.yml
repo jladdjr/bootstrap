@@ -2,3 +2,24 @@
   tasks:
     - debug:
         msg: 'TODO'
+
+# TODO: Apply script as part of role task
+#
+# watson_stars.sh
+#
+# N=$(watson report -c -d -j | qj '.time / 3600 | floor')
+#
+# M=$((N + 1))
+#
+# printf '['
+# if [[ "$N" != 0 ]]; then
+#   printf "*%.0s" $(seq 1 $N)
+#   printf "_%.0s" $(seq $M 8)
+# else
+#   printf "________"
+# fi
+# printf ']'
+
+# In .tmux.conf
+#
+# set -g status-right '#(/path/to/watson_stars.sh) .. <existing status content>'
