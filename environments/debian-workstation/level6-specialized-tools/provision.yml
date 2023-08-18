@@ -12,6 +12,8 @@
         name:
           - krita
           - screenkey # https://www.thregr.org/wavexx/software/screenkey/#installation-and-basic-usage 
+          - slurp
+          - wf-recorder  # run with `wf-recorder -g "$(slurp -d)"
         state: latest
         update_cache: true
       become: true
