@@ -11,7 +11,7 @@
       apt:
         name:
           - krita
-          - screenkey # https://www.thregr.org/wavexx/software/screenkey/#installation-and-basic-usage 
+          - screenkey    # run with `screenkey --mods-mode emacs --persist`
           - slurp
           - wf-recorder  # run with `wf-recorder -g "$(slurp -d)"
         state: latest
