@@ -7,7 +7,7 @@
 
 - hosts: all
   tasks:
-    - name: Install krita
+    - name: Install krita, screenkey, slurp, and wf-recorder
       apt:
         name:
           - krita
