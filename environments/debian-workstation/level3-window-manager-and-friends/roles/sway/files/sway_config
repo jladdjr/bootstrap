@@ -83,6 +83,17 @@ input type:touchpad {
     natural_scroll enabled
 }
 
+# Switch to Dvorak layout
+bindsym $mod+m exec setxkbmap us -variant dvorak
+
+# Switch to QWERTY layout
+bindsym $mod+Shift+m exec setxkbmap us
+
+# Note: `m` has the same location on both a
+# QWERTY and Dvorak keyboard so that the above
+# shortcuts can safely be used regardless of
+# which layout is currently in use.
+
 ### Key bindings
 #
 # Basics:
