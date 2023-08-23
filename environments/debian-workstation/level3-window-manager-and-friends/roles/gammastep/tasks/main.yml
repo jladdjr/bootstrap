@@ -1,0 +1,32 @@
+# https://gitlab.com/chinstrap/gammastep
+- name: Install gammastep
+  apt:
+    name:
+      - gammastep
+    state: latest
+  become: true
+
+- name: Ensure .config directory exists in home folder
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.config"
+    state: directory
+    mode: '0700'
+
+- name: Ensure .config/gammastep directory exists in home folder
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.config/gammastep"
+    state: directory
+    mode: '0700'
+
+- name: Copy config.ini file to ~/.config/gammastep directory
+  copy:
+    src: config.ini
+    dest: "{{ lookup('env', 'HOME') }}/.config/gammastep"
+    mode: 0700
+    backup: yes
+
+- name: Ensure gammastep runs when swaywm is started
+  lineinfile:
+    path: "{{ lookup('env', 'HOME') }}/.sway/config"
+    line: "exec --no-startup-id gammastep"
+    state: present

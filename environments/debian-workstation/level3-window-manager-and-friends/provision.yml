@@ -2,3 +2,4 @@
   roles:
     - { role: sway, tags: sway }
     - { role: keyd, tags: keyd }
+    - { role: gammastep, tags: gammastep }

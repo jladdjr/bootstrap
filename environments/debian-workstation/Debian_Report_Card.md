@@ -46,6 +46,7 @@
 | Window Manager ([Sway](https://swaywm.org/))           |             | ✓      |
 | Keys remapped ([keyd](https://github.com/rvaiya/keyd)) |             | ✓      |
 | Screenshot Tool(s)                                     |             | x      |
+| Gammastep (for adjusting screen brightness)            |             | ✓      |
 
 ## Level 4: Comms
 
