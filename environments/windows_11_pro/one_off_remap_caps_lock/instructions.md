@@ -15,6 +15,6 @@ Return
         Send {Blind}{Ctrl Up}{Esc}
     Else
         Send {Blind}{Ctrl Up}
-        
+
 Return
 ```
