@@ -29,3 +29,11 @@
     dest: ~/.i3status.conf
     mode: 0755
     backup: yes
+
+- name: Configure sway to use i3status
+  lineinfile:
+    path: "{{ lookup('env', 'HOME') }}/.sway/config"
+    line: "    status_command i3status -c ~/.i3status.conf"
+    regexp: "^    status_command.*$"
+    state: present
+  become: true
