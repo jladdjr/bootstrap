@@ -24,7 +24,7 @@ export BORG_PASSPHRASE='JLADD_BORG_PASSPHRASE'
 # Backup all of /home and /var/www except a few
 # excluded directories
 borg create -p -v --stats                       \
-    $REPOSITORY::'{hostname}-{now:%Y-%m-%d}'    \
+    $REPOSITORY::'{hostname}2-{now:%Y-%m-%d}'    \
     /home/jim/.bah                              \
     /home/jim/.bash_history                     \
     /home/jim/org                               \
@@ -47,5 +47,5 @@ borg create -p -v --stats                       \
 # archives of THIS machine. The '{hostname}-' prefix is very important to
 # limit prune's operation to this machine's archives and not apply to
 # other machine's archives also.
-borg prune -v --list $REPOSITORY --prefix '{hostname}-' \
+borg prune -v --list $REPOSITORY --prefix '{hostname}2-' \
     --keep-daily=7 --keep-weekly=4 --keep-monthly=6
