@@ -1,0 +1,92 @@
+#!/usr/bin/env python3
+
+import sys
+
+dvorak_to_qwerty = {'a':'a',
+                    'n':'b',
+                    'i':'c',
+                    'h':'d',
+                    'd':'e',
+                    'y':'f',
+                    'u':'g',
+                    'j':'h',
+                    'g':'i',
+                    'c':'j',
+                    'v':'k',
+                    'p':'l',
+                    'm':'m',
+                    'l':'n',
+                    's':'o',
+                    'r':'p',
+                    'x':'q',
+                    'o':'r',
+                    ';':'s',
+                    'k':'t',
+                    'f':'u',
+                    '.':'v',
+                    ',':'w',
+                    'b':'x',
+                    't':'y',
+                    '/':'z',
+                    'A':'A',
+                    'N':'B',
+                    'I':'C',
+                    'H':'D',
+                    'D':'E',
+                    'Y':'F',
+                    'U':'G',
+                    'J':'H',
+                    'G':'I',
+                    'C':'J',
+                    'V':'K',
+                    'P':'L',
+                    'M':'M',
+                    'L':'N',
+                    'S':'O',
+                    'R':'P',
+                    'X':'Q',
+                    'O':'R',
+                    ';':'S',
+                    'K':'T',
+                    'F':'U',
+                    '.':'V',
+                    ',':'W',
+                    'B':'X',
+                    'T':'Y',
+                    '/':'Z',
+                    ' ':' ',
+                    '!':'!',
+                    '@':'@',
+                    '#':'#',
+                    '$':'$',
+                    '%':'%',
+                    '^':'^',
+                    '&':'&',
+                    '*':'*',
+                    '(':'(',
+                    ')':')',
+                    '-':'[',
+                    '=':']',
+                    '[':'/',
+                    ']':'=',
+                    '_':'{',
+                    '+':'}',
+                    '{':'?',
+                    '}':'+',
+                    '|':'|',
+                    'e': '.',
+                    'q': '\'',
+                    'w': ',',
+                    'z': ';'}
+
+if len(sys.argv) != 2:
+    print("Must specify a single word or phrase to convert")
+    exit(1)
+
+phrase = sys.argv[1]
+try:
+    converted_phrase = ''.join([dvorak_to_qwerty[i] for i in phrase])
+except KeyError as e:
+    print(f"Unknown character: '{e.args[0]}'")
+    exit(2)
+print(converted_phrase)

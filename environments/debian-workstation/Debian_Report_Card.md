@@ -79,6 +79,7 @@
 | hledger     |                                                        | ✓      |
 | Mud         |                                                        | next   |
 | Plover      |                                                        | x      |
+| qwertify    | Converts Dvorak phrase to Qwerty                       | ✓      |
 | slurp       | For grabbing dimensions of screen selection            | ✓      |
 | screenkey   | For screencasting / pair-programming                   | ✓      |
 | Texinfo     |                                                        | ✓      |

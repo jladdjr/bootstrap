@@ -1,0 +1,11 @@
+- name: Ensure scripts directory exists in home folder
+  file:
+    path: "{{ lookup('env', 'HOME') }}/scripts"
+    state: directory
+    mode: '0755'
+
+- name: Copy qwertify.py to ~/scripts
+  copy:
+    src: "qwertify.py"
+    dest: "{{ lookup('env', 'HOME') }}/scripts/qwertify.py"
+    mode: 0755
