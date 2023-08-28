@@ -4,6 +4,7 @@
     - { role: latex, tags: latex }
     - { role: ledger, tags: ledger }
     - { role: texinfo, tags: texinfo }
+    - { role: qwertify, tags: qwertify }
 
 - hosts: all
   tasks:
