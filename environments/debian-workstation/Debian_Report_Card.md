@@ -41,12 +41,12 @@
                                                                              
 ## Level 3: Window Manager, Advanced Keymapping
 
-| Item                                                   | Description | Status |
-|--------------------------------------------------------|-------------|--------|
-| Window Manager ([Sway](https://swaywm.org/))           |             | ✓      |
-| Keys remapped ([keyd](https://github.com/rvaiya/keyd)) |             | ✓      |
-| Screenshot Tool(s)                                     |             | x      |
-| Gammastep (for adjusting screen brightness)            |             | ✓      |
+| Item                                                   | Description                        | Status |
+|--------------------------------------------------------|------------------------------------|--------|
+| Window Manager ([Sway](https://swaywm.org/))           |                                    | ✓      |
+| Keys remapped ([keyd](https://github.com/rvaiya/keyd)) |                                    | ✓      |
+| Screenshot Tool(s)                                     | grim -g "$(slurp -d)" - \| wl-copy | x      |
+| Gammastep (for adjusting screen brightness)            |                                    | ✓      |
 
 ## Level 4: Comms
 
