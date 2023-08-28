@@ -77,7 +77,11 @@ dvorak_to_qwerty = {'a':'a',
                     'e': '.',
                     'q': '\'',
                     'w': ',',
-                    'z': ';'}
+                    'z': ';',
+                    'E': '>',
+                    'Q': '"',
+                    'W': '<',
+                    'Z': ':'}
 
 if len(sys.argv) != 2:
     print("Must specify a single word or phrase to convert")
