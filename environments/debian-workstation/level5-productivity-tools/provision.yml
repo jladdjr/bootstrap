@@ -1,38 +1,6 @@
 - hosts: all
-  tasks:
-    - name: Get FiraMono Nerd Font
-      get_url:
-        url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraMono.zip
-        dest: "/tmp//FiraMono.zip"
-
-    - name: Ensure /tmp/FiraMono directory exists
-      file:
-        path: "/tmp/FiraMono"
-        state: directory
-        mode: '0755'
-
-    - name: Unarchive FiraMono Nerd Font
-      unarchive:
-        src: "/tmp/FiraMono.zip"
-        dest: "/tmp/FiraMono"
-
-    - name: Copy fonts to /usr/local/share/fonts
-      shell: "cp /tmp/FiraMono/*.otf /usr/local/share/fonts"
-      become: true
-
-    - name: Set mode for all fonts in /usr/local/share/fonts
-      shell: "chmod 644 *.otf"
-      args:
-        chdir: /usr/local/share/fonts
-      become: true
-
-    - name: Install fonts using fc-cache
-      shell: fc-cache -v
-      become: true
-
-    - name: Show how to list Fira fonts
-      debug:
-        msg: "Use `fc-list | grep -i fira` to see list of Fira fonts available"
+  roles:
+    - { role: nerdfont, tags: nerdfont }
 
 # TODO: Apply script as part of role task
 #
