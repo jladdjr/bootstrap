@@ -1,6 +1,7 @@
 - hosts: all
   roles:
     - { role: nerdfont, tags: nerdfont }
+    - { role: starship, tags: starship }
 
 # TODO: Apply script as part of role task
 #

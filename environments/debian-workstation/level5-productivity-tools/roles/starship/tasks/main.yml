@@ -1,0 +1,18 @@
+- name: Copy install script to /tmp
+  copy:
+    src: install.sh
+    dest: /tmp
+    mode: 0755
+
+# https://starship.rs
+- name: Run script to install starship
+  shell: "sh install.sh --yes"
+  args:
+    chdir: /tmp
+
+- name: Source starship in .bashrc
+  lineinfile:
+    path: "{{ lookup('env', 'HOME') }}/.bashrc"
+    line: 'eval "$(starship init bash)"'
+    insertafter: "EOF"
+    state: present
