@@ -65,6 +65,8 @@
 | tmux modeline              | Update modeline to show watson status  | x      |
 | emacs modeline             | Update modeline to show watson status  | x      |
 | taskwarrior mode for Emacs |                                        | x      |
+| starship mode line         |                                        | x      |
+| nerd font                  |                                        | ✓      |
 
 ## Level 6: Specialized / Personal Tools
 
