@@ -1,0 +1,29 @@
+---
+
+# Adapted sample playbook into a role format
+
+# Based on Playbook by Rafael Bodill
+# https://github.com/rafi/ansible-modules-syncthing/blob/master/playbooks/install_syncthing.yml (Retrieved on 2023-09-10)
+
+- name: Add Syncthing repository key
+  apt_key:
+    id: "{{ syncthing_apt_key_id }}"
+    url: "{{ syncthing_apt_key_url }}"
+    keyring: "/etc/apt/trusted.gpg.d/syncthing.gpg"
+  become: true
+
+- name: Add Syncthing repository
+  apt_repository:
+    repo: "{{ syncthing_apt_repository }}"
+  become: true
+
+- name: Install Syncthing package
+  apt: name=syncthing
+  become: true
+
+- name: Enable and ensure Syncthing is started
+  systemd:
+    name: syncthing@{{ syncthing_service_user }}
+    enabled: yes
+    state: started
+  become: true

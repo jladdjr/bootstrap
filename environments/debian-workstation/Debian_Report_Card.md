@@ -22,14 +22,15 @@
 
 ## Level 1: Essential Tools
 
-| Item   | Description                                                      | Status |
-|--------|------------------------------------------------------------------|--------|
-| Ag     | Install key bindings                                             | x      |
-| Borg   | Backup script created, cron job scheduled for user               | ✓      |
-| Emacs  | Emacs installed, emacs.d repo cloned and configuration installed | ✓      |
-| Joplin | Joplin installed with sync configuration applied                 | ✓      |
-| Pass+  | pass extensions installed                                        | ✓      |
-| Vim    | vim configured to be default (over vi)                           | x      |
+| Item      | Description                                                      | Status |
+|-----------|------------------------------------------------------------------|--------|
+| Ag        | Install key bindings                                             | x      |
+| Borg      | Backup script created, cron job scheduled for user               | ✓      |
+| Emacs     | Emacs installed, emacs.d repo cloned and configuration installed | ✓      |
+| Joplin    | Joplin installed with sync configuration applied                 | ✓      |
+| Pass+     | pass extensions installed                                        | ✓      |
+| Syncthing |                                                                  | ✓      |
+| Vim       | vim configured to be default (over vi)                           | x      |
 
 ## Level 2: Specialized Development Environment
 
