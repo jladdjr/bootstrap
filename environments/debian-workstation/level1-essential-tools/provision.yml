@@ -5,3 +5,12 @@
     - { role: pass, tags: pass }
     - { role: joplin, tags: joplin }
     - { role: syncthing, tags: syncthing }
+
+- hosts: all
+  tasks:
+    - name: Install core tools
+      apt:
+        name:
+          - dnsutils  # provides dig (for getting DNS record info)
+        state: latest
+      become: true
