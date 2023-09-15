@@ -27,3 +27,10 @@
     enabled: yes
     state: started
   become: true
+
+# TODO: Should this use `--zone=public`?
+- name: Open firewall for syncthing service
+  shell: 'firewall-cmd --permanent --zone=public --add-service=syncthing && firewall-cmd --reload'
+  args:
+    executable: /bin/bash
+  become: true
