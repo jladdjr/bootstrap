@@ -71,23 +71,24 @@
 
 ## Level 6: Specialized / Personal Tools
 
-| Item        | Description                                            | Status |
-|-------------|--------------------------------------------------------|--------|
-| Audacity    |                                                        | x      |
-| Chomp       | Create venv, build chomp, install chomp, create .chomp | x      |
-| Emacs+      | Install private Emacs configuration                    | x      |
-| Gimp        |                                                        | ✓      |
-| Krita       |                                                        | ✓      |
-| Latex       |                                                        | ✓      |
-| hledger     |                                                        | ✓      |
-| Mud         |                                                        | next   |
-| Plover      |                                                        | x      |
-| qwertify    | Converts Dvorak phrase to Qwerty                       | ✓      |
-| slurp       | For grabbing dimensions of screen selection            | ✓      |
-| screenkey   | For screencasting / pair-programming                   | ✓      |
-| Texinfo     |                                                        | ✓      |
-| wf-recorder | For creating screen recordings (use with slurp)        | ✓      |
-| Zoom        |                                                        | ✓      |
+| Item          | Description                                            | Status |
+|---------------|--------------------------------------------------------|--------|
+| Audacity      |                                                        | x      |
+| Chomp         | Create venv, build chomp, install chomp, create .chomp | x      |
+| Dragon Player | Simple video player                                    | ✓      |
+| Emacs+        | Install private Emacs configuration                    | x      |
+| Gimp          |                                                        | ✓      |
+| Krita         |                                                        | ✓      |
+| Latex         |                                                        | ✓      |
+| hledger       |                                                        | ✓      |
+| Mud           |                                                        | next   |
+| Plover        |                                                        | x      |
+| qwertify      | Converts Dvorak phrase to Qwerty                       | ✓      |
+| slurp         | For grabbing dimensions of screen selection            | ✓      |
+| screenkey     | For screencasting / pair-programming                   | ✓      |
+| Texinfo       |                                                        | ✓      |
+| wf-recorder   | For creating screen recordings (use with slurp)        | ✓      |
+| Zoom          |                                                        | ✓      |
 
 ## Level 7: info pages for manual steps
 

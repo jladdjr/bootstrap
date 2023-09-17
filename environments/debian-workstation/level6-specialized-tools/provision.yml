@@ -18,3 +18,12 @@
         state: latest
         update_cache: true
       become: true
+
+- hosts: all
+  tasks:
+    - name: Install Dragon Player
+      apt:
+        name:
+          - dragonplayer
+        state: latest
+      become: true
