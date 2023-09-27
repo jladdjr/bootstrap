@@ -7,12 +7,18 @@
     update_cache: true
   become: true
 
-# TODO: Is this still required?
-# # May want to use user module instead: https://docs.ansible.com/ansible/latest/modules/user_module.html
-# - name: Get current user
-#   shell: whoami
-#   register: shell
-#
-# - name: Add {{ shell.stdout }} to docker group (so docker can be run w/out sudo)
-#   shell: usermod -a -G docker {{ shell.stdout }}
-#   become: true
+- name: Add docker aliases
+  blockinfile:
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - level2 - docker"
+    path: "{{ lookup('env', 'HOME') }}/.bashrc"
+    block: |
+      alias dps="sudo docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}"
+
+# May want to use user module instead: https://docs.ansible.com/ansible/latest/modules/user_module.html
+- name: Get current user
+  shell: whoami
+  register: shell
+
+- name: Add {{ shell.stdout }} to docker group (so docker can be run w/out sudo)
+  shell: usermod -a -G docker {{ shell.stdout }}
+  become: true
