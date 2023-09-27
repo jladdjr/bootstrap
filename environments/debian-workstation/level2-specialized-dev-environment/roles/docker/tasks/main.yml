@@ -12,7 +12,7 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK - level2 - docker"
     path: "{{ lookup('env', 'HOME') }}/.bashrc"
     block: |
-      alias dps="sudo docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}"
+      alias dps='sudo docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}"'
 
 # May want to use user module instead: https://docs.ansible.com/ansible/latest/modules/user_module.html
 - name: Get current user
