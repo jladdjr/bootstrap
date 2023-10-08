@@ -42,6 +42,8 @@ borg create -p -v --stats                       \
     /home/jim/git/short_stories                 \
     /home/jim/git/brothers_ladd_game/           \
     /home/jim/git/quarterly_goals/              \
+    /home/jim/org-roam/                         \
+    /home/jim/org-pictures/                     \
 
 # Use the `prune` subcommand to maintain 7 daily, 4 weekly and 6 monthly
 # archives of THIS machine. The '{hostname}-' prefix is very important to

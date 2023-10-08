@@ -28,6 +28,8 @@ borg create -p -v --stats                       \
     /home/jim/.plover_ninja                     \
     /home/jim/.bah                              \
     /home/jim/backups                           \
+    /home/jim/org-roam/                         \
+    /home/jim/org-pictures/                     \
 
 # Use the `prune` subcommand to maintain 7 daily, 4 weekly and 6 monthly
 # archives of THIS machine. The '{hostname}-' prefix is very important to
