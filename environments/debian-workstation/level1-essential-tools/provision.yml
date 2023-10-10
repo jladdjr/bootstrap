@@ -12,5 +12,6 @@
       apt:
         name:
           - dnsutils  # provides dig (for getting DNS record info)
+          - traceroute
         state: latest
       become: true
