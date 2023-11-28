@@ -101,6 +101,9 @@ bindsym $mod+Shift+m exec setxkbmap us
     # Start a terminal
     bindsym $mod+Return exec $term
 
+    # Start Firefox
+    bindsym $mod+g exec /usr/bin/firefox
+
     # Kill focused window
     bindsym $mod+Shift+q kill
 
