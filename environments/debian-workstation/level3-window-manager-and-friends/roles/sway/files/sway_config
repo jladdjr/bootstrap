@@ -104,6 +104,9 @@ bindsym $mod+Shift+m exec setxkbmap us
     # Start Firefox
     bindsym $mod+g exec /usr/bin/firefox
 
+    # Start Emacs
+    bindsym $mod+c exec /usr/bin/emacs
+
     # Kill focused window
     bindsym $mod+Shift+q kill
 
