@@ -47,7 +47,7 @@
         regexp: '^deb-src .* bookworm-updates .*$'
         state: present
       become: true
-      
+
     # https://www.emacswiki.org/emacs/EmacsForDebian
     # https://emacs.stackexchange.com/questions/7238/info-file-emacs-does-not-exist
     - name: Install Emacs documentation (to support 'C-h i')
@@ -66,12 +66,15 @@
     # TODO: Find way of installing with prompts being automatically accepted
     # 1. Install libdvd-pkg  # https://wiki.debian.org/CDDVD#Watching_Video_DVDs
     #    and accept prompts to automatically download / install libdvdcss2
-    # 2. sudo dpkg-reconfigure libdvd-pkg if you need to re-run the above configuration step
+    # 2. sudo dpkg-reconfigure libdvd-pkg
+    #    a. Confirm that libdvdcss2 is installed with:
+    #       dpkg -l libdvdcss2
     # 3. sudo apt-get install regionset
     # 4. sudo install libavcodec-extra
     # 5. Try running kaffeine with a DVD known to work with this process
     #    (e.g. Everything, Everywhere, All at Once)
 
     # Helpful articles:
+    # http://www.videolan.org/developers/libdvdcss.html
     # https://wiki.debian.org/CDDVD#Watching_Video_DVDs (2023-08-12)
     # https://unix.stackexchange.com/questions/19202/how-do-i-get-dvds-to-play-in-debian (2023-08-12)
