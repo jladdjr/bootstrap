@@ -94,6 +94,9 @@ bindsym $mod+Shift+m exec setxkbmap us
 # shortcuts can safely be used regardless of
 # which layout is currently in use.
 
+# Open Control Center
+bindsym $mod+t exec gnome-control-center
+
 ### Key bindings
 #
 # Basics:
