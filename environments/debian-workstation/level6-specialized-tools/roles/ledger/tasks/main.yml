@@ -13,9 +13,9 @@
     path: "{{ lookup('env', 'HOME') }}/.bashrc"
     block: |
       ledger () {
-          cd ~/ledger
+          cd ~/ledger/2024
           git pull
-          /usr/bin/emacs 2023.ledger
+          /usr/bin/emacs journal.ledger
           git add -u
           git commit -m 'Jim update' && git push
           ssh jim@monolith 'cd ~/ledger; git pull'
