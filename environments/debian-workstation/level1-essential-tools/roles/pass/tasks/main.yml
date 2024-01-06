@@ -1,3 +1,11 @@
+- name: Install pass and friends
+  apt:
+    name:
+      - pass
+      - qtpass
+    state: latest
+  become: true
+
 - name: Ensure .extensions directory exists in .password-store directory
   file:
     path: "{{ lookup('env', 'HOME') }}/.password-store/.extensions"
