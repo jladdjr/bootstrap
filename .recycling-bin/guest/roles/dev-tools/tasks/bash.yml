@@ -147,3 +147,6 @@
       alias reset_dns='sudo systemctl restart systemd-resolved.service'
 
       f () { find . -iname "*$1*"; }
+
+      # Connect to OpenVPN at home
+      alias vpn="pass show -c home/synology/jim_dsm; sudo openvpn --config /etc/openvpn/VPNConfig.ovpn"
