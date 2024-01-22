@@ -108,7 +108,7 @@ bindsym $mod+t exec gnome-control-center
     bindsym $mod+g exec /usr/bin/firefox
 
     # Start Emacs
-    bindsym $mod+c exec /usr/bin/emacs
+    bindsym $mod+c exec /usr/bin/emacsclient -c -a emacs
 
     # Kill focused window
     bindsym $mod+Shift+q kill
