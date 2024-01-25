@@ -15,7 +15,7 @@
       ledger () {
           cd ~/ledger/2024
           git pull
-          /usr/bin/emacs journal.ledger
+          /usr/bin/emacsclient -c -a emacs journal.ledger
           git add -u
           git commit -m 'Jim update' && git push
           ssh jim@monolith 'cd ~/ledger; git pull'
