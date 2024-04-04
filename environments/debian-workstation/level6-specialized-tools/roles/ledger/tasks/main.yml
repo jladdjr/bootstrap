@@ -7,6 +7,17 @@
     update_cache: true
   become: true
 
+# TODO: Install binary from github instead of using package manager
+#       (in order to get hledger check command that prints line in
+#        expected format)
+# VOTE: 1
+#
+# wget https://github.com/simonmichael/hledger/releases/download/1.32.3/hledger-linux-x64.zip
+# unzip hledger-linux-x64.zip
+# tar  xvf hledger-linux-x64.tar
+# sudo cp hledger* /usr/local/bin
+# hledger --version
+
 - name: Add ledger wrapper command
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK - level6 - ledger"
