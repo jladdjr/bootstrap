@@ -17,33 +17,22 @@ if pidof -x borg >/dev/null; then
 fi
 
 # Setting this, so you won't be asked for your repository passphrase:
-export BORG_PASSPHRASE='JLADD_BORG_PASSPHRASE'
+export BORG_PASSPHRASE='FIXME'
 # or this to ask an external program to supply the passphrase:
 # export BORG_PASSCOMMAND='pass show backup'
 
 # Backup all of /home and /var/www except a few
 # excluded directories
 borg create -p -v --stats                       \
-    $REPOSITORY::'{hostname}2-{now:%Y-%m-%d}'    \
-    /home/jim/.bah                              \
-    /home/jim/.bash_history                     \
-    /home/jim/org                               \
-    /home/jim/latex                             \
-    /home/jim/ledger                            \
-    /home/jim/books                             \
-    /home/jim/.chomp                            \
-    /home/jim/.config                           \
-    /home/jim/backup                            \
-    /home/jim/gimp                              \
-    /home/jim/.plover_ninja                     \
-    /home/jim/git/meds                          \
-    /home/jim/git/house                         \
-    /home/jim/git/8up-zine                      \
-    /home/jim/git/short_stories                 \
-    /home/jim/git/brothers_ladd_game/           \
-    /home/jim/git/quarterly_goals/              \
-    /home/jim/org-roam/                         \
-    /home/jim/org-pictures/                     \
+    $REPOSITORY::'{hostname}2-{now:%Y-%m-%d}'   \
+    -e /home/jim/Downloads                      \
+    -e /home/jim/backups/20230710_revolution_refresh \
+    -e /home/jim/.mozilla                       \
+    -e /home/jim/.config                        \
+    -e /home/jim/audacity                       \
+    -e /home/jim/.cache                         \
+    -e /home/jim/.emacs.d/straight              \
+    /home/jim
 
 # Use the `prune` subcommand to maintain 7 daily, 4 weekly and 6 monthly
 # archives of THIS machine. The '{hostname}-' prefix is very important to
