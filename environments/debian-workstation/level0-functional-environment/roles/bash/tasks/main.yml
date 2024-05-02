@@ -117,6 +117,8 @@
       alias o='git diff --stat ${HEAD1}..${HEAD2}'
       alias l='git llog ${HEAD1}..${HEAD2}'
 
+      alias big='du -d 1 -h . -t 500M | sort -h'
+
       f () { find . -iname "*$1*"; }
 
       export EDITOR=vi
