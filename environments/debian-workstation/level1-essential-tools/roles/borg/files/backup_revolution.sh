@@ -24,7 +24,6 @@ export BORG_PASSPHRASE='FIXME'
 # Backup all of /home and /var/www except a few
 # excluded directories
 borg create -p -v --stats                       \
-    $REPOSITORY::'{hostname}2-{now:%Y-%m-%d}'   \
     -e /home/jim/Downloads                      \
     -e /home/jim/backups/20230710_revolution_refresh \
     -e /home/jim/.mozilla                       \
@@ -32,6 +31,7 @@ borg create -p -v --stats                       \
     -e /home/jim/audacity                       \
     -e /home/jim/.cache                         \
     -e /home/jim/.emacs.d/straight              \
+    $REPOSITORY::'{hostname}2-{now:%Y-%m-%d}'   \
     /home/jim
 
 # Use the `prune` subcommand to maintain 7 daily, 4 weekly and 6 monthly
