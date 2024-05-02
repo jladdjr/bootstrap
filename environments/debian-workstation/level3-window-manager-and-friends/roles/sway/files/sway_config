@@ -74,8 +74,8 @@ input type:keyboard {
    xkb_layout "us"
    xkb_variant "dvorak"
 
-   repeat_delay 300
-   repeat_rate 35
+   repeat_delay 190
+   repeat_rate 40
 }
 
 input type:touchpad {
