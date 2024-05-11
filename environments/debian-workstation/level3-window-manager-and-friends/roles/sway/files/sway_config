@@ -78,9 +78,12 @@ input type:keyboard {
    repeat_rate 40
 }
 
+# https://github.com/swaywm/sway/wiki#libinput-config-options
+
 input type:touchpad {
     tap enabled
     natural_scroll enabled
+    pointer_accel 0.30
 }
 
 # Switch to Dvorak layout
