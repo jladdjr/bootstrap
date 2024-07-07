@@ -135,5 +135,5 @@
               notify-send -i $clock_icon_file "2 minutes left"
               sleep 120
 
-              i3lock -i ~/.config/i3/iceberg.png
+              swaylock -i ~/.config/i3/iceberg.png
       }
