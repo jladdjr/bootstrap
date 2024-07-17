@@ -114,10 +114,10 @@ input type:touchpad {
 }
 
 # Switch to Dvorak layout
-bindsym $mod+m exec setxkbmap us -variant dvorak
+bindsym $mod+m exec swaymsg input type:keyboard xkb_variant '"dvorak"'
 
 # Switch to QWERTY layout
-bindsym $mod+Shift+m exec setxkbmap us
+bindsym $mod+Shift+m exec swaymsg input type:keyboard xkb_variant '""'
 
 # Note: `m` has the same location on both a
 # QWERTY and Dvorak keyboard so that the above
