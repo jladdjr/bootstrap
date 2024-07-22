@@ -11,11 +11,11 @@ rsync -avz --delete ${HOME_DIR}/.ssh ${USB_DIR}
 
 # bootstrap (update bare repo)
 cd ${USB_DIR}/bootstrap.git
-git fetch ${HOME_DIR}/git/bootstrap/.git devel:devel
+git fetch -f ${HOME_DIR}/git/bootstrap/.git devel:devel
 
 # pass (update bare repo)
 cd ${USB_DIR}/password-store.git
-git fetch ${HOME_DIR}/.password-store/.git monolith:monolith
+git fetch -f ${HOME_DIR}/.password-store/.git $(hostname):$(hostname)
 
 # bah
 # cd ${USB_DIR}/bah/.password-store
