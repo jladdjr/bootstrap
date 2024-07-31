@@ -15,7 +15,6 @@
           - rsync
           - screen
           - strace
-          - strace
           - vim
           - wget
         state: latest
