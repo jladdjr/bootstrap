@@ -128,6 +128,8 @@
 
       gimme () {
               total_mins=$1
+              # Alternative icon for Pop!_OS
+              # clock_icon_file=/usr/share/icons/hicolor/symbolic/apps/org.gnome.clocks-symbolic.svg
               clock_icon_file=/usr/share/icons/hicolor/symbolic/apps/org.gnome.clocks-symbolic.svg
               notify-send -i $clock_icon_file "You will have ${total_mins} mins"
               sleep "$(( ($1 - 2) * 60 ))"
