@@ -139,3 +139,11 @@
 
               swaylock -i ~/.config/i3/iceberg.png
       }
+
+      # johnny-decimal
+      start () {
+          git init
+              echo -e "$(pwd | cut -d/ -f 7 | sed s/-active//)\n\n$(date)\n\n" > notes.org
+          git add notes.org
+          git commit -m "Add notes.org"
+      }
