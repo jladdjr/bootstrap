@@ -1,0 +1,57 @@
+#!/bin/bash
+
+ledger () {
+    # Define the directory and file
+    directory="/home/jim/.lock"
+    file="ledger"
+    file_path="$directory/$file"
+
+    # Check if the file exists
+    if [ -f "$file_path" ]; then
+        echo "Ledger already open on $(cat $file_path)"
+	notify-send -i /usr/share/icons/hicolor/scalable/apps/org.gnome.clocks.svg "Ledger already open on $(cat $file_path)"
+        exit 0
+    else
+        # Create the file with the system's hostname as the content
+        hostname > $file_path
+    
+        counter=1
+        cd ~/ledger/2024
+        # echo "Skipping git pull"
+        git pull
+        /usr/bin/emacsclient -c -a emacs journal.ledger
+    
+        # determine if any changes were made
+        git diff --exit-code
+        if [ "$?" -eq 0 ]; then
+          rm -f $file_path
+          exit 0
+        fi
+    
+        git add -u
+        git commit -m 'Jim update'
+        # determine if git's pre-commit script was successful
+        if [ $? -ne 0 ]; then
+            rm -f $file_path
+            return 1
+        fi
+    
+        # echo "Skipping git push"
+        git push
+    
+        # attempt to have monolith pull changes
+        # but don't consider this a failure if
+        # it doesn't work
+        ssh jim@monolith-ethernet 'cd ~/ledger; git pull' || true
+        rm -f $file_path
+    fi
+}
+
+ledger
+rc=$?
+
+while [ $rc -ne 0 ] && [ $counter -lt 3 ]; do
+  ledger
+  rc=$?
+  ((counter++))
+done
