@@ -135,7 +135,7 @@ bindsym $mod+t exec gnome-control-center
     bindsym $mod+Return exec $term
 
     # Start Firefox
-    bindsym $mod+g exec /usr/bin/firefox
+    bindsym $mod+g exec /usr/bin/firefox-esr
 
     # Start Emacs
     bindsym $mod+c exec /usr/bin/emacsclient -c -a emacs
