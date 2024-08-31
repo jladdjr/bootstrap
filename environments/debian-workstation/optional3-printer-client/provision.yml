@@ -1,14 +1,18 @@
+# TODO: Configure printer to use US Letter instead of A4
+#       and do double-sided printing be default
 - hosts: all
   tasks:
     - name: Configure remote printer (via ipp protocol)
-      shell: 'lpadmin -p HL-L2300D-series -E -v ipp://192.168.1.2/printers/HL-L2300D-series -m everywhere'
+      shell: 'lpadmin -p HL-L2300D-on-monolith -E -v ipp://monolith/printers/HL-L2300D-series -m everywhere'
       args:
         executable: /bin/bash
+      become: true
 
     - name: Set Brother printer as default
-      shell: 'lpoptions -d HL-L2300D-series'
+      shell: 'lpoptions -d HL-L2300D-on-monolith'
       args:
         executable: /bin/bash
+      become: true
 
     - name: Test print page
       shell: 'lp /usr/share/cups/data/testprint'
