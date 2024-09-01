@@ -5,6 +5,8 @@
     - { role: ledger, tags: ledger }
     - { role: texinfo, tags: texinfo }
     - { role: qwertify, tags: qwertify }
+    # TODO: Install KOReader
+    # https://github.com/koreader/koreader/releases
 
 - hosts: all
   tasks:
