@@ -147,3 +147,5 @@
           git add notes.org
           git commit -m "Add notes.org"
       }
+
+      alias prep_for_vfat="rename 's/[^a-zA-Z0-9. _-]//g' *"
