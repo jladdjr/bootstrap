@@ -31,6 +31,7 @@ borg create -p -v --stats                       \
     -e /home/jim/audacity                       \
     -e /home/jim/.cache                         \
     -e /home/jim/.emacs.d/straight              \
+    -e /home/jim/skip_backup                    \
     $REPOSITORY::'{hostname}2-{now:%Y-%m-%d}'   \
     /home/jim
 
