@@ -17,6 +17,7 @@
           - screenkey    # run with `screenkey --mods-mode emacs --persist`
           - slurp
           - wf-recorder  # run with `wf-recorder -g "$(slurp -d)"
+          - gocr         # for Optical Character Recognition (OCR)
         state: latest
         update_cache: true
       become: true
