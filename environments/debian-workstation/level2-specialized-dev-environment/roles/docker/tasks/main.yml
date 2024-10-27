@@ -7,13 +7,6 @@
     update_cache: true
   become: true
 
-- name: Add docker aliases
-  blockinfile:
-    marker: "# {mark} ANSIBLE MANAGED BLOCK - level2 - docker"
-    path: "{{ lookup('env', 'HOME') }}/.bashrc"
-    block: |
-      alias dps='sudo docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"'
-
 # May want to use user module instead: https://docs.ansible.com/ansible/latest/modules/user_module.html
 - name: Get current user
   shell: whoami
