@@ -4,7 +4,23 @@ Prerequisites:
 Level 0
 
 Current status:
-Runs cleanly without errors.
+- Runs cleanly without errors.
+- See configuration issues below
+
+Issues:
+- Syncthing account hard-coded to use root
+  - There is a syncthing Ansible task that references `syncthing_service_user`
+    .. which is hard-coded to root in defaults/main.yml
+  - Workaround:
+    - sudo systemctl stop syncthing@root
+      sudo systemctl disable syncthing@root
+      sudo systemctl enable syncthing@jim
+      sudo systemctl start syncthing@root
+
+Follow-up configuration needed:
+- syncthing
+  - Set username / password
+  - Configure shared folders
 
 Deprecated:
 - joplin role
