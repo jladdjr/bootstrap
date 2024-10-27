@@ -28,6 +28,10 @@
     state: started
   become: true
 
+- name: Install firewalld utils
+  apt: name=firewalld
+  become: true
+
 # TODO: Should this use `--zone=public`?
 - name: Open firewall for syncthing service
   shell: 'firewall-cmd --permanent --zone=public --add-service=syncthing && firewall-cmd --reload'

@@ -3,7 +3,7 @@
     - { role: borg, tags: borg }
     - { role: emacs, tags: emacs }
     - { role: pass, tags: pass }
-    - { role: joplin, tags: joplin }
+    # - { role: joplin, tags: joplin }
     - { role: syncthing, tags: syncthing }
 
 - hosts: all
