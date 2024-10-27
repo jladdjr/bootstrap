@@ -17,6 +17,7 @@
     executable: /bin/bash
   become: true
 
+# Note: keyd needs reboot to take effect
 - name: Enable keyd service
   service:
     name: keyd
