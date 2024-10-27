@@ -9,12 +9,15 @@
 # TODO: Only copy over .password_store if it doesn't exist
 
 # TODO: Retrieve .password-store location from vars file
-- name: Copy .password-store from backup
+- name: Copy .password-store.git from backup
   copy:
-    src: "/media/jim/GOKIT/.password-store"
-    dest: "{{ lookup('env', 'HOME') }}"
+    src: "/media/jim/GOKIT/password-store.git"
+    dest: "{{ lookup('env', 'HOME') }}/.password-store/"
     mode: 0755
     backup: yes
+
+- name: Convert .password-store.git to a full git repo
+  script: convert_pass_repo.sh
 
 - name: Set PASSWORD_STORE_DIR in .bashrc
   blockinfile:
