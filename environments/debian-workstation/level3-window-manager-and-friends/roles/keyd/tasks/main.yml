@@ -22,6 +22,7 @@
     name: keyd
     state: started
     enabled: true
+  become: true
 
 - name: Copy keyd config file (default.conf)
   copy:
