@@ -3,3 +3,12 @@
     - { role: docker, tags: docker }
     - { role: python, tags: python }
     - { role: fzf, tags: fzf }
+
+- hosts: all
+  tasks:
+    - name: Install specialized tools
+      apt:
+        name:
+          - clusterssh  # provides cssh
+        state: latest
+      become: true
