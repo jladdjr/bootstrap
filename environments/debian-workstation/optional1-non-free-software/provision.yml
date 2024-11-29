@@ -70,7 +70,7 @@
     #    a. Confirm that libdvdcss2 is installed with:
     #       dpkg -l libdvdcss2
     # 3. sudo apt-get install regionset
-    # 4. sudo install libavcodec-extra
+    # 4. sudo apt-get install libavcodec-extra
     # 5. Try running kaffeine with a DVD known to work with this process
     #    (e.g. Everything, Everywhere, All at Once)
 
