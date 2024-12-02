@@ -23,7 +23,7 @@
 
 - name: Create cron job for backups
   cron:
-    name: "borg backup"
+    name: "borg backup (make sure updates happen at staggard times!)"
     hour: "4"
     minute: "0"
-    job: "/usr/bin/bash {{ lookup('env', 'HOME') }}/scripts/backup.sh > /dev/null"
+    job: "/usr/bin/bash {{ lookup('env', 'HOME') }}/scripts/backup.sh &> /dev/null"
