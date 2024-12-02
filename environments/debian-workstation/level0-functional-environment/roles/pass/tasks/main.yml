@@ -31,4 +31,4 @@
   cron:
     name: "pass sync"
     minute: "*/15"
-    job: "/usr/bin/pass sync &>/dev/null"
+    job: 'export PASSWORD_STORE_ENABLE_EXTENSIONS="true" && /usr/bin/pass sync &>/dev/null'
