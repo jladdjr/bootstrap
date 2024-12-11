@@ -156,3 +156,19 @@
       }
 
       alias prep_for_vfat="rename 's/[^a-zA-Z0-9. _-]//g' *"
+
+      # sops
+      diff_secret() {
+          FILE=secrets.enc.yaml
+
+          sops -d $FILE > new
+
+          LAST_COMMIT=$(git log -1 HEAD~ --format='%H' secrets.enc.yaml)
+          git checkout $LAST_COMMIT $FILE
+          sops -d $FILE > old
+          git checkout HEAD $FILE
+
+          diff -u --color old new
+
+          rm old new
+      }
