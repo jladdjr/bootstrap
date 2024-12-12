@@ -1,6 +1,8 @@
 - name: Install prereqs for bash scripts
   apt:
-    name: libnotify-bin  # provides notify-send cmd used by gimme bash func
+    name:
+      - libnotify-bin  # provides notify-send cmd used by gimme bash func
+      - mako-notifier  # lightweight notification daemon for Wayland / Sway
     state: latest
     update_cache: true
   become: true

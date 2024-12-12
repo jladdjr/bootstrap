@@ -289,4 +289,9 @@ bar {
     }
 }
 
+#
+# Notifications
+#
+exec mako
+
 include /etc/sway/config.d/*
