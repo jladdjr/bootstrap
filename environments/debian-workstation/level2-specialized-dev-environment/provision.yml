@@ -10,6 +10,9 @@
       apt:
         name:
           - clusterssh  # provides cssh
+          # Manually install VirtualBox by downloading deb.
+          # (package is only included in sid package repo)
+          # https://www.oracle.com/virtualization/technologies/vm/downloads/virtualbox-downloads.html
           - vagrant
         state: latest
       become: true
