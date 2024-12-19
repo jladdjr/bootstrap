@@ -10,5 +10,6 @@
       apt:
         name:
           - clusterssh  # provides cssh
+          - vagrant
         state: latest
       become: true
