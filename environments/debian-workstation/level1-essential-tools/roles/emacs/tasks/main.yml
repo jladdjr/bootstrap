@@ -34,3 +34,11 @@
     chdir: "{{ lookup('env', 'HOME') }}/git/emacs.d"
     executable: /bin/bash
 
+# Add a cron job to periodically check for new projects that
+# were outside of any active emacs session. New projects are sometimes
+# copied to the local machine from syncthing, for example.
+- name: Create cron job to discover projectile projects in path
+  cron:
+    name: "projectile sync"
+    minute: "*/30"
+    job: 'emacsclient -e "(projectile-discover-projects-in-search-path)" &>/dev/null'
