@@ -155,7 +155,7 @@
               echo -e "$(pwd | cut -d/ -f 7 | sed s/-active//)\n\n$(date)\n\n" > notes.org
           git add notes.org
           git commit -m "Add notes.org"
-          emacsclient -e "(projectile-discover-projects-in-directory \"`pwd`\")"
+          emacsclient -e "(projectile-discover-projects-in-directory \"`pwd`\")" &>/dev/null
       }
 
       alias prep_for_vfat="rename 's/[^a-zA-Z0-9. _-]//g' *"
