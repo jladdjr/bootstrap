@@ -41,4 +41,4 @@
   cron:
     name: "projectile sync"
     minute: "*/30"
-    job: 'emacsclient -e "(projectile-discover-projects-in-search-path)" &>/dev/null'
+    job: '/usr/bin/emacsclient -e "(projectile-discover-projects-in-search-path)" &>/dev/null'
