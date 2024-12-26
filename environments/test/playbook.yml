@@ -1,0 +1,7 @@
+- hosts: all
+  tasks:
+  - name: Create cron job to discover projectile projects in path
+    cron:
+      name: "projectile sync"
+      minute: "*/30"
+      job: 'emacsclient -e "(projectile-discover-projects-in-search-path)" &>/dev/null'
