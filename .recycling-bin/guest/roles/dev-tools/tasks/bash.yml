@@ -150,3 +150,11 @@
 
       # Connect to OpenVPN at home
       alias vpn="pass show -c home/synology/jim_dsm; sudo openvpn --config /etc/openvpn/VPNConfig.ovpn"
+
+      start () {
+        git init
+        echo -e "$(pwd | cut -d/ -f 7 | sed s/-active//)\n\n$(date)\n\n* Reference\n\n* History\n" > notes.org
+        git add notes.org
+        git commit -m "Add notes.org"
+        emacsclient -e "(projectile-discover-projects-in-directory \"`pwd`\")" &>/dev/null
+      }
