@@ -6,19 +6,23 @@
           - apt-file
           - bc
           - calibre
+          - curl
           - e2fsprogs
           - foot
           - fd-find
           - htop
           - info
+          - jq
           - locate
           - openssh-server
           - rename
           - rsync
           - screen
           - strace
+          - unison
           - vim
           - wget
+          - yq
         state: latest
         update_cache: true
       become: true
