@@ -25,10 +25,15 @@
     path: "{{ lookup('env', 'HOME') }}/.bashrc"
     block: |
       export PASSWORD_STORE_DIR="/home/jim/.password-store"
-      source /usr/share/bash-completion/completions/pass
 
-- name: Create cron job for updating pass
-  cron:
-    name: "pass sync"
-    minute: "*/15"
-    job: 'export PASSWORD_STORE_ENABLE_EXTENSIONS="true" && /usr/bin/pass sync &>/dev/null'
+      bah () {
+          if [ $PASSWORD_STORE_DIR == "/home/jim/.password-store" ]; then
+              echo "Switching to BAH password stare"
+              export PASSWORD_STORE_DIR="/home/jim/.bah/.password-store"
+          else
+              echo "Switching to main password stare"
+              export PASSWORD_STORE_DIR="/home/jim/.password-store"
+          fi
+      }
+
+      source /usr/share/bash-completion/completions/pass

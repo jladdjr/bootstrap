@@ -35,3 +35,9 @@
     line: 'export PASSWORD_STORE_ENABLE_EXTENSIONS="true"'
     state: present
   become: true
+
+- name: Create cron job for updating pass
+  cron:
+    name: "pass sync"
+    minute: "*/15"
+    job: 'export PASSWORD_STORE_ENABLE_EXTENSIONS="true" && /usr/bin/pass sync &>/dev/null'
