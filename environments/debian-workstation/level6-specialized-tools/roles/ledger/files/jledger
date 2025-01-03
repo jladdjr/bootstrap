@@ -39,10 +39,10 @@ ledger () {
         # echo "Skipping git push"
         git push
 
-        # attempt to have monolith pull changes
+        # attempt to have holodeck pull changes
         # but don't consider this a failure if
         # it doesn't work
-        ssh jim@monolith-ethernet 'cd ~/ledger; git pull' || true
+        ssh jim@holodeck 'cd ~/ledger; git pull' || true
         rm -f $file_path
     fi
 }

@@ -34,7 +34,7 @@
 # and confirm that the brother printer has been added.
 #
 # In my case, I see two printers:
-# HL-L2300D-series associated with location 'monolith' and listed as Idle (appears to be actual printer used)
+# HL-L2300D-series associated with location 'holodeck' and listed as Idle (appears to be actual printer used)
 # HLL2300D printer not associated with any location and listed as idle
 
 # To get a list of printers, run:

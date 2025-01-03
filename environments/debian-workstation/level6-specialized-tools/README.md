@@ -41,7 +41,7 @@ Not yet supported:
       complete -F _chomp chomp
       ```
 
-    - Finally, have to make sure that syncthing is syncing the ~/.chomp dir from monolith,
+    - Finally, have to make sure that syncthing is syncing the ~/.chomp dir from holodeck,
       which should, in turn, sync the same dir from revolution.
 
 ## History

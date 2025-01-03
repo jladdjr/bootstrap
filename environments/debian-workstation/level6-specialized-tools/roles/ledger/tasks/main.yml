@@ -29,7 +29,7 @@
           /usr/bin/emacsclient -c -a emacs journal.ledger
           git add -u
           git commit -m 'Jim update' && git push
-          ssh jim@monolith 'cd ~/ledger; git pull'
+          ssh jim@holodeck 'cd ~/ledger; git pull'
       }
 
 - name: Clone ledger repo from Jeeves
