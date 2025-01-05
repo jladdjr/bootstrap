@@ -139,6 +139,8 @@ bindsym $mod+t exec gnome-control-center
 
     # Start Emacs
     bindsym $mod+c exec /usr/bin/emacsclient -c -a emacs
+    # If emacs was built locally, use this instead
+    # bindsym $mod+c exec /usr/local/bin/emacsclient -c -a emacs
 
     # Kill focused window
     bindsym $mod+Shift+q kill
