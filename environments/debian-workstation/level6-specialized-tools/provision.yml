@@ -18,6 +18,7 @@
           - slurp
           - wf-recorder  # run with `wf-recorder -g "$(slurp -d)"
           - gocr         # for Optical Character Recognition (OCR)
+          - rolldice
         state: latest
         update_cache: true
       become: true
