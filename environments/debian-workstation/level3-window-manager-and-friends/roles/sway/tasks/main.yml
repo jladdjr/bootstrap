@@ -15,6 +15,7 @@
     path: ~/.sway
     mode: 0755
 
+# TODO: Copy over wallpaper folders from i3 folder, too
 - name: Install sway config
   copy:
     src: sway_config
