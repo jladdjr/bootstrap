@@ -3,7 +3,8 @@
 - hosts: all
   tasks:
     - name: Configure remote printer (via ipp protocol)
-      shell: 'lpadmin -p HL-L2300D -E -v ipp://holodeck/printers/HL-L2300D-series -m everywhere'
+      # The ipp address should have a name that matches the printer's name on the server
+      shell: 'lpadmin -p HLL2300D -E -v ipp://holodeck/printers/HLL2300D -m everywhere'
       args:
         executable: /bin/bash
       become: true
