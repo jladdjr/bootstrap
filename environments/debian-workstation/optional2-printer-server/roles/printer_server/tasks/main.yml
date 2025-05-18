@@ -12,30 +12,54 @@
 
 # Brother driver available at:
 # https://support.brother.com/g/b/downloadtop.aspx?c=us&lang=en&prod=hll2300d_us_eu_as
+# - Download the utility program instead of individual drivers
 #
 # If this becomes unavailable in the future, a copy of the *.deb file is stored in pass:
-# pass show digital/drivers/Brother-HL-L2300D-linux-brprinter-installer-2.2.3-1.gz
+# pass show digital/drivers/Brother-HL-L2300D-linux-brprinter-installer-2.2.4-1.gz
 #
-# Start the driver installer with 'bash <installer>.sh', then..
-# - select Linux (DEB)
-# - Click on Driver Install Tool at top
-# - Accept EULA
-# - Click Start
-# - gunzip downloaded file
-# - As root, run script
+# gunzip the utility file
+# Start the driver installer with 'sudo bash <installer>.sh', then..
 
 # In script, provide this input:
 # - Model name:             HL-L2300D
+
+# It will confirm it's installing the following packages
+# hll2300dlpr-3.2.0-1.i386.deb
+# hll2300dcupswrapper-3.2.0-1.i386.deb
+
+# - Accept the Brother License Agreement
+#   Next it will begin downloading the packages
+
+# - Accept the GPLv2
+#   It will download an additional package
+
+# - The packages will be installed
+#   Noticed the following warning on 5/17/2025
+#   > lpadmin: Printer drivers are deprecated and will stop working in a future version of CUPS
+
 # - Specify Device URI?     n
 # - Test print?             y  (make sure printer is on :)
+#                              (may not work unless you first make printer default)
 
 # After running the script, you should be able to return to the
 # local cups homepage and open the printers tab (http://localhost:631/printers/)
 # and confirm that the brother printer has been added.
 #
-# In my case, I see two printers:
-# HL-L2300D-series associated with location 'holodeck' and listed as Idle (appears to be actual printer used)
-# HLL2300D printer not associated with any location and listed as idle
+# In my case, I see:
+# Queue Name:      HLL2300D
+# Description:     HLL2300D
+# Location:        <blank>
+# Make and Model:  Brother HL-L2300D for CUPS
+# Status:          Idle
+#
+# Set the printer as default:
+# Click on Administration -> Manager Printers -> HL-L2300D-on-holodeck
+# Click on Administration -> Set as Server Default
+
+# You can also use Administration to set the printer defaults:
+# Media Size:  Letter
+# Duplex:      DuplexTumble (I think this is right)
+# Click Set Default Options
 
 # To get a list of printers, run:
 # sudo lpinfo -v
@@ -65,6 +89,7 @@
 #
 # You can confirm that sharing has been enabled with:
 # sudo cupsctl | grep -i _share_printers
+# (this shows me: _share_printers=1)
 #
 # To share a printer outside of the current network, run:
 # sudo cupsctl --remote-any
