@@ -10,7 +10,19 @@
       become: true
 
     - name: Set Brother printer as default
-      shell: 'lpoptions -d HL-L2300D-on-holodeck'
+      shell: 'lpoptions -d HLL2300D'
+      args:
+        executable: /bin/bash
+      become: true
+
+    - name: Set default duplex option to double-sided printing
+      shell: 'lpadmin -p HLL2300D -o Duplex=DuplexNoTumble'
+      args:
+        executable: /bin/bash
+      become: true
+
+    - name: Set default paper size to letter
+      shell: 'lpadmin -p HLL2300D -o media=Letter'
       args:
         executable: /bin/bash
       become: true
@@ -20,3 +32,4 @@
       args:
         executable: /bin/bash
 
+# To confirm default options run `lpoptions`
