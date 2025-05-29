@@ -13,6 +13,15 @@
     state: latest
   become: true
 
+# Install sqlite3 requirements
+- name: Install sqlite3 requirements
+  apt:
+    name:
+      - libsqlite3-0
+      - libsqlite3-dev
+    state: latest
+  become: true
+
 # Install requirements for vterm
 - name: Install vterm requirements
   apt:
