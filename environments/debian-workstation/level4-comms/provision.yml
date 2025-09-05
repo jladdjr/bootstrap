@@ -1,14 +1,4 @@
 - hosts: all
-  tasks:
-    - name: Install weechat
-      apt:
-        name:
-          - weechat
-        state: latest
-      update_cache: true
-      become: true
-
-- hosts: all
   roles:
     - { role: signal, tags: signal }
 
