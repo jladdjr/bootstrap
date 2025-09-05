@@ -3,8 +3,8 @@
 Prerequisites:
 - Level 5 (probably less, though?)
 
-- Must add jeeves in /etc/hosts (currently 192.168.1.203)
-- Must have ssh creds to ssh into jeeves
+- Must add seven in /etc/hosts (currently 192.168.1.203)
+- Must have ssh creds to ssh into seven
 
 Current status:
 Runs cleanly without errors.

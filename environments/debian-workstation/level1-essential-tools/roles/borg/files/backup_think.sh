@@ -7,7 +7,7 @@
 # who originally copied it from the Borg quick start docs at
 # https://borgbackup.readthedocs.io/en/stable/quickstart.html
 
-REPOSITORY=ssh://borg@jeeves:2918/var/services/homes/borg/repo
+REPOSITORY=ssh://borg@seven:2918/var/services/homes/borg/repo
 
 #Bail if borg is already running, maybe previous run didn't finish
 if pidof -x borg >/dev/null; then

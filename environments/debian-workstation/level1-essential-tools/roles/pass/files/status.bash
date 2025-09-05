@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ssh jim@jeeves 'cd ~/git/pass.git; git br -v'
+ssh jim@seven 'cd ~/git/pass.git; git br -v'

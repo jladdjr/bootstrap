@@ -32,9 +32,9 @@
           ssh jim@holodeck 'cd ~/ledger; git pull'
       }
 
-- name: Clone ledger repo from Jeeves
+- name: Clone ledger repo from Seven
   git:
-    repo: ssh://jim@jeeves/~/git/ledger.git
+    repo: ssh://jim@seven/~/git/ledger.git
     dest: "{{ lookup('env', 'HOME') }}/ledger"
     version: revolution
 

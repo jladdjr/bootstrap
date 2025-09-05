@@ -1,4 +1,4 @@
 #!/bin/bash
 
-pass git pull jeeves main
-pass git push jeeves
+pass git pull seven main
+pass git push seven
