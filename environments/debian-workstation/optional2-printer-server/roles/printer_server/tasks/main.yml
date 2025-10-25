@@ -58,7 +58,7 @@
 
 # You can also use Administration to set the printer defaults:
 # Media Size:  Letter
-# Duplex:      DuplexTumble (I think this is right)
+# Duplex:      DuplexNoTumble
 # Click Set Default Options
 
 # To get a list of printers, run:
