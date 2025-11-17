@@ -1,7 +1,0 @@
-# https://github.com/ggreer/the_silver_searcher#linux
-- name: Install Ag
-  apt:
-   name: silversearcher-ag
-   state: latest
-  become: true
-  tags: ag

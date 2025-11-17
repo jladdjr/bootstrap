@@ -1,8 +1,0 @@
-# https://access.redhat.com/solutions/3366211
-- name: Correct SELinux context bug
-  shell: restorecon -Rv /etc
-  become: yes
-
-- name: Set timezone (PT)
-  shell: timedatectl set-timezone "America/Los_Angeles"
-  become: yes

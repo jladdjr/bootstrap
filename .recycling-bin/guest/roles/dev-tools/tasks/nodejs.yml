@@ -1,6 +1,0 @@
-- name: Install node, npm
-  dnf:
-    name: nodejs
-    state: present
-  become: true
-  tags: nodejs

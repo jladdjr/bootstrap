@@ -1,6 +1,0 @@
-# https://github.com/ggreer/the_silver_searcher#linux
-- name: Install Ag
-  dnf:
-   name: the_silver_searcher
-   state: latest
-  become: true

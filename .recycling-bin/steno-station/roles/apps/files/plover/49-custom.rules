@@ -1,1 +1,0 @@
-KERNEL=="ttyACM[0-9]*", SUBSYSTEM=="tty", ATTRS{idVendor}=="feed", ATTRS{idProduct}=="1337", SYMLINK="ttyGRG"

@@ -1,4 +1,0 @@
-- name: Enable focus-events for tmux-focus-events
-  lineinfile:
-    path: ~/.tmux.conf
-    line: set -g focus-events on

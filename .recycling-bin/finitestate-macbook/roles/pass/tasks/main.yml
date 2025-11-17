@@ -1,5 +1,0 @@
-- import_tasks: pass.yml
-  tags: pass
-
-- import_tasks: pass_sync.yml
-  tags: pass_sync

@@ -1,5 +1,0 @@
-- import_tasks: plover.yml
-  tags: plover
-
-- import_tasks: irssi.yml
-  tags: irssi

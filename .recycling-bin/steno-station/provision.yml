@@ -1,4 +1,0 @@
-- hosts: steno-station
-  roles:
-    - { role: apps, tags: apps}
-    - { role: plymouth, tags: plymouth}
