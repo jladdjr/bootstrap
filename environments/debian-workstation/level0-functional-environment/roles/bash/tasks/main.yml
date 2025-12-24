@@ -175,3 +175,7 @@
 
           rm old new
       }
+
+      # the eye of sauron
+      # (to manage all home machines at once)
+      alias eye='cssh jim@nomad.home.arpa jim@holodeck.home.arpa jim@astrometrics.home.arpa steph@komputerchen.home.arpa'
