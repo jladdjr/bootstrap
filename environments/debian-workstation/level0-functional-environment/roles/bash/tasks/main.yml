@@ -152,7 +152,7 @@
       # johnny-decimal
       start () {
           git init
-              echo -e "$(pwd | cut -d/ -f 7 | sed s/-active//)\n\n$(date)\n\n# Reference\n\n# History\n" > notes.md
+              echo -e "$(pwd | cut -d/ -f 7 | sed s/-active//)\n\n$(date)\n\n# Reference\n\n# History\n## `date +%Y-%m-%d`\n" > notes.md
           git add notes.md
           git commit -m "Add notes.md"
           emacsclient -e "(projectile-discover-projects-in-directory \"`pwd`\")" &>/dev/null
