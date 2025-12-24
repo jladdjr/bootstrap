@@ -153,8 +153,8 @@
       start () {
           git init
               echo -e "$(pwd | cut -d/ -f 7 | sed s/-active//)\n\n$(date)\n\n" > notes.org
-          git add notes.org
-          git commit -m "Add notes.org"
+          git add notes.md
+          git commit -m "Add notes.md"
           emacsclient -e "(projectile-discover-projects-in-directory \"`pwd`\")" &>/dev/null
       }
 
