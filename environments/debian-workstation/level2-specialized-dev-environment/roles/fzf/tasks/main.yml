@@ -6,11 +6,6 @@
     update_cache: true
   become: true
 
-- name: Source bash completion for fzf
-  lineinfile:
-    path: "{{ lookup('env', 'HOME') }}/.bashrc"
-    line: "source /usr/share/bash-completion/completions/fzf"
-
 - name: Source bindings for fzf
   lineinfile:
     path: "{{ lookup('env', 'HOME') }}/.bashrc"
