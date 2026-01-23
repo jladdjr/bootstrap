@@ -100,9 +100,9 @@
         [ "${PWD}" != "${p}" ] && printf "~"
         IFS=/
         for q in ${p:1}
-          do printf /${q:0:1}
+          do printf "/%s" "${q:0:1}"
         done
-        printf "${q:1}"
+        printf "%s" "${q:1}"
       }
 
       # Prompt colors:
