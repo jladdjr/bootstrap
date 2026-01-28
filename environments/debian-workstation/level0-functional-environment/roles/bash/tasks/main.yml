@@ -151,11 +151,36 @@
 
       # johnny-decimal
       start () {
+          local jd_id=$(pwd | cut -d/ -f 7 | sed 's/-//g')
+          local org_roam_dir="$HOME/org-roam"
+          local symlink_name="jd-${jd_id}-notes.org"
+          local notes_file="$(pwd)/notes.org"
+
           git init
-              echo -e "$(pwd | cut -d/ -f 7 | sed s/-active//)\n\n$(date)\n\n# Reference\n\n# History\n## `date +%Y-%m-%d`\n" > notes.md
-          git add notes.md
-          git commit -m "Add notes.md"
-          emacsclient -e "(projectile-discover-projects-in-directory \"`pwd`\")" &>/dev/null
+          cat > notes.org << EOF
+      #+title: ${jd_id}
+
+      $(date)
+
+      * Reference
+
+      * History
+      ** $(date +%Y-%m-%d)
+      EOF
+
+          ln -s "${notes_file}" "${org_roam_dir}/${symlink_name}"
+
+          # Let Emacs add the ID properly
+          emacsclient -e "(progn
+            (find-file \"${notes_file}\")
+            (goto-char (point-min))
+            (org-id-get-create)
+            (save-buffer))"
+
+          git add notes.org
+          git commit -m "Add notes.org"
+
+          emacsclient -e "(projectile-discover-projects-in-directory \"$(pwd)\")" &>/dev/null
       }
 
       alias prep_for_vfat="rename 's/[^a-zA-Z0-9. _-]//g' *"
