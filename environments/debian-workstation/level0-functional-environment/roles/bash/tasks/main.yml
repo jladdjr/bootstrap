@@ -151,7 +151,7 @@
 
       # johnny-decimal
       start () {
-          local jd_id=$(pwd | cut -d/ -f 7 | sed 's/-//g')
+          local jd_id=$(pwd | cut -d/ -f 7 | sed 's/-/ /g')
           local org_roam_dir="$HOME/org-roam"
           local symlink_name="jd-${jd_id}-notes.org"
           local notes_file="$(pwd)/notes.org"
