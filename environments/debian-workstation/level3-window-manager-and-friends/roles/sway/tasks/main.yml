@@ -5,6 +5,7 @@
       - swaylock
       - swayidle
       - i3status
+      - bemenu
     state: latest
     update_cache: true
   become: true
