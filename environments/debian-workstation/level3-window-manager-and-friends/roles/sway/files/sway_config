@@ -303,4 +303,16 @@ bar {
 #
 exec mako
 
+#
+# Support for switching display resolutions
+#
+bindsym $mod+Shift+b output DP-3 mode 3440x1440
+bindsym $mod+Shift+s output DP-3 mode 1920x1080
+
+#
+# Disable laptop screen when closed
+#
+bindswitch --reload --locked lid:on output eDP-1 disable
+bindswitch --reload --locked lid:off output eDP-1 enable
+
 include /etc/sway/config.d/*
