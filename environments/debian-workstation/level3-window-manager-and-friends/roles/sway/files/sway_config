@@ -307,7 +307,7 @@ exec mako
 # Support for switching display resolutions
 #
 bindsym $mod+Shift+b output DP-3 mode 3440x1440
-bindsym $mod+Shift+s output DP-3 mode 1920x1080
+bindsym $mod+Shift+s output DP-3 mode 1152x864
 
 #
 # Disable laptop screen when closed
