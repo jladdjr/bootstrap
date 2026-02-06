@@ -9,6 +9,7 @@
     - name: Install specialized tools
       apt:
         name:
+          - kubectl
           - clusterssh  # provides cssh
           # Manually install VirtualBox by downloading deb.
           # (package is only included in sid package repo)
