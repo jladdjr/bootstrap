@@ -28,6 +28,8 @@
     path: ~/.bashrc
     block: |
       alias ll='ls -l'
+      alias vi='vim'
+      alias k='kubectl'
       alias h='cd $(pwd | cut -d '/' -f 1-5); pwd'  # Move to head (top) folder of git projects (bit hacky)
 
       # History
