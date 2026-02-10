@@ -6,6 +6,7 @@
       - swayidle
       - i3status
       - bemenu
+      - imv
     state: latest
     update_cache: true
   become: true
