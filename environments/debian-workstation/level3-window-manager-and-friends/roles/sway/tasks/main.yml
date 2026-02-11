@@ -6,7 +6,8 @@
       - swayidle
       - i3status
       - bemenu
-      - imv
+      - imv       # image previews
+      - seahorse  # keyring management
     state: latest
     update_cache: true
   become: true
