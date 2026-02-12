@@ -6,8 +6,9 @@
       - swayidle
       - i3status
       - bemenu
-      - imv       # image previews
-      - seahorse  # keyring management
+      - imv               # image previews
+      - seahorse          # keyring management
+      - pulseaudio-utils  # audio device settings
     state: latest
     update_cache: true
   become: true
