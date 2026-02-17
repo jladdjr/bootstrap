@@ -8,7 +8,7 @@
       - bemenu
       - imv               # image previews
       - seahorse          # keyring management
-      - pulseaudio-utils  # audio device settings
+      - pulseaudio-utils  # audio device settings, provides pulsemixer
     state: latest
     update_cache: true
   become: true
