@@ -124,8 +124,9 @@ bindsym $mod+Shift+m exec swaymsg input type:keyboard xkb_variant '""'
 # shortcuts can safely be used regardless of
 # which layout is currently in use.
 
-# Open Control Center
-bindsym $mod+t exec gnome-control-center
+# Grab screencast
+bindsym $mod+t exec wf-recorder -g "$(slurp)" -f ~/Videos/$(date +%Y%m%d-%H%M.mkv)
+bindsym $mod+Shift+t exec pkill wf-recorder
 
 ### Key bindings
 #

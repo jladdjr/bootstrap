@@ -16,9 +16,6 @@
           - krita
           - inkscape
           - screenkey    # run with `screenkey --mods-mode emacs --persist`
-          - grim
-          - slurp
-          - wf-recorder  # run with `wf-recorder -g "$(slurp -d)"
           - gocr         # for Optical Character Recognition (OCR)
           - rolldice
         state: latest
