@@ -9,6 +9,7 @@
       - imv               # image previews
       - seahorse          # keyring management
       - pulseaudio-utils  # audio device settings, provides pulsemixer
+      - pavucontrol       # gui for managing audio
       - grim
       - slurp
       - wf-recorder
