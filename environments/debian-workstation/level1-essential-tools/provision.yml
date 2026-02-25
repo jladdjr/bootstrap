@@ -14,5 +14,6 @@
           - dnsutils    # provides dig (for getting DNS record info)
           - traceroute
           - lm-sensors  # provides sensors, for checking machine temps
+          - jdupes      # for general de-duplication
         state: latest
       become: true
