@@ -17,6 +17,8 @@
           - inkscape
           - screenkey    # run with `screenkey --mods-mode emacs --persist`
           - gocr         # for Optical Character Recognition (OCR)
+          - tesseract    # easy-to-use OCR tool
+          - units
           - rolldice
         state: latest
         update_cache: true
