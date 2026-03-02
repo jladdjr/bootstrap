@@ -35,5 +35,5 @@ borg create -p -v --stats                       \
 # archives of THIS machine. The '{hostname}-' prefix is very important to
 # limit prune's operation to this machine's archives and not apply to
 # other machine's archives also.
-borg prune -v --list $REPOSITORY --prefix '{hostname}-' \
+borg prune -v --list $REPOSITORY --glob-archives '{hostname}-*' \
     --keep-daily=7 --keep-weekly=4 --keep-monthly=6
