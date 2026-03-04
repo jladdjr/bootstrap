@@ -137,6 +137,15 @@
       # last file
       alias lf='ls -t1 | head -n 1'
 
+      # TODO: Convert to script, added to /usr/local/bin
+      # move most recent file from Downloads folder to CWD
+      function grab() {
+          DOWNLOADS="${HOME}/Downloads"
+          FILE="${DOWNLOADS}/$(ls -t ${DOWNLOADS}| head -n 1)"
+          echo "Grabbed $FILE"
+          mv "$FILE" .
+      }
+
       gimme () {
               total_mins=$1
               # Alternative icon for Pop!_OS
