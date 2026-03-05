@@ -29,7 +29,7 @@ ledger () {
         fi
 
         git add -u
-        git commit -m 'Jim update'
+        git commit -m "toil(general): `whoami` update"
         # determine if git's pre-commit script was successful
         if [ $? -ne 0 ]; then
             rm -f $file_path
