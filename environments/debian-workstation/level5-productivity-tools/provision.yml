@@ -5,13 +5,14 @@
 
 - hosts: all
   tasks:
-    - name: Install okular
+    - name: Install PDF viewers
       apt:
         name:
           # okular's annotation / freehand line drawing
           # lets you draw your signature onto a pdf and save
           # https://www.reddit.com/r/kde/comments/s2aqn0/tip_add_your_signature_with_okular_to_a_pdf_sign/
           - okular
+          - zathura
         state: latest
         update_cache: true
       become: true
