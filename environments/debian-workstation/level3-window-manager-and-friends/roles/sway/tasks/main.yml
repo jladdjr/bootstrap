@@ -12,6 +12,7 @@
       - pavucontrol       # gui for managing audio
       - grim
       - slurp
+      - swappy            # screenshot editor
       - wf-recorder
     state: latest
     update_cache: true
