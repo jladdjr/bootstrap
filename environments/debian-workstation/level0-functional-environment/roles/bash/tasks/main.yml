@@ -142,8 +142,8 @@
       function grab() {
           DOWNLOADS="${HOME}/Downloads"
           FILE="${DOWNLOADS}/$(ls -t ${DOWNLOADS}| head -n 1)"
-          echo "Grabbed $FILE"
           mv "$FILE" .
+          echo "Grabbed $FILE"
       }
 
       gimme () {
