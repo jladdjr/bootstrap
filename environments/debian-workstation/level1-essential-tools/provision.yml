@@ -11,6 +11,7 @@
     - name: Install core tools
       apt:
         name:
+          - mailutils   # provides mail (essential for reading cron mail)
           - dnsutils    # provides dig (for getting DNS record info)
           - traceroute
           - lm-sensors  # provides sensors, for checking machine temps
