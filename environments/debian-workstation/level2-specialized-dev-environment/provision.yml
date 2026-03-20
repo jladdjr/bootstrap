@@ -15,5 +15,6 @@
           # (package is only included in sid package repo)
           # https://www.oracle.com/virtualization/technologies/vm/downloads/virtualbox-downloads.html
           - vagrant
+          - wireshark
         state: latest
       become: true
