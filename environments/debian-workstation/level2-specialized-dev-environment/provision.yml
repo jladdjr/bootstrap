@@ -16,5 +16,6 @@
           # https://www.oracle.com/virtualization/technologies/vm/downloads/virtualbox-downloads.html
           - vagrant
           - wireshark
+          - libimage-exiftool-perl  # provides exiftool
         state: latest
       become: true
