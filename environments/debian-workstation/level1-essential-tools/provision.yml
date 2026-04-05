@@ -16,5 +16,6 @@
           - traceroute
           - lm-sensors  # provides sensors, for checking machine temps
           - jdupes      # for general de-duplication
+          - ffmpeg      # video conversion
         state: latest
       become: true
