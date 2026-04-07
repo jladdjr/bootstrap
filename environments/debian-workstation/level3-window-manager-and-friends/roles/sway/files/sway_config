@@ -220,6 +220,11 @@ bindsym $mod+Shift+t exec pkill wf-recorder
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 #
+# Scratchpad:
+#
+    bindsym $mod+z move container to scratchpad
+    bindsym $mod+Shift+z scratchpad show
+#
 # Layout stuff:
 #
     # You can "split" the current object of your focus with
