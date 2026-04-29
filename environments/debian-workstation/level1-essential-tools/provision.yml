@@ -17,5 +17,6 @@
           - lm-sensors  # provides sensors, for checking machine temps
           - jdupes      # for general de-duplication
           - ffmpeg      # video conversion
+          - dos2unix
         state: latest
       become: true
