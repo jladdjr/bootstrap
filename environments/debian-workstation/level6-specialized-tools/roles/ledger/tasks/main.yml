@@ -18,18 +18,19 @@
 # sudo cp hledger* /usr/local/bin
 # hledger --version
 
-- name: Add ledger wrapper command
+- name: Add ledger helper functions
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK - level6 - ledger"
     path: "{{ lookup('env', 'HOME') }}/.bashrc"
     block: |
-      ledger () {
-          cd ~/ledger/2024
-          git pull
-          /usr/bin/emacsclient -c -a emacs journal.ledger
-          git add -u
-          git commit -m 'Jim update' && git push
-          ssh jim@holodeck 'cd ~/ledger; git pull'
+      spend () {
+        cd ~/ledger
+        echo "[Entries for $1]"
+        hledger -f journal.ledger --pager=N reg desc:$1
+        echo ""
+
+        echo "[Monthly spending for $1]"
+        hledger -f journal.ledger --pager=N bal -M -T desc:$1
       }
 
 - name: Clone ledger repo from Seven
