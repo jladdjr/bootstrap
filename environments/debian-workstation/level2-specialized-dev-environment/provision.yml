@@ -17,5 +17,8 @@
           - vagrant
           - wireshark
           - libimage-exiftool-perl  # provides exiftool
+          - mkdocs
+          - mkdocs-material
+          - mkdocs-doc
         state: latest
       become: true
