@@ -14,6 +14,7 @@
       - slurp
       - swappy            # screenshot editor
       - wf-recorder
+      - wl-mirror         # mirrors screen (e.g. `wl-mirror eDP-1`)
     state: latest
     update_cache: true
   become: true
