@@ -23,21 +23,28 @@ export BORG_PASSPHRASE='FIXME'
 
 # Backup all of /home and /var/www except a few
 # excluded directories
-borg create -p -v --stats                       \
-    -e /home/jim/Downloads                      \
+borg create -p -v --stats                            \
+    -e /home/jim/Downloads                           \
     -e /home/jim/backups/20230710_revolution_refresh \
-    -e /home/jim/.mozilla                       \
-    -e /home/jim/.config                        \
-    -e /home/jim/audacity                       \
-    -e /home/jim/.cache                         \
-    -e /home/jim/.emacs.d/straight              \
-    -e /home/jim/skip_backup                    \
-    $REPOSITORY::'{hostname}2-{now:%Y-%m-%d}'   \
+    -e /home/jim/backups/borg                        \
+    -e /home/jim/.mozilla                            \
+    -e /home/jim/.minecraft                          \
+    -e /home/jim/audacity                            \
+    -e /home/jim/.cache                              \
+    -e /home/jim/.cargo                              \
+    -e /home/jim/.npm                                \
+    -e /home/jim/.wine                               \
+    -e /home/jim/tmp                                 \
+    -e /home/jim/venvs                               \
+    -e /home/jim/Videos                              \
+    -e /home/jim/.emacs.d/straight                   \
+    -e /home/jim/skip_backup                         \
+    $REPOSITORY::'{hostname}-{now:%Y-%m-%d}'         \
     /home/jim
 
 # Use the `prune` subcommand to maintain 7 daily, 4 weekly and 6 monthly
 # archives of THIS machine. The '{hostname}-' prefix is very important to
 # limit prune's operation to this machine's archives and not apply to
 # other machine's archives also.
-borg prune -v --list $REPOSITORY --glob-archives '{hostname}2-*' \
+borg prune -v --list $REPOSITORY --glob-archives '{hostname}-*' \
     --keep-daily=7 --keep-weekly=4 --keep-monthly=6
