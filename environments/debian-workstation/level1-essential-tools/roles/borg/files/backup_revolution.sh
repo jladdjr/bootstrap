@@ -31,6 +31,7 @@ borg create -p -v --stats                            \
     -e /home/jim/.minecraft                          \
     -e /home/jim/audacity                            \
     -e /home/jim/.cache                              \
+    -e /home/jim/.local                              \
     -e /home/jim/.cargo                              \
     -e /home/jim/.npm                                \
     -e /home/jim/.wine                               \
