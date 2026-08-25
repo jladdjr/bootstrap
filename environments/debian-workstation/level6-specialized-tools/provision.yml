@@ -20,6 +20,7 @@
           - tesseract    # easy-to-use OCR tool
           - units
           - rolldice
+          - zbarcam-gtk  # decode QR codes via live video stream
         state: latest
         update_cache: true
       become: true
