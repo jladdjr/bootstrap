@@ -1,18 +1,19 @@
 - name: Install sway and friends
   apt:
     name:
-      - sway
-      - swaylock
-      - swayidle
-      - i3status
       - bemenu
-      - imv               # image previews
-      - seahorse          # keyring management
-      - pulseaudio-utils  # audio device settings, provides pulsemixer
-      - pavucontrol       # gui for managing audio
       - grim
+      - i3status
+      - imv               # image previews
+      - mako-notifier     # lightweight notification daemon for Wayland / Sway
+      - pavucontrol       # gui for managing audio
+      - pulseaudio-utils  # audio device settings, provides pulsemixer
+      - seahorse          # keyring management
       - slurp
       - swappy            # screenshot editor
+      - sway
+      - swayidle
+      - swaylock
       - wf-recorder
       - wl-mirror         # mirrors screen (e.g. `wl-mirror eDP-1`)
     state: latest

@@ -2,7 +2,7 @@
   apt:
     name:
       - libnotify-bin  # provides notify-send cmd used by gimme bash func
-      - mako-notifier  # lightweight notification daemon for Wayland / Sway
+      # mako-notifier is installed as part of level3 (sway)
     state: latest
     update_cache: true
   become: true
