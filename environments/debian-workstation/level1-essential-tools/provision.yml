@@ -11,12 +11,13 @@
     - name: Install core tools
       apt:
         name:
-          - mailutils   # provides mail (essential for reading cron mail)
-          - dnsutils    # provides dig (for getting DNS record info)
-          - traceroute
-          - lm-sensors  # provides sensors, for checking machine temps
-          - jdupes      # for general de-duplication
-          - ffmpeg      # video conversion
+          - dnsutils         # provides dig (for getting DNS record info)
           - dos2unix
+          - ffmpeg           # video conversion
+          - isc-dhcp-client  # provides dhclient (for reseting dhcp assignment)
+          - jdupes           # for general de-duplication
+          - lm-sensors       # provides sensors, for checking machine temps
+          - mailutils        # provides mail (essential for reading cron mail)
+          - traceroute
         state: latest
       become: true
